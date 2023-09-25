@@ -1,0 +1,9 @@
+ios/build/
+android/.idea/
+android/app/build/
+node_modules/
+yarn.lock
+.vscode
+.bundle
+Pods/
+vendor/bundle/
