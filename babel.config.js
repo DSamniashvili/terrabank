@@ -17,6 +17,7 @@ module.exports = {
           theme: './src/theme',
           translations: './src/translations',
           types: './src/types',
+          assets: './src/assets',
         },
       },
     ],

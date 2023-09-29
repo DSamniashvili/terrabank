@@ -13,7 +13,8 @@
       "store/*": ["store/*"],
       "theme/*": ["theme/*"],
       "translations/*": ["translations/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "assets/*": ["assets/*"]
     }
   }
 }

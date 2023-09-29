@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, DimensionValue } from 'react-native';
-import { useTheme } from '../../hooks';
+import { useTheme } from 'hooks';
 
 type Props = {
   height?: DimensionValue;
