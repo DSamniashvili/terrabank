@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistReducer,
@@ -9,44 +9,36 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-  Storage,
 } from 'redux-persist';
-import { MMKV } from 'react-native-mmkv';
 
 import { api } from 'services/api';
-import theme from './theme';
+import { themeReducer } from './slices/theme';
+import { reduxStorage } from './reduxStorage';
+import { counterReducer } from 'store/slices/counter/counter';
+
+const counterPersistConfig = {
+  key: 'counter',
+  storage: reduxStorage,
+  whitelist: ['currentNumber'],
+};
+
+const themePersistConfig = {
+  key: 'theme',
+  storage: reduxStorage,
+  whitelist: ['darkMode', 'theme'],
+};
+
+const persistedCounter = persistReducer(counterPersistConfig, counterReducer);
+const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 
 const reducers = combineReducers({
-  theme,
+  counter: persistedCounter,
+  theme: persistedTheme,
   [api.reducerPath]: api.reducer,
 });
 
-const storage = new MMKV();
-export const reduxStorage: Storage = {
-  setItem: (key, value) => {
-    storage.set(key, value);
-    return Promise.resolve(true);
-  },
-  getItem: key => {
-    const value = storage.getString(key);
-    return Promise.resolve(value);
-  },
-  removeItem: key => {
-    storage.delete(key);
-    return Promise.resolve();
-  },
-};
-
-const persistConfig = {
-  key: 'root',
-  storage: reduxStorage,
-  whitelist: ['theme', 'auth'],
-};
-
-const persistedReducer = persistReducer(persistConfig, reducers);
-
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: reducers,
   middleware: getDefaultMiddleware => {
     const middlewares = getDefaultMiddleware({
       serializableCheck: {
@@ -68,3 +60,6 @@ const persistor = persistStore(store);
 setupListeners(store.dispatch);
 
 export { store, persistor };
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

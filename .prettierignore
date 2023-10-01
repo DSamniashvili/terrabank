@@ -7,3 +7,12 @@ yarn.lock
 .bundle
 Pods/
 vendor/bundle/
+/android
+/ios
+babel.config.js
+README.md
+.eslintrc.js
+.prettierrc
+.watchmanconfig
+metro.config.js
+package.json
