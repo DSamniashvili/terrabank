@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Example } from 'screens';
 import { createStackNavigator } from '@react-navigation/stack';
+import { openToast } from 'utils/toast';
 
 const Stack = createStackNavigator();
 
 // @refresh reset
 const MainNavigator = () => {
+  useEffect(() => {
+    openToast('test');
+  }, []);
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Example} />

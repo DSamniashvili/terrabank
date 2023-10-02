@@ -8,7 +8,7 @@ module.exports = {
         root: ['./src'],
         extensions: ['.js', '.json', '.ts', '.tsx', '.js', '.jsx'],
         alias: {
-          navigators: './src/navigators',
+          navigation: './src/navigation',
           components: './src/components',
           hooks: './src/hooks',
           screens: './src/screens',
@@ -18,6 +18,8 @@ module.exports = {
           translations: './src/translations',
           types: './src/types',
           assets: './src/assets',
+          utils: './src/utils',
+          storage: './src/storage',
         },
       },
     ],

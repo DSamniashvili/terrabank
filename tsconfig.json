@@ -7,14 +7,16 @@
     "paths": {
       "components/*": ["components/*"],
       "hooks/*": ["hooks/*"],
-      "navigators/*": ["navigators/*"],
+      "navigation/*": ["navigation/*"],
       "screens/*": ["screens/*"],
       "services/*": ["services/*"],
       "store/*": ["store/*"],
       "theme/*": ["theme/*"],
       "translations/*": ["translations/*"],
       "types/*": ["types/*"],
-      "assets/*": ["assets/*"]
+      "assets/*": ["assets/*"],
+      "utils/*": ["utils/*"],
+      "storage/*": ["storage/*"]
     }
   }
 }
