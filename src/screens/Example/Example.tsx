@@ -35,10 +35,6 @@ const Example = () => {
     }
   }, [isSuccess, data, t]);
 
-  useEffect(() => {
-    console.log('testing');
-  }, []);
-
   const onChangeTheme = ({ theme, darkMode }: Partial<ThemeState>) => {
     dispatch(changeTheme({ theme, darkMode }));
   };
