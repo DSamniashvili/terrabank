@@ -6,6 +6,8 @@ import { store, persistor } from 'store';
 import ApplicationNavigator from 'navigators/Application';
 import 'translations';
 
+// Testing github actions
+
 const App = () => (
   <Provider store={store}>
     {/**
