@@ -13,8 +13,8 @@ import {
 
 import { api } from 'services/api';
 import { themeReducer } from './slices/theme';
+import { counterReducer } from './slices/counter';
 import { reduxStorage } from './reduxStorage';
-import { counterReducer } from 'store/slices/counter/counter';
 
 const counterPersistConfig = {
   key: 'counter',

@@ -16,7 +16,7 @@ import { changeTheme } from 'store/slices/theme';
 import i18next from 'i18next';
 import { ThemeState } from 'store/slices/theme/types';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { decrement, increment, incrementByAmount } from 'store/slices/counter/counter';
+import { decrement, increment, incrementByAmount } from 'store/slices/counter';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { TextInput } from 'react-native-gesture-handler';
 
