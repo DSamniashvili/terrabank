@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import themes from 'theme/themes';
+import { ThemePayload, ThemeState } from './types';
 
-const slice = createSlice({
+const themeSlice = createSlice({
   name: 'theme',
   initialState: { theme: 'default', darkMode: null } as ThemeState,
   reducers: {
@@ -26,22 +26,5 @@ const slice = createSlice({
   },
 });
 
-export const { changeTheme, setDefaultTheme } = slice.actions;
-
-export default slice.reducer;
-
-type DarkProps<T> = {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  [K in keyof T]: K extends `${infer Prefix}_dark` ? K : never;
-}[keyof T];
-
-type PropsWithoutDark<T> = Omit<T, DarkProps<T>>;
-
-export type ThemeState = {
-  theme: 'default' | keyof PropsWithoutDark<typeof themes>;
-  darkMode: boolean | null;
-};
-
-type ThemePayload = {
-  payload: Partial<ThemeState>;
-};
+export const { changeTheme, setDefaultTheme } = themeSlice.actions;
+export const themeReducer = themeSlice.reducer;

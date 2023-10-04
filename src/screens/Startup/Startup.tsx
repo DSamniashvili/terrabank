@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { useTheme } from 'hooks';
 import { Brand } from 'components';
-import { setDefaultTheme } from 'store/theme';
+import { setDefaultTheme } from 'store/slices/theme';
 import { ApplicationScreenProps } from 'types/declarations/navigation';
 
 const Startup = ({ navigation }: ApplicationScreenProps) => {

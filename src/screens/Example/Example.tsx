@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   ActivityIndicator,
@@ -8,20 +8,26 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Brand } from 'components';
 import { useTheme } from 'hooks';
-import { useLazyFetchOneQuery } from 'services/modules/users';
-import { changeTheme, ThemeState } from 'store/theme';
+import { useLazyFetchOneQueryUser } from 'services/modules/users';
+import { changeTheme } from 'store/slices/theme';
 import i18next from 'i18next';
+import { ThemeState } from 'store/slices/theme/types';
+import { useAppDispatch } from 'store/hooks/useAppDispatch';
+import { decrement, increment, incrementByAmount } from 'store/slices/counter';
+import { useAppSelector } from 'store/hooks/useAppSelector';
+import { TextInput } from 'react-native-gesture-handler';
 
 const Example = () => {
   const { t } = useTranslation();
   const { Common, Fonts, Gutters, Layout, Images, darkMode: isDark } = useTheme();
-  const dispatch = useDispatch();
 
-  const [fetchOne, { data, isSuccess, isLoading, isFetching }] = useLazyFetchOneQuery();
+  const [fetchOne, { data, isSuccess, isLoading, isFetching }] = useLazyFetchOneQueryUser();
+  const dispatch = useAppDispatch();
+  const { currentNumber } = useAppSelector(state => state.counter);
+  const [incrementAmount, setIncrementAmount] = useState('2');
 
   useEffect(() => {
     if (isSuccess && data?.name) {
@@ -211,6 +217,32 @@ const Example = () => {
               source={Images.icons.translate}
               style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
             />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[Common.button.circle, Gutters.regularBMargin]}
+            onPress={() => dispatch(decrement())}
+          >
+            <Text>-</Text>
+          </TouchableOpacity>
+          <View>
+            <Text>{currentNumber}</Text>
+          </View>
+          <TouchableOpacity
+            style={[Common.button.circle, Gutters.regularBMargin]}
+            onPress={() => dispatch(increment())}
+          >
+            <Text>+</Text>
+          </TouchableOpacity>
+          <TextInput
+            keyboardType="numeric"
+            value={incrementAmount}
+            onChangeText={text => setIncrementAmount(text)}
+          />
+          <TouchableOpacity
+            onPress={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}
+          >
+            <Text>Add amount</Text>
           </TouchableOpacity>
         </View>
       </View>

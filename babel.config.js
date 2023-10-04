@@ -6,7 +6,7 @@ module.exports = {
       'module-resolver',
       {
         root: ['./src'],
-        extensions: ['.js', '.json'],
+        extensions: ['.js', '.json', '.ts', '.tsx', '.js', '.jsx'],
         alias: {
           navigators: './src/navigators',
           components: './src/components',

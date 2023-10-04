@@ -14,4 +14,4 @@ export const userApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useLazyFetchOneQuery } = userApi;
+export const { useLazyFetchOneQuery: useLazyFetchOneQueryUser } = userApi;
