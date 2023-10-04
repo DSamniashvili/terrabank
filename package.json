@@ -16,7 +16,7 @@
     "test:report": "jest --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --coverage",
     "pod-install": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install && cd ..",
     "reinstall": "rm -rf node_modules && yarn install && yarn reinstall:pods",
-    "reinstall:pods": "cd ios && rm -rf Pods && react-native setup-ios-permissions && pod install",
+    "reinstall:pods": "cd ios && rm -rf Pods && pod install",
     "verify": "yarn type-check && yarn prettier && yarn lint",
     "prepare": "husky install"
   },
