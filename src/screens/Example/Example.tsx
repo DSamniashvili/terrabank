@@ -19,9 +19,12 @@ import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { decrement, increment, incrementByAmount } from 'store/slices/counter';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { TextInput } from 'react-native-gesture-handler';
+// import { useGetUsersQuery } from 'store/apis';
 
 const Example = () => {
   const { t } = useTranslation();
+  // const { data: users } = useGetUsersQuery();
+
   const { Common, Fonts, Gutters, Layout, Images, darkMode: isDark } = useTheme();
 
   const [fetchOne, { data, isSuccess, isLoading, isFetching }] = useLazyFetchOneQueryUser();
