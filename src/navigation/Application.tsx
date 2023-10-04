@@ -11,7 +11,7 @@ import { ApplicationStackParamList } from 'types/declarations/navigation';
 const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
-const ApplicationNavigator = () => {
+export const ApplicationNavigator = () => {
   const { Layout, darkMode, NavigationTheme } = useTheme();
   const { colors } = NavigationTheme;
 
@@ -31,5 +31,3 @@ const ApplicationNavigator = () => {
     </SafeAreaView>
   );
 };
-
-export default ApplicationNavigator;
