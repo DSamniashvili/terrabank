@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { Common, Fonts, Gutters, Images, Layout, themes, DefaultVariables } from 'theme';
 import { ThemeState } from 'store/theme';
-import { ThemeVariables, Theme, ThemeNavigationTheme, ThemeNavigationColors } from 'types/declarations/theme';
+import {
+  ThemeVariables,
+  Theme,
+  ThemeNavigationTheme,
+  ThemeNavigationColors,
+} from 'types/declarations/theme';
 
 export default function () {
   // Get the scheme device
