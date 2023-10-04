@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { useTheme } from 'hooks';
 import MainNavigator from './Main';
 import { useFlipper } from '@react-navigation/devtools';
 import { ApplicationStackParamList } from 'types/declarations/navigation';
+import SplashScreen from 'react-native-splash-screen'
+
 
 const Stack = createStackNavigator<ApplicationStackParamList>();
 
@@ -19,12 +21,16 @@ const ApplicationNavigator = () => {
 
   useFlipper(navigationRef);
 
+  useEffect(() => {
+	SplashScreen.hide();
+  }, [])
+
   return (
     <SafeAreaView style={[Layout.fill, { backgroundColor: colors.card }]}>
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Startup" component={Startup} />
+          {/* <Stack.Screen name="Startup" component={Startup} /> */}
           <Stack.Screen name="Main" component={MainNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
