@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Spacing } from 'theme/Variables';
 import { CommonParams } from 'types/declarations/theme';
 
 export default function <C>({ Colors, Gutters, Layout }: CommonParams<C>) {
@@ -29,13 +30,13 @@ export default function <C>({ Colors, Gutters, Layout }: CommonParams<C>) {
     outline: {
       ...base,
       backgroundColor: Colors.transparent,
-      borderWidth: 2,
+      borderWidth: Spacing.xxs,
       borderColor: Colors.primary,
     },
     outlineRounded: {
       ...rounded,
       backgroundColor: Colors.transparent,
-      borderWidth: 2,
+      borderWidth: Spacing.xxs,
       borderColor: Colors.primary,
     },
   });

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { FontSize, Spacing } from 'theme/Variables';
 
 export default () => {
   return StyleSheet.create({
@@ -8,8 +9,8 @@ export default () => {
       alignSelf: 'center',
       width: '100%',
       height: 90,
-      paddingHorizontal: 16,
-      paddingVertical: 20,
+      paddingHorizontal: Spacing.ml,
+      paddingVertical: Spacing.l,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-start',
@@ -18,13 +19,13 @@ export default () => {
     errorText: {
       flex: 1,
 
-      marginLeft: 16,
-      fontSize: 12,
+      marginLeft: Spacing.ml,
+      fontSize: FontSize.tiny,
     },
     closeButton: {
       position: 'absolute',
-      top: 8,
-      right: 8,
+      top: Spacing.s,
+      right: Spacing.s,
     },
   });
 };
