@@ -8,13 +8,13 @@ export const exampleApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),
-  tagTypes: ['Example'],
+  tagTypes: ['User'],
   endpoints: builder => ({
     getUsers: builder.query<Todo[], void>({
       query: () => ({
         url: 'users',
       }),
-      providesTags: ['Example'],
+      providesTags: ['User'],
       transformResponse: (response: ITodosRes) => response.data,
     }),
   }),

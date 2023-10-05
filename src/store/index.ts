@@ -9,7 +9,6 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-  PersistConfig,
 } from 'redux-persist';
 import { api } from 'services/api';
 import { themeReducer } from './slices/theme';
@@ -18,29 +17,35 @@ import { reduxStorage } from './reduxStorage';
 import { exampleApi } from './apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 
-const persistConfig: PersistConfig<RootState> = {
-  key: 'root',
+const counterPersistConfig = {
+  key: 'counter',
   storage: reduxStorage,
-  whitelist: ['counter'],
+  whitelist: ['currentNumber'],
 };
 
-const reducers = {
-  counter: counterReducer,
-  theme: themeReducer,
+const themePersistConfig = {
+  key: 'theme',
+  storage: reduxStorage,
+  whitelist: ['theme', 'darkMode'],
+};
+
+const persistedCounter = persistReducer(counterPersistConfig, counterReducer);
+const persistedTheme = persistReducer(themePersistConfig, themeReducer);
+
+const reducers = combineReducers({
+  counter: persistedCounter,
+  theme: persistedTheme,
   [api.reducerPath]: api.reducer,
   [exampleApi.reducerPath]: exampleApi.reducer,
-};
-
-const combinedReducers = combineReducers<typeof reducers>(reducers);
+});
 
 const rootReducer: Reducer<RootState> = (state, action) => {
   if (action.type === RESET_STATE_ACTION_TYPE) {
     state = {} as RootState;
   }
-  return combinedReducers(state, action);
+  return reducers(state, action);
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 const middlewares = [api.middleware, exampleApi.middleware];
 
 if (__DEV__) {
@@ -49,7 +54,7 @@ if (__DEV__) {
 }
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -65,4 +70,4 @@ setupListeners(store.dispatch);
 export { store, persistor };
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof combinedReducers>;
+export type RootState = ReturnType<typeof reducers>;
