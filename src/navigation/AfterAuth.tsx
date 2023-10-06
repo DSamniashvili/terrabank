@@ -1,9 +1,11 @@
 import React from 'react';
+import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeStack, PaymentsStack, TransactionsStack, ProductsStack, ProfileStack } from './stacks';
+import { HOME, INITIAL, PAYMENTS, PRODUCTS, PROFILE, TRANSACTIONS } from './ScreenNames';
 import { hideHeader, tabOptions } from './config';
-import { View } from 'react-native';
 
 export type AfterAuthStackParamList = {
   Initial: undefined;
@@ -34,21 +36,34 @@ const Stack = createStackNavigator<AfterAuthStackParamList>();
 
 const TabNavigator = () => {
   const { Navigator, Screen } = Tab;
+  const { t } = useTranslation();
 
   return (
     <Navigator screenOptions={tabOptions}>
-      <Screen name="Home" component={HomeStack} options={{ title: 'მთავარი' }} />
-      <Screen name="Products" component={ProductsStack} options={{ title: 'პროდუქტები' }} />
+      <Screen name={HOME} component={HomeStack} options={{ title: t('common:navigation.home') }} />
       <Screen
-        name="Transactions"
+        name={PRODUCTS}
+        component={ProductsStack}
+        options={{ title: t('common:navigation.products') }}
+      />
+      <Screen
+        name={TRANSACTIONS}
         component={TransactionsStack}
         options={{
           title: '',
           tabBarIcon: transactionsIcon,
         }}
       />
-      <Screen name="Payments" component={PaymentsStack} options={{ title: 'გადახდები' }} />
-      <Screen name="Profile" component={ProfileStack} options={{ title: 'მეტი' }} />
+      <Screen
+        name={PAYMENTS}
+        component={PaymentsStack}
+        options={{ title: t('common:navigation.payments') }}
+      />
+      <Screen
+        name={PROFILE}
+        component={ProfileStack}
+        options={{ title: t('common:navigation.more') }}
+      />
     </Navigator>
   );
 };
@@ -57,8 +72,8 @@ const AfterAuthStackNavigator = () => {
   const { Navigator, Screen } = Stack;
 
   return (
-    <Navigator initialRouteName="Initial" screenOptions={hideHeader}>
-      <Screen name="Initial" component={TabNavigator} options={hideHeader} />
+    <Navigator initialRouteName={INITIAL} screenOptions={hideHeader}>
+      <Screen name={INITIAL} component={TabNavigator} options={hideHeader} />
     </Navigator>
   );
 };

@@ -1,5 +1,6 @@
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { StackNavigationOptions } from '@react-navigation/stack';
+import { Colors } from 'theme/Variables';
 
 export const hideHeader: StackNavigationOptions = {
   headerShown: false,
@@ -8,6 +9,6 @@ export const hideHeader: StackNavigationOptions = {
 export const tabOptions: BottomTabNavigationOptions = {
   headerShown: false,
   tabBarHideOnKeyboard: true,
-  tabBarActiveTintColor: '#a0226d',
-  tabBarInactiveTintColor: '#777c8b',
+  tabBarActiveTintColor: Colors.primary,
+  tabBarInactiveTintColor: Colors.inactiveTint,
 };

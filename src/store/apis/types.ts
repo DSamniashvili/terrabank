@@ -1,4 +1,4 @@
-export interface Todo {
+export interface User {
   id: number;
   email: string;
   first_name: string;
@@ -6,10 +6,10 @@ export interface Todo {
   avatar: string;
 }
 
-export interface ITodosRes {
+export interface IUsersRes {
   page: number;
   per_page: number;
   total: number;
   total_pages: number;
-  data: Todo[];
+  data: User[];
 }

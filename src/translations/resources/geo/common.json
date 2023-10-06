@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "full": "MyApp React Native",
+    "initials": "RNB"
+  },
+  "navigation": {
+    "home": "მთავარი",
+    "products": "პროდუქტები",
+    "transactions": "გადარიცხვები",
+    "payments": "გადახდები",
+    "more": "მეტი",
+    "hello": "გამარჯობა"
+  }
+}

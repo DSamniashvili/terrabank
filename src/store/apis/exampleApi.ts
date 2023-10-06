@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { ITodosRes, Todo } from './types';
+import { IUsersRes, User } from './types';
 
 const BASE_URL = 'https://reqres.in/api/';
 
@@ -10,12 +10,12 @@ export const exampleApi = createApi({
   }),
   tagTypes: ['User'],
   endpoints: builder => ({
-    getUsers: builder.query<Todo[], void>({
+    getUsers: builder.query<User[], void>({
       query: () => ({
         url: 'users',
       }),
       providesTags: ['User'],
-      transformResponse: (response: ITodosRes) => response.data,
+      transformResponse: (response: IUsersRes) => response.data,
     }),
   }),
 });

@@ -2,5 +2,13 @@
   "appName": {
     "full": "React Native MyApp",
     "initials": "RNB"
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "transactions": "Transactions",
+    "payments": "Payments",
+    "more": "More",
+    "hello": "Hello"
   }
 }
