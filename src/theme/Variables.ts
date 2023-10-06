@@ -13,15 +13,15 @@ import { ThemeNavigationColors } from 'types/declarations/theme';
 export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
-  white: '#ffffff',
+  white: '#FFFFFF',
   //Typography
   textGray800: '#000000',
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
-  primary: '#a0226d',
-  inactiveTint: '#777c8b',
-  success: '#28a745',
-  error: '#dc3545',
+  primary: '#A0226D',
+  inactiveTint: '#777C8B',
+  success: '#28A745',
+  error: '#DC3545',
   //ComponentColors
   circleButtonBackground: '#E1E1EF',
   circleButtonColor: '#44427D',
