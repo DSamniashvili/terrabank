@@ -8,8 +8,9 @@ const Stack = createStackNavigator();
 // @refresh reset
 const MainNavigator = () => {
   useEffect(() => {
-    openToast('test');
+    openToast('This is a success', 'success');
   }, []);
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Example} />

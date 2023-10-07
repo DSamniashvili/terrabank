@@ -4,12 +4,10 @@ export const saveToastRef = (ref: any) => {
   loader = ref;
 };
 
-export const openToast = (errorMessage: string) => {
-  loader?.start(errorMessage);
+export const openToast = (message: string, type?: 'error' | 'success' | 'warning') => {
+  loader?.start(message, type);
 };
 
 export const closeToast = () => {
   loader?.stop();
 };
-
-// usage openToast('message');
