@@ -4,7 +4,7 @@ import { MainNavigator } from './navigators/MainNavigator';
 import useTheme from 'hooks/useTheme';
 import { GuestNavigator } from './navigators/GuestNavigator';
 
-const Navigation = () => {
+export const Navigation = () => {
   const navigationRef = useNavigationContainerRef();
   const { NavigationTheme } = useTheme();
 
@@ -16,5 +16,3 @@ const Navigation = () => {
     </NavigationContainer>
   );
 };
-
-export default Navigation;

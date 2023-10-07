@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from 'store';
-import Navigation from 'navigation';
+import { Navigation } from 'navigation';
 import 'translations';
 
 import { saveToastRef } from 'utils/toast';

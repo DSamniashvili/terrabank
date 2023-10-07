@@ -22,6 +22,7 @@ export const Colors = {
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
   primary: '#A0226D',
+  textPrimary: '#A0226D',
   secondary: '#9F1D6B0F',
   inactiveTint: '#777C8B',
   success: 'rgba(67, 182, 75, 1)',
@@ -30,6 +31,7 @@ export const Colors = {
   error100: 'rgba(226, 45, 32, 0.1)',
   circleButtonBackground: '#E1E1EF',
   circleButtonColor: '#44427D',
+  inputBlack50: 'rgba(29, 29, 29, 0.05)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
@@ -42,10 +44,22 @@ export const NavigationColors: Partial<ThemeNavigationColors> = {
  * FontSize
  */
 export const FontSize = {
-  tiny: 14,
-  small: 16,
-  regular: 20,
-  large: 40,
+  tiny: 12,
+  small: 14,
+  regular: 16,
+  large: 24,
+};
+
+export const Spacing = {
+  zero: 0,
+  xxs: 2,
+  xs: 4,
+  s: 8,
+  m: 12,
+  ml: 16,
+  l: 18,
+  xl: 24,
+  xxl: 36,
 };
 
 /**
@@ -66,5 +80,6 @@ export default {
   Colors,
   NavigationColors,
   FontSize,
+  Spacing,
   MetricsSizes,
 };

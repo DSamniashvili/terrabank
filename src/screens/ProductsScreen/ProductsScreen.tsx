@@ -7,14 +7,14 @@ import useTheme from 'hooks/useTheme';
 
 export const ProductsScreen = () => {
   const dispatch = useAppDispatch();
-  const { Fonts, Colors, darkMode: isDark } = useTheme();
+  const { Fonts, darkMode: isDark } = useTheme();
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: Colors.background }]}>
+    <View style={styles.container}>
       <Text style={[Fonts.textSmall]}>Products main Screen</Text>
       <Pressable onPress={onChangeTheme}>
         <Text style={[Fonts.textSmall]} children="Change theme" />

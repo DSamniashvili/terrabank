@@ -1,6 +1,8 @@
+import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
-export default () => {
+export const useStyleTheme = () => {
+  const { FontSize, Spacing } = useTheme();
   return StyleSheet.create({
     container: {
       position: 'absolute',
@@ -8,8 +10,8 @@ export default () => {
       alignSelf: 'center',
       width: '100%',
       height: 90,
-      paddingHorizontal: 16,
-      paddingVertical: 20,
+      paddingHorizontal: Spacing.ml,
+      paddingVertical: Spacing.l,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-start',
@@ -17,14 +19,13 @@ export default () => {
     },
     errorText: {
       flex: 1,
-
-      marginLeft: 16,
-      fontSize: 12,
+      marginLeft: Spacing.ml,
+      fontSize: FontSize.tiny,
     },
     closeButton: {
       position: 'absolute',
-      top: 8,
-      right: 8,
+      top: Spacing.s,
+      right: Spacing.s,
     },
   });
 };
