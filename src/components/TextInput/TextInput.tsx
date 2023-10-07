@@ -9,7 +9,7 @@ import Animated, {
   Extrapolation,
 } from 'react-native-reanimated';
 import { TextInputProps } from './TextInput.types';
-import styles from './TextInput.styles';
+import { useStyleTheme } from './TextInput.styles';
 
 const HIT_SLOP = { top: 15, bottom: 15 };
 
@@ -32,6 +32,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
     },
     ref,
   ) => {
+    const styles = useStyleTheme();
     const [secureText, setSecureText] = useState(secureTextEntry);
     const position = useSharedValue(0);
 

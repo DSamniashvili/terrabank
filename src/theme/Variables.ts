@@ -29,11 +29,9 @@ export const Colors = {
   success100: 'rgba(67, 182, 75, 0.1)',
   error: 'rgba(226, 45, 32, 1)',
   error100: 'rgba(226, 45, 32, 0.1)',
-
-  //ComponentColors
   circleButtonBackground: '#E1E1EF',
   circleButtonColor: '#44427D',
-  INPUT_BOTTOM_GRAY: '#1D1D1D0D',
+  inputBlack50: 'rgba(29, 29, 29, 0.05)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

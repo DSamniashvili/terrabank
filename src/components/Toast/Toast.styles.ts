@@ -1,7 +1,8 @@
+import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
-import { FontSize, Spacing } from 'theme/Variables';
 
-export default () => {
+export const useStyleTheme = () => {
+  const { FontSize, Spacing } = useTheme();
   return StyleSheet.create({
     container: {
       position: 'absolute',
@@ -18,7 +19,6 @@ export default () => {
     },
     errorText: {
       flex: 1,
-
       marginLeft: Spacing.ml,
       fontSize: FontSize.tiny,
     },

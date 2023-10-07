@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Text as RNText } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { TextProps } from './Text.types';
-import styles from './Text.styles';
+import { useStyleTheme } from './Text.styles';
 
 export const Text = forwardRef<RNText, TextProps>(
   (
@@ -24,6 +24,7 @@ export const Text = forwardRef<RNText, TextProps>(
     ref,
   ) => {
     const { t } = useTranslation();
+    const styles = useStyleTheme();
     return (
       <RNText
         ref={ref}
@@ -45,5 +46,3 @@ export const Text = forwardRef<RNText, TextProps>(
     );
   },
 );
-
-export default Text;
