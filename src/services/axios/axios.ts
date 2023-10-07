@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BackHandler } from 'react-native';
-import { config } from '../../utils/config';
+import { config } from 'utils/config';
 import { onBackButtonPressAndroid, responseMiddleware, requestMiddleware } from './helpers';
 
 BackHandler.addEventListener('hardwareBackPress', onBackButtonPressAndroid);

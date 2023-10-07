@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { Reducer, combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistReducer,
@@ -10,11 +10,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 import { api } from 'services/api';
 import { themeReducer } from './slices/theme';
 import { counterReducer } from './slices/counter';
 import { reduxStorage } from './reduxStorage';
+import { exampleApi } from './apis';
+import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 
 const counterPersistConfig = {
   key: 'counter',
@@ -25,7 +26,7 @@ const counterPersistConfig = {
 const themePersistConfig = {
   key: 'theme',
   storage: reduxStorage,
-  whitelist: ['darkMode', 'theme'],
+  whitelist: ['theme', 'darkMode'],
 };
 
 const persistedCounter = persistReducer(counterPersistConfig, counterReducer);
@@ -35,24 +36,31 @@ const reducers = combineReducers({
   counter: persistedCounter,
   theme: persistedTheme,
   [api.reducerPath]: api.reducer,
+  [exampleApi.reducerPath]: exampleApi.reducer,
 });
 
+const rootReducer: Reducer<RootState> = (state, action) => {
+  if (action.type === RESET_STATE_ACTION_TYPE) {
+    state = {} as RootState;
+  }
+  return reducers(state, action);
+};
+
+const middlewares = [api.middleware, exampleApi.middleware];
+
+if (__DEV__) {
+  const createDebugger = require('redux-flipper').default;
+  middlewares.push(createDebugger());
+}
+
 const store = configureStore({
-  reducer: reducers,
-  middleware: getDefaultMiddleware => {
-    const middlewares = getDefaultMiddleware({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(api.middleware);
-
-    if (__DEV__ && !process.env.JEST_WORKER_ID) {
-      const createDebugger = require('redux-flipper').default;
-      middlewares.push(createDebugger());
-    }
-
-    return middlewares;
-  },
+    }).concat(middlewares),
 });
 
 const persistor = persistStore(store);
@@ -62,4 +70,4 @@ setupListeners(store.dispatch);
 export { store, persistor };
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof reducers>;

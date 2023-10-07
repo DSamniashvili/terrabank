@@ -11,7 +11,6 @@ export const auth = ({ username, password }: AuthRequest) =>
 
 export const refreshAuth = async () => {
   const refreshToken = await getRefreshToken();
-  console.log('refreshing');
   return axios.post<any, AuthResponse>(URLS.authRefresh, {
     refreshToken,
   });

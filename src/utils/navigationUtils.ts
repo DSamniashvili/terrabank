@@ -1,5 +1,5 @@
 import { CommonActions, DrawerActions } from '@react-navigation/native';
-import references from '../utils/references';
+import references from 'utils/references';
 
 /**
  * Save reference to navigator.

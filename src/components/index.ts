@@ -1,1 +1,1 @@
-export { default as Brand } from './Brand/Brand';
+export { Toast } from './Toast/Toast';

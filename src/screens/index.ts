@@ -1,2 +1,4 @@
-export { default as Startup } from './Startup/Startup';
-export { default as Example } from './Example/Example';
+export { HomeScreen } from './HomeScreen/HomeScreen';
+export { ProductsScreen } from './ProductsScreen/ProductsScreen';
+export { PaymentsScreen } from './PaymentsScreen/PaymentsScreen';
+export { Auth } from './Auth/Auth';
