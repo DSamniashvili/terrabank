@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-const Auth = () => {
+import { Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+export const Auth = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>auth</Text>
-    </View>
+    </SafeAreaView>
   );
 };
-
-export default Auth;

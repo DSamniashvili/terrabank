@@ -1,5 +1,5 @@
-export { default as HomeStack } from './HomeStack';
-export { default as ProductsStack } from './ProductsStuck';
-export { default as TransactionsStack } from './TransactionsStack';
-export { default as PaymentsStack } from './PaymentsStack';
-export { default as ProfileStack } from './ProfileStack';
+export { HomeStack } from './HomeStack';
+export { ProductsStack } from './ProductsStack';
+export { TransactionsStack } from './TransactionsStack';
+export { PaymentsStack } from './PaymentsStack';
+export { ProfileStack } from './ProfileStack';

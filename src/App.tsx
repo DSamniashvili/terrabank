@@ -5,10 +5,11 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from 'store';
 import Navigation from 'navigation';
 import 'translations';
-import Toast from 'components/Toast/Toast';
+
 import { saveToastRef } from 'utils/toast';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Toast } from 'components';
 
 const App = () => {
   return (

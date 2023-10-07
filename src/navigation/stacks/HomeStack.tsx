@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from 'screens/HomeScreens';
+import { HomeScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { HOME_SCREEN } from 'navigation/ScreenNames';
 
@@ -10,7 +10,7 @@ export type HomeStackParamList = {
 
 const Stack = createStackNavigator<HomeStackParamList>();
 
-const HomeStack = () => {
+export const HomeStack = () => {
   const { Navigator, Screen } = Stack;
   const { t } = useTranslation();
   return (
@@ -26,5 +26,3 @@ const HomeStack = () => {
     </Navigator>
   );
 };
-
-export default HomeStack;

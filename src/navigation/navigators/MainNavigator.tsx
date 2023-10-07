@@ -3,21 +3,16 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeStack, PaymentsStack, TransactionsStack, ProductsStack, ProfileStack } from './stacks';
-import { HOME, INITIAL, PAYMENTS, PRODUCTS, PROFILE, TRANSACTIONS } from './ScreenNames';
-import { hideHeader, tabOptions } from './config';
-
-export type AfterAuthStackParamList = {
-  Initial: undefined;
-};
-
-export type TabParamList = {
-  Home: undefined;
-  Products: undefined;
-  Transactions: undefined;
-  Payments: undefined;
-  Profile: undefined;
-};
+import {
+  HomeStack,
+  PaymentsStack,
+  TransactionsStack,
+  ProductsStack,
+  ProfileStack,
+} from 'navigation/stacks';
+import { HOME, INITIAL, PAYMENTS, PRODUCTS, PROFILE, TRANSACTIONS } from 'navigation/ScreenNames';
+import { hideHeader, tabOptions } from 'navigation/config';
+import { MainStackParamsList, TabParamList } from 'navigation/types';
 
 const transactionsIcon = () => (
   <View
@@ -32,7 +27,7 @@ const transactionsIcon = () => (
 );
 
 const Tab = createBottomTabNavigator<TabParamList>();
-const Stack = createStackNavigator<AfterAuthStackParamList>();
+const Stack = createStackNavigator<MainStackParamsList>();
 
 const TabNavigator = () => {
   const { Navigator, Screen } = Tab;
@@ -68,7 +63,7 @@ const TabNavigator = () => {
   );
 };
 
-const AfterAuthStackNavigator = () => {
+export const MainNavigator = () => {
   const { Navigator, Screen } = Stack;
 
   return (
@@ -77,5 +72,3 @@ const AfterAuthStackNavigator = () => {
     </Navigator>
   );
 };
-
-export default AfterAuthStackNavigator;

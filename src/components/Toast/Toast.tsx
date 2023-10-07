@@ -12,17 +12,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
 import styles from './Toast.styles';
 import { WithTimingConfig } from 'react-native-reanimated';
+import { ToastProps, ToastRef } from './Toast.types';
 
-interface ToastProps {
-  errorMessage?: string;
-}
-
-export interface ToastRef {
-  start: (errorMessage: string) => void;
-  stop: () => void;
-}
-
-const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
+export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
   const Yposition = useSharedValue(-75);
   const delay = useSharedValue(4000);
   const [toast, setToast] = useState<string>('');
@@ -80,5 +72,3 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
     </PanGestureHandler>
   );
 });
-
-export default Toast;

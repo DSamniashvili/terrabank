@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from 'screens/HomeScreens';
+import { HomeScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { PROFILE_SCREEN } from 'navigation/ScreenNames';
 
@@ -10,7 +10,7 @@ export type ProfileStackParamList = {
 
 const Stack = createStackNavigator<ProfileStackParamList>();
 
-const ProfileStack = () => {
+export const ProfileStack = () => {
   const { Navigator, Screen } = Stack;
   const { t } = useTranslation();
   return (
@@ -26,5 +26,3 @@ const ProfileStack = () => {
     </Navigator>
   );
 };
-
-export default ProfileStack;

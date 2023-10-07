@@ -13,16 +13,21 @@ import { ThemeNavigationColors } from 'types/declarations/theme';
 export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
-  white: '#FFFFFF',
-  //Typography
+  white: '#ffffff',
+  textBlack: 'rgba(28, 28, 28, 0.98)',
+  textBlack500: 'rgba(29, 29, 29, 0.64)',
+  textBlack400: 'rgba(29, 29, 29, 0.4)',
+  textWhite: 'rgba(253, 253, 253, 0.98)',
   textGray800: '#000000',
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
   primary: '#A0226D',
+  secondary: '#9F1D6B0F',
   inactiveTint: '#777C8B',
-  success: '#28A745',
-  error: '#DC3545',
-  //ComponentColors
+  success: 'rgba(67, 182, 75, 1)',
+  success100: 'rgba(67, 182, 75, 0.1)',
+  error: 'rgba(226, 45, 32, 1)',
+  error100: 'rgba(226, 45, 32, 0.1)',
   circleButtonBackground: '#E1E1EF',
   circleButtonColor: '#44427D',
 };

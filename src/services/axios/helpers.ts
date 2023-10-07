@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getAccessToken, setAccessToken, setRefreshToken } from 'storage';
-import * as services from '../auth';
+import * as services from 'services/auth';
 import { AuthResponse } from 'services/types';
 
 let canNotPressBackButton = false;
