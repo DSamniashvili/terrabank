@@ -17,6 +17,9 @@ export const useStyleTheme = () => {
       justifyContent: 'flex-start',
       backgroundColor: '#fff',
     },
+    toastText: {
+      paddingHorizontal: 10,
+    },
     errorText: {
       flex: 1,
       marginLeft: Spacing.ml,
