@@ -10,7 +10,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { api } from 'services/api';
 import { themeReducer } from './slices/theme';
 import { counterReducer } from './slices/counter';
 import { reduxStorage } from './reduxStorage';
@@ -35,7 +34,6 @@ const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 const reducers = combineReducers({
   counter: persistedCounter,
   theme: persistedTheme,
-  [api.reducerPath]: api.reducer,
   [exampleApi.reducerPath]: exampleApi.reducer,
 });
 
@@ -46,7 +44,7 @@ const rootReducer: Reducer<RootState> = (state, action) => {
   return reducers(state, action);
 };
 
-const middlewares = [api.middleware, exampleApi.middleware];
+const middlewares = [exampleApi.middleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;
