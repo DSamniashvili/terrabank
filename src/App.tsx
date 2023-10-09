@@ -9,7 +9,9 @@ import 'translations';
 import { saveToastRef } from 'utils/toast';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Toast } from 'components';
+import { Modal, Toast } from 'components';
+import { saveModalRef } from 'utils/modal';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const App = () => {
   return (
@@ -17,8 +19,11 @@ const App = () => {
       <SafeAreaProvider>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Navigation />
-            <Toast ref={saveToastRef} />
+            <BottomSheetModalProvider>
+              <Navigation />
+              <Toast ref={saveToastRef} />
+              <Modal ref={saveModalRef} />
+            </BottomSheetModalProvider>
           </PersistGate>
         </Provider>
       </SafeAreaProvider>

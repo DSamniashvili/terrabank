@@ -5,6 +5,7 @@ import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
 import { Text } from 'components/index';
+import { openModal } from 'utils/modal';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -14,11 +15,20 @@ export const HomeScreen = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
   };
 
+  const handleModalPress = () => {
+    openModal({
+      element: <Text children="welcome:description" />,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={[Fonts.textSmall]} children="Home main Screen" />
       <Pressable onPress={onChangeTheme}>
         <Text style={[Fonts.textSmall]} children="Change theme" />
+      </Pressable>
+      <Pressable onPress={handleModalPress}>
+        <Text style={[Fonts.textSmall]} children="Open modal" />
       </Pressable>
     </View>
   );
