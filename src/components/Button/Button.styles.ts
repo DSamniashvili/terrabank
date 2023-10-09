@@ -3,15 +3,15 @@ import { StyleSheet } from 'react-native';
 
 // shared styles for all button types
 export const useStyleTheme = () => {
-  const { FontSize, Spacing, Layout } = useTheme();
+  const { FontSize, Spacing, Layout, BorderRadius, Opacity } = useTheme();
   return StyleSheet.create({
     wrapperStyle: {
-      borderRadius: 100,
+      borderRadius: BorderRadius.full,
       ...Layout.colCenter,
       ...Layout.selfCenter,
     },
     wrapperFullWidthStyle: {
-      width: '100%',
+      ...Layout.fullWidth,
       ...Layout.rowCenter,
     },
     wrapperPaddingMedium: {
@@ -29,7 +29,7 @@ export const useStyleTheme = () => {
       fontSize: FontSize.regular,
     },
     textDisabled: {
-      opacity: 0.5,
+      opacity: Opacity.half,
     },
   });
 };
