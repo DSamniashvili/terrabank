@@ -1,4 +1,4 @@
-import { Modal } from 'components/Modal';
+import { Modal } from 'components';
 import { ConfigureModal } from 'components/Modal/Modal.types';
 import { ElementRef } from 'react';
 

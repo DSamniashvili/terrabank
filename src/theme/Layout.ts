@@ -86,9 +86,9 @@ export default function ({}: ThemeVariables) {
     selfStretch: {
       alignSelf: 'stretch',
     },
-	alignSelfEnd: {
-		alignSelf: 'flex-end',
-	  },
+    alignSelfEnd: {
+      alignSelf: 'flex-end',
+    },
     selfCenter: {
       alignSelf: 'center',
     },

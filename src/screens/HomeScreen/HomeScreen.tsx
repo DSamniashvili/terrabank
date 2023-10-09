@@ -4,9 +4,8 @@ import { styles } from './HomeScreen.style';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
-import { Text } from 'components/index';
+import { LanguageSwitcher, Text, Button } from 'components';
 import { openModal } from 'utils/modal';
-import { Button } from 'components/Button/Button';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +23,7 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
+      <LanguageSwitcher />
       <Button.Primary
         text="Primary button - large"
         size="large"
