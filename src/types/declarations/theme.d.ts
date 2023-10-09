@@ -7,6 +7,8 @@ export type ThemeVariables = {
   NavigationColors: typeof Variables.NavigationColors;
   FontSize: typeof Variables.FontSize;
   Spacing: typeof Variables.Spacing;
+  BorderRadius: typeof Variables.BorderRadius;
+  Opacity: typeof Variables.Opacity;
   MetricsSizes: typeof Variables.MetricsSizes;
 };
 

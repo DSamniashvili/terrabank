@@ -72,6 +72,9 @@ export default function ({}: ThemeVariables) {
     justifyContentEnd: {
       justifyContent: 'flex-end',
     },
+    justifyContentStart: {
+      justifyContent: 'flex-start',
+    },
     scrollSpaceAround: {
       flexGrow: 1,
       justifyContent: 'space-around',
@@ -83,8 +86,11 @@ export default function ({}: ThemeVariables) {
     selfStretch: {
       alignSelf: 'stretch',
     },
-    alignSelfEnd: {
-      alignSelf: 'flex-end',
+	alignSelfEnd: {
+		alignSelf: 'flex-end',
+	  },
+    selfCenter: {
+      alignSelf: 'center',
     },
     /* Sizes Layouts */
     fill: {
