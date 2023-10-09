@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -7,48 +7,74 @@ import Animated, {
   withSequence,
   withDelay,
   useAnimatedGestureHandler,
+  Easing,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
 import styles from './Toast.styles';
 import { WithTimingConfig } from 'react-native-reanimated';
+import { useTheme } from 'hooks';
 
 interface ToastProps {
   errorMessage?: string;
   type?: 'error' | 'success' | 'warning' | 'default';
 }
 
+type ImagesType = {
+  colors: any;
+  check: any;
+  send: any;
+  translate: any;
+};
+
 export interface ToastRef {
   start: (errorMessage: string, type?: 'error' | 'success' | 'warning' | 'default') => void;
   stop: () => void;
 }
 
-const typeToBackgroundStyle = {
-  error: {
-    backgroundColor: 'red',
-    icon: 'ERROR_ICON',
-  },
-  success: {
-    backgroundColor: 'green',
-    icon: 'SUCCESS_ICON',
-  },
-  warning: {
-    backgroundColor: 'yellow',
-    icon: 'WARNING_ICON',
-  },
-  default: {
-    backgroundColor: 'gray',
-    icon: 'DEFAULT_ICON',
-  },
+type BackgroundStyle = {
+  backgroundColor: string;
+  icon: keyof ImagesType;
+  textColor: string;
+};
+
+const defaultBackgroundStyle: BackgroundStyle = {
+  backgroundColor: 'gray',
+  icon: 'check',
+  textColor: 'white',
 };
 
 const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
+  const { Images } = useTheme();
+
   const Yposition = useSharedValue(-75);
   const delay = useSharedValue(4000);
   const [toast, setToast] = useState<string>('');
   const s = styles();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const insets = useSafeAreaInsets();
+
+  const typeToBackgroundStyle: Record<
+    'error' | 'success' | 'warning' | 'default',
+    BackgroundStyle
+  > = {
+    error: {
+      backgroundColor: 'red',
+      icon: 'check',
+      textColor: 'white', // Text color for error
+    },
+    success: {
+      backgroundColor: '#E9F6EB',
+      icon: 'check',
+      textColor: 'green', // Text color for success
+    },
+    warning: {
+      backgroundColor: 'yellow',
+      icon: 'check',
+      textColor: 'black', // Text color for warning
+    },
+    default: defaultBackgroundStyle,
+  };
 
   useEffect(() => {
     setStatusBarHeight(insets.top);
@@ -60,6 +86,7 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
 
       const timingConfig: WithTimingConfig = {
         duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       Yposition.value = withSequence(
         withTiming(statusBarHeight + 75, timingConfig),
@@ -73,18 +100,13 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
       setToast('');
       const timingConfig: WithTimingConfig = {
         duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       Yposition.value = withTiming(-75, timingConfig);
     },
   }));
 
-  const [backgroundStyle, setBackgroundStyle] = useState<{
-    backgroundColor: string;
-    icon: string;
-  }>({
-    backgroundColor: 'gray',
-    icon: 'DEFAULT_ICON',
-  });
+  const [backgroundStyle, setBackgroundStyle] = useState<BackgroundStyle>(defaultBackgroundStyle);
 
   const toastStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: Yposition.value }],
@@ -98,18 +120,28 @@ const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
     onActive: e => {
       const timingConfig: WithTimingConfig = {
         duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       if (e.translationY <= -3) {
+        Yposition.value = withTiming(-75, timingConfig);
+      }
+    },
+    onEnd: e => {
+      if (e.velocityY > 1000 || Yposition.value > 0) {
+        const timingConfig: WithTimingConfig = {
+          duration: 200,
+          easing: Easing.inOut(Easing.ease),
+        };
         Yposition.value = withTiming(-75, timingConfig);
       }
     },
   });
 
   return (
-    <PanGestureHandler onGestureEvent={panGestureHandler}>
+    <PanGestureHandler onGestureEvent={panGestureHandler} onHandlerStateChange={panGestureHandler}>
       <Animated.View style={[toastStyle, s.container]}>
-        {/* <Image source={backgroundStyle.icon} /> */}
-        <Text>{toast}</Text>
+        <Image source={Images.icons[backgroundStyle.icon]} />
+        <Text style={[s.toastText, { color: backgroundStyle.textColor }]}>{toast}</Text>
       </Animated.View>
     </PanGestureHandler>
   );

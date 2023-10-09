@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 // @refresh reset
 const MainNavigator = () => {
   useEffect(() => {
-    openToast('This is a success', 'success');
+    openToast('მოწყობილობა გასანდოვდა', 'success');
   }, []);
 
   return (

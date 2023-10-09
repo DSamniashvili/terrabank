@@ -14,6 +14,7 @@ export default function ({}: ThemeVariables) {
     },
     icons: {
       colors: require('assets/images/colorswatch.png'),
+      check: require('assets/images/checksuccess.png'),
       send: require('assets/images/send.png'),
       translate: require('assets/images/translate.png'),
     },

@@ -15,6 +15,9 @@ export default () => {
       justifyContent: 'flex-start',
       backgroundColor: '#fff',
     },
+    toastText: {
+      paddingHorizontal: 10,
+    },
     errorText: {
       flex: 1,
 
