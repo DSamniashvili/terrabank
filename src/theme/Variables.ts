@@ -14,6 +14,7 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
+  gray: 'rgba(246, 246, 247, 1)',
   gray200: 'rgba(161, 161, 161, 0.2)',
   textBlack: 'rgba(28, 28, 28, 0.98)',
   textBlack500: 'rgba(29, 29, 29, 0.64)',

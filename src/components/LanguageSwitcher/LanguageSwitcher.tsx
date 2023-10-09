@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { CurrentLanguageState, LanguageKeys } from './LanguageSwitcher.types';
 import { getValue, setValue } from 'storage/index';
 import { SELECTED_LANGUAGE } from 'storage/constants';
+import useTheme from 'hooks/useTheme';
 
 export const LanguageSwitcher = () => {
+  const { Colors } = useTheme();
   const [currentLanguage, setCurrentLanguage] = useState<CurrentLanguageState>({
     label: 'Eng',
     icon: EngFlag,
@@ -40,6 +42,7 @@ export const LanguageSwitcher = () => {
   return (
     <Button.Secondary
       size="medium"
+      customWrapperStyle={{ backgroundColor: Colors.gray }}
       text={currentLanguage.label}
       leftIcon={currentLanguage.icon}
       onPress={() =>
