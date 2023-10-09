@@ -32,6 +32,7 @@ export const Colors = {
   circleButtonBackground: '#E1E1EF',
   circleButtonColor: '#44427D',
   inputBlack50: 'rgba(29, 29, 29, 0.05)',
+  textWhite400: 'rgba(253, 253, 253, 0.4)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
