@@ -17,7 +17,11 @@ export const useStyleTheme = () => {
       ...Layout.row,
     },
     toastText: {
+<<<<<<< HEAD
       paddingHorizontal: Spacing.ml,
+=======
+      paddingHorizontal: 10,
+>>>>>>> 952a25f ( merge toast into develop)
     },
     errorText: {
       ...Layout.fill,
