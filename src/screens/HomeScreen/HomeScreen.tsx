@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, View } from 'react-native';
 import { styles } from './HomeScreen.style';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
-import { LanguageSwitcher, Text } from 'components';
 import { LanguageSwitcher, Text, Button } from 'components';
 import { openModal } from 'utils/modal';
-import { Button } from 'components/Button/Button';
+import { openToast } from 'utils/toast';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
+
+  useEffect(() => {
+    openToast('test', 'error');
+  }, []);
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
