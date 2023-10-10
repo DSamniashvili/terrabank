@@ -5,13 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useTranslation } from 'react-i18next';
 
-interface OnboardingScreenBaseProps {}
-
-const OnboardingScreenBase: FC<OnboardingScreenBaseProps> = ({
-  handleLogin,
-}: {
+interface OnboardingScreenBaseProps {
   handleLogin?: () => Promise<void>;
-}) => {
+}
+
+const OnboardingScreenBase: FC<OnboardingScreenBaseProps> = ({ handleLogin }) => {
   const { t } = useTranslation();
   return (
     <SafeAreaView>
