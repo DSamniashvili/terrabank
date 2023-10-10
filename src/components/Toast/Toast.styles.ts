@@ -2,30 +2,30 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { FontSize, Spacing } = useTheme();
+  const { FontSize, Spacing, Layout, Colors } = useTheme();
   return StyleSheet.create({
     container: {
-      position: 'absolute',
       top: -75,
-      alignSelf: 'center',
-      width: '100%',
       height: 90,
       paddingHorizontal: Spacing.ml,
       paddingVertical: Spacing.l,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      backgroundColor: '#fff',
+      backgroundColor: Colors.white,
+      ...Layout.absolute,
+      ...Layout.justifyContentStart,
+      ...Layout.selfCenter,
+      ...Layout.fullWidth,
+      ...Layout.row,
     },
     toastText: {
       paddingHorizontal: Spacing.ml,
     },
     errorText: {
+      ...Layout.fill,
       marginLeft: Spacing.ml,
       fontSize: FontSize.tiny,
     },
     closeButton: {
-      position: 'absolute',
+      ...Layout.absolute,
       top: Spacing.s,
       right: Spacing.s,
     },

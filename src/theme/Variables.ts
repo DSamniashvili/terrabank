@@ -16,6 +16,7 @@ export const Colors = {
   white: '#ffffff',
   successToastColor: '#E9F6EB',
   successToastTextColor: '#43B64B',
+  gray200: 'rgba(161, 161, 161, 0.2)',
   textBlack: 'rgba(28, 28, 28, 0.98)',
   textBlack500: 'rgba(29, 29, 29, 0.64)',
   textBlack400: 'rgba(29, 29, 29, 0.4)',
@@ -66,6 +67,24 @@ export const Spacing = {
   xxl: 36,
 };
 
+export const BorderRadius = {
+  full: 100,
+};
+
+export const Opacity = {
+  zero: 0,
+  one: 1,
+  pointOne: 0.1,
+  pointTwo: 0.2,
+  pointThree: 0.3,
+  pointFour: 0.4,
+  half: 0.5,
+  pointSix: 0.6,
+  pointSeven: 0.7,
+  pointEight: 0.8,
+  pointNine: 0.9,
+};
+
 /**
  * Metrics Sizes
  */
@@ -85,5 +104,7 @@ export default {
   NavigationColors,
   FontSize,
   Spacing,
+  BorderRadius,
+  Opacity,
   MetricsSizes,
 };

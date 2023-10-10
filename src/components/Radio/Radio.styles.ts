@@ -2,15 +2,14 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Colors, Spacing } = useTheme();
+  const { Colors, Spacing, Layout } = useTheme();
   return StyleSheet.create({
     outline: {
       width: Spacing.lg,
       height: Spacing.lg,
       borderWidth: Spacing.xxs,
       borderRadius: Spacing.m,
-      alignItems: 'center',
-      justifyContent: 'center',
+      ...Layout.center,
       borderColor: Colors.textBlack400,
     },
     inner: {
@@ -23,8 +22,8 @@ export const useStyleTheme = () => {
       borderColor: Colors.primary,
     },
     wrapper: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      ...Layout.row,
+      ...Layout.alignItemsCenter,
     },
     label: {
       marginLeft: Spacing.s,

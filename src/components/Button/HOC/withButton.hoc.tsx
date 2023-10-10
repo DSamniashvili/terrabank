@@ -1,0 +1,71 @@
+import { Pressable, Text, View } from 'react-native';
+import { isValidElement } from 'react';
+import { ButtonProps, ButtonType } from '../Button.types';
+import React from 'react';
+import { useStyleTheme } from '../Button.styles';
+import { useButtonTypeStyle } from '../hooks/useButtonTypeStyle';
+
+export const withButton = (buttonType: ButtonType) => {
+  return function ButtonComponent({
+    text,
+    leftIcon,
+    rightIcon,
+    customContainerStyle = {},
+    customWrapperStyle = {},
+    customTextStyle = {},
+    customLeftIconStyle = {},
+    customRightIconStyle = {},
+    disabled = false,
+    fullWidth = false,
+    size = 'medium',
+    hasBorder = false,
+    children,
+    ...props
+  }: ButtonProps) {
+    const styles = useButtonTypeStyle(buttonType);
+    const sharedStyles = useStyleTheme();
+    // Do not remove -  Only for rippleEffect!!!
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const containerStyle = [styles.containerStyle, customContainerStyle];
+
+    const wrapperStyle = [
+      sharedStyles.wrapperStyle,
+      size === 'medium' ? sharedStyles.wrapperPaddingMedium : sharedStyles.wrapperPaddingLarge,
+      hasBorder && styles.wrapperBorderStyle,
+      fullWidth && sharedStyles.wrapperFullWidthStyle,
+      styles.wrapperStyle,
+      disabled && styles.wrapperDisabledStyle,
+      customWrapperStyle,
+    ];
+
+    const textStyle = [
+      size === 'medium' ? sharedStyles.textStyleMedium : sharedStyles.textStyleLarge,
+      disabled && sharedStyles.textDisabled,
+      styles.textStyle,
+      customTextStyle,
+    ];
+
+    const leftIconStyle = [styles.leftIcon, customLeftIconStyle];
+
+    const rightIconStyle = [styles.rightIcon, customRightIconStyle];
+
+    const renderIcon = (IconComponent?: SvgComponent, color?: string) =>
+      IconComponent && <IconComponent fill={disabled ? { color: 'gray' } : color} />;
+
+    const leftIconComponent = renderIcon(leftIcon);
+    const rightIconComponent = renderIcon(rightIcon);
+
+    return (
+      <Pressable {...props} style={wrapperStyle}>
+        {leftIcon && <View style={leftIconStyle}>{leftIconComponent}</View>}
+        {children && isValidElement(children) ? children : null}
+        {text ? (
+          <Text numberOfLines={1} style={textStyle}>
+            {text}
+          </Text>
+        ) : null}
+        {rightIcon && <View style={rightIconStyle}>{rightIconComponent}</View>}
+      </Pressable>
+    );
+  };
+};
