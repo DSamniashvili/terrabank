@@ -14,8 +14,6 @@ export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
-  successToastColor: '#E9F6EB',
-  successToastTextColor: '#43B64B',
   gray200: 'rgba(161, 161, 161, 0.2)',
   successToastColor: '#E9F6EB',
   successToastTextColor: '#43B64B',

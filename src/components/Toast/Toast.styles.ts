@@ -2,6 +2,7 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
+  //create new branch
   const { FontSize, Spacing, Layout, Colors } = useTheme();
   return StyleSheet.create({
     container: {
