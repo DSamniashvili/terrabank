@@ -4,8 +4,9 @@ import { styles } from './HomeScreen.style';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
-import { LanguageSwitcher, Text, Button } from 'components';
+import { LanguageSwitcher, Text } from 'components';
 import { openModal } from 'utils/modal';
+import { Button } from 'components/Button/Button';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
