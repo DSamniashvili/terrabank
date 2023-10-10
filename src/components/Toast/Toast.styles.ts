@@ -18,10 +18,9 @@ export const useStyleTheme = () => {
       backgroundColor: '#fff',
     },
     toastText: {
-      paddingHorizontal: 10,
+      paddingHorizontal: Spacing.ml,
     },
     errorText: {
-      flex: 1,
       marginLeft: Spacing.ml,
       fontSize: FontSize.tiny,
     },
