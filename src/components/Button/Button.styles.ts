@@ -7,7 +7,7 @@ export const useStyleTheme = () => {
   return StyleSheet.create({
     wrapperStyle: {
       borderRadius: BorderRadius.full,
-      ...Layout.colCenter,
+      ...Layout.rowCenter,
       ...Layout.selfCenter,
     },
     wrapperFullWidthStyle: {
@@ -21,6 +21,9 @@ export const useStyleTheme = () => {
     wrapperPaddingLarge: {
       paddingVertical: Spacing.ml,
       paddingHorizontal: Spacing.xl,
+    },
+    textStyle: {
+      paddingHorizontal: Spacing.xs,
     },
     textStyleMedium: {
       fontSize: FontSize.small,
