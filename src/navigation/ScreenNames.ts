@@ -11,6 +11,7 @@ export const PAYMENTS_SCREEN = 'PaymentsScreen';
 export const TRANSACTIONS_SCREEN = 'TransactionsScreen';
 export const PRODUCTS_SCREEN = 'ProductsScreen';
 export const PROFILE_SCREEN = 'ProfileScreen';
+export const SETTINGS_SCREEN = 'SettingsScreen';
 
 // auth - Login
 

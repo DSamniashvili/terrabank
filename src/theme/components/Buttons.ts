@@ -30,13 +30,13 @@ export default function <C>({ Colors, Gutters, Layout }: CommonParams<C>) {
     outline: {
       ...base,
       backgroundColor: Colors.transparent,
-      borderWidth: Spacing.xxs,
+      borderWidth: Spacing.xxxs,
       borderColor: Colors.primary,
     },
     outlineRounded: {
       ...rounded,
       backgroundColor: Colors.transparent,
-      borderWidth: Spacing.xxs,
+      borderWidth: Spacing.xxxs,
       borderColor: Colors.primary,
     },
   });

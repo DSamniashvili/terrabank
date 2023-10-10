@@ -18,6 +18,7 @@ export const Colors = {
   gray200: 'rgba(161, 161, 161, 0.2)',
   successToastColor: '#E9F6EB',
   successToastTextColor: '#43B64B',
+  titleBlack: 'rgba(15, 15, 15, 0.98)',
   textBlack: 'rgba(28, 28, 28, 0.98)',
   textBlack500: 'rgba(29, 29, 29, 0.64)',
   textBlack400: 'rgba(29, 29, 29, 0.4)',
@@ -41,7 +42,7 @@ export const Colors = {
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: '#FFFFFF',
+  background: Colors.white,
   card: '#EFEFEF',
 };
 
@@ -52,13 +53,16 @@ export const FontSize = {
   tiny: 12,
   small: 14,
   regular: 16,
+  RegularPlus: 18,
+  SemiLarge: 20,
   large: 24,
 };
 
 export const Spacing = {
   zero: 0,
-  xxs: 2,
-  xs: 4,
+  xxxs: 2,
+  xxs: 4,
+  xs: 6,
   s: 8,
   m: 12,
   ml: 16,

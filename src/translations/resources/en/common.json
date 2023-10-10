@@ -9,6 +9,7 @@
     "transactions": "Transactions",
     "payments": "Payments",
     "more": "More",
-    "hello": "Hello"
+    "hello": "Hello",
+	"settings": "Settings"
   }
 }
