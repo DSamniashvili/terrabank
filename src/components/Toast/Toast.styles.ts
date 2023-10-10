@@ -2,6 +2,7 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
+
   const { FontSize, Spacing, Layout, Colors } = useTheme();
   return StyleSheet.create({
     container: {
@@ -15,6 +16,9 @@ export const useStyleTheme = () => {
       ...Layout.selfCenter,
       ...Layout.fullWidth,
       ...Layout.row,
+    },
+    toastText: {
+      paddingHorizontal: Spacing.ml,
     },
     errorText: {
       ...Layout.fill,

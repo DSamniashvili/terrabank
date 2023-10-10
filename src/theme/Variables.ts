@@ -16,6 +16,8 @@ export const Colors = {
   white: '#ffffff',
   gray: 'rgba(246, 246, 247, 1)',
   gray200: 'rgba(161, 161, 161, 0.2)',
+  successToastColor: '#E9F6EB',
+  successToastTextColor: '#43B64B',
   textBlack: 'rgba(28, 28, 28, 0.98)',
   textBlack500: 'rgba(29, 29, 29, 0.64)',
   textBlack400: 'rgba(29, 29, 29, 0.4)',

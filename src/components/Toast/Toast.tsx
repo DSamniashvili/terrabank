@@ -7,49 +7,110 @@ import Animated, {
   withSequence,
   withDelay,
   useAnimatedGestureHandler,
+  Easing,
 } from 'react-native-reanimated';
+import { Success } from 'assets/SVGs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
-
-import { WithTimingConfig } from 'react-native-reanimated';
-import { ToastProps, ToastRef } from './Toast.types';
 import { useStyleTheme } from './Toast.styles';
+import { WithTimingConfig } from 'react-native-reanimated';
+import useTheme from 'hooks/useTheme';
+interface ToastProps {
+  errorMessage?: string;
+  type?: 'error' | 'success' | 'warning' | 'default';
+}
+
+type ImagesType = {
+  colors: any;
+  check: any;
+  send: any;
+  translate: any;
+  successIcon: React.ReactNode;
+};
+
+export interface ToastRef {
+  start: (errorMessage: string, type?: 'error' | 'success' | 'warning' | 'default') => void;
+  stop: () => void;
+}
+
+type BackgroundStyle = {
+  backgroundColor: string;
+  icon: keyof ImagesType | React.ReactNode;
+  textColor: string;
+};
+
+const defaultBackgroundStyle: BackgroundStyle = {
+  backgroundColor: 'gray',
+  icon: <Success />,
+  textColor: 'white',
+};
 
 export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
+  const { Colors } = useTheme();
   const Yposition = useSharedValue(-75);
   const delay = useSharedValue(4000);
   const [toast, setToast] = useState<string>('');
-  const styles = useStyleTheme();
-
+  const s = useStyleTheme();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const insets = useSafeAreaInsets();
+
+  const typeToBackgroundStyle: Record<
+    'error' | 'success' | 'warning' | 'default',
+    BackgroundStyle
+  > = {
+    error: {
+      backgroundColor: Colors.successToastColor,
+      icon: <Success />,
+      textColor: Colors.successToastTextColor,
+    },
+    success: {
+      backgroundColor: Colors.successToastColor,
+      icon: <Success />,
+      textColor: Colors.successToastTextColor,
+    },
+    warning: {
+      backgroundColor: Colors.successToastColor,
+      icon: <Success />,
+      textColor: Colors.successToastTextColor,
+    },
+    default: defaultBackgroundStyle,
+  };
 
   useEffect(() => {
     setStatusBarHeight(insets.top);
   }, [insets]);
 
   useImperativeHandle(ref, () => ({
-    start: (errorMessage: string) => {
+    start: (errorMessage: string, type?: 'error' | 'success' | 'warning' | 'default') => {
       setToast(errorMessage);
+
       const timingConfig: WithTimingConfig = {
-        duration: 200, // Adjust the duration as needed
+        duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       Yposition.value = withSequence(
         withTiming(statusBarHeight + 75, timingConfig),
         withDelay(delay.value, withTiming(-75, timingConfig)),
       );
+
+      const backgroundStyle = typeToBackgroundStyle[type || 'default'];
+      setBackgroundStyle(backgroundStyle);
     },
     stop: () => {
       setToast('');
       const timingConfig: WithTimingConfig = {
-        duration: 200, // Adjust the duration as needed
+        duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       Yposition.value = withTiming(-75, timingConfig);
     },
   }));
 
+  const [backgroundStyle, setBackgroundStyle] = useState<BackgroundStyle>(defaultBackgroundStyle);
+  const bgColor = backgroundStyle.backgroundColor;
   const toastStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: Yposition.value }],
+    backgroundColor: bgColor,
   }));
 
   const panGestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
@@ -58,18 +119,29 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
     },
     onActive: e => {
       const timingConfig: WithTimingConfig = {
-        duration: 200, // Adjust the duration as needed
+        duration: 200,
+        easing: Easing.inOut(Easing.ease),
       };
       if (e.translationY <= -3) {
+        Yposition.value = withTiming(-75, timingConfig);
+      }
+    },
+    onEnd: e => {
+      if (e.velocityY > 1000 || Yposition.value > 0) {
+        const timingConfig: WithTimingConfig = {
+          duration: 200,
+          easing: Easing.inOut(Easing.ease),
+        };
         Yposition.value = withTiming(-75, timingConfig);
       }
     },
   });
 
   return (
-    <PanGestureHandler onGestureEvent={panGestureHandler}>
-      <Animated.View style={[toastStyle, styles.container]}>
-        <Text style={styles.errorText}>{toast}</Text>
+    <PanGestureHandler onGestureEvent={panGestureHandler} onHandlerStateChange={panGestureHandler}>
+      <Animated.View style={[toastStyle, s.container]}>
+        <Text>{backgroundStyle.icon}</Text>
+        <Text style={[s.toastText, { color: backgroundStyle.textColor }]}>{toast}</Text>
       </Animated.View>
     </PanGestureHandler>
   );

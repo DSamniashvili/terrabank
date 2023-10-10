@@ -8,6 +8,7 @@ export const useStyleTheme = () => {
     wrapperStyle: {
       borderRadius: BorderRadius.full,
       ...Layout.rowCenter,
+      ...Layout.colCenter,
       ...Layout.selfCenter,
     },
     wrapperFullWidthStyle: {
