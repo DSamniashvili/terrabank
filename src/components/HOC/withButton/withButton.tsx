@@ -1,9 +1,9 @@
 import { Pressable, Text, View } from 'react-native';
 import { isValidElement } from 'react';
-import { ButtonProps, ButtonType } from '../Button.types';
+import { ButtonProps, ButtonType } from 'components/Button/Button.types';
 import React from 'react';
-import { useStyleTheme } from '../Button.styles';
-import { useButtonTypeStyle } from '../hooks/useButtonTypeStyle';
+import { useStyleTheme } from 'components/Button/Button.styles';
+import { useButtonTypeStyle } from 'components/Button/hooks/useButtonTypeStyle';
 
 export const withButton = (buttonType: ButtonType) => {
   return function ButtonComponent({

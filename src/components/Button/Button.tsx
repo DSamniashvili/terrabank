@@ -1,5 +1,5 @@
 import { ButtonProps, ButtonType } from './Button.types';
-import { withButton } from './HOC/withButton.hoc';
+import { withButton } from 'components/HOC';
 
 export const Button: {
   [key in ButtonType]: React.FC<ButtonProps>;
