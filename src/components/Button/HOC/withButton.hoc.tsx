@@ -39,6 +39,7 @@ export const withButton = (buttonType: ButtonType) => {
     ];
 
     const textStyle = [
+      sharedStyles.textStyle,
       size === 'medium' ? sharedStyles.textStyleMedium : sharedStyles.textStyleLarge,
       disabled && sharedStyles.textDisabled,
       styles.textStyle,
