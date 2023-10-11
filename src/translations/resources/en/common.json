@@ -10,5 +10,11 @@
     "payments": "Payments",
     "more": "More",
     "hello": "Hello"
+  },
+  "onboarding": {
+    "next": "Next",
+    "skip": "Skip",
+    "templates": "Templates",
+    "buildTemplates": "Create and manage updated templates functionality"
   }
 }

@@ -2,13 +2,14 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Colors } = useTheme();
+  const { Colors, Layout } = useTheme();
   return StyleSheet.create({
     containerStyle: {
       // YOUR CONTAINER STYLE
     },
     wrapperStyle: {
       backgroundColor: Colors.secondary,
+      ...Layout.row,
     },
     wrapperDisabledStyle: {
       backgroundColor: Colors.gray200,

@@ -37,6 +37,7 @@ export const Colors = {
   circleButtonColor: '#44427D',
   inputBlack50: 'rgba(29, 29, 29, 0.05)',
   textWhite400: 'rgba(253, 253, 253, 0.4)',
+  dotGray: '#7D8D99',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
@@ -53,6 +54,7 @@ export const FontSize = {
   small: 14,
   regular: 16,
   large: 24,
+  extraLarge: 32,
 };
 
 export const Spacing = {

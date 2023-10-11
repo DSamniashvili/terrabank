@@ -1,28 +1,23 @@
 import React, { FC } from 'react';
 import { withLoginScreen } from 'components/HOC';
-import { Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useTranslation } from 'react-i18next';
+import { Carousel } from 'components/index';
+
+const data = [
+  {
+    title: 'common:onboarding.templates',
+    desc: 'common:onboarding.buildTemplates',
+    color: 'green',
+  },
+  { title: 'common:onboarding.templates', desc: 'common:onboarding.buildTemplates', color: 'red' },
+  { title: 'common:onboarding.templates', desc: 'common:onboarding.buildTemplates', color: 'blue' },
+];
 
 interface OnboardingScreenBaseProps {
   handleLogin?: () => Promise<void>;
 }
 
 const OnboardingScreenBase: FC<OnboardingScreenBaseProps> = ({ handleLogin }) => {
-  const { t } = useTranslation();
-  return (
-    <SafeAreaView>
-      <View>
-        <Text>{t('navigation.hello')}</Text>
-        <Text>Onboarding Screen</Text>
-      </View>
-
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Move to other screen</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
+  return <Carousel data={data} onSkip={handleLogin} onTimeout={handleLogin} withTimer />;
 };
 
 export const OnboardingScreen = withLoginScreen<OnboardingScreenBaseProps>(OnboardingScreenBase);
