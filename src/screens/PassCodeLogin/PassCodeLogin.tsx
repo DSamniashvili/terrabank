@@ -4,12 +4,13 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useTranslation } from 'react-i18next';
+import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 
 interface PassCodeLoginBaseProps {
-  handleLogin?: () => Promise<void>;
+  handleNavigation?: () => Promise<void>;
 }
 
-const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = ({ handleLogin }) => {
+const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = ({ handleNavigation }) => {
   const { t } = useTranslation();
   return (
     <SafeAreaView>
@@ -18,11 +19,14 @@ const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = ({ handleLogin }) => {
         <Text>PassCode Login Screen</Text>
       </View>
 
-      <TouchableOpacity onPress={handleLogin}>
+      <TouchableOpacity onPress={handleNavigation}>
         <Text>Move to Passcode login screen</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export const PassCodeLogin = withLoginScreen<PassCodeLoginBaseProps>(PassCodeLoginBase);
+export const PassCodeLogin = withLoginScreen<PassCodeLoginBaseProps, typeof PASSCODE_LOGIN_SCREEN>(
+  PassCodeLoginBase,
+  PASSCODE_LOGIN_SCREEN,
+);
