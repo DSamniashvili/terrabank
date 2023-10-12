@@ -1,4 +1,4 @@
 export type PinKeyboardProps = {
-  onPress: any;
+  onPress: (value: number | string) => void;
   withoutFingerprint?: boolean;
 };

@@ -1,5 +1,5 @@
 export type NUmericKeyProps = {
-  first?: any;
+  first?: undefined;
   pinNumber?: any;
-  onPress: (value: any) => void;
+  onPress: (value: number) => void;
 };

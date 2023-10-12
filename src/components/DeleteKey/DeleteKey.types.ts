@@ -1,3 +1,3 @@
 export type DeleteKeyProps = {
-  onPress: (value: any) => void;
+  onPress: (value: number) => void;
 };
