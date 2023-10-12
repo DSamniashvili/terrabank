@@ -7,18 +7,20 @@ export const useStyleTheme = () => {
     pinItem: {
       width: 70,
       height: 70,
-      borderRadius: Spacing.xxl,
-      margin: 5,
+      borderRadius: 35,
+      marginLeft: 10,
       alignItems: 'center',
       justifyContent: 'center',
     },
     firstPinItem: {
       marginLeft: Spacing.zero,
     },
-
     pinItemText: {
       fontSize: FontSize.regular,
-      color: Colors.pinColor,
+      color: Colors.textBlack400,
+    },
+    hide: {
+      display: 'none',
     },
   });
 };
