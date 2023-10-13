@@ -1,10 +1,17 @@
-import { ImageStyle, StyleProp, TextStyle, ViewStyle, Animated } from 'react-native';
+import {
+  ImageStyle,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+  Animated,
+  ImageSourcePropType,
+  ImageResizeMode,
+} from 'react-native';
 
 export interface IItem {
-  image?: string;
+  image: ImageSourcePropType;
   title?: string;
   desc?: string;
-  color: string;
 }
 
 export interface CarouselProps {
@@ -12,8 +19,8 @@ export interface CarouselProps {
   gap?: number;
   delay?: number;
   skipable?: boolean;
-  controls?: boolean;
   withTimer?: boolean;
+  resizeMode?: ImageResizeMode;
   renderItem?: React.ReactNode;
   dotStyle?: StyleProp<ViewStyle>;
   descStyle?: StyleProp<TextStyle>;

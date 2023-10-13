@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { View, Animated, FlatList, ListRenderItem } from 'react-native';
+import { View, Animated, FlatList, ListRenderItem, Image } from 'react-native';
 import { Dots } from './Dots';
 import { config } from 'utils/config';
 import { Spacing } from 'theme/Variables';
@@ -17,9 +17,9 @@ export const Carousel: FC<CarouselProps> = ({
   descStyle,
   withTimer,
   titleStyle,
+  resizeMode,
   delay = 5000,
   skipable = true,
-  controls = true,
   dotContainerStyle,
   textContainerStyle,
   imageContainerStyle,
@@ -82,8 +82,7 @@ export const Carousel: FC<CarouselProps> = ({
     return (
       <View style={styles.itemContainer}>
         <View style={[styles.imageContainer, imageContainerStyle]}>
-          <View style={[styles.card, { backgroundColor: item.color }]} />
-          {/* image here */}
+          <Image source={item.image} style={styles.image} resizeMode={resizeMode} />
         </View>
         <View style={[styles.textContainer, textContainerStyle]}>
           <Text children={item.title} headline style={[styles.title, titleStyle]} />
@@ -120,20 +119,18 @@ export const Carousel: FC<CarouselProps> = ({
         activeIndex={activeIndex}
         dotContainerStyle={dotContainerStyle}
       />
-      {controls && (
-        <View style={[styles.buttonContainer, buttonContainerStyle]}>
-          <Button.Primary text="onboarding.next" onPress={handleNext} fullWidth />
-        </View>
-      )}
-      {skipable && (
-        <View style={skipButtonContainerStyle}>
-          <Button.Text
-            text="onboarding.skip"
-            onPress={onSkip ? handleSkip : toLastSlide}
-            customTextStyle={styles.skipLabel}
-          />
-        </View>
-      )}
+      <View style={[styles.buttonContainer, buttonContainerStyle]}>
+        <Button.Primary text="onboarding.next" onPress={handleNext} fullWidth />
+        {skipable && (
+          <View style={skipButtonContainerStyle}>
+            <Button.Text
+              text="onboarding.skip"
+              onPress={onSkip ? handleSkip : toLastSlide}
+              customTextStyle={styles.skipLabel}
+            />
+          </View>
+        )}
+      </View>
     </View>
   );
 };

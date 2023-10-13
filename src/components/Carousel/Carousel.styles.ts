@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
-import { config } from 'utils/config';
+import { verticalScale, config } from 'utils/config';
 
 const { mobileWidth } = config;
 
@@ -12,25 +12,28 @@ const useStyles = () => {
       width: mobileWidth - 2 * Spacing.xl,
     },
     imageContainer: {
-      height: 300,
+      height: verticalScale(350),
+    },
+    image: {
+      ...Layout.fullSize,
     },
     dotContainer: {
       ...Layout.selfCenter,
       ...Layout.row,
-      marginTop: 45,
-      gap: 8,
+      marginTop: verticalScale(45),
+      gap: Spacing.s,
     },
     dot: {
-      width: 4,
-      height: 4,
-      borderRadius: 2,
+      width: Spacing.xs,
+      height: Spacing.xs,
+      borderRadius: Spacing.xxs,
     },
     buttonContainer: {
-      marginTop: 50,
+      marginTop: verticalScale(50),
     },
     textContainer: {
       ...Layout.alignItemsCenter,
-      marginTop: 32,
+      marginTop: verticalScale(32),
     },
     title: {
       color: Colors.textBlack,
@@ -39,14 +42,11 @@ const useStyles = () => {
     },
     desc: {
       ...Fonts.textCenter,
-      marginTop: 30,
+      marginTop: verticalScale(32),
       color: Colors.inactiveTint,
     },
-    card: {
-      ...Layout.fill,
-    },
     list: {
-      marginTop: Spacing.xxl,
+      marginTop: verticalScale(Spacing.xxl),
     },
     skipLabel: {
       color: Colors.textBlack500,

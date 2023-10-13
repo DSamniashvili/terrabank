@@ -1,15 +1,24 @@
 import React, { FC } from 'react';
 import { withLoginScreen } from 'components/HOC';
 import { Carousel } from 'components/index';
+import Images from 'theme/Images';
 
 const data = [
   {
     title: 'common:onboarding.templates',
     desc: 'common:onboarding.buildTemplates',
-    color: 'green',
+    image: Images().onboarding,
   },
-  { title: 'common:onboarding.templates', desc: 'common:onboarding.buildTemplates', color: 'red' },
-  { title: 'common:onboarding.templates', desc: 'common:onboarding.buildTemplates', color: 'blue' },
+  {
+    title: 'common:onboarding.templates',
+    desc: 'common:onboarding.buildTemplates',
+    image: Images().onboarding,
+  },
+  {
+    title: 'common:onboarding.templates',
+    desc: 'common:onboarding.buildTemplates',
+    image: Images().onboarding,
+  },
 ];
 
 interface OnboardingScreenBaseProps {
