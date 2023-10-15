@@ -25,7 +25,7 @@ export const useStyleTheme = () => {
       fontSize: FontSize.regular,
     },
     iconContainer: {
-      marginBottom: Spacing.ml - Spacing.xxs,
+      marginBottom: Spacing.ml - Spacing.xxxs,
     },
   });
 };

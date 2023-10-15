@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { withLoginScreen } from 'components/HOC';
 import { Carousel } from 'components/index';
 import Images from 'theme/Images';
+import { PASSWORD_LOGIN_SCREEN } from 'navigation/ScreenNames';
 
 const data = [
   {
@@ -22,11 +23,14 @@ const data = [
 ];
 
 interface OnboardingScreenBaseProps {
-  handleLogin?: () => Promise<void>;
+  handleNavigation?: () => Promise<void>;
 }
 
-const OnboardingScreenBase: FC<OnboardingScreenBaseProps> = ({ handleLogin }) => {
-  return <Carousel data={data} onSkip={handleLogin} onTimeout={handleLogin} withTimer />;
+const OnboardingScreenBase: FC<OnboardingScreenBaseProps> = ({ handleNavigation }) => {
+  return <Carousel data={data} onSkip={handleNavigation} onTimeout={handleNavigation} withTimer />;
 };
 
-export const OnboardingScreen = withLoginScreen<OnboardingScreenBaseProps>(OnboardingScreenBase);
+export const OnboardingScreen = withLoginScreen<
+  OnboardingScreenBaseProps,
+  typeof PASSWORD_LOGIN_SCREEN
+>(OnboardingScreenBase, PASSWORD_LOGIN_SCREEN);

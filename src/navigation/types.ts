@@ -28,8 +28,9 @@ type PaymentsStackParamsList = {
   TransactionsScreen: undefined;
 };
 
-type ProfileStackParamsList = {
+export type ProfileStackParamsList = {
   ProfileScreen: undefined;
+  SettingsScreen: undefined;
 };
 
 export type GuestStackParamList = {
@@ -104,6 +105,7 @@ export type ProfileStackRouteProps<T extends keyof ProfileStackParamsList> = Rou
 >;
 
 // Guest stack intellisense
+
 export type GuestStackScreenProps<T extends keyof GuestStackParamList> = StackNavigationProp<
   GuestStackParamList,
   T
