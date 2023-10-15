@@ -1,5 +1,5 @@
-import { ThemeVariables } from 'types/declarations/theme';
-
-export default function ({}: ThemeVariables) {
-  return {};
+export default function () {
+  return {
+    onboarding: require('assets/images/temp.png'),
+  };
 }

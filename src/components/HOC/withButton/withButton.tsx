@@ -1,9 +1,10 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { isValidElement } from 'react';
 import { ButtonProps, ButtonType } from 'components/Button/Button.types';
 import React from 'react';
 import { useStyleTheme } from 'components/Button/Button.styles';
 import { useButtonTypeStyle } from 'components/Button/hooks/useButtonTypeStyle';
+import { Text } from 'components/index';
 import useTheme from 'hooks/useTheme';
 
 export const withButton = (buttonType: ButtonType) => {
@@ -62,11 +63,7 @@ export const withButton = (buttonType: ButtonType) => {
       <Pressable {...props} style={wrapperStyle}>
         {leftIcon && <View style={leftIconStyle}>{leftIconComponent}</View>}
         {children && isValidElement(children) ? children : null}
-        {text ? (
-          <Text numberOfLines={1} style={textStyle}>
-            {text}
-          </Text>
-        ) : null}
+        {text ? <Text children={text} numberOfLines={1} style={textStyle} /> : null}
         {rightIcon && <View style={rightIconStyle}>{rightIconComponent}</View>}
       </Pressable>
     );

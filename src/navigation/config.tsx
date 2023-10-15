@@ -12,3 +12,8 @@ export const tabOptions: BottomTabNavigationOptions = {
   tabBarActiveTintColor: Colors.primary,
   tabBarInactiveTintColor: Colors.inactiveTint,
 };
+
+export const guestNavOptions: StackNavigationOptions = {
+  headerShown: false,
+  gestureEnabled: false,
+};
