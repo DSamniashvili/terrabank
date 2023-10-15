@@ -1,5 +1,6 @@
 export { Unchecked } from './Unchecked';
 export { Checked } from './Checked';
+export { FingerPrintIcon } from './Fingerprint';
 export { Close } from './Close';
 export { Success } from './Success';
 export { EngFlag } from './EngFlag';
@@ -11,3 +12,5 @@ export { ThreeDot } from './ThreeDot';
 export { Notification } from './Notification';
 export { Back } from './Back';
 export { Chat } from './Chat';
+export { DeleteKeyIcon } from './DeleteKey';
+export { FaceIdSvg } from './FaceId';

@@ -1,28 +1,25 @@
 import React, { FC } from 'react';
 import { withLoginScreen } from 'components/HOC';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useTranslation } from 'react-i18next';
+import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
+import PinKeyboard from 'components/PinKeyboard/PinKeyboard';
 
 interface PassCodeLoginBaseProps {
-  handleLogin?: () => Promise<void>;
+  handleNavigation?: () => Promise<void>;
 }
 
-const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = ({ handleLogin }) => {
-  const { t } = useTranslation();
+const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>{t('navigation.hello')}</Text>
-        <Text>PassCode Login Screen</Text>
+        <PinKeyboard onPress={() => {}} />
       </View>
-
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Move to Passcode login screen</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export const PassCodeLogin = withLoginScreen<PassCodeLoginBaseProps>(PassCodeLoginBase);
+export const PassCodeLogin = withLoginScreen<PassCodeLoginBaseProps, typeof PASSCODE_LOGIN_SCREEN>(
+  PassCodeLoginBase,
+  PASSCODE_LOGIN_SCREEN,
+);

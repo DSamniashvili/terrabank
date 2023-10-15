@@ -105,6 +105,7 @@ export type ProfileStackRouteProps<T extends keyof ProfileStackParamsList> = Rou
 >;
 
 // Guest stack intellisense
+
 export type GuestStackScreenProps<T extends keyof GuestStackParamList> = StackNavigationProp<
   GuestStackParamList,
   T
