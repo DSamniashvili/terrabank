@@ -4,24 +4,25 @@ import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStyleTheme } from './withLoginScreen.styles';
 import { useNavigation } from '@react-navigation/native';
-import { GuestStackScreenProps } from 'navigation/types';
-import { PASSWORD_LOGIN_SCREEN } from 'navigation/ScreenNames';
+import { GuestStackScreenProps, GuestStackParamList } from 'navigation/types';
 
 interface WithLoginScreenProps {
-  handleLogin?: () => void;
+  handleNavigation?: () => void;
 }
 
 /**
  *
  * @param WrappedComponent  - a React component
- * @returns React component - with extended behavior - (with handleLogin optinal function) and shared UI styles
+ * @returns React component - with extended behavior - (with handleNavigation optinal function) and shared UI styles
  */
-export const withLoginScreen = <P extends object>(WrappedComponent: ComponentType<P>) => {
+export const withLoginScreen = <P extends object, T extends keyof GuestStackParamList>(
+  WrappedComponent: ComponentType<P>,
+  screenName: T,
+) => {
   return (props: WithLoginScreenProps) => {
     const styles = useStyleTheme();
-    const { navigate } = useNavigation<GuestStackScreenProps<'Onboarding'>>();
+    const { navigate } = useNavigation<GuestStackScreenProps<T>>();
 
-    // TODO - temp solution - will be moved to other file
     const fakeLogin = () => {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -30,10 +31,10 @@ export const withLoginScreen = <P extends object>(WrappedComponent: ComponentTyp
       });
     };
 
-    const handleLogin = async () => {
+    const handleNavigation = async () => {
       try {
         await fakeLogin();
-        navigate(PASSWORD_LOGIN_SCREEN);
+        navigate(screenName as keyof GuestStackParamList);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Login failed', error);
@@ -47,7 +48,7 @@ export const withLoginScreen = <P extends object>(WrappedComponent: ComponentTyp
             <LanguageSwitcher />
           </View>
           <View>
-            <WrappedComponent {...(props as P)} handleLogin={handleLogin} />
+            <WrappedComponent {...(props as P)} handleNavigation={handleNavigation} />
           </View>
         </View>
       </SafeAreaView>

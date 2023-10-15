@@ -83,6 +83,9 @@ export default function ({}: ThemeVariables) {
       flexGrow: 1,
       justifyContent: 'space-between',
     },
+    growfull: {
+      flexGrow: 1,
+    },
     selfStretch: {
       alignSelf: 'stretch',
     },
