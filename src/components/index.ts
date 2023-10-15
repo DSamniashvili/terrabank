@@ -6,4 +6,5 @@ export { Radio } from './Radio/Radio';
 export { Modal } from './Modal/Modal';
 export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
 export { Button } from './Button/Button';
+export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';

@@ -4,6 +4,7 @@ import { ButtonProps, ButtonType } from 'components/Button/Button.types';
 import React from 'react';
 import { useStyleTheme } from 'components/Button/Button.styles';
 import { useButtonTypeStyle } from 'components/Button/hooks/useButtonTypeStyle';
+import useTheme from 'hooks/useTheme';
 
 export const withButton = (buttonType: ButtonType) => {
   return function ButtonComponent({
@@ -24,6 +25,7 @@ export const withButton = (buttonType: ButtonType) => {
   }: ButtonProps) {
     const styles = useButtonTypeStyle(buttonType);
     const sharedStyles = useStyleTheme();
+    const { Colors } = useTheme();
     // Do not remove -  Only for rippleEffect!!!
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const containerStyle = [styles.containerStyle, customContainerStyle];
@@ -51,7 +53,7 @@ export const withButton = (buttonType: ButtonType) => {
     const rightIconStyle = [styles.rightIcon, customRightIconStyle];
 
     const renderIcon = (IconComponent?: SvgComponent, color?: string) =>
-      IconComponent && <IconComponent fill={disabled ? { color: 'gray' } : color} />;
+      IconComponent && <IconComponent fill={disabled ? { color: Colors.gray200 } : color} />;
 
     const leftIconComponent = renderIcon(leftIcon);
     const rightIconComponent = renderIcon(rightIcon);

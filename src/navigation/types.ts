@@ -28,8 +28,9 @@ type PaymentsStackParamsList = {
   TransactionsScreen: undefined;
 };
 
-type ProfileStackParamsList = {
+export type ProfileStackParamsList = {
   ProfileScreen: undefined;
+  SettingsScreen: undefined;
 };
 
 export type GuestStackParamList = {

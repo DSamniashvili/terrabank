@@ -7,7 +7,7 @@ export const useStyleTheme = () => {
     outline: {
       width: Spacing.lg,
       height: Spacing.lg,
-      borderWidth: Spacing.xxs,
+      borderWidth: Spacing.xxxs,
       borderRadius: Spacing.m,
       ...Layout.center,
       borderColor: Colors.textBlack400,

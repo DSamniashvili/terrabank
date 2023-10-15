@@ -24,7 +24,7 @@ export const useStyleTheme = () => {
       paddingHorizontal: Spacing.xl,
     },
     textStyle: {
-      paddingHorizontal: Spacing.xs,
+      paddingHorizontal: Spacing.xxs,
     },
     textStyleMedium: {
       fontSize: FontSize.small,
