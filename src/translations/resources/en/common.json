@@ -16,5 +16,16 @@
     "skip": "Skip",
     "templates": "Templates",
     "buildTemplates": "Create and manage updated templates functionality"
+  },
+  "passAuth": {
+    "auth": "Sign In",
+    "personalData": "Enter personal data",
+    "username": "Username",
+    "password": "Password",
+    "save": "Save",
+    "forgot": "Forgot data?",
+    "signin": "Sign in",
+    "or": "or",
+    "signup": "Sign up"
   }
 }

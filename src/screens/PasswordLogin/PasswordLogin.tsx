@@ -1,32 +1,57 @@
 import React, { FC } from 'react';
+import { Pressable, View } from 'react-native';
+import { Button, Text, ControlledInput } from 'components';
 import { withLoginScreen } from 'components/HOC';
-import { Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useTranslation } from 'react-i18next';
+import { PasswordLoginBaseProps } from './PasswordLogin.types';
+import useStyles from './PasswordLogin.styles';
+import { usePasswordLogin } from './usePasswordLogin';
 import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
 
-interface PasswordLoginBaseProps {
-  handleLogin?: () => Promise<void>;
-}
+const PasswordLoginBase: FC<PasswordLoginBaseProps> = () => {
+  const { control, handleSignIn, handleSignUp } = usePasswordLogin();
+  const styles = useStyles();
 
-const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleLogin }) => {
-  const { t } = useTranslation();
   return (
-    <SafeAreaView>
-      <View>
-        <Text>{t('navigation.hello')}</Text>
-        <Text>Password Login Screen</Text>
+    <View style={styles.wrapper}>
+      <Text children="common:passAuth.auth" headline />
+      <Text children="common:passAuth.personalData" secondary marginTop={4} />
+      <ControlledInput
+        control={control}
+        name="username"
+        label="common:passAuth.username"
+        marginTop={48}
+        required
+      />
+      <ControlledInput
+        control={control}
+        name="password"
+        label="common:passAuth.password"
+        marginTop={20}
+        secureTextEntry
+      />
+      <View style={styles.chechboxContainer}>
+        <ControlledInput
+          control={control}
+          type="checkbox"
+          name="save"
+          label="common:passAuth.save"
+        />
+        <Text children="common:passAuth.forgot" label special />
       </View>
-
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Move to Passcode login screen</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => removeValue(APP_LAUNCHED)}>
-        <Text>Start with onboarding</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      <View style={styles.buttonCont}>
+        <Button.Primary text="common:passAuth.signin" onPress={handleSignIn} fullWidth />
+        <View style={styles.dividerContainer}>
+          <View style={styles.divider} />
+          <Text children="common:passAuth.or" label special style={styles.text} />
+          <View style={styles.divider} />
+        </View>
+        <Button.Secondary text="common:passAuth.signup" onPress={handleSignUp} fullWidth />
+      </View>
+      <Pressable onPress={() => removeValue(APP_LAUNCHED)}>
+        <Text children="Start with onboarding" marginTop={20} />
+      </Pressable>
+    </View>
   );
 };
 
