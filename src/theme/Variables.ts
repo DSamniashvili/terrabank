@@ -21,6 +21,7 @@ export const Colors = {
   textBlack: 'rgba(28, 28, 28, 0.98)',
   textBlack500: 'rgba(29, 29, 29, 0.64)',
   textBlack400: 'rgba(29, 29, 29, 0.4)',
+  pinColor: '#1C1C1CFA',
   textWhite: 'rgba(253, 253, 253, 0.98)',
   textGray800: '#000000',
   textGray400: '#4D4D4D',
