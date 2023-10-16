@@ -12,6 +12,6 @@ export const useStyleTheme = () => {
       justifyContent: 'flex-end',
     },
     wrapper: { alignItems: 'center' },
-    pinLine: { paddingVertical: 30 },
+    pinLine: { paddingVertical: 50 },
   });
 };

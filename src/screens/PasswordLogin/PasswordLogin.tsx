@@ -9,8 +9,9 @@ import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
 import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 
-const PasswordLoginBase: FC<PasswordLoginBaseProps> = () => {
-  const { control, handleSignIn, handleSignUp } = usePasswordLogin();
+const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => {
+  const { control, handleSignUp } = usePasswordLogin();
+  // handleSignIn changed with handleNavigation
   const styles = useStyles();
 
   return (
@@ -41,7 +42,7 @@ const PasswordLoginBase: FC<PasswordLoginBaseProps> = () => {
         <Text children="common:passAuth.forgot" label special />
       </View>
       <View style={styles.buttonCont}>
-        <Button.Primary text="common:passAuth.signin" onPress={handleSignIn} fullWidth />
+        <Button.Primary text="common:passAuth.signin" onPress={handleNavigation} fullWidth />
         <View style={styles.dividerContainer}>
           <View style={styles.divider} />
           <Text children="common:passAuth.or" label special style={styles.text} />

@@ -6,7 +6,7 @@ import { FingerPrintKey } from 'components/FingerPrintKey/FingerPrintKey';
 import { PinKeyboardProps } from './PinKeyboard.types';
 import { useStyleTheme } from './PinKeyboard.styles';
 
-const PinKeyboard: FC<PinKeyboardProps> = ({ onPress }) => {
+const PinKeyboard: FC<PinKeyboardProps> = ({ onPress, withoutFingerprint }) => {
   //withoutFingerprint = false
   const numericKeyRows = [
     [1, 2, 3],
@@ -21,14 +21,18 @@ const PinKeyboard: FC<PinKeyboardProps> = ({ onPress }) => {
       {numericKeyRows.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.pinRow}>
           {row.map((number, index) => (
-            <NumericKey key={index} onPress={() => onPress(number)} pinNumber={number} />
+            <NumericKey key={index} onPress={onPress} pinNumber={number} />
           ))}
         </View>
       ))}
       <View style={[styles.pinRow, styles.lastRow]}>
-        <FingerPrintKey onPress={() => onPress('fingerprint')} />
-        <NumericKey onPress={() => onPress(0)} pinNumber={0} />
-        <DeleteKey onPress={() => onPress('delete')} />
+        {!withoutFingerprint ? (
+          <FingerPrintKey onPress={onPress} />
+        ) : (
+          <View style={styles.withoutFingerPrint} />
+        )}
+        <NumericKey onPress={onPress} pinNumber={0} />
+        <DeleteKey onPress={onPress} />
       </View>
     </View>
   );

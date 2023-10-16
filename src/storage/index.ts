@@ -1,5 +1,5 @@
 import { MMKV } from 'react-native-mmkv';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './constants';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, PASSCODE } from './constants';
 
 export const storage = new MMKV();
 
@@ -36,3 +36,5 @@ export const storageKeys = () => {
 export const removeValue = (key: string) => {
   return storage.delete(key);
 };
+
+export const setPasscode = (passcode: string) => storage.set(PASSCODE, passcode);

@@ -10,7 +10,8 @@
     "payments": "Payments",
     "more": "More",
     "hello": "Hello",
-    "settings": "Settings"
+    "settings": "Settings",
+    "passcode": "Passcode"
   },
   "onboarding": {
     "next": "Next",
@@ -35,5 +36,10 @@
     "tempBlocked": "The entered data is incorrect. Your account has been blocked for 10 minutes",
     "lastWarning": "The entered data is incorrect. Try again. Entering data incorrectly again, your account will be blocked. To unlock, contact us at the number: 2 55 00 00 or contact the nearest Terabank branch",
     "blocked": "The entered data is incorrect. Your account is blocked. Contact us to unlock at the number: 2 55 00 00 or contact the nearest Terabank branch"
+  },
+  "passcode": {
+    "createPasscode": "Set 4-digit passcode",
+    "repeatPasscode": "Repeat  passcode",
+    "enterPasscodeCode": "Enter your passcode"
   }
 }
