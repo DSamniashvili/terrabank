@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
-import { Text } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -9,12 +8,13 @@ import Animated, {
   useAnimatedGestureHandler,
   Easing,
 } from 'react-native-reanimated';
-import { Success } from 'assets/SVGs';
+import { Success, Error } from 'assets/SVGs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
 import { useStyleTheme } from './Toast.styles';
 import { WithTimingConfig } from 'react-native-reanimated';
 import useTheme from 'hooks/useTheme';
+import { Text } from '../index';
 interface ToastProps {
   errorMessage?: string;
   type?: 'error' | 'success' | 'warning' | 'default';
@@ -29,7 +29,11 @@ type ImagesType = {
 };
 
 export interface ToastRef {
-  start: (errorMessage: string, type?: 'error' | 'success' | 'warning' | 'default') => void;
+  start: (
+    errorMessage: string,
+    type?: 'error' | 'success' | 'warning' | 'default',
+    height?: number,
+  ) => void;
   stop: () => void;
 }
 
@@ -45,6 +49,8 @@ const defaultBackgroundStyle: BackgroundStyle = {
   textColor: 'white',
 };
 
+const DEFAULT_HEIGHT = 90;
+
 export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
   const { Colors } = useTheme();
   const Yposition = useSharedValue(-75);
@@ -53,15 +59,16 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
   const s = useStyleTheme();
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const insets = useSafeAreaInsets();
+  const [height, setHeight] = useState(DEFAULT_HEIGHT);
 
   const typeToBackgroundStyle: Record<
     'error' | 'success' | 'warning' | 'default',
     BackgroundStyle
   > = {
     error: {
-      backgroundColor: Colors.successToastColor,
-      icon: <Success />,
-      textColor: Colors.successToastTextColor,
+      backgroundColor: Colors.errorToastColor,
+      icon: <Error />,
+      textColor: Colors.textBlack,
     },
     success: {
       backgroundColor: Colors.successToastColor,
@@ -81,7 +88,11 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
   }, [insets]);
 
   useImperativeHandle(ref, () => ({
-    start: (errorMessage: string, type?: 'error' | 'success' | 'warning' | 'default') => {
+    start: (
+      errorMessage: string,
+      type?: 'error' | 'success' | 'warning' | 'default',
+      containerHeight?,
+    ) => {
       setToast(errorMessage);
 
       const timingConfig: WithTimingConfig = {
@@ -95,9 +106,14 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
 
       const backgroundStyle = typeToBackgroundStyle[type || 'default'];
       setBackgroundStyle(backgroundStyle);
+
+      if (containerHeight) {
+        setHeight(containerHeight);
+      }
     },
     stop: () => {
       setToast('');
+      setHeight(DEFAULT_HEIGHT);
       const timingConfig: WithTimingConfig = {
         duration: 200,
         easing: Easing.inOut(Easing.ease),
@@ -139,9 +155,9 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
 
   return (
     <PanGestureHandler onGestureEvent={panGestureHandler} onHandlerStateChange={panGestureHandler}>
-      <Animated.View style={[toastStyle, s.container]}>
+      <Animated.View style={[toastStyle, s.container, { height }]}>
         <Text>{backgroundStyle.icon}</Text>
-        <Text style={[s.toastText, { color: backgroundStyle.textColor }]}>{toast}</Text>
+        <Text label children={toast} style={[s.toastText, { color: backgroundStyle.textColor }]} />
       </Animated.View>
     </PanGestureHandler>
   );

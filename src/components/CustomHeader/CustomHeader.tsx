@@ -22,7 +22,7 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   const { goBack } = useNavigation();
 
   const getComponentByElement = (
-    handler?: () => void | undefined,
+    handler?: () => void,
     IconComponent?: (props: SvgProps) => React.JSX.Element,
     native?: boolean,
   ) => (

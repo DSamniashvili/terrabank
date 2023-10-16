@@ -40,6 +40,7 @@ export const Colors = {
   inputBlack50: 'rgba(29, 29, 29, 0.05)',
   textWhite400: 'rgba(253, 253, 253, 0.4)',
   dotGray: '#7D8D99',
+  errorToastColor: '#FAE8E7',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

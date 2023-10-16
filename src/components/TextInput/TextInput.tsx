@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import { View, TextInput as RNTextInput, Text, Pressable } from 'react-native';
+import { View, TextInput as RNTextInput, Pressable } from 'react-native';
 import Animated, {
   withTiming,
   interpolate,
@@ -8,8 +8,12 @@ import Animated, {
   Easing,
   Extrapolation,
 } from 'react-native-reanimated';
-import { TextInputProps } from './TextInput.types';
+import { ControlledInputProps, TextInputProps } from './TextInput.types';
 import { useStyleTheme } from './TextInput.styles';
+import { useTranslation } from 'react-i18next';
+import { Controller, FieldValues } from 'react-hook-form';
+import { Checkbox } from '../index';
+import { OpenEye, CloseEye } from 'assets/SVGs';
 
 const HIT_SLOP = { top: 15, bottom: 15 };
 
@@ -35,6 +39,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
     const styles = useStyleTheme();
     const [secureText, setSecureText] = useState(secureTextEntry);
     const position = useSharedValue(0);
+    const { t } = useTranslation();
 
     const handlePress = () => {
       setSecureText(prev => !prev);
@@ -54,15 +59,15 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
 
     const labelAnimatedStyles = useAnimatedStyle(() => ({
       top: interpolate(position.value, [0, 1], [17, 2], Extrapolation.CLAMP),
-      transform: [
-        { scale: interpolate(position.value, [0, 1], [1, 0.9], Extrapolation.CLAMP) },
-        { translateX: interpolate(position.value, [0, 1], [0, -9], Extrapolation.CLAMP) },
-      ],
+      fontSize: interpolate(position.value, [0, 1], [16, 12], Extrapolation.CLAMP),
     }));
 
     return (
       <View ref={ref} style={[styles.inputContainer, { marginTop }, containerStyle]}>
-        <Animated.Text children={label} style={[styles.label, labelStyle, labelAnimatedStyles]} />
+        <Animated.Text
+          children={t(label)}
+          style={[styles.label, labelStyle, labelAnimatedStyles]}
+        />
         <View style={styles.wrapper}>
           <RNTextInput
             value={value}
@@ -79,7 +84,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
           />
           {secureTextEntry && value && (
             <Pressable onPress={handlePress} style={[styles.iconContainer, iconContainerStyle]}>
-              <Text children={secureText ? 'show' : 'hide'} />
+              {secureText ? <OpenEye /> : <CloseEye />}
             </Pressable>
           )}
         </View>
@@ -87,3 +92,27 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
     );
   },
 );
+
+export const ControlledInput = <T extends FieldValues>({
+  control,
+  name,
+  label,
+  rules,
+  required,
+  type = 'text',
+  ...props
+}: ControlledInputProps<T>) => {
+  return (
+    <Controller
+      name={name}
+      control={control}
+      rules={{ required, ...rules }}
+      render={({ field: { onChange, value } }) => {
+        if (type === 'checkbox') {
+          return <Checkbox isChecked={value} onChange={onChange} label={label} />;
+        }
+        return <TextInput {...props} value={value} onChangeText={onChange} label={label} />;
+      }}
+    />
+  );
+};

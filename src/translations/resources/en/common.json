@@ -17,5 +17,23 @@
     "skip": "Skip",
     "templates": "Templates",
     "buildTemplates": "Create and manage updated templates functionality"
+  },
+  "passAuth": {
+    "auth": "Sign In",
+    "personalData": "Enter personal data",
+    "username": "Username",
+    "password": "Password",
+    "save": "Save",
+    "forgot": "Forgot data?",
+    "signin": "Sign in",
+    "or": "or",
+    "signup": "Sign up"
+  },
+  "authErrors": {
+    "tryAgain": "Entered data is incorrect. Try again",
+    "blockWarning": "The entered data is incorrect. Try again. If the data is entered incorrectly for the fifth time, your account will be blocked for 10 minutes",
+    "tempBlocked": "The entered data is incorrect. Your account has been blocked for 10 minutes",
+    "lastWarning": "The entered data is incorrect. Try again. Entering data incorrectly again, your account will be blocked. To unlock, contact us at the number: 2 55 00 00 or contact the nearest Terabank branch",
+    "blocked": "The entered data is incorrect. Your account is blocked. Contact us to unlock at the number: 2 55 00 00 or contact the nearest Terabank branch"
   }
 }
