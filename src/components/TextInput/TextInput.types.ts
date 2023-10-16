@@ -4,7 +4,6 @@ import { FieldValues, UseControllerProps } from 'react-hook-form';
 export type TextInputProps = {
   value?: string;
   label?: string;
-  type?: 'text' | 'checkbox';
   required?: boolean;
   marginTop?: number;
   editable?: boolean;
@@ -19,4 +18,10 @@ export type TextInputProps = {
   onChangeText?: (value: string) => void;
 };
 
-export type ControlledInputType<T extends FieldValues> = TextInputProps & UseControllerProps<T>;
+type ControlledInputType = {
+  type?: 'text' | 'checkbox';
+};
+
+export type ControlledInputProps<T extends FieldValues> = TextInputProps &
+  ControlledInputType &
+  UseControllerProps<T>;

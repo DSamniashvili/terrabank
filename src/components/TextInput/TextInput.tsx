@@ -8,7 +8,7 @@ import Animated, {
   Easing,
   Extrapolation,
 } from 'react-native-reanimated';
-import { ControlledInputType, TextInputProps } from './TextInput.types';
+import { ControlledInputProps, TextInputProps } from './TextInput.types';
 import { useStyleTheme } from './TextInput.styles';
 import { useTranslation } from 'react-i18next';
 import { Controller, FieldValues } from 'react-hook-form';
@@ -101,7 +101,7 @@ export const ControlledInput = <T extends FieldValues>({
   required,
   type = 'text',
   ...props
-}: ControlledInputType<T>) => {
+}: ControlledInputProps<T>) => {
   return (
     <Controller
       name={name}
