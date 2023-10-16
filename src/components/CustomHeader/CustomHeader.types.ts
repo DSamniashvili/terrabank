@@ -1,4 +1,5 @@
 import { StackHeaderProps } from '@react-navigation/stack';
+import { ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 export type Position = 'left' | 'right' | 'center';
@@ -20,6 +21,8 @@ export type CustomHeaderProps = {
   backElement?: IconComponentProps;
   title?: string;
   titlePosition?: Position;
+  customHeaderContainerStyle?: ViewStyle;
+  bottomBorder?: boolean;
 };
 
 export type IconProps = SvgProps & {

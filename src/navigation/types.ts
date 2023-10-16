@@ -31,6 +31,7 @@ type PaymentsStackParamsList = {
 export type ProfileStackParamsList = {
   ProfileScreen: undefined;
   SettingsScreen: undefined;
+  AuthorizationMethodsScreen: undefined;
 };
 
 export type GuestStackParamList = {

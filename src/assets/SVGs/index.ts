@@ -17,3 +17,5 @@ export { Chat } from './Chat';
 export { DeleteKeyIcon } from './DeleteKey';
 export { FaceIdSvg } from './FaceId';
 export { Error } from './Error';
+export { ChatBubble } from './ChatBubble';
+export { DialPad } from './DialPad';
