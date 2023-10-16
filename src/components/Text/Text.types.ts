@@ -13,5 +13,6 @@ export type TextProps = {
   secondary?: boolean;
   special?: boolean;
   translate?: boolean;
+  marginTop?: number;
   translateProp?: TOptions;
 } & RNTextProps;

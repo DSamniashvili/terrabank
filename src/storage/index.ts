@@ -4,7 +4,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './constants';
 export const storage = new MMKV();
 
 // Generic function to set a value in MMKV storage
-export const setValue = (key: string, value: string) => {
+export const setValue = (key: string, value: string | boolean) => {
   storage.set(key, value);
 };
 
@@ -27,4 +27,12 @@ export const getAccessToken = () => {
 
 export const setRefreshToken = (refreshToken: string) => {
   storage.set(REFRESH_TOKEN_KEY, refreshToken);
+};
+
+export const storageKeys = () => {
+  return storage.getAllKeys();
+};
+
+export const removeValue = (key: string) => {
+  return storage.delete(key);
 };

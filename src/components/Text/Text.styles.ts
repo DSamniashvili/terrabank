@@ -2,7 +2,7 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Colors, FontSize } = useTheme();
+  const { Colors, FontSize, Fonts } = useTheme();
   return StyleSheet.create({
     default: {
       fontSize: FontSize.regular,
@@ -10,10 +10,10 @@ export const useStyleTheme = () => {
       color: Colors.textBlack,
     },
     uppercase: {
-      textTransform: 'uppercase',
+      ...Fonts.textUppercase,
     },
     center: {
-      textAlign: 'center',
+      ...Fonts.textCenter,
     },
     label: {
       fontSize: FontSize.tiny,

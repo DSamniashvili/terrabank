@@ -2,20 +2,21 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-
   const { FontSize, Spacing, Layout, Colors } = useTheme();
   return StyleSheet.create({
     container: {
       top: -75,
-      height: 90,
+      maxHeight: 140,
       paddingHorizontal: Spacing.ml,
-      paddingVertical: Spacing.l,
       backgroundColor: Colors.white,
       ...Layout.absolute,
       ...Layout.justifyContentStart,
+      ...Layout.alignItemsCenter,
       ...Layout.selfCenter,
-      ...Layout.fullWidth,
       ...Layout.row,
+      borderRadius: Spacing.ml,
+      left: Spacing.l,
+      right: Spacing.l,
     },
     toastText: {
       paddingHorizontal: Spacing.ml,

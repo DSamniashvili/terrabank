@@ -47,14 +47,14 @@ export default function () {
 
   const fonts = Fonts(themeVariables);
   const gutters = Gutters(themeVariables);
-  const images = Images(themeVariables);
+  const images = Images();
   const layout = Layout(themeVariables);
   const common = Common({
     ...themeVariables,
     Layout: Layout(themeVariables),
     Gutters: Gutters(themeVariables),
     Fonts: Fonts(themeVariables),
-    Images: Images(themeVariables),
+    Images: Images(),
   });
 
   // Build the default theme

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { Checked, Unchecked } from 'assets/SVGs';
 import { CheckboxProps } from './Checkbox.types';
 import { useStyleTheme } from './Checkbox.styles';
+import { Text } from '../index';
 
 export const Checkbox: FC<CheckboxProps> = ({
   isChecked,

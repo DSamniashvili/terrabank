@@ -6,6 +6,8 @@ export { Radio } from './Radio/Radio';
 export { Modal } from './Modal/Modal';
 export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
 export { Button } from './Button/Button';
+export { Carousel } from './Carousel/Carousel';
+export { ControlledInput } from './TextInput/TextInput';
 export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
 export { Account } from './Account/Account';
