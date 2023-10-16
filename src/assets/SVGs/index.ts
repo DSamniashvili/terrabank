@@ -16,4 +16,6 @@ export { Back } from './Back';
 export { Chat } from './Chat';
 export { DeleteKeyIcon } from './DeleteKey';
 export { FaceIdSvg } from './FaceId';
+export { UserIcon } from './User';
 export { Error } from './Error';
+
