@@ -8,3 +8,4 @@ export { LanguageSwitcher } from './LanguageSwitcher/LanguageSwitcher';
 export { Button } from './Button/Button';
 export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
+export { Account } from './Account/Account';

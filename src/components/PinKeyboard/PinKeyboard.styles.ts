@@ -7,10 +7,12 @@ export const useStyleTheme = () => {
     pinRow: {
       flexDirection: 'row',
       marginTop: Spacing.s,
-      justifyContent: 'center',
+      width: '100%',
+      justifyContent: 'space-around',
       alignItems: 'center',
     },
     lastRow: {
+      width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-around',
     },

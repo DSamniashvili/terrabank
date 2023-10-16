@@ -22,15 +22,15 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   const { goBack } = useNavigation();
 
   const getComponentByElement = (
-    handler: () => void,
-    IconComponent: (props: SvgProps) => React.JSX.Element,
-    native: boolean,
+    handler?: () => void,
+    IconComponent?: (props: SvgProps) => React.JSX.Element,
+    native?: boolean,
   ) => (
     <Pressable
       onPress={handler}
       style={[styles.iconCommonStyles, !native && styles.iconRoundedStyles]}
     >
-      <IconComponent width={16} height={16} />
+      {IconComponent && <IconComponent width={16} height={16} />}
     </Pressable>
   );
 
