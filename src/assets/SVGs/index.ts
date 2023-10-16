@@ -19,3 +19,6 @@ export { FaceIdSvg } from './FaceId';
 export { UserIcon } from './User';
 export { Error } from './Error';
 export { PasscodeLogo } from './PasscodeLogo';
+export { ChatBubble } from './ChatBubble';
+export { DialPad } from './DialPad';
+

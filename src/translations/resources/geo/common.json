@@ -13,6 +13,7 @@
     "settings": "პარამეტრები",
     "passcode": "პასკოდი"
   },
+
   "onboarding": {
     "next": "შემდეგი",
     "skip": "გამოტოვება",
@@ -41,5 +42,15 @@
     "createPasscode": "დააყენე 4 ნიშნა პასკოდი",
     "repeatPasscode": "გაიმეორე პასკოდი",
     "enterPasscodeCode": "ჩაწერე შენთვის სასურველი პასკოდი"
+  "settings": {
+    "choose_authorization_method": "ავტორიზაციის მეთოდის არჩევა",
+    "sms_code_title": "SMS კოდი",
+    "sms_code_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით",
+    "passcode_title": "პასკოდი",
+    "passcode_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით",
+    "face_id_title": "Face ID",
+    "face_id_desc": "გაიარე ავტორიზაცია Face ID-ით",
+    "biometric_title": "ბიომეტრიული მონაცემები",
+    "biometric_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით"
   }
 }

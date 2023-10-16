@@ -1,12 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
-import { Alert, Pressable, Text, View, ViewStyle } from 'react-native';
+import { Alert, Text, View, ViewStyle } from 'react-native';
 
 import { useStyleTheme } from './CustomHeader.styles';
 import { CustomHeaderOptions, ElementsType } from './CustomHeader.types';
 import { Back, Notification, Search, Chat } from 'assets/SVGs';
 import { useTranslation } from 'react-i18next';
 import { SvgProps } from 'react-native-svg';
+import { IconComponent } from 'components/IconComponent/IconComponent';
 
 export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   isInitialScreen = false,
@@ -16,6 +17,8 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   backElement,
   title,
   titlePosition = 'center',
+  customHeaderContainerStyle,
+  bottomBorder,
 }) => {
   const { t } = useTranslation();
   const styles = useStyleTheme();
@@ -23,16 +26,9 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
 
   const getComponentByElement = (
     handler?: () => void,
-    IconComponent?: (props: SvgProps) => React.JSX.Element,
+    IconJSX?: (props: SvgProps) => React.JSX.Element,
     native?: boolean,
-  ) => (
-    <Pressable
-      onPress={handler}
-      style={[styles.iconCommonStyles, !native && styles.iconRoundedStyles]}
-    >
-      {IconComponent && <IconComponent width={16} height={16} />}
-    </Pressable>
-  );
+  ) => <IconComponent handler={handler} IconJSX={IconJSX} native={native} />;
 
   const handleSearch = () => {
     Alert.alert('search!!!');
@@ -83,7 +79,14 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   };
 
   return (
-    <View style={[styles.container, isInitialScreen && styles.initialContainer]}>
+    <View
+      style={[
+        styles.container,
+        isInitialScreen && styles.initialContainer,
+        customHeaderContainerStyle,
+        bottomBorder && styles.borderBottom,
+      ]}
+    >
       {renderContent('left')}
       {renderContent('center')}
       {renderContent('right')}

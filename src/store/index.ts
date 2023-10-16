@@ -15,11 +15,18 @@ import { counterReducer } from './slices/counter';
 import { reduxStorage } from './reduxStorage';
 import { exampleApi } from './apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
+import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
 
 const counterPersistConfig = {
   key: 'counter',
   storage: reduxStorage,
   whitelist: ['currentNumber'],
+};
+
+const authorizationMethodsPersistConfig = {
+  key: 'authorizationMethods',
+  storage: reduxStorage,
+  whitelist: ['sms', 'passcode', 'faceId', 'biometric'],
 };
 
 const themePersistConfig = {
@@ -29,10 +36,15 @@ const themePersistConfig = {
 };
 
 const persistedCounter = persistReducer(counterPersistConfig, counterReducer);
+const persistedAuthorizationMethods = persistReducer(
+  authorizationMethodsPersistConfig,
+  authorizationMethodsReducer,
+);
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 
 const reducers = combineReducers({
   counter: persistedCounter,
+  authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
   [exampleApi.reducerPath]: exampleApi.reducer,
 });

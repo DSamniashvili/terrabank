@@ -7,7 +7,7 @@ import useStyles from './PasswordLogin.styles';
 import { usePasswordLogin } from './usePasswordLogin';
 import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
-import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
+import { PASSWORD_LOGIN_SCREEN } from 'navigation/ScreenNames';
 
 const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => {
   const { control, handleSignUp } = usePasswordLogin();
@@ -57,7 +57,7 @@ const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => 
   );
 };
 
-export const PasswordLogin = withLoginScreen<PasswordLoginBaseProps, typeof PASSCODE_LOGIN_SCREEN>(
+export const PasswordLogin = withLoginScreen<PasswordLoginBaseProps, typeof PASSWORD_LOGIN_SCREEN>(
   PasswordLoginBase,
-  PASSCODE_LOGIN_SCREEN,
+  PASSWORD_LOGIN_SCREEN,
 );

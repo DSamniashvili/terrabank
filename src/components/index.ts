@@ -10,4 +10,5 @@ export { Carousel } from './Carousel/Carousel';
 export { ControlledInput } from './TextInput/TextInput';
 export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
+export { AuthorizationMethod } from './AuthorizationMethod/AuthorizationMethod';
 export { Account } from './Account/Account';
