@@ -35,5 +35,16 @@
     "tempBlocked": "The entered data is incorrect. Your account has been blocked for 10 minutes",
     "lastWarning": "The entered data is incorrect. Try again. Entering data incorrectly again, your account will be blocked. To unlock, contact us at the number: 2 55 00 00 or contact the nearest Terabank branch",
     "blocked": "The entered data is incorrect. Your account is blocked. Contact us to unlock at the number: 2 55 00 00 or contact the nearest Terabank branch"
+  },
+  "settings": {
+    "choose_authorization_method": "Choose authorization method",
+    "sms_code_title": "SMS code",
+    "sms_code_desc": "with the use of password and one time code",
+    "passcode_title": "passcode",
+    "passcode_desc": "with the use of password and one time code",
+    "face_id_title": "Face ID",
+    "face_id_desc": "Authenticate with a Face ID",
+    "biometric_title": "Biometric data",
+    "biometric_desc": "with the use of password and one time code"
   }
 }

@@ -1,5 +1,5 @@
 import useTheme from 'hooks/useTheme';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
   const { FontSize, Spacing, Layout, BorderRadius, Colors, Fonts } = useTheme();
@@ -10,7 +10,8 @@ export const useStyleTheme = () => {
       ...Layout.alignItemsCenter,
       backgroundColor: 'rgba(246, 246, 246, 1)',
       paddingHorizontal: Spacing.ml,
-      paddingTop: Spacing.ml,
+      // TODO !! - think of a better solution here for notch
+      paddingTop: Platform.OS === 'ios' ? Spacing.xxl : Spacing.ml,
       height: 96,
     },
     initialContainer: {
@@ -19,16 +20,13 @@ export const useStyleTheme = () => {
     leftContainer: {
       ...Layout.row,
       ...Layout.justifyContentStart,
-      ...Layout.growfull,
-      maxWidth: '30%',
     },
     centerContainer: {
       ...Layout.growfull,
       ...Layout.rowCenter,
-      flex: 1,
-      maxWidth: '50%',
       paddingHorizontal: 'auto',
       marginHorizontal: 'auto',
+      minWidth: '60%',
     },
     rightContainer: {
       ...Layout.row,
@@ -59,6 +57,10 @@ export const useStyleTheme = () => {
       borderWidth: 1,
       padding: Spacing.xs,
       margin: Spacing.xs,
+    },
+    borderBottom: {
+      borderBottomWidth: 1,
+      borderBottomColor: Colors.gray200,
     },
   });
 };

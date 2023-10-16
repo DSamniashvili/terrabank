@@ -1,10 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ProfileScreen, SettingsScreen } from 'screens';
-import { PROFILE_SCREEN, SETTINGS_SCREEN } from 'navigation/ScreenNames';
+import {
+  AUTHORIZATION_METHODS_SCREEN,
+  PROFILE_SCREEN,
+  SETTINGS_SCREEN,
+} from 'navigation/ScreenNames';
 import { ProfileStackParamsList } from 'navigation/types';
 import { CustomHeader } from 'components/index';
 import { CustomHeaderOptions } from 'components/CustomHeader/CustomHeader.types';
+import { AuthorizationMethodsScreen } from 'screens/AuthorizationMethodsScreen/AuthorizationMethodsScreen';
 
 const Stack = createStackNavigator<ProfileStackParamsList>();
 
@@ -21,7 +26,22 @@ const ProfileStackHeaderMap = {
     );
   },
   [SETTINGS_SCREEN]: (props: CustomHeaderOptions) => {
-    return <CustomHeader title={'settings'} backElement={{ position: 'left' }} {...props} />;
+    return (
+      <CustomHeader title={'navigation.settings'} backElement={{ position: 'left' }} {...props} />
+    );
+  },
+  [AUTHORIZATION_METHODS_SCREEN]: (props: CustomHeaderOptions) => {
+    return (
+      <CustomHeader
+        title={'settings.choose_authorization_method'}
+        backElement={{ position: 'left' }}
+        customHeaderContainerStyle={{
+          backgroundColor: '#fff',
+        }}
+        bottomBorder
+        {...props}
+      />
+    );
   },
 };
 
@@ -38,6 +58,11 @@ export const ProfileStack = () => {
         name={SETTINGS_SCREEN}
         component={SettingsScreen}
         options={{ header: ProfileStackHeaderMap[SETTINGS_SCREEN] }}
+      />
+      <Screen
+        name={AUTHORIZATION_METHODS_SCREEN}
+        component={AuthorizationMethodsScreen}
+        options={{ header: ProfileStackHeaderMap[AUTHORIZATION_METHODS_SCREEN] }}
       />
     </Navigator>
   );
