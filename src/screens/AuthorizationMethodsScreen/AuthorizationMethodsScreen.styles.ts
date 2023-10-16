@@ -9,6 +9,8 @@ export const useStyleTheme = () => {
       ...Layout.justifyContentStart,
       paddingHorizontal: Spacing.xl,
     },
-    wrapper: {},
+    wrapper: {
+      marginTop: Spacing.xl,
+    },
   });
 };

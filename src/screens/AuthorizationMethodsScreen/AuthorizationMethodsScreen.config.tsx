@@ -4,19 +4,22 @@ import { AuthorizationMethodType } from './AuthorizationMethodsScreen.types';
 
 export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
   {
-    name: 'settings.sms_code_title',
+    methodName: 'sms',
+    title: 'settings.sms_code_title',
     description: 'settings.sms_code_desc',
     icon: ChatBubble,
   },
   {
-    name: 'settings.passcode_title',
+    methodName: 'passcode',
+    title: 'settings.passcode_title',
     description: 'settings.passcode_desc',
     icon: DialPad,
   },
   ...(Platform.OS === 'ios'
     ? [
         {
-          name: 'settings.face_id_title',
+          methodName: 'faceId',
+          title: 'settings.face_id_title',
           description: 'settings.face_id_desc',
           icon: FaceIdSvg,
         },
@@ -24,7 +27,8 @@ export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
     : Platform.OS === 'android'
     ? [
         {
-          name: 'settings.biometric_title',
+          methodName: 'biometric',
+          title: 'settings.biometric_title',
           description: 'settingsbiometric_desc',
           icon: FingerPrintIcon,
         },

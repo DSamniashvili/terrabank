@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
+import { Spacing } from 'theme/Variables';
 
 export const useStyles = () => {
   const { Colors, Layout, FontSize } = useTheme();
@@ -7,27 +8,24 @@ export const useStyles = () => {
   return StyleSheet.create({
     AuthorizationMethodContainer: {
       ...Layout.row,
-      justifyContent: 'space-between',
-      paddingVertical: 16,
+      ...Layout.justifyContentBetween,
+      paddingVertical: Spacing.ml,
       borderBottomWidth: 1,
       borderBottomColor: Colors.gray200,
       overflow: 'hidden',
     },
     AuthorizationMethodLeftContainer: {
       ...Layout.row,
-      flex: 1,
-      height: '100%',
+      ...Layout.fullHeight,
+      ...Layout.fill,
     },
-    iconContainer: {
-      alignSelf: 'flex-start',
-    },
+    iconContainer: {},
     textContainer: {
-      paddingHorizontal: 12,
-      flexDirection: 'column',
-      width: '80%',
+      paddingHorizontal: Spacing.m,
+      width: '90%',
     },
     AuthorizationMethodTitleStyle: {
-      paddingBottom: 4,
+      paddingBottom: Spacing.xxs,
       fontSize: FontSize.small,
       color: Colors.textBlack,
     },
@@ -35,6 +33,8 @@ export const useStyles = () => {
       color: Colors.textBlack500,
     },
 
-    AuthorizationMethodEnablerContainer: {},
+    AuthorizationMethodEnablerContainer: {
+      ...Layout.colCenter,
+    },
   });
 };

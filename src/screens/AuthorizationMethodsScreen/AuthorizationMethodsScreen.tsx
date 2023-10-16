@@ -12,7 +12,7 @@ export const AuthorizationMethodsScreen = () => {
     <View style={styles.container}>
       <View style={styles.wrapper}>
         {AuthorizationMethodsScreenOptions?.map((method: AuthorizationMethodType) => (
-          <AuthorizationMethod {...method} />
+          <AuthorizationMethod key={method.methodName} {...method} />
         ))}
       </View>
     </View>

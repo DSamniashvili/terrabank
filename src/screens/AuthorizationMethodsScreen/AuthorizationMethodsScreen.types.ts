@@ -1,7 +1,8 @@
 import { SvgProps } from 'react-native-svg';
 
 export type AuthorizationMethodType = {
-  name: string;
+  methodName: string;
+  title: string;
   description: string;
   icon: (props: SvgProps) => React.JSX.Element;
 };
