@@ -25,6 +25,7 @@ export const Colors = {
   pinColor: '#1C1C1CFA',
   textWhite: 'rgba(253, 253, 253, 0.98)',
   textGray800: '#000000',
+  textGray700: 'rgba(15, 15, 15, 0.98)',
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
   primary: '#A0226D',
@@ -56,8 +57,8 @@ export const FontSize = {
   tiny: 12,
   small: 14,
   regular: 16,
-  RegularPlus: 18,
-  SemiLarge: 20,
+  regularPlus: 18,
+  semiLarge: 20,
   large: 24,
   extraLarge: 32,
 };

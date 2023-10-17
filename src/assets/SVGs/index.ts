@@ -21,4 +21,9 @@ export { Error } from './Error';
 export { PasscodeLogo } from './PasscodeLogo';
 export { ChatBubble } from './ChatBubble';
 export { DialPad } from './DialPad';
-
+export { Asterisks } from './Asterisks';
+export { Email } from './Email';
+export { Key } from './Key';
+export { NotificationsManage } from './NotificationsManage';
+export { Shield } from './Shield';
+export { SmartPhoneChecked } from './SmartPhoneChecked';

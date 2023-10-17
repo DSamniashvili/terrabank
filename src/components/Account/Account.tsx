@@ -10,7 +10,7 @@ export const Account: FC<AccountProps> = ({ user, style }) => {
   const styles = useStyleTheme();
   return (
     <View style={[styles.container, style]}>
-      <UserIcon />
+      <UserIcon width={96} height={96} />
       <Text style={styles.label}>{t('navigation.hello')}</Text>
       <Text style={styles.user}>{user}</Text>
     </View>

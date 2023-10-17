@@ -44,7 +44,7 @@ export const useStyleTheme = () => {
     },
     isInitialScreenText: {
       ...Fonts.textBold,
-      fontSize: FontSize.RegularPlus,
+      fontSize: FontSize.regularPlus,
     },
     iconCommonStyles: {
       width: 32,
