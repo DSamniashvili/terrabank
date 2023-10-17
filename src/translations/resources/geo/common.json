@@ -42,6 +42,7 @@
     "createPasscode": "დააყენე 4 ნიშნა პასკოდი",
     "repeatPasscode": "გაიმეორე პასკოდი",
     "enterPasscodeCode": "ჩაწერე შენთვის სასურველი პასკოდი"
+  },
   "settings": {
     "choose_authorization_method": "ავტორიზაციის მეთოდის არჩევა",
     "sms_code_title": "SMS კოდი",

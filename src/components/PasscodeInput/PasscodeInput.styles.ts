@@ -2,12 +2,11 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Spacing, Colors, FontSize } = useTheme();
+  const { Spacing, Colors, FontSize, Layout } = useTheme();
   return StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+      ...Layout.center,
       paddingBottom: Spacing.xxl,
     },
     innerTopContainer: {
@@ -25,6 +24,13 @@ export const useStyleTheme = () => {
       fontSize: FontSize.small,
       marginBottom: 50,
       color: Colors.textBlack500,
+    },
+
+    pinWrapper: {
+      alignItems: 'center',
+      width: '80%',
+      justifyContent: 'flex-end',
+      marginTop: 70,
     },
   });
 };

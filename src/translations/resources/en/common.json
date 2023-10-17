@@ -41,6 +41,7 @@
     "createPasscode": "Set 4-digit passcode",
     "repeatPasscode": "Repeat  passcode",
     "enterPasscodeCode": "Enter your passcode"
+  },
   "settings": {
     "choose_authorization_method": "Choose authorization method",
     "sms_code_title": "SMS code",

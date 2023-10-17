@@ -10,24 +10,24 @@ export const CreatePasscodeScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={styles.container}></SafeAreaView>
-      {view === 'SetPasscode' && (
-        <PasscodeInput
-          label="common:passcode.enterPasscodeCode"
-          title="common:passcode.createPasscode"
-          onPasscodeChange={onPasscodePress}
-          valueLength={valueLength}
-        />
-      )}
-
-      {view === 'RepeatPasscode' && (
-        <PasscodeInput
-          label="common:passcode.enterPasscodeCode"
-          onPasscodeChange={onRepeatPasscodePress}
-          title="common:passcode.repeatPasscode"
-          valueLength={valueLength}
-        />
-      )}
+      <SafeAreaView style={styles.container}>
+        {view === 'SetPasscode' && (
+          <PasscodeInput
+            label="common:passcode.enterPasscodeCode"
+            title="common:passcode.createPasscode"
+            onPasscodeChange={onPasscodePress}
+            valueLength={valueLength}
+          />
+        )}
+        {view === 'RepeatPasscode' && (
+          <PasscodeInput
+            label="common:passcode.enterPasscodeCode"
+            onPasscodeChange={onRepeatPasscodePress}
+            title="common:passcode.repeatPasscode"
+            valueLength={valueLength}
+          />
+        )}
+      </SafeAreaView>
     </>
   );
 };
