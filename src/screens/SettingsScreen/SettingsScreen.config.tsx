@@ -8,6 +8,7 @@ import {
   UserIcon,
 } from 'assets/SVGs';
 import { SettingsConfigType } from './SettingsScreen.types';
+import { AUTHORIZATION_METHODS_SCREEN } from 'navigation/ScreenNames';
 
 export const SettingsScreenConfig: SettingsConfigType[] = [
   {
@@ -16,12 +17,12 @@ export const SettingsScreenConfig: SettingsConfigType[] = [
       {
         title: 'settings.edit_user',
         icon: UserIcon,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
       {
         title: 'settings.email',
         icon: Email,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
     ],
   },
@@ -31,22 +32,22 @@ export const SettingsScreenConfig: SettingsConfigType[] = [
       {
         title: 'settings.change_password',
         icon: Key,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
       {
         title: 'settings.change_code_word',
         icon: Asterisks,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
       {
         title: 'settings.security_level',
         icon: Shield,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
       {
         title: 'settings.trusted_devices',
         icon: SmartPhoneChecked,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
     ],
   },
@@ -56,7 +57,7 @@ export const SettingsScreenConfig: SettingsConfigType[] = [
       {
         title: 'settings.manage_notifications',
         icon: NotificationsManage,
-        navigateTo: 'AuthorizationMethodsScreen',
+        navigateTo: AUTHORIZATION_METHODS_SCREEN,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { ProfileStackScreenProps } from 'navigation/types';
+import { SettingsStackScreenProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { AUTHORIZATION_METHODS_SCREEN } from 'navigation/ScreenNames';
 import { useStyleTheme } from './SettingsScreen.styles';
@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 export const SettingsScreen = () => {
   const styles = useStyleTheme();
   const { t } = useTranslation();
-  const { navigate } = useNavigation<ProfileStackScreenProps<'SettingsScreen'>>();
+  const { navigate } = useNavigation<SettingsStackScreenProps<'SettingsScreen'>>();
 
   return (
     <View style={styles.container}>
@@ -20,7 +20,7 @@ export const SettingsScreen = () => {
         <View key={title}>
           <Text style={styles.titleStyle}>{t(title)}</Text>
           {subContent.map((content: SubContentProps) => (
-            <SettingComponent {...content} />
+            <SettingComponent key={content.title} {...content} />
           ))}
         </View>
       ))}

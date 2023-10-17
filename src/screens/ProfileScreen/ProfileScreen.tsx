@@ -3,7 +3,6 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './ProfileScreen.styles';
 import useTheme from 'hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
-import { SETTINGS_SCREEN } from 'navigation/ScreenNames';
 import { ProfileStackScreenProps } from 'navigation/types';
 
 export const ProfileScreen = () => {
@@ -20,7 +19,7 @@ export const ProfileScreen = () => {
     <View style={styles.container}>
       <Text style={[Fonts.textSmall]}>Profile main Screen</Text>
 
-      <TouchableOpacity onPress={() => navigate(SETTINGS_SCREEN)}>
+      <TouchableOpacity onPress={() => navigate('SettingsStack', { screen: 'SettingsScreen' })}>
         <Text>Navigate to settings</Text>
       </TouchableOpacity>
     </View>

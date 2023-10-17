@@ -8,9 +8,16 @@ import {
   PaymentsStack,
   TransactionsStack,
   ProductsStack,
-  ProfileStack,
+  ProfileNavigator,
 } from 'navigation/stacks';
-import { HOME, INITIAL, PAYMENTS, PRODUCTS, PROFILE, TRANSACTIONS } from 'navigation/ScreenNames';
+import {
+  HOME_STACK,
+  INITIAL_STACK,
+  PAYMENTS_STACK,
+  PRODUCTS_STACK,
+  PROFILE_STACK,
+  TRANSACTIONS_STACK,
+} from 'navigation/ScreenNames';
 import { hideHeader, tabOptions } from 'navigation/config';
 import { MainStackParamsList, TabParamList } from 'navigation/types';
 
@@ -35,14 +42,18 @@ const TabNavigator = () => {
 
   return (
     <Navigator screenOptions={tabOptions}>
-      <Screen name={HOME} component={HomeStack} options={{ title: t('common:navigation.home') }} />
       <Screen
-        name={PRODUCTS}
+        name={HOME_STACK}
+        component={HomeStack}
+        options={{ title: t('common:navigation.home') }}
+      />
+      <Screen
+        name={PRODUCTS_STACK}
         component={ProductsStack}
         options={{ title: t('common:navigation.products') }}
       />
       <Screen
-        name={TRANSACTIONS}
+        name={TRANSACTIONS_STACK}
         component={TransactionsStack}
         options={{
           title: '',
@@ -50,13 +61,13 @@ const TabNavigator = () => {
         }}
       />
       <Screen
-        name={PAYMENTS}
+        name={PAYMENTS_STACK}
         component={PaymentsStack}
         options={{ title: t('common:navigation.payments') }}
       />
       <Screen
-        name={PROFILE}
-        component={ProfileStack}
+        name={PROFILE_STACK}
+        component={ProfileNavigator}
         options={{ title: t('common:navigation.more') }}
       />
     </Navigator>
@@ -67,8 +78,8 @@ export const MainNavigator = () => {
   const { Navigator, Screen } = Stack;
 
   return (
-    <Navigator initialRouteName={INITIAL} screenOptions={hideHeader}>
-      <Screen name={INITIAL} component={TabNavigator} options={hideHeader} />
+    <Navigator initialRouteName={INITIAL_STACK} screenOptions={hideHeader}>
+      <Screen name={INITIAL_STACK} component={TabNavigator} options={hideHeader} />
     </Navigator>
   );
 };

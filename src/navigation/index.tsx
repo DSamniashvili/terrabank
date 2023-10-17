@@ -8,7 +8,7 @@ export const Navigation = () => {
   const navigationRef = useNavigationContainerRef();
   const { NavigationTheme } = useTheme();
 
-  const [isAuth] = useState<boolean>(true);
+  const [isAuth] = useState<boolean>(false);
 
   return (
     <NavigationContainer ref={navigationRef} theme={NavigationTheme}>
