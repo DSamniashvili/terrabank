@@ -42,11 +42,12 @@ export const Colors = {
   textWhite400: 'rgba(253, 253, 253, 0.4)',
   dotGray: '#7D8D99',
   errorToastColor: '#FAE8E7',
+  headerBackground: 'rgba(246, 246, 246, 1)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: Colors.white,
+  background: Colors.headerBackground,
   card: '#EFEFEF',
 };
 

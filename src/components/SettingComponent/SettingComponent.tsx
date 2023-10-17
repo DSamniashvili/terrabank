@@ -14,7 +14,6 @@ export const SettingComponent = (props: SubContentProps) => {
   const { navigate } = useNavigation<SettingsStackScreenProps<'SettingsScreen'>>();
 
   const handleNavigation = () => {
-    // TODO - fix!!!
     navigate(navigateTo);
   };
 

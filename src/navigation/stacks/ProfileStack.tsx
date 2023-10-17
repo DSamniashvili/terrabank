@@ -12,6 +12,7 @@ import { ProfileStackParamsList } from 'navigation/types';
 import { CustomHeader } from 'components/index';
 import { CustomHeaderOptions } from 'components/CustomHeader/CustomHeader.types';
 import { SettingsStackNavigator } from './SettingsStack';
+import { hideHeader } from 'navigation/config';
 
 const ProfileStack = createStackNavigator<ProfileStackParamsList>();
 
@@ -54,11 +55,7 @@ export const ProfileNavigator = () => {
         component={ProfileScreen}
         options={{ header: ProfileStackHeaderMap[PROFILE_SCREEN] }}
       />
-      <Screen
-        name={SETTINGS_STACK}
-        component={SettingsStackNavigator}
-        options={{ headerShown: false }}
-      />
+      <Screen name={SETTINGS_STACK} component={SettingsStackNavigator} options={hideHeader} />
       <Screen
         name={CREATE_PASSCODE_SCREEN}
         component={CreatePasscodeScreen}

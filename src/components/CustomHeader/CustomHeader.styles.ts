@@ -8,7 +8,7 @@ export const useStyleTheme = () => {
       ...Layout.row,
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
-      backgroundColor: 'rgba(246, 246, 246, 1)',
+      backgroundColor: Colors.headerBackground,
       paddingHorizontal: Spacing.ml,
       // TODO !! - think of a better solution here for notch
       paddingTop: Platform.OS === 'ios' ? Spacing.xxl : Spacing.ml,
