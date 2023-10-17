@@ -8,14 +8,16 @@ import PinKeyboard from 'components/PinKeyboard/PinKeyboard';
 import { PinLine } from 'components/PinLine/PinLine';
 import { useStyleTheme } from './PassCodeLogin.styles';
 import { Account } from 'components/index';
+import { usePasscodeLogin } from './usePasscodeLogin';
+
 interface PassCodeLoginBaseProps {
   handleNavigation?: () => Promise<void>;
 }
 
 const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = () => {
-  const styles = useStyleTheme();
+  const { watchKeyboard, passcodeLength } = usePasscodeLogin();
 
-  const passcodeLength = 4;
+  const styles = useStyleTheme();
 
   return (
     <SafeAreaView style={styles.loginScreenContainerStyle}>
@@ -24,7 +26,7 @@ const PassCodeLoginBase: FC<PassCodeLoginBaseProps> = () => {
         <Button.Secondary text="მომხმარებლის შეცვლა" size="medium" />
         <PinLine fillNumber={passcodeLength} style={styles.pinLine} />
       </View>
-      <PinKeyboard onPress={() => {}} />
+      <PinKeyboard onPress={watchKeyboard} />
     </SafeAreaView>
   );
 };

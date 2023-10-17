@@ -5,16 +5,22 @@ export const useStyleTheme = () => {
   const { Spacing } = useTheme();
   return StyleSheet.create({
     pinRow: {
+      marginLeft: 25,
       flexDirection: 'row',
       marginTop: Spacing.s,
+      height: 50,
       width: '100%',
-      justifyContent: 'space-around',
-      alignItems: 'center',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
     },
     lastRow: {
-      width: '100%',
+      marginTop: Spacing.s,
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    withoutFingerPrint: {
+      width: 80,
     },
   });
 };

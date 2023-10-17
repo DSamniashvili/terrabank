@@ -12,6 +12,7 @@ export const TRANSACTIONS_SCREEN = 'TransactionsScreen';
 export const PRODUCTS_SCREEN = 'ProductsScreen';
 export const PROFILE_SCREEN = 'ProfileScreen';
 export const SETTINGS_SCREEN = 'SettingsScreen';
+export const CREATE_PASSCODE = 'CreatePasscodeScreen';
 export const AUTHORIZATION_METHODS_SCREEN = 'AuthorizationMethodsScreen';
 
 // auth - Login

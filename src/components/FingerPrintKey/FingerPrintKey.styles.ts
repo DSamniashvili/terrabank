@@ -13,7 +13,7 @@ export const useStyleTheme = () => {
       justifyContent: 'center',
     },
     firstPinItem: {
-      marginLeft: Spacing.zero,
+      marginLeft: Spacing.xs,
     },
     pinItemText: {
       fontSize: FontSize.regular,

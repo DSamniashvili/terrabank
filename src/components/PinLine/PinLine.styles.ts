@@ -16,11 +16,11 @@ export const useStyleTheme = () => {
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 1,
-      borderColor: Colors.textBlack400,
+      borderColor: Colors.textBlack,
     },
     filled: {
-      backgroundColor: Colors.textBlack400,
-      borderColor: Colors.textBlack400,
+      backgroundColor: Colors.textBlack,
+      borderColor: Colors.textBlack,
     },
   });
 };

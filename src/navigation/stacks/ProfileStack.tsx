@@ -1,11 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileScreen, SettingsScreen } from 'screens';
+import { ProfileScreen, SettingsScreen, CreatePasscodeScreen } from 'screens';
 import {
-  AUTHORIZATION_METHODS_SCREEN,
+  CREATE_PASSCODE,
   PROFILE_SCREEN,
   SETTINGS_SCREEN,
+  AUTHORIZATION_METHODS_SCREEN,
 } from 'navigation/ScreenNames';
+
 import { ProfileStackParamsList } from 'navigation/types';
 import { CustomHeader } from 'components/index';
 import { CustomHeaderOptions } from 'components/CustomHeader/CustomHeader.types';
@@ -43,6 +45,9 @@ const ProfileStackHeaderMap = {
       />
     );
   },
+  [CREATE_PASSCODE]: (props: CustomHeaderOptions) => {
+    return <CustomHeader title={'Passcode'} backElement={{ position: 'left' }} {...props} />;
+  },
 };
 
 export const ProfileStack = () => {
@@ -58,6 +63,11 @@ export const ProfileStack = () => {
         name={SETTINGS_SCREEN}
         component={SettingsScreen}
         options={{ header: ProfileStackHeaderMap[SETTINGS_SCREEN] }}
+      />
+      <Screen
+        name={CREATE_PASSCODE}
+        component={CreatePasscodeScreen}
+        options={{ header: ProfileStackHeaderMap[CREATE_PASSCODE] }}
       />
       <Screen
         name={AUTHORIZATION_METHODS_SCREEN}
