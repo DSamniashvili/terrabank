@@ -5,13 +5,16 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 const useModal = (ref: Ref<ModalHandler>) => {
   const modalRef = useRef<BottomSheetModal>(null);
   const [element, setElement] = useState<ReactNode>(null);
+  const [title, setTitle] = useState<ReactNode>('');
 
   const open = (options: ConfigureModal) => {
     setElement(options.element);
+    setTitle(options.title);
     modalRef?.current?.present();
   };
 
   const close = () => {
+    setTitle('');
     setElement(null);
     modalRef?.current?.close();
   };
@@ -23,6 +26,7 @@ const useModal = (ref: Ref<ModalHandler>) => {
 
   return {
     modalRef,
+    title,
     element,
     close,
   };

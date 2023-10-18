@@ -27,3 +27,5 @@ export { Key } from './Key';
 export { NotificationsManage } from './NotificationsManage';
 export { Shield } from './Shield';
 export { SmartPhoneChecked } from './SmartPhoneChecked';
+export { VerifiedPhoneIcon } from './VerifiedPhone';
+export { ResendIcon } from './Resend';

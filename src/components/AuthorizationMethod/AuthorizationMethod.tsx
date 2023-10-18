@@ -11,6 +11,8 @@ import { setAuthorizationMethod } from 'store/slices/AuthorizationMethods';
 import { AuthorizationMethodsState } from 'store/slices/AuthorizationMethods/types';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { debounce } from 'utils/debounce';
+import { openModal } from 'utils/modal';
+import { VerifiedPhoneModal } from 'components/index';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const { description, icon, title, methodName } = props;
@@ -48,6 +50,10 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const handleChange = (formItemName: keyof AuthorizationMethodsState, formItemValue: boolean) => {
     setValue(formItemName, formItemValue);
     debouncedDispatch(formItemName, formItemValue); // Use debouncedDispatch instead of dispatch
+    openModal({
+      title: 'მოწყობილობის გასანდოება',
+      element: <VerifiedPhoneModal />,
+    });
   };
 
   return (

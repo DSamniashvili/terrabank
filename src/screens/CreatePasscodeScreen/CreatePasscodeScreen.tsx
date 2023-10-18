@@ -13,17 +13,17 @@ export const CreatePasscodeScreen = () => {
       <SafeAreaView style={styles.container}>
         {view === 'SetPasscode' && (
           <PasscodeInput
-            label="common:passcode.enterPasscodeCode"
-            title="common:passcode.createPasscode"
+            label="passcode.enterPasscodeCode"
+            title="passcode.createPasscode"
             onPasscodeChange={onPasscodePress}
             valueLength={valueLength}
           />
         )}
         {view === 'RepeatPasscode' && (
           <PasscodeInput
-            label="common:passcode.enterPasscodeCode"
+            label="passcode.enterPasscodeCode"
             onPasscodeChange={onRepeatPasscodePress}
-            title="common:passcode.repeatPasscode"
+            title="passcode.repeatPasscode"
             valueLength={valueLength}
           />
         )}
