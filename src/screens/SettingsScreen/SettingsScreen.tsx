@@ -1,28 +1,29 @@
 import React from 'react';
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
-import { styles } from './SettingsScreen.styles';
-import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { changeTheme } from 'store/slices/theme';
-import useTheme from 'hooks/useTheme';
-import { ProfileStackScreenProps } from 'navigation/types';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { SettingsStackScreenProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { AUTHORIZATION_METHODS_SCREEN } from 'navigation/ScreenNames';
+import { useStyleTheme } from './SettingsScreen.styles';
+import { SettingsScreenConfig } from './SettingsScreen.config';
+import { SettingsConfigType, SubContentProps } from './SettingsScreen.types';
+import { SettingComponent } from 'components/SettingComponent/SettingComponent';
+import { useTranslation } from 'react-i18next';
 
 export const SettingsScreen = () => {
-  const dispatch = useAppDispatch();
-  const { Fonts, darkMode: isDark } = useTheme();
-  const { navigate } = useNavigation<ProfileStackScreenProps<'SettingsScreen'>>();
-
-  const onChangeTheme = () => {
-    dispatch(changeTheme({ darkMode: !isDark }));
-  };
+  const styles = useStyleTheme();
+  const { t } = useTranslation();
+  const { navigate } = useNavigation<SettingsStackScreenProps<'SettingsScreen'>>();
 
   return (
     <View style={styles.container}>
-      <Text style={[Fonts.textSmall]}>Settings main Screen</Text>
-      <Pressable onPress={onChangeTheme}>
-        <Text style={[Fonts.textSmall]} children="Change theme" />
-      </Pressable>
+      {SettingsScreenConfig.map(({ title, subContent }: SettingsConfigType) => (
+        <View key={title}>
+          <Text style={styles.titleStyle}>{t(title)}</Text>
+          {subContent.map((content: SubContentProps) => (
+            <SettingComponent key={content.title} {...content} />
+          ))}
+        </View>
+      ))}
       <TouchableOpacity onPress={() => navigate(AUTHORIZATION_METHODS_SCREEN)}>
         <Text>Navigate to authorization methods screen</Text>
       </TouchableOpacity>

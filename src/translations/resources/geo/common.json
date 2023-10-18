@@ -52,6 +52,16 @@
     "face_id_title": "Face ID",
     "face_id_desc": "გაიარე ავტორიზაცია Face ID-ით",
     "biometric_title": "ბიომეტრიული მონაცემები",
-    "biometric_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით"
+    "biometric_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით",
+    "personal_info": "პერსონალური ინფორმაცია",
+    "edit_user": "მომხმარებლის რედაქტირება",
+    "email": "ელ. ფოსტა",
+    "security_settings": "უსაფრთხოების პარამეტრები",
+    "change_password": "პაროლის შეცვლა",
+    "change_code_word": "კოდური სიტყვის შეცვლა",
+    "security_level": "უსაფრთხოების დონე",
+    "trusted_devices": "სანდო მოწყობილობები",
+    "additional_settings": "დამატებითი პარამეტრები",
+    "manage_notifications": "ნოტიფიკაციების მართვა"
   }
 }

@@ -25,6 +25,7 @@ export const Colors = {
   pinColor: '#1C1C1CFA',
   textWhite: 'rgba(253, 253, 253, 0.98)',
   textGray800: '#000000',
+  textGray700: 'rgba(15, 15, 15, 0.98)',
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
   primary: '#A0226D',
@@ -41,11 +42,12 @@ export const Colors = {
   textWhite400: 'rgba(253, 253, 253, 0.4)',
   dotGray: '#7D8D99',
   errorToastColor: '#FAE8E7',
+  headerBackground: 'rgba(246, 246, 246, 1)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: Colors.white,
+  background: Colors.headerBackground,
   card: '#EFEFEF',
 };
 
@@ -56,8 +58,8 @@ export const FontSize = {
   tiny: 12,
   small: 14,
   regular: 16,
-  RegularPlus: 18,
-  SemiLarge: 20,
+  regularPlus: 18,
+  semiLarge: 20,
   large: 24,
   extraLarge: 32,
 };

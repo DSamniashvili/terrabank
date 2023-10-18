@@ -51,6 +51,16 @@
     "face_id_title": "Face ID",
     "face_id_desc": "Authenticate with a Face ID",
     "biometric_title": "Biometric data",
-    "biometric_desc": "with the use of password and one time code"
+    "biometric_desc": "with the use of password and one time code",
+    "personal_info": "Personal information",
+    "edit_user": "Edit user",
+    "email": "Email",
+    "security_settings": "Security settings",
+    "change_password": "Change password",
+    "change_code_word": "Change code word",
+    "security_level": "Security level",
+    "trusted_devices": "Trusted devices",
+    "additional_settings": "Additional settings",
+    "manage_notifications": "Manage notifications"
   }
 }

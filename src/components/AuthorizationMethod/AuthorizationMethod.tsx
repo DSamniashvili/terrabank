@@ -51,7 +51,7 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   };
 
   return (
-    <View key={methodName} style={styles.AuthorizationMethodContainer}>
+    <View style={styles.AuthorizationMethodContainer}>
       <View style={styles.AuthorizationMethodLeftContainer}>
         <View style={styles.iconContainer}>
           <IconComponent IconJSX={icon} />
