@@ -6,15 +6,17 @@ import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
 import { LanguageSwitcher, Text, Button } from 'components';
 import { openModal } from 'utils/modal';
-import { openToast } from 'utils/toast';
+import { useGetUsersQuery } from 'store/apis';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
+  const { data, error, isLoading } = useGetUsersQuery();
   const { Fonts, darkMode: isDark } = useTheme();
 
   useEffect(() => {
-    openToast('test', 'error');
-  }, []);
+    // openToast('test', 'error');
+    // console.log('datadata', data);
+  }, [data, error, isLoading]);
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));

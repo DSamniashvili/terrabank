@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 import { Pressable, View } from 'react-native';
 import { Button, Text, ControlledInput } from 'components';
 import { withLoginScreen } from 'components/HOC';
-import { PasswordLoginBaseProps } from './PasswordLogin.types';
-import useStyles from './PasswordLogin.styles';
+import { PasswordLoginBaseProps } from './PasswordLoginScreen.types';
+import useStyles from './PasswordLoginScreen.styles';
 import { usePasswordLogin } from './usePasswordLogin';
 import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
 import { PASSWORD_LOGIN_SCREEN } from 'navigation/ScreenNames';
 
-const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => {
+const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => {
   const { control, handleSignUp } = usePasswordLogin();
   // handleSignIn changed with handleNavigation
   const styles = useStyles();
@@ -57,7 +57,7 @@ const PasswordLoginBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => 
   );
 };
 
-export const PasswordLogin = withLoginScreen<PasswordLoginBaseProps, typeof PASSWORD_LOGIN_SCREEN>(
-  PasswordLoginBase,
-  PASSWORD_LOGIN_SCREEN,
-);
+export const PasswordLoginScreen = withLoginScreen<
+  PasswordLoginBaseProps,
+  typeof PASSWORD_LOGIN_SCREEN
+>(PasswordLoginScreenBase, PASSWORD_LOGIN_SCREEN);
