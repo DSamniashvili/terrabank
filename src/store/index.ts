@@ -13,7 +13,7 @@ import {
 import { themeReducer } from './slices/theme';
 import { counterReducer } from './slices/counter';
 import { reduxStorage } from './reduxStorage';
-import { exampleApi } from './apis';
+import { exampleAPI, loginAPI } from '../services/apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
 
@@ -46,7 +46,8 @@ const reducers = combineReducers({
   counter: persistedCounter,
   authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
-  [exampleApi.reducerPath]: exampleApi.reducer,
+  [exampleAPI.reducerPath]: exampleAPI.reducer,
+  [loginAPI.reducerPath]: loginAPI.reducer,
 });
 
 const rootReducer: Reducer<RootState> = (state, action) => {
@@ -56,7 +57,7 @@ const rootReducer: Reducer<RootState> = (state, action) => {
   return reducers(state, action);
 };
 
-const middlewares = [exampleApi.middleware];
+const middlewares = [exampleAPI.middleware, loginAPI.middleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;
