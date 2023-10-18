@@ -1,5 +1,5 @@
 import { DefaultValues, SubmitHandler, useForm } from 'react-hook-form';
-import { FormValues } from './PasswordLogin.types';
+import { FormValues } from './PasswordLoginScreen.types';
 import { useEffect, useState } from 'react';
 import { openToast } from 'utils/toast';
 

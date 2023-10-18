@@ -18,6 +18,6 @@ export const AUTHORIZATION_METHODS_SCREEN = 'AuthorizationMethodsScreen';
 
 // auth - Login
 
-export const ONBOARDING_SCREEN = 'Onboarding';
-export const PASSWORD_LOGIN_SCREEN = 'PasswordLogin';
-export const PASSCODE_LOGIN_SCREEN = 'PassCodeLogin';
+export const ONBOARDING_SCREEN = 'OnboardingScreen';
+export const PASSWORD_LOGIN_SCREEN = 'PasswordLoginScreen';
+export const PASSCODE_LOGIN_SCREEN = 'PassCodeLoginScreen';
