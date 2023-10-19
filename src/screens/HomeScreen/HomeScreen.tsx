@@ -6,7 +6,7 @@ import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
 import { LanguageSwitcher, Text, Button } from 'components';
 import { openModal } from 'utils/modal';
-import { useGetUsersQuery } from 'store/apis';
+import { useGetUsersQuery } from 'services/apis';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();

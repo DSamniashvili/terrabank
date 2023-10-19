@@ -7,33 +7,74 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 import { getAccessToken, getRefreshToken } from 'storage/index';
-import * as URLS from './urls';
+import { URLS } from './urls';
 
-const BASE_URL = 'https://reqres.in/api/';
+const BASE_URL = 'http://10.213.0.136:4040/';
 
 const mutex = new Mutex();
 
+/**
+ *
+ * @param headers
+ * @returns default headers, that will be used in all API request cycle
+ */
+const defaultHeaders = (headers: Headers) => {
+  const accessToken = getAccessToken();
+  if (accessToken) {
+    headers.set('Authorization', `Bearer ${accessToken}`);
+  }
+  headers.set('User-Agent', 'terabank');
+  headers.set('X-Bank-ChannelId', '1000006');
+  headers.set('X-Bank-Devicedescription', '1');
+  headers.set('X-Bank-DeviceId', '1');
+  headers.set('X-Bank-Isstrongauthrequest', '1');
+  headers.set('X-Bank-Ostype', '1');
+  headers.set('X-Bank-UserAgent', '1');
+
+  return headers;
+};
+
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
-  prepareHeaders: headers => {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      headers.set('Authorization', `Bearer ${accessToken}`);
-    }
-    headers.set('User-Agent', 'terabank');
-    return headers;
-  },
+  prepareHeaders: defaultHeaders,
 });
 
 export const baseQueryWithInterceptor: BaseQueryFn<
-  string | FetchArgs,
+  FetchArgs,
   unknown,
   FetchBaseQueryError,
   any,
   FetchBaseQueryMeta
 > = async (args, api, extraOptions) => {
+  let customHeaders: Record<string, string> = {};
+
+  // We can pass custom headers, depending on a specific API request, just like this: {headerKey: "headerValue"}
+  if (typeof args !== 'string' && args.headers) {
+    customHeaders = args.headers as Record<string, string>;
+  }
+
+  //   then set the headers as it should: headers.set('headerKey', 'headerValue');
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(customHeaders)) {
+    headers.set(key, value);
+  }
+
+  //   and lastly, merge default headers with custom ones, that have been provided in query
+  //   for example:
+  //   loginUser({
+  // 		loginName,
+  // 		password,
+  // 		headers: {
+  // 	  	'X-Bank-Otp': '000000',
+  // 		},
+  //   });
+  const enhancedArgs = {
+    ...args,
+    headers: headers,
+  };
+
   await mutex.waitForUnlock();
-  let result = await baseQuery(args, api, extraOptions);
+  let result = await baseQuery(enhancedArgs, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
     const refreshToken = getRefreshToken();

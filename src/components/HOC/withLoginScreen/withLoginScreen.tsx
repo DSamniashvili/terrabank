@@ -36,7 +36,6 @@ export const withLoginScreen = <P extends object, T extends keyof GuestStackPara
         await fakeLogin();
         navigate(screenName as keyof GuestStackParamList);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error('Login failed', error);
       }
     };
@@ -47,7 +46,7 @@ export const withLoginScreen = <P extends object, T extends keyof GuestStackPara
           <View style={styles.languageSwitcherContainer}>
             <LanguageSwitcher />
           </View>
-          <View>
+          <View style={styles.wrappedComponentWrapperStyle}>
             <WrappedComponent {...(props as P)} handleNavigation={handleNavigation} />
           </View>
         </View>

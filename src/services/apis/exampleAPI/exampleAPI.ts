@@ -2,8 +2,8 @@ import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithInterceptor } from 'services/api';
 import { IUsersRes, User } from './types';
 
-export const exampleApi = createApi({
-  reducerPath: 'exampleApi',
+export const exampleAPI = createApi({
+  reducerPath: 'exampleAPI',
   baseQuery: baseQueryWithInterceptor,
   tagTypes: ['User'],
   endpoints: builder => ({
@@ -17,4 +17,4 @@ export const exampleApi = createApi({
   }),
 });
 
-export const { useGetUsersQuery } = exampleApi;
+export const { useGetUsersQuery } = exampleAPI;

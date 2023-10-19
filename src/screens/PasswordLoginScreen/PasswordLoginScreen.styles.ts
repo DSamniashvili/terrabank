@@ -5,9 +5,7 @@ const useStyles = () => {
   const { Layout, Spacing, Colors } = useTheme();
 
   return StyleSheet.create({
-    wrapper: {
-      marginTop: Spacing.m,
-    },
+    wrapper: {},
     chechboxContainer: {
       ...Layout.rowHCenter,
       ...Layout.justifyContentBetween,
