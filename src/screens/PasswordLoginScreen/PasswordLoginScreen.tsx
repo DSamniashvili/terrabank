@@ -4,7 +4,7 @@ import { Button, Text, ControlledInput } from 'components';
 import { withLoginScreen } from 'components/HOC';
 import { PasswordLoginBaseProps } from './PasswordLoginScreen.types';
 import useStyles from './PasswordLoginScreen.styles';
-import { getAccessToken, removeValue } from 'storage/index';
+import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
 import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 import { useForm } from 'react-hook-form';
@@ -16,7 +16,6 @@ import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { setCredentials } from 'store/slices/userInfo';
 
 const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
-  const accessToken = getAccessToken();
   const { control, getValues } = useForm();
   const styles = useStyles();
   const [loginUser, { isError, error }] = useLoginUserMutation();
@@ -60,7 +59,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
     loginUser({ loginName: formValues.loginName, password: formValues.password })
       .unwrap()
       .then(res => {
-        if (res.success && res.accessToken === null && accessToken === undefined) {
+        if (res.success && res.accessToken === null) {
           openModal({
             // TODO !! - should be replaced with <OTPModal  onFinished={handleSignInWithOTP} />
             element: <OTPModalTemp onFinished={handleSignInWithOTP} />,

@@ -1,4 +1,5 @@
 import {
+  BaseQueryApi,
   BaseQueryFn,
   FetchArgs,
   fetchBaseQuery,
@@ -6,8 +7,9 @@ import {
   FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
-import { getAccessToken, getRefreshToken } from 'storage/index';
-import { URLS } from './urls';
+
+import { URLS } from './constants/urls';
+import { RootState } from 'store/index';
 
 const BASE_URL = 'http://10.213.0.136:4040/';
 
@@ -18,17 +20,19 @@ const mutex = new Mutex();
  * @param headers
  * @returns default headers, that will be used in all API request cycle
  */
-const defaultHeaders = (headers: Headers) => {
-  const accessToken = getAccessToken();
+const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) => {
+  const state = api.getState() as RootState;
+  const accessToken = state.userInfo.accessToken;
   if (accessToken) {
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
-  headers.set('User-Agent', 'terabank');
+
   headers.set('X-Bank-ChannelId', '1000006');
+  headers.set('X-Bank-Ostype', '1');
   headers.set('X-Bank-Devicedescription', '1');
   headers.set('X-Bank-DeviceId', '1');
+  headers.set('User-Agent', 'terabank');
   headers.set('X-Bank-Isstrongauthrequest', '1');
-  headers.set('X-Bank-Ostype', '1');
   headers.set('X-Bank-UserAgent', '1');
 
   return headers;
@@ -46,6 +50,8 @@ export const baseQueryWithInterceptor: BaseQueryFn<
   any,
   FetchBaseQueryMeta
 > = async (args, api, extraOptions) => {
+  const state = api.getState() as RootState;
+  const { refreshToken } = state.userInfo;
   let customHeaders: Record<string, string> = {};
 
   // We can pass custom headers, depending on a specific API request, just like this: {headerKey: "headerValue"}
@@ -62,7 +68,7 @@ export const baseQueryWithInterceptor: BaseQueryFn<
   }
 
   //   then set the headers as it should: headers.set('headerKey', 'headerValue');
-  const headers = defaultHeaders(new Headers(customHeaders));
+  const headers = defaultHeaders(new Headers(customHeaders), api);
 
   //   and lastly, merge default headers with custom ones, that have been provided in query
   const enhancedArgs = {
@@ -74,8 +80,6 @@ export const baseQueryWithInterceptor: BaseQueryFn<
   let result = await baseQuery(enhancedArgs, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
-    const refreshToken = getRefreshToken();
-
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
       try {

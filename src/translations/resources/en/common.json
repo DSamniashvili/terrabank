@@ -65,5 +65,9 @@
   },
   "verify": {
     "verifiedPhone": "verify your phone"
+  },
+  "dashboard": {
+    "templates": "Templates",
+    "template": "Template"
   }
 }

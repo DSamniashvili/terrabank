@@ -1,7 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithInterceptor } from 'services/api';
 import { LoginAPIRequestType, LoginAPIResponseType } from './authAPI.types';
-import { URLS } from 'services/urls';
+import { URLS } from 'services/constants/urls';
+import { METHOD_NAMES } from 'services/constants';
 
 export const authAPI = createApi({
   reducerPath: 'authAPI',
@@ -11,7 +12,7 @@ export const authAPI = createApi({
     loginUser: builder.mutation<LoginAPIResponseType, LoginAPIRequestType>({
       query: credentials => ({
         url: URLS.login,
-        method: 'POST',
+        method: METHOD_NAMES.POST,
         body: credentials,
       }),
     }),

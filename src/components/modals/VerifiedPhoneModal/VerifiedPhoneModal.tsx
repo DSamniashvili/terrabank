@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { VerifiedPhoneIcon } from 'assets/SVGs';
 import { useStyleTheme } from './VerifiedPhoneModal.styles';
 import { Button, OTPModal, Text } from 'components';
+
 export const VerifiedPhoneModal = () => {
   const verifyPhone = () => {
     openModal({
