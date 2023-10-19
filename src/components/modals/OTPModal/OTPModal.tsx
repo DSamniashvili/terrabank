@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { Text } from 'components';
 import { ResendIcon } from 'assets/SVGs';
 import { useStyleTheme } from './OTPModal.styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
 
-export const OTPModal = () => {
+export const OTPModal = ({ onFinished }: { onFinished?: (code: string) => void }) => {
   const styles = useStyleTheme();
   const [otpCode, setOtpCode] = useState('');
-
-  const handleCodeFilled = (code: React.SetStateAction<string>) => {
-    setOtpCode(code);
-  };
 
   return (
     <View style={styles.container}>
@@ -28,7 +24,7 @@ export const OTPModal = () => {
         onCodeChanged={code => setOtpCode(code)}
         codeInputFieldStyle={styles.underlineStyleBase}
         codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={handleCodeFilled}
+        onCodeFilled={() => onFinished?.(otpCode)}
       />
       <TouchableOpacity style={styles.resendView}>
         <ResendIcon />

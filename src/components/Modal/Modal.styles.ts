@@ -29,7 +29,7 @@ export const useStyles = () => {
       ...Layout.justifyContentBetween,
     },
     title: {
-      fontSize: FontSize.RegularPlus,
+      fontSize: FontSize.regularPlus,
       color: Colors.textBlack,
     },
   });

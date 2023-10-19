@@ -20,7 +20,7 @@ import {
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type HomeStackParamsList = {
+type DashboardStackParamsList = {
   [HOME_SCREEN]: undefined;
 };
 
@@ -56,7 +56,7 @@ export type MainStackParamsList = {
 };
 
 export type TabParamList = {
-  [HOME_STACK]: NavigatorScreenParams<HomeStackParamsList>;
+  [HOME_STACK]: NavigatorScreenParams<DashboardStackParamsList>;
   [PRODUCTS_STACK]: NavigatorScreenParams<ProductsStackParamsList>;
   [TRANSACTIONS_STACK]: NavigatorScreenParams<TransactionsStackParamsList>;
   [PAYMENTS_STACK]: NavigatorScreenParams<PaymentsStackParamsList>;
@@ -64,13 +64,11 @@ export type TabParamList = {
 };
 
 // Home stack intellisense
-export type HomeStackScreenProps<T extends keyof HomeStackParamsList> = StackNavigationProp<
-  HomeStackParamsList,
-  T
->;
+export type DashboardStackScreenProps<T extends keyof DashboardStackParamsList> =
+  StackNavigationProp<DashboardStackParamsList, T>;
 
-export type HomeStackRouteProps<T extends keyof HomeStackParamsList> = RouteProp<
-  HomeStackParamsList,
+export type DashboardStackRouteProps<T extends keyof DashboardStackParamsList> = RouteProp<
+  DashboardStackParamsList,
   T
 >;
 

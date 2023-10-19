@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Pressable, View } from 'react-native';
 import { Button, Text, ControlledInput } from 'components';
 import { withLoginScreen } from 'components/HOC';
@@ -10,22 +10,61 @@ import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 import { useForm } from 'react-hook-form';
 import { useLoginUserMutation } from 'services/apis';
 import { openToast } from 'utils/toast';
+import { closeModal, openModal } from 'utils/modal';
+import { OTPModalTemp } from 'components/modals/OTPModal/OTPModalTemp';
+import { useAppDispatch } from 'store/hooks/useAppDispatch';
+import { setCredentials } from 'store/slices/userInfo';
 
-const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = ({ handleNavigation }) => {
-  const [loginUser, { isError, error }] = useLoginUserMutation();
+const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
   const accessToken = getAccessToken();
-
-  //   const { control, handleSignUp } = usePasswordLogin();
   const { control, getValues } = useForm();
   const styles = useStyles();
+  const [loginUser, { isError, error }] = useLoginUserMutation();
+  const dispatch = useAppDispatch();
+
+  const formValues = useMemo(() => {
+    const { loginName = 'mrtavadze', password = '123456' } = getValues();
+    return {
+      loginName,
+      password,
+    };
+  }, [getValues]);
+
+  const handleSignInWithOTP = (OTPCode: string) => {
+    loginUser({
+      loginName: formValues.loginName,
+      password: formValues.password,
+      headers: {
+        'X-Bank-Otp': OTPCode,
+      },
+    })
+      .unwrap()
+      .then(res => {
+        if (res.accessToken) {
+          dispatch(
+            setCredentials({
+              accessToken: res.accessToken,
+              refreshToken: res.refreshToken,
+            }),
+          );
+          closeModal();
+          //   handleNavigation?.();
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
 
   const handleSignIn = () => {
-    const { loginName = 'mrtavadze', password = '123456' } = getValues();
-    loginUser({ loginName, password })
+    loginUser({ loginName: formValues.loginName, password: formValues.password })
       .unwrap()
       .then(res => {
         if (res.success && res.accessToken === null && accessToken === undefined) {
-          handleNavigation?.();
+          openModal({
+            // TODO !! - should be replaced with <OTPModal  onFinished={handleSignInWithOTP} />
+            element: <OTPModalTemp onFinished={handleSignInWithOTP} />,
+          });
         }
       })
       .catch(err => {
@@ -34,9 +73,8 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = ({ handleNavigation 
   };
 
   useEffect(() => {
-    if (isError && error && error) {
+    if (isError && error) {
       const errorTitle = (error as { [key: string]: any }).data.title;
-
       openToast(errorTitle, 'error');
     }
   }, [isError, error]);
