@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from 'screens';
+import { DashboardTabs } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { HOME_SCREEN } from 'navigation/ScreenNames';
 
@@ -17,7 +17,7 @@ export const HomeStack = () => {
     <Navigator initialRouteName={HOME_SCREEN}>
       <Screen
         name={HOME_SCREEN}
-        component={HomeScreen}
+        component={DashboardTabs}
         options={{
           title: t('common:navigation.hello'),
           headerTitleAlign: 'left',

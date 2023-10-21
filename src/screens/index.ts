@@ -7,3 +7,4 @@ export { PassCodeLogin } from './PassCodeLogin/PassCodeLogin';
 export { SettingsScreen } from './SettingsScreen/SettingsScreen';
 export { ProfileScreen } from './ProfileScreen/ProfileScreen';
 export { CreatePasscodeScreen } from './CreatePasscode/CreatePasscodeScreen';
+export { DashboardTabs } from './HomeScreen/DashboardTabs';
