@@ -1,9 +1,17 @@
+import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+export const useStyleTheme = () => {
+  const { Spacing, Layout } = useTheme();
+  return StyleSheet.create({
+    container: {
+      ...Layout.fullSize,
+      ...Layout.justifyContentStart,
+      paddingHorizontal: Spacing.xl,
+      paddingTop: Spacing.xxl - Spacing.xxs,
+      borderTopLeftRadius: Spacing.xl,
+      borderTopRightRadius: Spacing.xl,
+      flex: 1,
+    },
+  });
+};

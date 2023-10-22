@@ -9,7 +9,10 @@ export const TemplateCard = (props: any) => {
 
   return (
     <View style={[styles.templateCardContainer, isLastItem && styles.discardRightMargin]}>
-      <IconComponent pngLocalIcon={icon} />
+      <IconComponent
+        pngLocalIcon={icon}
+        customIconComponentStyles={styles.customIconComponentStyles}
+      />
       <View style={styles.templateCardContentContainer}>
         <Text
           children={name}
