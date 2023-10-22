@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { setPasscode as savePasscode } from 'storage/index';
+import { setPasscode as savePasscode } from 'utils/keychain';
 import { PasscodeView } from './CreatePasscodeScreen.types';
 
 export const useCreatePasscode = () => {
