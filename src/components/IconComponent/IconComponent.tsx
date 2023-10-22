@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageSourcePropType, ImageStyle, Pressable, StyleProp } from 'react-native';
+import { ImageSourcePropType, ImageStyle, Pressable, StyleProp, ViewStyle } from 'react-native';
 import { useStyleTheme } from './IconComponent.styles';
 import { SvgProps } from 'react-native-svg';
 import { Image } from 'react-native';
@@ -10,6 +10,7 @@ export type IconComponentProps = {
   native?: boolean;
   pngLocalIcon?: ImageSourcePropType;
   pngLocalIconCustomStyle?: StyleProp<ImageStyle>;
+  customIconComponentStyles?: StyleProp<ViewStyle>;
 };
 
 export const IconComponent = ({
@@ -18,6 +19,7 @@ export const IconComponent = ({
   native,
   pngLocalIcon,
   pngLocalIconCustomStyle,
+  customIconComponentStyles,
 }: IconComponentProps) => {
   const styles = useStyleTheme();
 
@@ -25,11 +27,18 @@ export const IconComponent = ({
   return (
     <Pressable
       onPress={handler}
-      style={[styles.iconCommonStyles, !native && styles.iconRoundedStyles]}
+      style={[
+        styles.iconCommonStyles,
+        !native && styles.iconRoundedStyles,
+        customIconComponentStyles,
+      ]}
     >
       {IconJSX && <IconJSX width={16} height={16} />}
       {pngLocalIcon && (
-        <Image source={pngLocalIcon} style={[{ width: 36, height: 36 }, pngLocalIconCustomStyle]} />
+        <Image
+          source={pngLocalIcon}
+          style={[{ width: 25, height: 25 }, styles.iconRoundedStyles, pngLocalIconCustomStyle]}
+        />
       )}
     </Pressable>
   );

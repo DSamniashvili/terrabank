@@ -2,7 +2,7 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Spacing, Layout, Colors } = useTheme();
+  const { Spacing, Layout } = useTheme();
   return StyleSheet.create({
     container: {
       ...Layout.fullSize,
@@ -12,7 +12,6 @@ export const useStyleTheme = () => {
       borderTopLeftRadius: Spacing.xl,
       borderTopRightRadius: Spacing.xl,
       flex: 1,
-      backgroundColor: Colors.error100,
     },
   });
 };

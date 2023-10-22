@@ -23,14 +23,20 @@ export const DashboardTemplates = () => {
   return (
     <View style={styles.dashboardTemplatesContainer}>
       <View style={styles.headerContainer}>
-        <Text children={'templates'} style={styles.titleContainer} color={Colors.textBlack} />
+        <Text
+          children={'dashboard.templates'}
+          style={styles.titleContainer}
+          color={Colors.textBlack}
+        />
         <Button.Text
           onPress={handleNavigation}
           customWrapperStyle={{
             paddingVertical: 0,
             paddingHorizontal: 0,
           }}
-          children={<Text children="all" style={styles.titleContainer} color={Colors.primary} />}
+          children={
+            <Text children={'dashboard.all'} style={styles.titleContainer} color={Colors.primary} />
+          }
         />
       </View>
       <View style={styles.dashboardTemplatesWrapper}>

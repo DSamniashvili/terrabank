@@ -10,11 +10,15 @@ export const useStyles = () => {
       ...Layout.col,
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
-      width: 90,
+      width: 80,
       marginRight: Spacing.s,
     },
     discardRightMargin: {
       marginRight: Spacing.zero,
+    },
+    customIconComponentStyles: {
+      width: 48,
+      height: 48,
     },
     templateCardContentContainer: {
       ...Layout.colCenter,
