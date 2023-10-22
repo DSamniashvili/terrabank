@@ -1,12 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithInterceptor } from 'services/api';
-import { LoginAPIRequestType, LoginAPIResponseType } from './loginAPI.types';
+import { LoginAPIRequestType, LoginAPIResponseType } from './authAPI.types';
 import { URLS } from 'services/urls';
 
-export const loginAPI = createApi({
-  reducerPath: 'userInfo',
+export const authAPI = createApi({
+  reducerPath: 'authAPI',
   baseQuery: baseQueryWithInterceptor,
-  tagTypes: ['User'],
+  tagTypes: ['Auth'],
   endpoints: builder => ({
     loginUser: builder.mutation<LoginAPIResponseType, LoginAPIRequestType>({
       query: credentials => ({
@@ -18,4 +18,4 @@ export const loginAPI = createApi({
   }),
 });
 
-export const { useLoginUserMutation } = loginAPI;
+export const { useLoginUserMutation } = authAPI;

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
-  HomeStack,
+  DashboardStack,
   PaymentsStack,
   TransactionsStack,
   ProductsStack,
@@ -44,7 +44,7 @@ const TabNavigator = () => {
     <Navigator screenOptions={tabOptions}>
       <Screen
         name={HOME_STACK}
-        component={HomeStack}
+        component={DashboardStack}
         options={{ title: t('common:navigation.home') }}
       />
       <Screen

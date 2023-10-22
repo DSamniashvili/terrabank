@@ -1,2 +1,1 @@
-export * from './exampleAPI/exampleAPI';
-export * from './loginAPI/loginAPI';
+export * from './authAPI/authAPI';

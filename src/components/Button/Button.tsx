@@ -9,3 +9,17 @@ export const Button: {
   Destructive: withButton('Destructive'),
   Text: withButton('Text'),
 };
+
+// -- usage --
+//<Button.Primary
+//   text="Primary button - full width"
+//   size="large"
+//   fullWidth
+//   disabled />
+
+// <Button.Text
+// text="Text button"
+// size="large"
+// fullWidth
+// disabled
+// />

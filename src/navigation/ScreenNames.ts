@@ -1,13 +1,13 @@
 // Stacks
 export const INITIAL_STACK = 'InitialStack';
-export const HOME_STACK = 'HomeStack';
+export const HOME_STACK = 'DashboardStack';
 export const PAYMENTS_STACK = 'PaymentsStack';
 export const TRANSACTIONS_STACK = 'TransactionsStack';
 export const PRODUCTS_STACK = 'ProductsStack';
 export const PROFILE_STACK = 'ProfileStack';
 export const SETTINGS_STACK = 'SettingsStack';
 // Screens
-export const HOME_SCREEN = 'HomeScreen';
+export const HOME_SCREEN = 'DashboardScreen';
 export const PAYMENTS_SCREEN = 'PaymentsScreen';
 export const TRANSACTIONS_SCREEN = 'TransactionsScreen';
 export const PRODUCTS_SCREEN = 'ProductsScreen';

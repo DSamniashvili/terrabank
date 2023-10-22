@@ -49,28 +49,25 @@ export const baseQueryWithInterceptor: BaseQueryFn<
   let customHeaders: Record<string, string> = {};
 
   // We can pass custom headers, depending on a specific API request, just like this: {headerKey: "headerValue"}
-  if (typeof args !== 'string' && args.headers) {
-    customHeaders = args.headers as Record<string, string>;
+  if (typeof args !== 'string') {
+    // Check if headers exist directly in the args
+    if (args.headers) {
+      customHeaders = args.headers as Record<string, string>;
+    }
+    // If not, check if headers exist within the body of args
+    else if (args.body && args.body.headers) {
+      customHeaders = args.body.headers as Record<string, string>;
+      delete args.body.headers;
+    }
   }
 
   //   then set the headers as it should: headers.set('headerKey', 'headerValue');
-  const headers = new Headers();
-  for (const [key, value] of Object.entries(customHeaders)) {
-    headers.set(key, value);
-  }
+  const headers = defaultHeaders(new Headers(customHeaders));
 
   //   and lastly, merge default headers with custom ones, that have been provided in query
-  //   for example:
-  //   loginUser({
-  // 		loginName,
-  // 		password,
-  // 		headers: {
-  // 	  	'X-Bank-Otp': '000000',
-  // 		},
-  //   });
   const enhancedArgs = {
     ...args,
-    headers: headers,
+    headers,
   };
 
   await mutex.waitForUnlock();

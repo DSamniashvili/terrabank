@@ -1,23 +1,23 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from 'screens';
+import { DashboardScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { HOME_SCREEN } from 'navigation/ScreenNames';
 
-export type HomeStackParamList = {
-  HomeScreen: undefined;
+export type DashboardStackParamList = {
+  DashboardScreen: undefined;
 };
 
-const Stack = createStackNavigator<HomeStackParamList>();
+const Stack = createStackNavigator<DashboardStackParamList>();
 
-export const HomeStack = () => {
+export const DashboardStack = () => {
   const { Navigator, Screen } = Stack;
   const { t } = useTranslation();
   return (
     <Navigator initialRouteName={HOME_SCREEN}>
       <Screen
         name={HOME_SCREEN}
-        component={HomeScreen}
+        component={DashboardScreen}
         options={{
           title: t('common:navigation.hello'),
           headerTitleAlign: 'left',

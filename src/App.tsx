@@ -11,6 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Modal, Toast } from 'components';
 import { saveModalRef } from 'utils/modal';
+
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const App = () => {

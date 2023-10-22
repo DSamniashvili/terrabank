@@ -34,7 +34,9 @@ export const withLoginScreen = <P extends object, T extends keyof GuestStackPara
     const handleNavigation = async () => {
       try {
         await fakeLogin();
-        navigate(screenName as keyof GuestStackParamList);
+        if (screenName) {
+          navigate(screenName as keyof GuestStackParamList);
+        }
       } catch (error) {
         console.error('Login failed', error);
       }

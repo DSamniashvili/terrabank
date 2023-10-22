@@ -12,5 +12,6 @@ export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
 export { AuthorizationMethod } from './AuthorizationMethod/AuthorizationMethod';
 export { Account } from './Account/Account';
-export { VerifiedPhoneModal } from './VerifiedPhoneModal/VerifiedPhoneModal';
-export { OTPModal } from './OTPModal/OTPModal';
+// modal components
+export { VerifiedPhoneModal } from './modals';
+export { OTPModal } from './modals';

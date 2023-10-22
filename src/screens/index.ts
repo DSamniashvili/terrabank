@@ -1,4 +1,4 @@
-export { HomeScreen } from './HomeScreen/HomeScreen';
+export { DashboardScreen } from './DashboardScreen/DashboardScreen';
 export { ProductsScreen } from './ProductsScreen/ProductsScreen';
 export { PaymentsScreen } from './PaymentsScreen/PaymentsScreen';
 export { OnboardingScreen } from './OnboardingScreen/OnboardingScreen';
