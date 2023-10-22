@@ -68,6 +68,7 @@
   },
   "dashboard": {
     "templates": "Templates",
-    "template": "Template"
+    "template": "Template",
+	"all": "All"
   }
 }

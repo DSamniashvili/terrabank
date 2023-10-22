@@ -2,7 +2,7 @@ import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import {
   AUTHORIZATION_METHODS_SCREEN,
   CREATE_PASSCODE_SCREEN,
-  HOME_SCREEN,
+  DASHBOARD_SCREEN,
   ONBOARDING_SCREEN,
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_LOGIN_SCREEN,
@@ -17,22 +17,24 @@ import {
   TRANSACTIONS_STACK,
   HOME_STACK,
   INITIAL_STACK,
+  ALL_TEMPLATES_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type DashboardStackParamsList = {
-  [HOME_SCREEN]: undefined;
+export type DashboardStackParamsList = {
+  [DASHBOARD_SCREEN]: undefined;
+  [ALL_TEMPLATES_SCREEN]: undefined;
 };
 
-type ProductsStackParamsList = {
+export type ProductsStackParamsList = {
   [PRODUCTS_SCREEN]: undefined;
 };
 
-type TransactionsStackParamsList = {
+export type TransactionsStackParamsList = {
   [TRANSACTIONS_SCREEN]: undefined;
 };
 
-type PaymentsStackParamsList = {};
+export type PaymentsStackParamsList = {};
 
 export type SettingsStackParamsList = {
   [SETTINGS_SCREEN]: undefined;

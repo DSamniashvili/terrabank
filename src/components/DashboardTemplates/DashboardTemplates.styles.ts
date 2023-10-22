@@ -2,17 +2,21 @@ import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
 
 export const useStyles = () => {
-  const { Layout, Fonts, Colors, Spacing, FontSize } = useTheme();
+  const { Layout, Fonts, Spacing, FontSize } = useTheme();
 
   return StyleSheet.create({
+    headerContainer: {
+      ...Layout.row,
+      ...Layout.justifyContentBetween,
+      ...Layout.alignItemsCenter,
+    },
     titleContainer: {
       ...Fonts.textBold,
       fontSize: FontSize.regularPlus,
-      color: Colors.textBlack,
       fontWeight: '400',
     },
     dashboardTemplatesContainer: {
-      marginHorizontal: Spacing.xl,
+      ...Layout.col,
     },
     dashboardTemplatesWrapper: {
       ...Layout.row,

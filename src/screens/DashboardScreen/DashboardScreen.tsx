@@ -1,14 +1,15 @@
 import React from 'react';
 import { Pressable, View } from 'react-native';
-import { styles } from './DashboardScreen.style';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
 import { DashboardTemplates, LanguageSwitcher, Text } from 'components';
 import { openModal } from 'utils/modal';
 import { storage } from 'storage/index';
+import { useStyleTheme } from './DashboardScreen.style';
 
 export const DashboardScreen = () => {
+  const styles = useStyleTheme();
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
 
