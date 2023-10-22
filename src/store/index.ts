@@ -11,29 +11,18 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { themeReducer } from './slices/theme';
-import { reduxStorage } from './reduxStorage';
 import { authAPI } from '../services/apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
 import { userInfoReducer } from './slices/userInfo';
-
-const authorizationMethodsPersistConfig = {
-  key: 'authorizationMethods',
-  storage: reduxStorage,
-  whitelist: ['sms', 'passcode', 'faceId', 'biometric'],
-};
-
-const themePersistConfig = {
-  key: 'theme',
-  storage: reduxStorage,
-  whitelist: ['theme', 'darkMode'],
-};
-
-const userInfoPersistConfig = {
-  key: 'userInfo',
-  storage: reduxStorage,
-  whitelist: ['accessToken', 'refreshToken'],
-};
+import {
+  authorizationMethodsPersistConfig,
+  dashboardPersistConfig,
+  themePersistConfig,
+  userInfoPersistConfig,
+} from './config';
+import { dashboardAPI } from 'services/apis/dashboardAPI/dashboardAPI';
+import { dashboardReducer } from './slices/dashboard';
 
 const persistedAuthorizationMethods = persistReducer(
   authorizationMethodsPersistConfig,
@@ -41,12 +30,15 @@ const persistedAuthorizationMethods = persistReducer(
 );
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 const persistedUserInfo = persistReducer(userInfoPersistConfig, userInfoReducer);
+const persistedDashboard = persistReducer(dashboardPersistConfig, dashboardReducer);
 
 const reducers = combineReducers({
   authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
   userInfo: persistedUserInfo,
+  dashboard: persistedDashboard,
   [authAPI.reducerPath]: authAPI.reducer,
+  [dashboardAPI.reducerPath]: dashboardAPI.reducer,
 });
 
 const rootReducer: Reducer<RootState> = (state, action) => {
@@ -56,7 +48,7 @@ const rootReducer: Reducer<RootState> = (state, action) => {
   return reducers(state, action);
 };
 
-const middlewares = [authAPI.middleware];
+const middlewares = [authAPI.middleware, dashboardAPI.middleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;

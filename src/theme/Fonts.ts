@@ -32,12 +32,12 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     titleSmall: {
       fontSize: FontSize.small,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
     },
     titleRegular: {
       fontSize: FontSize.regular,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
     },
     titleregularPlus: {
       fontSize: FontSize.regularPlus,
@@ -52,7 +52,7 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     titleLarge: {
       fontSize: FontSize.large * 2,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
     },
     textCenter: {
       textAlign: 'center',

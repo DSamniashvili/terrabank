@@ -24,7 +24,6 @@ export const Colors = {
   textBlack400: 'rgba(29, 29, 29, 0.4)',
   pinColor: '#1C1C1CFA',
   textWhite: 'rgba(253, 253, 253, 0.98)',
-  textGray800: '#000000',
   textGray700: 'rgba(15, 15, 15, 0.98)',
   textGray400: '#4D4D4D',
   textGray200: '#A1A1A1',
@@ -75,6 +74,7 @@ export const Spacing = {
   l: 18,
   lg: 20,
   xl: 24,
+  xlg: 32,
   xxl: 36,
 };
 
