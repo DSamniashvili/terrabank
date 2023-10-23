@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Pressable, View } from 'react-native';
-import { styles } from './HomeScreen.style';
+import { useStyles } from './HomeScreen.style';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
 import useTheme from 'hooks/useTheme';
@@ -9,6 +9,7 @@ import { openModal } from 'utils/modal';
 import { openToast } from 'utils/toast';
 
 export const HomeScreen = () => {
+  const styles = useStyles();
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
 

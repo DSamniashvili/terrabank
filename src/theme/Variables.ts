@@ -41,6 +41,7 @@ export const Colors = {
   textWhite400: 'rgba(253, 253, 253, 0.4)',
   dotGray: '#7D8D99',
   errorToastColor: '#FAE8E7',
+  dashboardBackground: '#F6F6F7',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

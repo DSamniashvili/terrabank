@@ -21,4 +21,11 @@ export { Error } from './Error';
 export { PasscodeLogo } from './PasscodeLogo';
 export { ChatBubble } from './ChatBubble';
 export { DialPad } from './DialPad';
-
+export { Tera } from './Tera';
+export { EyeSlash } from './EyeSlash';
+export { Eye } from './Eye';
+export { Dots } from './Dots';
+export { Swap } from './Swap';
+export { CreditCard } from './CreditCard';
+export { Smartphone } from './Smartphone';
+export { ArrowRight } from './ArrowRight';
