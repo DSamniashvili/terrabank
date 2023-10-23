@@ -35,10 +35,7 @@ export const IconComponent = ({
     >
       {IconJSX && <IconJSX width={16} height={16} />}
       {pngLocalIcon && (
-        <Image
-          source={pngLocalIcon}
-          style={[{ width: 25, height: 25 }, styles.iconRoundedStyles, pngLocalIconCustomStyle]}
-        />
+        <Image source={pngLocalIcon} style={[{ width: 25, height: 25 }, pngLocalIconCustomStyle]} />
       )}
     </Pressable>
   );
