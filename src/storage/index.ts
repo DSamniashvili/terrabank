@@ -1,5 +1,4 @@
 import { MMKV } from 'react-native-mmkv';
-import { PASSCODE } from './constants';
 
 export const storage = new MMKV();
 
@@ -24,5 +23,3 @@ export const removeValue = (key: string) => {
 export const clearStorage = () => {
   return storage.clearAll();
 };
-
-export const setPasscode = (passcode: string) => storage.set(PASSCODE, passcode);

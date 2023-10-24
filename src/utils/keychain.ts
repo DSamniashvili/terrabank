@@ -49,3 +49,38 @@ export const ifCredentialsSetPassword = async (password: string): Promise<void> 
     console.error('Error updating password:', error);
   }
 };
+
+export const setPasscode = async (passcode: string): Promise<boolean | Result> => {
+  try {
+    return await KeyChain.setGenericPassword('passcode', passcode);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error setting passcode:', error);
+    return false;
+  }
+};
+
+export const getPasscode = async (): Promise<string | null> => {
+  try {
+    const credentials = await KeyChain.getGenericPassword();
+    if (credentials && credentials.password) {
+      return credentials.password;
+    }
+    return null;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error fetching passcode:', error);
+    return null;
+  }
+};
+
+export const activateBiometricsAuth = async (): Promise<boolean> => {
+  try {
+    await KeyChain.setGenericPassword('biometric-auth-status', 'true');
+    return true;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error activating biometric authentication:', error);
+    return false;
+  }
+};
