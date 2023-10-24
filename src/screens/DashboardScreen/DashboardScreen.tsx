@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, View } from 'react-native';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
@@ -7,11 +7,17 @@ import { DashboardTemplates, LanguageSwitcher, Text } from 'components';
 import { openModal } from 'utils/modal';
 import { storage } from 'storage/index';
 import { useStyleTheme } from './DashboardScreen.style';
+import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
+  const [getDashboardTemplates] = useLazyGetTemplatesQuery();
+
+  useEffect(() => {
+    getDashboardTemplates();
+  }, [getDashboardTemplates]);
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));

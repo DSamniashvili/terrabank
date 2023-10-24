@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 import PinKeyboard from 'components/PinKeyboard/PinKeyboard';
 import { PinLine } from 'components/PinLine/PinLine';
-import { useStyleTheme } from './PassCodeLoginScreen.styles';
+import { useStyleTheme } from './PasscodeLoginScreen.styles';
 import { Account } from 'components/index';
 import { usePasscodeLogin } from './usePasscodeLogin';
 
@@ -14,7 +14,7 @@ interface PassCodeLoginBaseProps {
   handleNavigation?: () => Promise<void>;
 }
 
-const PassCodeLoginScreenBase: FC<PassCodeLoginBaseProps> = () => {
+const PasscodeLoginScreenBase: FC<PassCodeLoginBaseProps> = () => {
   const { watchKeyboard, passcodeLength } = usePasscodeLogin();
 
   const styles = useStyleTheme();
@@ -31,7 +31,7 @@ const PassCodeLoginScreenBase: FC<PassCodeLoginBaseProps> = () => {
   );
 };
 
-export const PassCodeLoginScreen = withLoginScreen<
+export const PasscodeLoginScreen = withLoginScreen<
   PassCodeLoginBaseProps,
   typeof PASSCODE_LOGIN_SCREEN
->(PassCodeLoginScreenBase, PASSCODE_LOGIN_SCREEN);
+>(PasscodeLoginScreenBase, PASSCODE_LOGIN_SCREEN);

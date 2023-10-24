@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { OnboardingScreen, PassCodeLoginScreen, PasswordLoginScreen } from 'screens';
+import { OnboardingScreen, PasscodeLoginScreen, PasswordLoginScreen } from 'screens';
 import { guestNavOptions } from 'navigation/config';
 import { GuestStackParamList } from 'navigation/types';
 import { ONBOARDING_SCREEN, PASSWORD_LOGIN_SCREEN, PASSCODE_LOGIN_SCREEN } from '../ScreenNames';
@@ -33,7 +33,7 @@ export const GuestNavigator = () => {
     >
       <Screen component={OnboardingScreen} name={ONBOARDING_SCREEN} />
       <Screen component={PasswordLoginScreen} name={PASSWORD_LOGIN_SCREEN} />
-      <Screen component={PassCodeLoginScreen} name={PASSCODE_LOGIN_SCREEN} />
+      <Screen component={PasscodeLoginScreen} name={PASSCODE_LOGIN_SCREEN} />
     </Navigator>
   );
 };

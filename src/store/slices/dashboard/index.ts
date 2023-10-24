@@ -9,7 +9,6 @@ const initialState: DashboardStateProps = {
     templates: [],
   },
 };
-// TODO - add extrareducers, so that setting templates does not happen in useBootstrapApp()
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
