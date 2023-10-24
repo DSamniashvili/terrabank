@@ -47,7 +47,6 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
             }),
           );
           closeModal();
-          //   handleNavigation?.();
         }
       })
       .catch(err => {
@@ -73,7 +72,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
 
   useEffect(() => {
     if (isError && error) {
-      const errorTitle = (error as { [key: string]: any }).data.title;
+      const errorTitle = (error as { [key: string]: any })?.data?.title;
       openToast(errorTitle, 'error');
     }
   }, [isError, error]);

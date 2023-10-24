@@ -11,7 +11,8 @@ import { Mutex } from 'async-mutex';
 import { URLS } from './constants/urls';
 import { RootState } from 'store/index';
 
-const BASE_URL = 'http://10.213.0.136:4040/';
+// https://middleware-tst.terabank.ge/swagger/index.html
+const BASE_URL = 'https://middleware-tst.terabank.ge/';
 
 const mutex = new Mutex();
 
