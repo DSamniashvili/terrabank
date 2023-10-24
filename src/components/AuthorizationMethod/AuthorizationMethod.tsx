@@ -7,12 +7,12 @@ import { IconComponent } from 'components/IconComponent/IconComponent';
 import { Controller, useForm } from 'react-hook-form';
 import { SwitchComponent } from 'components/Switch/Switch';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { setAuthorizationMethod } from 'store/slices/AuthorizationMethods';
-import { AuthorizationMethodsState } from 'store/slices/AuthorizationMethods/types';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { debounce } from 'utils/debounce';
+import { AuthorizationMethodsType } from 'store/slices/userInfo/types';
+import { setAuthorizationMethod } from 'store/slices/userInfo';
 import { openModal } from 'utils/modal';
-import { VerifiedPhoneModal } from 'components/index';
+import { TrustDeviceModal } from 'components/modals';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const { description, icon, title, methodName } = props;
@@ -21,11 +21,11 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const dispatch = useAppDispatch();
 
   // gets values from redux store
-  const authorizationMethods = useAppSelector(state => state.authorizationMethods);
-  //   sets current value in currentMethodState where methodName can be sms | passcode | faceId | biometric
-  const currentMethodState = authorizationMethods[methodName as keyof AuthorizationMethodsState];
+  const authorizationMethods = useAppSelector(state => state.userInfo.authorizationMethods);
+  //   sets current value in currentMethodState where methodName can be sms | passcode | faceId | fingerPrint
+  const currentMethodState = authorizationMethods[methodName as keyof AuthorizationMethodsType];
 
-  const { control, setValue } = useForm<AuthorizationMethodsState>({
+  const { control, setValue } = useForm<AuthorizationMethodsType>({
     defaultValues: {
       [methodName]: currentMethodState,
     },
@@ -35,7 +35,7 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
    *  sets new value in the state with small timeout
    */
   const debouncedDispatch = debounce(
-    (formItemName: keyof AuthorizationMethodsState, formItemValue: boolean) => {
+    (formItemName: keyof AuthorizationMethodsType, formItemValue: boolean) => {
       dispatch(setAuthorizationMethod({ key: formItemName, value: formItemValue }));
     },
     500,
@@ -43,17 +43,19 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
 
   /**
    *
-   * @param formItemName (sms | passcode | faceId | biometric)
+   * @param formItemName (sms | passcode | faceId | fingerPrint)
    * @param formItemValue boolean
    *  handles value update and dispatches action with debounce
    */
-  const handleChange = (formItemName: keyof AuthorizationMethodsState, formItemValue: boolean) => {
+  const handleChange = (formItemName: keyof AuthorizationMethodsType, formItemValue: boolean) => {
     setValue(formItemName, formItemValue);
     debouncedDispatch(formItemName, formItemValue); // Use debouncedDispatch instead of dispatch
-    openModal({
-      title: 'მოწყობილობის გასანდოება',
-      element: <VerifiedPhoneModal />,
-    });
+    if (formItemValue === true) {
+      openModal({
+        title: 'მოწყობილობის გასანდოება',
+        element: <TrustDeviceModal />,
+      });
+    }
   };
 
   return (
@@ -70,12 +72,12 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
       <View style={styles.AuthorizationMethodEnablerContainer}>
         <Controller
           key={methodName}
-          name={methodName as keyof AuthorizationMethodsState}
+          name={methodName as keyof AuthorizationMethodsType}
           control={control}
           render={({ field: { value, name } }) => (
             <SwitchComponent
               value={value}
-              onValueChange={val => handleChange(name as keyof AuthorizationMethodsState, val)}
+              onValueChange={val => handleChange(name as keyof AuthorizationMethodsType, val)}
             />
           )}
         />

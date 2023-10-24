@@ -13,27 +13,16 @@ import {
 import { themeReducer } from './slices/theme';
 import { authAPI } from '../services/apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
-import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
 import { userInfoReducer } from './slices/userInfo';
-import {
-  authorizationMethodsPersistConfig,
-  dashboardPersistConfig,
-  themePersistConfig,
-  userInfoPersistConfig,
-} from './config';
+import { dashboardPersistConfig, themePersistConfig, userInfoPersistConfig } from './config';
 import { dashboardAPI } from 'services/apis/dashboardAPI/dashboardAPI';
 import { dashboardReducer } from './slices/dashboard';
 
-const persistedAuthorizationMethods = persistReducer(
-  authorizationMethodsPersistConfig,
-  authorizationMethodsReducer,
-);
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 const persistedUserInfo = persistReducer(userInfoPersistConfig, userInfoReducer);
 const persistedDashboard = persistReducer(dashboardPersistConfig, dashboardReducer);
 
 const reducers = combineReducers({
-  authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
   userInfo: persistedUserInfo,
   dashboard: persistedDashboard,

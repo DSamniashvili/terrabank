@@ -12,7 +12,7 @@ export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
 export { AuthorizationMethod } from './AuthorizationMethod/AuthorizationMethod';
 export { Account } from './Account/Account';
-export { VerifiedPhoneModal } from './modals/index';
+export { TrustDeviceModal } from './modals/index';
 export { OTPModal } from './modals/index';
 export { TemplateCard } from './TemplateCard/TemplateCard';
 export { DashboardTemplates } from './DashboardTemplates/DashboardTemplates';

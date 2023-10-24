@@ -27,7 +27,7 @@ export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
     : Platform.OS === 'android'
     ? [
         {
-          methodName: 'biometric',
+          methodName: 'fingerPrint',
           title: 'settings.biometric_title',
           description: 'settingsbiometric_desc',
           icon: FingerPrintIcon,

@@ -1,2 +1,2 @@
 export { OTPModal } from './OTPModal/OTPModal';
-export { VerifiedPhoneModal } from './VerifiedPhoneModal/VerifiedPhoneModal';
+export { TrustDeviceModal } from './TrustDeviceModal/TrustDeviceModal';

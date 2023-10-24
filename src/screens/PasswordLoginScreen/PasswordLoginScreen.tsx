@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Pressable, View } from 'react-native';
+import { Alert, Pressable, View } from 'react-native';
 import { Button, Text, ControlledInput, OTPModal } from 'components';
 import { withLoginScreen } from 'components/HOC';
 import { PasswordLoginBaseProps } from './PasswordLoginScreen.types';
@@ -30,6 +30,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
 
   const handleSignInWithOTP = (OTPCode: string) => {
     const { loginName, password } = getFormValues();
+    Alert.alert(`${loginName} ${password} ${OTPCode}`);
     loginUser({
       loginName,
       password,

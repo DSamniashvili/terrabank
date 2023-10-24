@@ -2,10 +2,10 @@ import React from 'react';
 import { openModal } from 'utils/modal';
 import { View } from 'react-native';
 import { VerifiedPhoneIcon } from 'assets/SVGs';
-import { useStyleTheme } from './VerifiedPhoneModal.styles';
+import { useStyleTheme } from './TrustDeviceModal.styles';
 import { Button, OTPModal, Text } from 'components';
 
-export const VerifiedPhoneModal = () => {
+export const TrustDeviceModal = () => {
   const verifyPhone = () => {
     openModal({
       element: <OTPModal />,
