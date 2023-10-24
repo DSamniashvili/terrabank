@@ -13,11 +13,7 @@ const initialState: DashboardStateProps = {
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
-  reducers: {
-    setTemplates: (state, action) => {
-      state.templatesResponse.templates = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchPending, state => {
@@ -38,5 +34,4 @@ const dashboardSlice = createSlice({
   },
 });
 
-export const { setTemplates } = dashboardSlice.actions;
 export const dashboardReducer = dashboardSlice.reducer;

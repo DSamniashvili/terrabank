@@ -14,18 +14,26 @@ export const TemplateCard = (props: any) => {
         customIconComponentStyles={styles.customIconComponentStyles}
       />
       <View style={styles.templateCardContentContainer}>
-        <Text
-          children={name}
-          style={styles.templateCardTitle}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-        />
-        <Text
-          children={description}
-          style={styles.templateCardContent}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-        />
+        {name ? (
+          <Text
+            children={name}
+            style={styles.templateCardTitle}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          />
+        ) : (
+          <></>
+        )}
+        {description ? (
+          <Text
+            children={description}
+            style={styles.templateCardContent}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          />
+        ) : (
+          <></>
+        )}
       </View>
     </View>
   );
