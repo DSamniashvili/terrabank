@@ -5,11 +5,20 @@ export const useStyleTheme = () => {
   const { Colors, FontSize, Spacing, Layout } = useTheme();
   return StyleSheet.create({
     container: {
-      paddingVertical: Spacing.m,
       ...Layout.center,
     },
+    contentWrapper: {
+      paddingHorizontal: Spacing.xl,
+      ...Layout.center,
+    },
+    toggleContainer: {
+      ...Layout.row,
+      ...Layout.center,
+      paddingTop: Spacing.m,
+      paddingBottom: Spacing.xxl,
+    },
     icon: {
-      marginVertical: Spacing.m,
+      marginVertical: 40,
     },
     text: {
       fontSize: FontSize.regular,

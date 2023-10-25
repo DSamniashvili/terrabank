@@ -28,15 +28,18 @@ export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) =>
   }, [debouncedDispatch, ignoreEasyLoginValue]);
   return (
     <View style={styles.container}>
-      <FaceIdColoredSvg style={styles.icon} />
-
-      <Text style={styles.text}>{t('easyLogin.title')}</Text>
-      <Text children="easyLogin.description" style={styles.label} />
-      <Text children="easyLogin.do_not_ask_again" style={styles.label} />
-      <SwitchComponent
-        value={ignoreEasyLoginValue}
-        onValueChange={val => handleIgnoreEasyLoginToggle(val)}
-      />
+      <View style={styles.contentWrapper}>
+        <FaceIdColoredSvg style={styles.icon} />
+        <Text style={styles.text}>{t('easyLogin.title')}</Text>
+        <Text children="easyLogin.description" style={styles.label} />
+      </View>
+      <View style={styles.toggleContainer}>
+        <Text children="easyLogin.do_not_ask_again" style={styles.label} />
+        <SwitchComponent
+          value={ignoreEasyLoginValue}
+          onValueChange={val => handleIgnoreEasyLoginToggle(val)}
+        />
+      </View>
       <View style={styles.buttonsContainer}>
         <Button.Secondary text="easyLogin.other_time" size="large" onPress={handleNavigation} />
         <Button.Primary text="easyLogin.activate" size="large" onPress={handleNavigation} />
