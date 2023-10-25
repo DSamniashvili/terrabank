@@ -5,7 +5,7 @@ const initialState: UserInfoStateProps = {
   accessToken: '',
   refreshToken: '',
   authorizationMethods: {
-    sms: false,
+    sms: true,
     passcode: false,
     faceId: false,
     fingerPrint: false,

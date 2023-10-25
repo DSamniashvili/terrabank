@@ -63,8 +63,14 @@
     "additional_settings": "Additional settings",
     "manage_notifications": "Manage notifications"
   },
-  "verify": {
-    "verifiedPhone": "verify your phone"
+  "trustDevice": {
+    "heading": "Verify your device",
+    "title": "{{name}} დასაყენებლად საჭიროა მოწყობილობა გახადო სანდო [en]",
+    "description": "მოწყობილობის გასანდოების შემდეგ მობაილბანკში სმს და დიჯიპასის კოდის გარეშე შესვლას შეძლებთ [en]",
+    "CTAText": "გაასანდოვე მოწყობილობა [en]",
+	"passcode_s": "პასკოდის [en]",
+	"faceId_s": "Face ID - ის [en]",
+	"fingerprint_s": "Finger Print - ის [en]"
   },
   "dashboard": {
     "templates": "Templates",

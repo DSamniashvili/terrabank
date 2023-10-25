@@ -1,15 +1,15 @@
 export type UserInfoStateProps = {
   accessToken: string;
   refreshToken: string;
-  authorizationMethods: AuthorizationMethodsType;
+  authorizationMethods: SupportedAuthMethodsType;
 };
 
 export type AuthorizationMethodsPayload = {
-  key: keyof AuthorizationMethodsType;
+  key: keyof SupportedAuthMethodsType;
   value: boolean;
 };
 
-export type AuthorizationMethodsType = {
+export type SupportedAuthMethodsType = {
   sms?: boolean;
   passcode?: boolean;
   faceId?: boolean;

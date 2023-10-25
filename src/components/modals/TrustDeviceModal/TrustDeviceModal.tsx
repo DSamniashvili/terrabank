@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { openModal } from 'utils/modal';
 import { View } from 'react-native';
 import { VerifiedPhoneIcon } from 'assets/SVGs';
 import { useStyleTheme } from './TrustDeviceModal.styles';
 import { Button, OTPModal, Text } from 'components';
 
-export const TrustDeviceModal = () => {
-  const verifyPhone = () => {
+import { useTranslation } from 'react-i18next';
+import { TrustDeviceModalProps } from './types/TrustDeviceModal.types';
+import { getTrustMethodName } from './utils/getTrustMethodName';
+
+export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName }) => {
+  const { t } = useTranslation();
+  //   const { navigate } = useNavigation<SettingsStackScreenProps<'SettingsScreen'>>();
+
+  const handleSetPasscode = () => {
+    // navigate('SettingsScreen');
+  };
+
+  const trustDevice = () => {
     openModal({
-      element: <OTPModal />,
+      element: <OTPModal onFinished={handleSetPasscode} />,
     });
   };
   const styles = useStyleTheme();
@@ -16,14 +27,11 @@ export const TrustDeviceModal = () => {
   return (
     <View style={styles.container}>
       <VerifiedPhoneIcon style={styles.icon} />
-      <Text children="verify.verifyText" style={styles.text} />
-      <Text children="verify.verifyLabel" style={styles.label} />
-      <Button.Primary
-        text="verify.verifyPhoneButton"
-        size="large"
-        fullWidth
-        onPress={verifyPhone}
-      />
+      <Text style={styles.text}>
+        {t('trustDevice.title', { name: methodName ? t(getTrustMethodName(methodName)) : '' })}
+      </Text>
+      <Text children="trustDevice.description" style={styles.label} />
+      <Button.Primary text="trustDevice.CTAText" size="large" fullWidth onPress={trustDevice} />
     </View>
   );
 };

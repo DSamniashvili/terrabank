@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Alert, Pressable, View } from 'react-native';
-import { Button, Text, ControlledInput, OTPModal } from 'components';
+import { Button, Text, ControlledInput } from 'components';
 import { withLoginScreen } from 'components/HOC';
 import { PasswordLoginBaseProps } from './PasswordLoginScreen.types';
 import useStyles from './PasswordLoginScreen.styles';
@@ -13,6 +13,7 @@ import { openToast } from 'utils/toast';
 import { closeModal, openModal } from 'utils/modal';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { setCredentials } from 'store/slices/userInfo';
+import { OTPModalTemp } from 'components/modals/OTPModal/OTPModalTemp';
 
 const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
   const { control, getValues, reset } = useForm();
@@ -63,7 +64,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
         if (res.success && res.accessToken === null) {
           openModal({
             // TODO !! - should be replaced with <OTPModal  onFinished={handleSignInWithOTP} />
-            element: <OTPModal onFinished={handleSignInWithOTP} />,
+            element: <OTPModalTemp onFinished={handleSignInWithOTP} />,
           });
         }
       })

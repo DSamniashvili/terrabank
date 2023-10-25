@@ -9,23 +9,25 @@ import { SwitchComponent } from 'components/Switch/Switch';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { debounce } from 'utils/debounce';
-import { AuthorizationMethodsType } from 'store/slices/userInfo/types';
+import { SupportedAuthMethodsType } from 'store/slices/userInfo/types';
 import { setAuthorizationMethod } from 'store/slices/userInfo';
 import { openModal } from 'utils/modal';
 import { TrustDeviceModal } from 'components/modals';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
-  const { description, icon, title, methodName } = props;
+  const { description, icon, title, methodName, requiresTrust, readOnly } = props;
   const { t } = useTranslation();
   const styles = useStyles();
   const dispatch = useAppDispatch();
 
+  //   TODO - how to make device trusted?
+  const deviceIsTrusted = true;
   // gets values from redux store
   const authorizationMethods = useAppSelector(state => state.userInfo.authorizationMethods);
   //   sets current value in currentMethodState where methodName can be sms | passcode | faceId | fingerPrint
-  const currentMethodState = authorizationMethods[methodName as keyof AuthorizationMethodsType];
+  const currentMethodState = authorizationMethods[methodName as keyof SupportedAuthMethodsType];
 
-  const { control, setValue } = useForm<AuthorizationMethodsType>({
+  const { control, setValue } = useForm<SupportedAuthMethodsType>({
     defaultValues: {
       [methodName]: currentMethodState,
     },
@@ -35,7 +37,7 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
    *  sets new value in the state with small timeout
    */
   const debouncedDispatch = debounce(
-    (formItemName: keyof AuthorizationMethodsType, formItemValue: boolean) => {
+    (formItemName: keyof SupportedAuthMethodsType, formItemValue: boolean) => {
       dispatch(setAuthorizationMethod({ key: formItemName, value: formItemValue }));
     },
     500,
@@ -47,13 +49,13 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
    * @param formItemValue boolean
    *  handles value update and dispatches action with debounce
    */
-  const handleChange = (formItemName: keyof AuthorizationMethodsType, formItemValue: boolean) => {
+  const handleChange = (formItemName: keyof SupportedAuthMethodsType, formItemValue: boolean) => {
     setValue(formItemName, formItemValue);
-    debouncedDispatch(formItemName, formItemValue); // Use debouncedDispatch instead of dispatch
-    if (formItemValue === true) {
+    debouncedDispatch(formItemName, formItemValue);
+    if (formItemValue === true && requiresTrust) {
       openModal({
-        title: 'მოწყობილობის გასანდოება',
-        element: <TrustDeviceModal />,
+        title: t('trustDevice.heading'),
+        element: <TrustDeviceModal methodName={methodName} />,
       });
     }
   };
@@ -71,13 +73,15 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
       </View>
       <View style={styles.AuthorizationMethodEnablerContainer}>
         <Controller
+          disabled={readOnly}
           key={methodName}
-          name={methodName as keyof AuthorizationMethodsType}
+          name={methodName as keyof SupportedAuthMethodsType}
           control={control}
           render={({ field: { value, name } }) => (
             <SwitchComponent
+              disabled={readOnly && deviceIsTrusted}
               value={value}
-              onValueChange={val => handleChange(name as keyof AuthorizationMethodsType, val)}
+              onValueChange={val => handleChange(name as keyof SupportedAuthMethodsType, val)}
             />
           )}
         />
