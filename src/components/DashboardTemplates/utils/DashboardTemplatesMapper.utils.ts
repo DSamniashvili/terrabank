@@ -1,6 +1,7 @@
 import { BOG_CODE, TBC_BANK_CODE, VTB_BANK_CODE } from 'constants/BankCodes';
 import { Template } from 'services/apis/dashboardAPI/dashboardAPI.types';
 import Images from 'theme/Images';
+import { MappedTemplate } from './DashboardTemplatesMapper.types';
 
 const getExternalBankIcon = (externalBankCode: string) => {
   switch (externalBankCode) {
@@ -31,7 +32,7 @@ const getTemplateIcon = (template: Template) => {
   }
 };
 
-export const getDashboardTemplates = (templates: Template[]) => {
+export const mapDashboardTemplates = (templates: Template[]): MappedTemplate[] => {
   return templates.map((template: Template, index: number) => {
     const isInternal = template.bankInternal;
     const templateIcon = getTemplateIcon(template);

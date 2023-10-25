@@ -10,7 +10,7 @@ const initialState: UserInfoStateProps = {
     faceId: false,
     fingerPrint: false,
   },
-  IgnoreEasyLogin: false,
+  ignoreEasyLogin: false,
 };
 
 const userInfoSlice = createSlice({
@@ -27,7 +27,7 @@ const userInfoSlice = createSlice({
       }
     },
     setIgnoreEasyLogin: (state, action) => {
-      state.IgnoreEasyLogin = action.payload;
+      state.ignoreEasyLogin = action.payload;
     },
   },
 });

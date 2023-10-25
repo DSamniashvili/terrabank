@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Button, TemplateCard, Text } from 'components';
 import { useStyles } from './DashboardTemplates.styles';
-import { useAppSelector } from 'store/hooks/useAppSelector';
-import { getDashboardTemplates } from './utils/DashboardTemplatesMapper.utils';
+import { mapDashboardTemplates } from './utils/DashboardTemplatesMapper.utils';
 import useTheme from 'hooks/useTheme';
 import { DashboardStackScreenProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { ALL_TEMPLATES_SCREEN } from 'navigation/ScreenNames';
+import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
+import { MappedTemplate } from './utils/DashboardTemplatesMapper.types';
 
 export const DashboardTemplates = () => {
   const styles = useStyles();
-  const { templates } = useAppSelector(state => state.dashboard.templatesResponse);
-  const dashboardTemplates = getDashboardTemplates(templates);
   const { Colors } = useTheme();
   const { navigate } = useNavigation<DashboardStackScreenProps<'DashboardScreen'>>();
+  const [getDashboardTemplates] = useLazyGetTemplatesQuery();
+  const [mappedDashboardTemplates, setMappedDashboardTemplates] = useState<MappedTemplate[]>([]);
+
+  useEffect(() => {
+    getDashboardTemplates().then(res => {
+      if (res.data && res.data.templates) {
+        const value = mapDashboardTemplates(res.data?.templates);
+        setMappedDashboardTemplates(value);
+      }
+    });
+  }, [getDashboardTemplates]);
 
   const handleNavigation = () => {
     navigate(ALL_TEMPLATES_SCREEN);
@@ -44,9 +54,9 @@ export const DashboardTemplates = () => {
           style={styles.dashboardTemplatesContent}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={dashboardTemplates}
+          data={mappedDashboardTemplates}
           renderItem={({ item, index }) => {
-            const isLastItem = index === dashboardTemplates?.length - 1;
+            const isLastItem = index === mappedDashboardTemplates?.length - 1;
             return <TemplateCard {...item} isLastItem={isLastItem} />;
           }}
           keyExtractor={item => String(item.id)}

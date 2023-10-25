@@ -9,7 +9,7 @@ export const themePersistConfig = {
 export const userInfoPersistConfig = {
   key: 'userInfo',
   storage: reduxStorage,
-  whitelist: ['accessToken', 'refreshToken', 'authorizationMethods'],
+  whitelist: ['accessToken', 'refreshToken', 'authorizationMethods', 'ignoreEasyLogin'],
 };
 export const dashboardPersistConfig = {
   key: 'dashboard',

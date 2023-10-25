@@ -2,7 +2,7 @@ export type UserInfoStateProps = {
   accessToken: string;
   refreshToken: string;
   authorizationMethods: SupportedAuthMethodsType;
-  IgnoreEasyLogin: boolean;
+  ignoreEasyLogin: boolean;
 };
 
 export type AuthorizationMethodsPayload = {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Pressable, View } from 'react-native';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
@@ -7,8 +7,6 @@ import { DashboardTemplates, LanguageSwitcher, Text } from 'components';
 import { closeModal, openModal } from 'utils/modal';
 import { storage } from 'storage/index';
 import { useStyleTheme } from './DashboardScreen.style';
-import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
-import { EasyLoginModal } from 'components/modals';
 import { MainNavigationProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -16,23 +14,21 @@ import {
   PROFILE_STACK,
   SETTINGS_STACK,
 } from 'navigation/ScreenNames';
+// import { useDashboardScreen } from './hooks/useDashboardScreen';
+import { EasyLoginModal } from 'components/modals';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
-  const [getDashboardTemplates] = useLazyGetTemplatesQuery();
   const { navigate } = useNavigation<MainNavigationProps<'DashboardStack'>>();
-
-  useEffect(() => {
-    getDashboardTemplates();
-  }, [getDashboardTemplates]);
+  //   const { showEasyLoginPrompt } = useDashboardScreen();
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
   };
 
-  const handleNavigatToAuthorizationMethodsScreeen = () => {
+  const handleNavigateToAuthorizationMethodsScreeen = () => {
     closeModal();
 
     navigate(PROFILE_STACK, {
@@ -43,9 +39,25 @@ export const DashboardScreen = () => {
 
   const handleModalPress = () => {
     openModal({
-      element: <EasyLoginModal handleNavigation={handleNavigatToAuthorizationMethodsScreeen} />,
+      element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
     });
   };
+
+  //   useEffect(() => {
+  //     const handleNavigateToAuthorizationMethodsScreeen = () => {
+  //       closeModal();
+
+  //       navigate(PROFILE_STACK, {
+  //         screen: SETTINGS_STACK,
+  //         params: { screen: AUTHORIZATION_METHODS_SCREEN },
+  //       });
+  //     };
+
+  //     showEasyLoginPrompt &&
+  //       openModal({
+  //         element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
+  //       });
+  //   }, [navigate, showEasyLoginPrompt]);
 
   //   TODO - temp!!
   const handleClearAllFromStorage = () => {
