@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FlatList, View } from 'react-native';
 import { Button, TemplateCard, Text } from 'components';
 import { useStyles } from './DashboardTemplates.styles';
@@ -7,24 +7,14 @@ import useTheme from 'hooks/useTheme';
 import { DashboardStackScreenProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { ALL_TEMPLATES_SCREEN } from 'navigation/ScreenNames';
-import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
-import { MappedTemplate } from './utils/DashboardTemplatesMapper.types';
+import { useAppSelector } from 'store/hooks/useAppSelector';
 
 export const DashboardTemplates = () => {
   const styles = useStyles();
   const { Colors } = useTheme();
   const { navigate } = useNavigation<DashboardStackScreenProps<'DashboardScreen'>>();
-  const [getDashboardTemplates] = useLazyGetTemplatesQuery();
-  const [mappedDashboardTemplates, setMappedDashboardTemplates] = useState<MappedTemplate[]>([]);
-
-  useEffect(() => {
-    getDashboardTemplates().then(res => {
-      if (res.data && res.data.templates) {
-        const value = mapDashboardTemplates(res.data?.templates);
-        setMappedDashboardTemplates(value);
-      }
-    });
-  }, [getDashboardTemplates]);
+  const { templates } = useAppSelector(state => state.dashboard.templatesResponse);
+  const mappedDashboardTemplates = mapDashboardTemplates(templates);
 
   const handleNavigation = () => {
     navigate(ALL_TEMPLATES_SCREEN);

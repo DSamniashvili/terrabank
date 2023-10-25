@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, View } from 'react-native';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { changeTheme } from 'store/slices/theme';
@@ -9,55 +9,47 @@ import { storage } from 'storage/index';
 import { useStyleTheme } from './DashboardScreen.style';
 import { MainNavigationProps } from 'navigation/types';
 import { useNavigation } from '@react-navigation/native';
+import { EasyLoginModal } from 'components/modals';
+import { useDashboardScreen } from './hooks/useDashboardScreen';
 import {
   AUTHORIZATION_METHODS_SCREEN,
   PROFILE_STACK,
   SETTINGS_STACK,
 } from 'navigation/ScreenNames';
-// import { useDashboardScreen } from './hooks/useDashboardScreen';
-import { EasyLoginModal } from 'components/modals';
+import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
   const dispatch = useAppDispatch();
   const { Fonts, darkMode: isDark } = useTheme();
-  const { navigate } = useNavigation<MainNavigationProps<'DashboardStack'>>();
-  //   const { showEasyLoginPrompt } = useDashboardScreen();
+  const navigation = useNavigation<MainNavigationProps<'DashboardStack'>>();
+  const { showEasyLoginPrompt } = useDashboardScreen();
+  const [getDashboardTemplates, { isLoading }] = useLazyGetTemplatesQuery();
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
   };
 
-  const handleNavigateToAuthorizationMethodsScreeen = () => {
-    closeModal();
+  useEffect(() => {
+    getDashboardTemplates();
+  }, [getDashboardTemplates]);
 
-    navigate(PROFILE_STACK, {
-      screen: SETTINGS_STACK,
-      params: { screen: AUTHORIZATION_METHODS_SCREEN },
-    });
-  };
+  useEffect(() => {
+    const handleNavigateToAuthorizationMethodsScreeen = () => {
+      closeModal();
 
-  const handleModalPress = () => {
-    openModal({
-      element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
-    });
-  };
+      navigation.navigate(PROFILE_STACK, {
+        screen: SETTINGS_STACK,
+        params: { screen: AUTHORIZATION_METHODS_SCREEN },
+      });
+    };
 
-  //   useEffect(() => {
-  //     const handleNavigateToAuthorizationMethodsScreeen = () => {
-  //       closeModal();
-
-  //       navigate(PROFILE_STACK, {
-  //         screen: SETTINGS_STACK,
-  //         params: { screen: AUTHORIZATION_METHODS_SCREEN },
-  //       });
-  //     };
-
-  //     showEasyLoginPrompt &&
-  //       openModal({
-  //         element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
-  //       });
-  //   }, [navigate, showEasyLoginPrompt]);
+    if (navigation.isFocused() && showEasyLoginPrompt && !isLoading) {
+      openModal({
+        element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
+      });
+    }
+  }, [navigation, navigation.navigate, showEasyLoginPrompt, isLoading]);
 
   //   TODO - temp!!
   const handleClearAllFromStorage = () => {
@@ -72,9 +64,6 @@ export const DashboardScreen = () => {
       <Text style={[Fonts.textSmall]} children="Home main Screen" />
       <Pressable onPress={onChangeTheme}>
         <Text style={[Fonts.textSmall]} children="Change theme" />
-      </Pressable>
-      <Pressable onPress={handleModalPress}>
-        <Text style={[Fonts.textSmall]} children="Open modal" />
       </Pressable>
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Reset App!" />
