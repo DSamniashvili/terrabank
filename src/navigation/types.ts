@@ -18,8 +18,19 @@ import {
   HOME_STACK,
   INITIAL_STACK,
   ALL_TEMPLATES_SCREEN,
+  MODAL_STACK,
+  MODAL_SCREEN_ONE,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
+
+export type MainStackParamsList = {
+  [INITIAL_STACK]: undefined;
+  [MODAL_STACK]: NavigatorScreenParams<ModalStackParamsList>;
+};
+
+export type ModalStackParamsList = {
+  [MODAL_SCREEN_ONE]: undefined;
+};
 
 export type DashboardStackParamsList = {
   [DASHBOARD_SCREEN]: undefined;
@@ -53,10 +64,6 @@ export type GuestStackParamList = {
   [PASSCODE_LOGIN_SCREEN]: undefined;
 };
 
-export type MainStackParamsList = {
-  [INITIAL_STACK]: undefined;
-};
-
 export type TabParamList = {
   [HOME_STACK]: NavigatorScreenParams<DashboardStackParamsList>;
   [PRODUCTS_STACK]: NavigatorScreenParams<ProductsStackParamsList>;
@@ -64,6 +71,16 @@ export type TabParamList = {
   [PAYMENTS_STACK]: NavigatorScreenParams<PaymentsStackParamsList>;
   [PROFILE_STACK]: NavigatorScreenParams<ProfileStackParamsList>;
 };
+
+export type MainNavigatorParams = MainStackParamsList &
+  ModalStackParamsList &
+  DashboardStackParamsList &
+  ProductsStackParamsList &
+  TransactionsStackParamsList &
+  PaymentsStackParamsList &
+  SettingsStackParamsList &
+  ProfileStackParamsList &
+  TabParamList;
 
 // Home stack intellisense
 export type DashboardStackScreenProps<T extends keyof DashboardStackParamsList> =
@@ -137,3 +154,22 @@ export type SettingsStackRouteProps<T extends keyof SettingsStackParamsList> = R
   SettingsStackParamsList,
   T
 >;
+
+// Modal stack intellisense
+export type ModalStackScreenProps<T extends keyof ModalStackParamsList> = StackNavigationProp<
+  ModalStackParamsList,
+  T
+>;
+
+export type ModalStackRouteProps<T extends keyof ModalStackParamsList> = RouteProp<
+  ModalStackParamsList,
+  T
+>;
+
+// Main stack intellisense - for all authorized user stacks
+export type MainNavigationProps<T extends keyof MainNavigatorParams> = StackNavigationProp<
+  MainNavigatorParams,
+  T
+>;
+
+export type MainRouteProps<T extends keyof MainNavigatorParams> = RouteProp<MainNavigatorParams, T>;

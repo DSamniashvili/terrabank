@@ -64,13 +64,20 @@
     "manage_notifications": "Manage notifications"
   },
   "trustDevice": {
-    "heading": "Verify your device",
-    "title": "{{name}} დასაყენებლად საჭიროა მოწყობილობა გახადო სანდო [en]",
-    "description": "მოწყობილობის გასანდოების შემდეგ მობაილბანკში სმს და დიჯიპასის კოდის გარეშე შესვლას შეძლებთ [en]",
-    "CTAText": "გაასანდოვე მოწყობილობა [en]",
-	"passcode_s": "პასკოდის [en]",
-	"faceId_s": "Face ID - ის [en]",
-	"fingerprint_s": "Finger Print - ის [en]"
+    "heading": "Device verification",
+    "title": "To install {{name}}, it is necessary to make the device trustworthy",
+    "description": "After verifying the device, you can log into mobile banking without an SMS and digital pass code",
+    "CTAText": "Verify the device",
+    "passcode_s": "Passcode",
+    "faceId_s": "Face ID",
+    "fingerprint_s": "Fingerprint"
+	},
+  "easyLogin": {
+	"title": "Easy login",
+	"description": "For easy access, use fingerprint or password login.",
+	"activate": "Activate",
+	"other_time": "Other time",
+	"do_not_ask_again": "Do not ask again"
   },
   "dashboard": {
     "templates": "Templates",

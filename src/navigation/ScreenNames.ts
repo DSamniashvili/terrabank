@@ -1,5 +1,6 @@
 // Stacks
 export const INITIAL_STACK = 'InitialStack';
+export const MODAL_STACK = 'ModalStack';
 export const HOME_STACK = 'DashboardStack';
 export const PAYMENTS_STACK = 'PaymentsStack';
 export const TRANSACTIONS_STACK = 'TransactionsStack';
@@ -23,3 +24,6 @@ export const PASSCODE_LOGIN_SCREEN = 'PasscodeLoginScreen';
 // dashboard
 export const DASHBOARD_SCREEN = 'DashboardScreen';
 export const ALL_TEMPLATES_SCREEN = 'AllTemplatesScreen';
+
+// modal screens
+export const MODAL_SCREEN_ONE = 'ModalScreenOne';

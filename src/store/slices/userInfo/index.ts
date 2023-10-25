@@ -10,6 +10,7 @@ const initialState: UserInfoStateProps = {
     faceId: false,
     fingerPrint: false,
   },
+  IgnoreEasyLogin: false,
 };
 
 const userInfoSlice = createSlice({
@@ -25,8 +26,11 @@ const userInfoSlice = createSlice({
         state.authorizationMethods[action.payload.key] = action.payload.value;
       }
     },
+    setIgnoreEasyLogin: (state, action) => {
+      state.IgnoreEasyLogin = action.payload;
+    },
   },
 });
 
-export const { setCredentials, setAuthorizationMethod } = userInfoSlice.actions;
+export const { setCredentials, setAuthorizationMethod, setIgnoreEasyLogin } = userInfoSlice.actions;
 export const userInfoReducer = userInfoSlice.reducer;

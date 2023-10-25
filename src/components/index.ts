@@ -17,3 +17,4 @@ export { OTPModal } from './modals/index';
 export { TemplateCard } from './TemplateCard/TemplateCard';
 export { DashboardTemplates } from './DashboardTemplates/DashboardTemplates';
 export { IconComponent } from './IconComponent/IconComponent';
+export { SwitchComponent } from './Switch/Switch';
