@@ -2,6 +2,18 @@ export type GetTemplatesResponseType = {
   templates: Template[];
 };
 
+export type GetCustomerOperationsResponseTypes = {
+  ops: Transactions[];
+};
+
+export type GetCustomerOperationsRequestTypes = {
+  count: number;
+  culture: string;
+  currency: string;
+  endDate: string;
+  startDate: string;
+  accountNumber?: number | null;
+};
 export type Template = {
   id: number;
   name: string;
@@ -14,6 +26,15 @@ export type Template = {
   bankExternal: BankExternalTransaction | null;
   mobilePayment: unknown | null;
   p2pTransfer: unknown | null;
+};
+
+export type Transactions = {
+  amount: number;
+  balance: number;
+  balanceStart: number;
+  description: string;
+  docDate: any;
+  isIncome: boolean;
 };
 
 type InternalTransaction = {

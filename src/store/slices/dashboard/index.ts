@@ -7,9 +7,10 @@ const initialState: DashboardStateProps = {
     loading: false,
     error: undefined,
     templates: [],
+    transactions: [],
   },
 };
-// TODO - add extrareducers, so that setting templates does not happen in useBootstrapApp()
+// TODO - add extraReducers, so that setting templates does not happen in useBootstrapApp()
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
@@ -30,7 +31,19 @@ const dashboardSlice = createSlice({
         state.templatesResponse.loading = false;
         // handle the action when the request is rejected if needed
         // You might want to handle errors or reset the state here
+      })
+      // .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchPending, state => {
+      //   // Handle the action when the request for getCustomerOperations is pending if needed
+      // })
+      .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchFulfilled, (state, action) => {
+        state.templatesResponse.transactions = action.payload.ops;
+        // Handle the action when the request for getCustomerOperations is successful
+        // You can update the state with the returned data here
       });
+    // .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchRejected, (state, action) => {
+    //   // Handle the action when the request for getCustomerOperations is rejected if needed
+    //   // You might want to handle errors or reset the state here
+    // });
   },
 });
 

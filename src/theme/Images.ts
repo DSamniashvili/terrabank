@@ -16,5 +16,6 @@ export default function () {
     ProcreditBankLogoIcon: require('assets/images/ProcreditBankLogoIcon.png'),
     SilkBankLogoIcon: require('assets/images/SilkBankLogoIcon.png'),
     ZiraatBankLogoIcon: require('assets/images/ZiraatBankLogoIcon.png'),
+    PizzaIcon: require('assets/images/pizza.png'),
   };
 }

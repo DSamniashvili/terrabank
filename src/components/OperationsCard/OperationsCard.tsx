@@ -1,0 +1,66 @@
+import React from 'react';
+import { View } from 'react-native';
+import { useStyles } from './OperationsCard.styles';
+import { IconComponent, Text } from 'components';
+import Images from 'theme/Images';
+import dayjs from 'dayjs';
+
+export const OperationsCard = (props: any) => {
+  const { amount, docDate, description } = props;
+  const inputDate = dayjs(docDate);
+  const formattedDate = inputDate.format('D MMM, YYYY, HH:mm');
+
+  const styles = useStyles();
+
+  return (
+    <View style={styles.templateCardContainer}>
+      <View style={styles.wrapper}>
+        <IconComponent
+          native
+          pngLocalIcon={Images().PizzaIcon}
+          customIconComponentStyles={styles.customIconComponentStyles}
+        />
+        <View style={styles.templateCardContentContainer}>
+          {description ? (
+            <Text
+              children={description}
+              style={styles.templateCardTitle}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            />
+          ) : (
+            <></>
+          )}
+          {description ? (
+            <Text
+              children={description}
+              style={styles.templateCardContent}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            />
+          ) : (
+            <></>
+          )}
+        </View>
+      </View>
+      <View style={{ alignItems: 'flex-end' }}>
+        {amount && (
+          <Text
+            children={amount}
+            style={styles.templateCardTitle}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          />
+        )}
+        {formattedDate && (
+          <Text
+            children={formattedDate}
+            style={styles.templateCardTitle}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          />
+        )}
+      </View>
+    </View>
+  );
+};

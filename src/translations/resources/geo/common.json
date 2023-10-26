@@ -78,6 +78,7 @@
   "dashboard": {
     "templates": "შაბლონები",
     "template": "შაბლონი",
-    "all": "ყველა"
+    "all": "ყველა",
+    "transactions": "ბოლო ტრანზაქციები"
   }
 }

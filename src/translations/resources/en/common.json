@@ -69,6 +69,7 @@
   "dashboard": {
     "templates": "Templates",
     "template": "Template",
-    "all": "All"
+    "all": "All",
+    "transactions": "last transactions"
   }
 }
