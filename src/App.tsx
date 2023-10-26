@@ -22,8 +22,8 @@ const App = () => {
           <PersistGate loading={null} persistor={persistor}>
             <BottomSheetModalProvider>
               <Navigation />
-              <Toast ref={saveToastRef} />
               <Modal ref={saveModalRef} />
+              <Toast ref={saveToastRef} />
             </BottomSheetModalProvider>
           </PersistGate>
         </Provider>

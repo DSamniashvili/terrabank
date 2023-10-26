@@ -21,3 +21,6 @@ export type LoginAPIRequestType = {
   password: string;
   headers?: Record<string, any>;
 };
+
+export type AddTrustedDeviceAPIResponseType = {};
+export type AddTrustedDeviceAPIRequestType = {};

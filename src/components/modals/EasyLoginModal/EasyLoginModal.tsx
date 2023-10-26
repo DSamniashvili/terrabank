@@ -6,21 +6,35 @@ import { useTranslation } from 'react-i18next';
 import { EasyLoginModalProps } from './types/EasyLoginModal.types';
 import { FaceIdColoredSvg } from 'assets/SVGs';
 import { debounce } from 'utils/debounce';
-import { setIgnoreEasyLogin } from 'store/slices/userInfo';
+import { setPostponeEasyLogin, setIgnoreEasyLogin } from 'store/slices/userInfo';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
+import { useAppSelector } from 'store/hooks/useAppSelector';
+import { closeModal } from 'utils/modal';
 
 export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) => {
   const [ignoreEasyLoginValue, setIgnoreEasyLoginValue] = useState<boolean>(false);
   const { t } = useTranslation();
   const styles = useStyleTheme();
   const dispatch = useAppDispatch();
+  const { ignoreEasyLogin, postponeEasyLogin } = useAppSelector(state => state.userInfo);
 
   const debouncedDispatch = debounce((newValue: boolean) => {
     dispatch(setIgnoreEasyLogin(newValue));
   }, 500);
 
+  /**
+   * if user enables "do not remind" toggle and the redux state updates, we automatically close the modal
+   */
+  useEffect(() => {
+    (ignoreEasyLogin || postponeEasyLogin) && closeModal();
+  }, [ignoreEasyLogin, postponeEasyLogin]);
+
   const handleIgnoreEasyLoginToggle = (newValue: boolean) => {
     setIgnoreEasyLoginValue(newValue);
+  };
+
+  const handlePostponeEasyLogin = () => {
+    dispatch(setPostponeEasyLogin(true));
   };
 
   useEffect(() => {
@@ -41,7 +55,7 @@ export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) =>
         />
       </View>
       <View style={styles.buttonsContainer}>
-        <Button.Secondary text="easyLogin.other_time" size="large" onPress={handleNavigation} />
+        <Button.Text text="easyLogin.next_time" size="large" onPress={handlePostponeEasyLogin} />
         <Button.Primary text="easyLogin.activate" size="large" onPress={handleNavigation} />
       </View>
     </View>

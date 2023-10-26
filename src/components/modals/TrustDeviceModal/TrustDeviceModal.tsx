@@ -8,16 +8,16 @@ import { Button, OTPModal, Text } from 'components';
 import { useTranslation } from 'react-i18next';
 import { TrustDeviceModalProps } from './types/TrustDeviceModal.types';
 import { getTrustMethodName } from './utils/getTrustMethodName';
+import { useAddTrustedDeviceMutation } from 'services/apis';
 
 export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName }) => {
   const { t } = useTranslation();
-  //   const { navigate } = useNavigation<SettingsStackScreenProps<'SettingsScreen'>>();
+  const [addTrustedDevice] = useAddTrustedDeviceMutation();
 
-  const handleSetPasscode = () => {
-    // navigate('SettingsScreen');
-  };
+  const handleSetPasscode = () => {};
 
   const trustDevice = () => {
+    addTrustedDevice({});
     openModal({
       element: <OTPModal onFinished={handleSetPasscode} />,
     });

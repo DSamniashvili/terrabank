@@ -51,6 +51,9 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
         }
       })
       .catch(err => {
+        const errorTitle = (err as { [key: string]: any })?.data?.title;
+        openToast(errorTitle, 'error');
+        // TODO - clean the values (6 digits)
         console.error(err);
       });
   };

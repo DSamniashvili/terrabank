@@ -76,7 +76,7 @@
     "title": "Easy login",
     "description": "For easy access, use fingerprint or password login.",
     "activate": "Activate",
-    "other_time": "Other time",
+    "next_time": "Other time",
     "do_not_ask_again": "Do not ask again"
   },
   "dashboard": {
