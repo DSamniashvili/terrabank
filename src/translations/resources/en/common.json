@@ -38,10 +38,12 @@
     "blocked": "The entered data is incorrect. Your account is blocked. Contact us to unlock at the number: 2 55 00 00 or contact the nearest Terabank branch"
   },
   "passcode": {
-	"headerTitle": "Set passcode",
+    "headerTitle": "Set passcode",
     "setPasscodeTitle": "Set 4-digit passcode",
     "setPasscodeDescription": "Enter your passcode",
-    "repeatPasscodeTitle": "Repeat  passcode"
+    "repeatPasscodeTitle": "Repeat  passcode",
+	"passcodesDoNotMatch": "Passcodes do not match. please try again",
+	"device_is_trusted": "Device has been trusted!"
   },
   "settings": {
     "choose_authorization_method": "Choose authorization method",

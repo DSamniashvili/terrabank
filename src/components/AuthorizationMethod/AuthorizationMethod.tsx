@@ -16,6 +16,8 @@ import { TrustDeviceModal } from 'components/modals';
 import { useNavigation } from '@react-navigation/native';
 import { MainNavigationProps } from 'navigation/types';
 import { CREATE_PASSCODE_SCREEN, PROFILE_STACK } from 'navigation/ScreenNames';
+import { navigateWithParams } from 'utils/navigationUtils';
+import { openToast } from 'utils/toast';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const navigation = useNavigation<MainNavigationProps<'ProfileStack'>>();
@@ -48,8 +50,10 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   );
 
   const handleNavigateToPasscodeScreen = () => {
-    navigation.navigate(PROFILE_STACK, {
-      screen: CREATE_PASSCODE_SCREEN,
+    navigateWithParams(navigation, PROFILE_STACK, CREATE_PASSCODE_SCREEN, {
+      onSuccess: () => {
+        openToast(t('passcode.device_is_trusted'), 'success');
+      },
     });
   };
 

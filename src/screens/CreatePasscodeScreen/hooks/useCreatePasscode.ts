@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { setPasscode as savePasscode } from 'utils/keychain';
 import { PasscodeView } from '../CreatePasscodeScreen.types';
+import { openToast } from 'utils/toast';
+import { useTranslation } from 'react-i18next';
 
 export const useCreatePasscode = () => {
+  const { t } = useTranslation();
   const [view, setView] = useState<PasscodeView>('SetPasscode');
   const [valueLength, setValueLength] = useState(0);
   const [passcode, setPasscode] = useState('');
@@ -48,20 +51,21 @@ export const useCreatePasscode = () => {
   useEffect(() => {
     if (repeatPasscode.length === MAX_INPUT_COUNT) {
       if (passcode !== repeatPasscode) {
+        openToast(t('passcodesDoNotMatch'), 'error');
         setPasscode('');
         setRepeatPasscode('');
         setView('SetPasscode');
       } else {
         savePasscode(passcode);
-        goBack();
         setView('SetPasscode');
         setPasscode('');
         setRepeatPasscode('');
         setValueLength(0);
+        goBack();
         (params as any)?.onSuccess();
       }
     }
-  }, [repeatPasscode, passcode, goBack, params]);
+  }, [repeatPasscode, passcode, goBack, params, t]);
 
   return {
     onRepeatPasscodePress,

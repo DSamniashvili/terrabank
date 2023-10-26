@@ -42,7 +42,8 @@
     "headerTitle": "დააყენე პასკოდი",
     "setPasscodeTitle": "დააყენე 4 ნიშნა პასკოდი",
     "setPasscodeDescription": "ჩაწერე შენთვის სასურველი პასკოდი",
-    "repeatPasscodeTitle": "გაიმეორე პასკოდი"
+    "repeatPasscodeTitle": "გაიმეორე პასკოდი",
+	"passcodesDoNotMatch": "შეყვანილი პასკოდები არ ემთხვევა, გთხოვთ სცადეთ ხელახლა"
   },
   "settings": {
     "choose_authorization_method": "ავტორიზაციის მეთოდის არჩევა",
@@ -63,7 +64,8 @@
     "security_level": "უსაფრთხოების დონე",
     "trusted_devices": "სანდო მოწყობილობები",
     "additional_settings": "დამატებითი პარამეტრები",
-    "manage_notifications": "ნოტიფიკაციების მართვა"
+    "manage_notifications": "ნოტიფიკაციების მართვა",
+    "device_is_trusted": "მოწყობილობა გასანდოვდა"
   },
   "trustDevice": {
     "heading": "მოწყობილობის გასანდოება",

@@ -1,4 +1,4 @@
-import { CommonActions, DrawerActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 import references from 'utils/references';
 
 /**
@@ -22,26 +22,20 @@ export const navigate = (screen: string) =>
   references.navigator?.dispatch(CommonActions.navigate(screen));
 
 /**
- * Open drawer.
- */
-export const openDrawer = () => {
-  references.navigator?.dispatch(DrawerActions.openDrawer());
-};
-
-/**
- * Open drawer.
- */
-export const toggleDrawer = () => {
-  references.navigator?.dispatch(DrawerActions.toggleDrawer());
-};
-
-/**
  * Get current route name.
  */
 export const getCurrentRoute = () => {
   return references.navigator?.getCurrentRoute()?.name;
 };
 
-export const goToDrawer = (screen: string) => {
-  references.navigator?.dispatch(DrawerActions.jumpTo(screen));
-};
+export function navigateWithParams<P extends Record<string, any>>(
+  navigation: any,
+  stack: string,
+  screen: string,
+  params: P,
+) {
+  navigation.navigate(stack, {
+    screen,
+    params,
+  });
+}
