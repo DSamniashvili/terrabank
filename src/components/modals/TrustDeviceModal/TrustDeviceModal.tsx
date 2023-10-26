@@ -1,25 +1,29 @@
 import React, { FC } from 'react';
-import { openModal } from 'utils/modal';
+import { closeModal, openModal } from 'utils/modal';
 import { View } from 'react-native';
 import { VerifiedPhoneIcon } from 'assets/SVGs';
 import { useStyleTheme } from './TrustDeviceModal.styles';
-import { Button, OTPModal, Text } from 'components';
+import { Button, Text } from 'components';
 
 import { useTranslation } from 'react-i18next';
 import { TrustDeviceModalProps } from './types/TrustDeviceModal.types';
 import { getTrustMethodName } from './utils/getTrustMethodName';
 import { useAddTrustedDeviceMutation } from 'services/apis';
+import { OTPModalTemp } from '../OTPModal/OTPModalTemp';
 
-export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName }) => {
+export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName, handleNavigation }) => {
   const { t } = useTranslation();
   const [addTrustedDevice] = useAddTrustedDeviceMutation();
 
-  const handleSetPasscode = () => {};
+  const handleOTPVerification = () => {
+    closeModal();
+    handleNavigation?.();
+  };
 
-  const trustDevice = () => {
+  const handleTrustDevice = () => {
     addTrustedDevice({});
     openModal({
-      element: <OTPModal onFinished={handleSetPasscode} />,
+      element: <OTPModalTemp onFinished={handleOTPVerification} />,
     });
   };
   const styles = useStyleTheme();
@@ -31,7 +35,12 @@ export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName }) => {
         {t('trustDevice.title', { name: methodName ? t(getTrustMethodName(methodName)) : '' })}
       </Text>
       <Text children="trustDevice.description" style={styles.label} />
-      <Button.Primary text="trustDevice.CTAText" size="large" fullWidth onPress={trustDevice} />
+      <Button.Primary
+        text="trustDevice.CTAText"
+        size="large"
+        fullWidth
+        onPress={handleTrustDevice}
+      />
     </View>
   );
 };

@@ -42,7 +42,9 @@ const ProfileStackHeaderMap = {
     );
   },
   [CREATE_PASSCODE_SCREEN]: (props: CustomHeaderOptions) => {
-    return <CustomHeader title={'passcode.name'} backElement={{ position: 'left' }} {...props} />;
+    return (
+      <CustomHeader title={'passcode.headerTitle'} backElement={{ position: 'left' }} {...props} />
+    );
   },
 };
 

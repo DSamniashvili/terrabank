@@ -4,6 +4,7 @@ export type UserInfoStateProps = {
   authorizationMethods: SupportedAuthMethodsType;
   ignoreEasyLogin: boolean;
   postponeEasyLogin: boolean;
+  isDeviceTrusted: boolean;
 };
 
 export type AuthorizationMethodsPayload = {

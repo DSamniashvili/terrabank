@@ -12,6 +12,7 @@ const initialState: UserInfoStateProps = {
   },
   ignoreEasyLogin: false,
   postponeEasyLogin: false,
+  isDeviceTrusted: false,
 };
 
 const userInfoSlice = createSlice({

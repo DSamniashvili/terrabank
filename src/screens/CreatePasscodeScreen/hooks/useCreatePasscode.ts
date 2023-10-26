@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { setPasscode as savePasscode } from 'utils/keychain';
-import { PasscodeView } from './CreatePasscodeScreen.types';
+import { PasscodeView } from '../CreatePasscodeScreen.types';
 
 export const useCreatePasscode = () => {
   const [view, setView] = useState<PasscodeView>('SetPasscode');
@@ -11,18 +11,21 @@ export const useCreatePasscode = () => {
   const { goBack } = useNavigation();
   const { params } = useRoute();
 
+  const DELETE_KEY = 11;
+  const MAX_INPUT_COUNT = 4;
+
   const onPasscodePress = (key: number) => {
-    if (key === 11 && passcode !== '') {
+    if (key === DELETE_KEY && passcode !== '') {
       setPasscode(passcode.slice(0, passcode.length - 1));
-    } else if (key !== 11 && passcode.length < 4) {
+    } else if (key !== DELETE_KEY && passcode.length < MAX_INPUT_COUNT) {
       setPasscode(`${passcode}${key}`);
     }
   };
 
   const onRepeatPasscodePress = (key: number) => {
-    if (key === 11 && repeatPasscode !== '') {
+    if (key === DELETE_KEY && repeatPasscode !== '') {
       setRepeatPasscode(repeatPasscode.slice(0, repeatPasscode.length - 1));
-    } else if (key !== 11 && repeatPasscode.length < 4) {
+    } else if (key !== DELETE_KEY && repeatPasscode.length < MAX_INPUT_COUNT) {
       setRepeatPasscode(`${repeatPasscode}${key}`);
     }
   };
@@ -32,7 +35,7 @@ export const useCreatePasscode = () => {
   }, [passcode]);
 
   useEffect(() => {
-    if (passcode.length === 4) {
+    if (passcode.length === MAX_INPUT_COUNT) {
       setView('RepeatPasscode');
       setValueLength(0);
     }
@@ -43,13 +46,14 @@ export const useCreatePasscode = () => {
   }, [repeatPasscode]);
 
   useEffect(() => {
-    if (repeatPasscode.length === 4) {
+    if (repeatPasscode.length === MAX_INPUT_COUNT) {
       if (passcode !== repeatPasscode) {
         setPasscode('');
         setRepeatPasscode('');
         setView('SetPasscode');
       } else {
         savePasscode(passcode);
+        goBack();
         setView('SetPasscode');
         setPasscode('');
         setRepeatPasscode('');

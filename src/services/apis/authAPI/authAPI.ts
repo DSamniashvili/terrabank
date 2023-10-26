@@ -21,6 +21,12 @@ export const authAPI = createApi({
         body: credentials,
       }),
     }),
+    getTrustedDevices: builder.query<any, void>({
+      query: () => ({
+        url: URLS.getTrustedDevices,
+        method: METHOD_NAMES.GET,
+      }),
+    }),
     addTrustedDevice: builder.mutation<
       AddTrustedDeviceAPIResponseType,
       AddTrustedDeviceAPIRequestType
@@ -34,4 +40,9 @@ export const authAPI = createApi({
   }),
 });
 
-export const { useLoginUserMutation, useAddTrustedDeviceMutation } = authAPI;
+export const {
+  useLoginUserMutation,
+  useAddTrustedDeviceMutation,
+  useGetTrustedDevicesQuery,
+  useLazyGetTrustedDevicesQuery,
+} = authAPI;

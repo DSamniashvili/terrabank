@@ -13,8 +13,12 @@ import { SupportedAuthMethodsType } from 'store/slices/userInfo/types';
 import { setAuthorizationMethod } from 'store/slices/userInfo';
 import { openModal } from 'utils/modal';
 import { TrustDeviceModal } from 'components/modals';
+import { useNavigation } from '@react-navigation/native';
+import { MainNavigationProps } from 'navigation/types';
+import { CREATE_PASSCODE_SCREEN, PROFILE_STACK } from 'navigation/ScreenNames';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
+  const navigation = useNavigation<MainNavigationProps<'ProfileStack'>>();
   const { description, icon, title, methodName, requiresTrust, readOnly } = props;
   const { t } = useTranslation();
   const styles = useStyles();
@@ -43,6 +47,12 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
     500,
   );
 
+  const handleNavigateToPasscodeScreen = () => {
+    navigation.navigate(PROFILE_STACK, {
+      screen: CREATE_PASSCODE_SCREEN,
+    });
+  };
+
   /**
    *
    * @param formItemName (sms | passcode | faceId | fingerPrint)
@@ -55,7 +65,12 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
     if (formItemValue === true && requiresTrust) {
       openModal({
         title: t('trustDevice.heading'),
-        element: <TrustDeviceModal methodName={methodName} />,
+        element: (
+          <TrustDeviceModal
+            methodName={methodName}
+            handleNavigation={handleNavigateToPasscodeScreen}
+          />
+        ),
       });
     }
   };

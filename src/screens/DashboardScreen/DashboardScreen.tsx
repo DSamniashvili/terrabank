@@ -11,6 +11,7 @@ import { EasyLoginModal } from 'components/modals';
 
 import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
+import { useLazyGetTrustedDevicesQuery } from 'services/apis';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -18,6 +19,7 @@ export const DashboardScreen = () => {
   const { Fonts, darkMode: isDark } = useTheme();
   const { showEasyLoginPrompt, handleNavigateToAuthorizationMethodsScreeen } = useEasyLoginModal();
   const [getDashboardTemplates] = useLazyGetTemplatesQuery();
+  const [getTrustedDevices] = useLazyGetTrustedDevicesQuery();
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
@@ -25,7 +27,9 @@ export const DashboardScreen = () => {
 
   useEffect(() => {
     getDashboardTemplates();
-  }, [getDashboardTemplates]);
+    // TODO - needs to be added
+    getTrustedDevices();
+  }, [getDashboardTemplates, getTrustedDevices]);
 
   useEffect(() => {
     showEasyLoginPrompt &&

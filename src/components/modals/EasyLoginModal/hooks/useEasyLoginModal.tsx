@@ -22,7 +22,7 @@ export const useEasyLoginModal = () => {
   const { ignoreEasyLogin, authorizationMethods, postponeEasyLogin } = useAppSelector(
     state => state.userInfo,
   );
-  const { templates } = useAppSelector(state => state.dashboard.templatesResponse);
+  const { templates, loading } = useAppSelector(state => state.dashboard.templatesResponse);
   const { faceId, fingerPrint, passcode } = authorizationMethods;
   const easyLoginActivated = faceId || fingerPrint || passcode;
 
@@ -32,9 +32,17 @@ export const useEasyLoginModal = () => {
       !ignoreEasyLogin &&
       !easyLoginActivated &&
       !postponeEasyLogin &&
-      templates
+      !loading &&
+      templates.length
     );
-  }, [navigation, ignoreEasyLogin, easyLoginActivated, postponeEasyLogin, templates]);
+  }, [
+    navigation,
+    ignoreEasyLogin,
+    easyLoginActivated,
+    postponeEasyLogin,
+    loading,
+    templates.length,
+  ]);
 
   /**
    * handles navigation to "AuthorizationMethodsScreen", when "activate" is pressed on the EasyLoginModal
