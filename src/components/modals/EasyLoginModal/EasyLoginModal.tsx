@@ -8,26 +8,16 @@ import { FaceIdColoredSvg } from 'assets/SVGs';
 import { debounce } from 'utils/debounce';
 import { setPostponeEasyLogin, setIgnoreEasyLogin } from 'store/slices/userInfo';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { useAppSelector } from 'store/hooks/useAppSelector';
-import { closeModal } from 'utils/modal';
 
 export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) => {
   const [ignoreEasyLoginValue, setIgnoreEasyLoginValue] = useState<boolean>(false);
   const { t } = useTranslation();
   const styles = useStyleTheme();
   const dispatch = useAppDispatch();
-  const { ignoreEasyLogin, postponeEasyLogin } = useAppSelector(state => state.userInfo);
 
   const debouncedDispatch = debounce((newValue: boolean) => {
     dispatch(setIgnoreEasyLogin(newValue));
   }, 500);
-
-  /**
-   * if user enables "do not remind" toggle and the redux state updates, we automatically close the modal
-   */
-  useEffect(() => {
-    (ignoreEasyLogin || postponeEasyLogin) && closeModal();
-  }, [ignoreEasyLogin, postponeEasyLogin]);
 
   const handleIgnoreEasyLoginToggle = (newValue: boolean) => {
     setIgnoreEasyLoginValue(newValue);
@@ -40,6 +30,7 @@ export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) =>
   useEffect(() => {
     debouncedDispatch(ignoreEasyLoginValue);
   }, [debouncedDispatch, ignoreEasyLoginValue]);
+
   return (
     <View style={styles.container}>
       <View style={styles.contentWrapper}>
