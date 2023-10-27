@@ -1,9 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import {
-  AUTHORIZATION_METHODS_SCREEN,
-  PROFILE_STACK,
-  SETTINGS_STACK,
-} from 'navigation/ScreenNames';
+import { AUTHORIZATION_METHODS_SCREEN, PROFILE_STACK } from 'navigation/ScreenNames';
 import { MainNavigationProps } from 'navigation/types';
 import { useEffect, useMemo } from 'react';
 import { useAppSelector } from 'store/hooks/useAppSelector';
@@ -51,8 +47,7 @@ export const useEasyLoginModal = () => {
     closeModal();
 
     navigation.navigate(PROFILE_STACK, {
-      screen: SETTINGS_STACK,
-      params: { screen: AUTHORIZATION_METHODS_SCREEN },
+      screen: AUTHORIZATION_METHODS_SCREEN,
     });
   };
 

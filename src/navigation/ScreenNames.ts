@@ -6,7 +6,6 @@ export const PAYMENTS_STACK = 'PaymentsStack';
 export const TRANSACTIONS_STACK = 'TransactionsStack';
 export const PRODUCTS_STACK = 'ProductsStack';
 export const PROFILE_STACK = 'ProfileStack';
-export const SETTINGS_STACK = 'SettingsStack';
 // Screens
 export const PAYMENTS_SCREEN = 'PaymentsScreen';
 export const TRANSACTIONS_SCREEN = 'TransactionsScreen';

@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { setPasscode as savePasscode } from 'utils/keychain';
 import { PasscodeView } from '../CreatePasscodeScreen.types';
 import { openToast } from 'utils/toast';
 import { useTranslation } from 'react-i18next';
 
-export const useCreatePasscode = () => {
+export const useCreatePasscode = (successCallBack: () => void) => {
   const { t } = useTranslation();
   const [view, setView] = useState<PasscodeView>('SetPasscode');
   const [valueLength, setValueLength] = useState(0);
   const [passcode, setPasscode] = useState('');
   const [repeatPasscode, setRepeatPasscode] = useState('');
-  const { goBack } = useNavigation();
-  const { params } = useRoute();
 
   const DELETE_KEY = 11;
   const MAX_INPUT_COUNT = 4;
@@ -61,11 +58,10 @@ export const useCreatePasscode = () => {
         setPasscode('');
         setRepeatPasscode('');
         setValueLength(0);
-        goBack();
-        (params as any)?.onSuccess();
+        successCallBack();
       }
     }
-  }, [repeatPasscode, passcode, goBack, params, t]);
+  }, [repeatPasscode, passcode, t, successCallBack]);
 
   return {
     onRepeatPasscodePress,

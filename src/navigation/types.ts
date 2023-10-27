@@ -12,7 +12,6 @@ import {
   PROFILE_SCREEN,
   PROFILE_STACK,
   SETTINGS_SCREEN,
-  SETTINGS_STACK,
   TRANSACTIONS_SCREEN,
   TRANSACTIONS_STACK,
   HOME_STACK,
@@ -47,14 +46,10 @@ export type TransactionsStackParamsList = {
 
 export type PaymentsStackParamsList = {};
 
-export type SettingsStackParamsList = {
-  [SETTINGS_SCREEN]: undefined;
-  [AUTHORIZATION_METHODS_SCREEN]: undefined;
-};
-
 export type ProfileStackParamsList = {
   [PROFILE_SCREEN]: undefined;
-  [SETTINGS_STACK]: NavigatorScreenParams<SettingsStackParamsList>;
+  [SETTINGS_SCREEN]: undefined;
+  [AUTHORIZATION_METHODS_SCREEN]: undefined;
   [CREATE_PASSCODE_SCREEN]: undefined;
 };
 
@@ -78,7 +73,6 @@ export type MainNavigatorParams = MainStackParamsList &
   ProductsStackParamsList &
   TransactionsStackParamsList &
   PaymentsStackParamsList &
-  SettingsStackParamsList &
   ProfileStackParamsList &
   TabParamList;
 
@@ -141,17 +135,6 @@ export type GuestStackScreenProps<T extends keyof GuestStackParamList> = StackNa
 
 export type GuestStackRouteProps<T extends keyof GuestStackParamList> = RouteProp<
   GuestStackParamList,
-  T
->;
-
-// Settings stack intellisense
-export type SettingsStackScreenProps<T extends keyof SettingsStackParamsList> = StackNavigationProp<
-  SettingsStackParamsList,
-  T
->;
-
-export type SettingsStackRouteProps<T extends keyof SettingsStackParamsList> = RouteProp<
-  SettingsStackParamsList,
   T
 >;
 

@@ -1,18 +1,21 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileScreen, CreatePasscodeScreen } from 'screens';
+import {
+  ProfileScreen,
+  CreatePasscodeScreen,
+  SettingsScreen,
+  AuthorizationMethodsScreen,
+} from 'screens';
 import {
   PROFILE_SCREEN,
   AUTHORIZATION_METHODS_SCREEN,
-  SETTINGS_STACK,
   CREATE_PASSCODE_SCREEN,
+  SETTINGS_SCREEN,
 } from 'navigation/ScreenNames';
 
 import { ProfileStackParamsList } from 'navigation/types';
 import { CustomHeader } from 'components/index';
 import { CustomHeaderOptions } from 'components/CustomHeader/CustomHeader.types';
-import { SettingsStackNavigator } from './SettingsStack';
-import { hideHeader } from 'navigation/config';
 
 const ProfileStack = createStackNavigator<ProfileStackParamsList>();
 
@@ -46,6 +49,11 @@ const ProfileStackHeaderMap = {
       <CustomHeader title={'passcode.headerTitle'} backElement={{ position: 'left' }} {...props} />
     );
   },
+  [SETTINGS_SCREEN]: (props: CustomHeaderOptions) => {
+    return (
+      <CustomHeader title={'navigation.settings'} backElement={{ position: 'left' }} {...props} />
+    );
+  },
 };
 
 export const ProfileNavigator = () => {
@@ -57,7 +65,16 @@ export const ProfileNavigator = () => {
         component={ProfileScreen}
         options={{ header: ProfileStackHeaderMap[PROFILE_SCREEN] }}
       />
-      <Screen name={SETTINGS_STACK} component={SettingsStackNavigator} options={hideHeader} />
+      <Screen
+        name={SETTINGS_SCREEN}
+        component={SettingsScreen}
+        options={{ header: ProfileStackHeaderMap[SETTINGS_SCREEN] }}
+      />
+      <Screen
+        name={AUTHORIZATION_METHODS_SCREEN}
+        component={AuthorizationMethodsScreen}
+        options={{ header: ProfileStackHeaderMap[AUTHORIZATION_METHODS_SCREEN] }}
+      />
       <Screen
         name={CREATE_PASSCODE_SCREEN}
         component={CreatePasscodeScreen}

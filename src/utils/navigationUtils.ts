@@ -27,15 +27,3 @@ export const navigate = (screen: string) =>
 export const getCurrentRoute = () => {
   return references.navigator?.getCurrentRoute()?.name;
 };
-
-export function navigateWithParams<P extends Record<string, any>>(
-  navigation: any,
-  stack: string,
-  screen: string,
-  params: P,
-) {
-  navigation.navigate(stack, {
-    screen,
-    params,
-  });
-}

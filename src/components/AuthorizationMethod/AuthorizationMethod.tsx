@@ -15,9 +15,7 @@ import { openModal } from 'utils/modal';
 import { TrustDeviceModal } from 'components/modals';
 import { useNavigation } from '@react-navigation/native';
 import { MainNavigationProps } from 'navigation/types';
-import { CREATE_PASSCODE_SCREEN, PROFILE_STACK } from 'navigation/ScreenNames';
-import { navigateWithParams } from 'utils/navigationUtils';
-import { openToast } from 'utils/toast';
+import { CREATE_PASSCODE_SCREEN } from 'navigation/ScreenNames';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const navigation = useNavigation<MainNavigationProps<'ProfileStack'>>();
@@ -27,7 +25,7 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const dispatch = useAppDispatch();
 
   //   TODO - how to make device trusted?
-  const deviceIsTrusted = true;
+  //   const deviceIsTrusted = true;
   // gets values from redux store
   const authorizationMethods = useAppSelector(state => state.userInfo.authorizationMethods);
   //   sets current value in currentMethodState where methodName can be sms | passcode | faceId | fingerPrint
@@ -50,11 +48,7 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   );
 
   const handleNavigateToPasscodeScreen = () => {
-    navigateWithParams(navigation, PROFILE_STACK, CREATE_PASSCODE_SCREEN, {
-      onSuccess: () => {
-        openToast(t('passcode.device_is_trusted'), 'success');
-      },
-    });
+    navigation.navigate(CREATE_PASSCODE_SCREEN);
   };
 
   /**
@@ -97,7 +91,6 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
           control={control}
           render={({ field: { value, name } }) => (
             <SwitchComponent
-              disabled={deviceIsTrusted}
               value={value}
               onValueChange={val => handleChange(name as keyof SupportedAuthMethodsType, val)}
             />

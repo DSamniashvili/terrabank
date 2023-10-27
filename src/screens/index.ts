@@ -8,3 +8,4 @@ export { SettingsScreen } from './SettingsScreen/SettingsScreen';
 export { ProfileScreen } from './ProfileScreen/ProfileScreen';
 export { CreatePasscodeScreen } from './CreatePasscodeScreen/CreatePasscodeScreen';
 export { ModalScreenOne } from './ModalScreenOne/ModalScreenOne';
+export { AuthorizationMethodsScreen } from './AuthorizationMethodsScreen/AuthorizationMethodsScreen';
