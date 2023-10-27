@@ -1,4 +1,4 @@
-import { ChatBubble, DialPad, FaceIdSvg, FingerPrintIcon } from 'assets/SVGs';
+import { DialPad, FaceIdSvg, FingerPrintIcon } from 'assets/SVGs';
 import { Platform } from 'react-native';
 import {
   AUTH_METHOD_NAMES,
@@ -8,20 +8,11 @@ import {
 
 export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
   {
-    methodName: AUTH_METHOD_NAMES.sms as AuthmethodTypes,
-    title: 'settings.sms_code_title',
-    description: 'settings.sms_code_desc',
-    icon: ChatBubble,
-    requiresTrust: false,
-    readOnly: true,
-  },
-  {
     methodName: AUTH_METHOD_NAMES.passcode as AuthmethodTypes,
     title: 'settings.passcode_title',
     description: 'settings.passcode_desc',
     icon: DialPad,
     requiresTrust: true,
-    readOnly: false,
   },
   ...(Platform.OS === 'ios'
     ? [
@@ -31,7 +22,6 @@ export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
           description: 'settings.face_id_desc',
           icon: FaceIdSvg,
           requiresTrust: true,
-          readOnly: false,
         },
       ]
     : Platform.OS === 'android'
@@ -42,7 +32,6 @@ export const AuthorizationMethodsScreenOptions: AuthorizationMethodType[] = [
           description: 'settingsbiometric_desc',
           icon: FingerPrintIcon,
           requiresTrust: true,
-          readOnly: false,
         },
       ]
     : []),

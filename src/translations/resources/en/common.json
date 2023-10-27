@@ -42,8 +42,8 @@
     "setPasscodeTitle": "Set 4-digit passcode",
     "setPasscodeDescription": "Enter your passcode",
     "repeatPasscodeTitle": "Repeat  passcode",
-	"passcodesDoNotMatch": "Passcodes do not match. please try again",
-	"device_is_trusted": "Device has been trusted!"
+    "passcodesDoNotMatch": "Passcodes do not match. please try again",
+    "device_is_trusted": "Device has been trusted!"
   },
   "settings": {
     "choose_authorization_method": "Choose authorization method",

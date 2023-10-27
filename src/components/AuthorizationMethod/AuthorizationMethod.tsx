@@ -21,7 +21,7 @@ import { openToast } from 'utils/toast';
 
 export const AuthorizationMethod = (props: AuthorizationMethodType) => {
   const navigation = useNavigation<MainNavigationProps<'ProfileStack'>>();
-  const { description, icon, title, methodName, requiresTrust, readOnly } = props;
+  const { description, icon, title, methodName, requiresTrust } = props;
   const { t } = useTranslation();
   const styles = useStyles();
   const dispatch = useAppDispatch();
@@ -92,13 +92,12 @@ export const AuthorizationMethod = (props: AuthorizationMethodType) => {
       </View>
       <View style={styles.AuthorizationMethodEnablerContainer}>
         <Controller
-          disabled={readOnly}
           key={methodName}
           name={methodName as keyof SupportedAuthMethodsType}
           control={control}
           render={({ field: { value, name } }) => (
             <SwitchComponent
-              disabled={readOnly && deviceIsTrusted}
+              disabled={deviceIsTrusted}
               value={value}
               onValueChange={val => handleChange(name as keyof SupportedAuthMethodsType, val)}
             />

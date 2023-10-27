@@ -15,5 +15,4 @@ export type AuthorizationMethodType = {
   description: string;
   icon: (props: SvgProps) => React.JSX.Element;
   requiresTrust: boolean;
-  readOnly: boolean;
 };

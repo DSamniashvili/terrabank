@@ -5,6 +5,8 @@ import {
   AddTrustedDeviceAPIResponseType,
   LoginAPIRequestType,
   LoginAPIResponseType,
+  LogoutAPIRequestType,
+  LogoutAPIResponseType,
 } from './authAPI.types';
 import { URLS } from 'services/constants/urls';
 import { METHOD_NAMES } from 'services/constants';
@@ -19,6 +21,13 @@ export const authAPI = createApi({
         url: URLS.login,
         method: METHOD_NAMES.POST,
         body: credentials,
+      }),
+    }),
+    logoutUser: builder.mutation<LogoutAPIResponseType, LogoutAPIRequestType>({
+      query: body => ({
+        url: URLS.logout,
+        method: METHOD_NAMES.POST,
+        body: body,
       }),
     }),
     getTrustedDevices: builder.query<any, void>({
@@ -45,4 +54,5 @@ export const {
   useAddTrustedDeviceMutation,
   useGetTrustedDevicesQuery,
   useLazyGetTrustedDevicesQuery,
+  useLogoutUserMutation,
 } = authAPI;

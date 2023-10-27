@@ -43,7 +43,7 @@
     "setPasscodeTitle": "დააყენე 4 ნიშნა პასკოდი",
     "setPasscodeDescription": "ჩაწერე შენთვის სასურველი პასკოდი",
     "repeatPasscodeTitle": "გაიმეორე პასკოდი",
-	"passcodesDoNotMatch": "შეყვანილი პასკოდები არ ემთხვევა, გთხოვთ სცადეთ ხელახლა"
+    "passcodesDoNotMatch": "შეყვანილი პასკოდები არ ემთხვევა, გთხოვთ სცადეთ ხელახლა"
   },
   "settings": {
     "choose_authorization_method": "ავტორიზაციის მეთოდის არჩევა",

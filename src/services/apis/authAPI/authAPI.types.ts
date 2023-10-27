@@ -24,3 +24,7 @@ export type LoginAPIRequestType = {
 
 export type AddTrustedDeviceAPIResponseType = {};
 export type AddTrustedDeviceAPIRequestType = {};
+
+// logout
+export type LogoutAPIResponseType = {};
+export type LogoutAPIRequestType = {};
