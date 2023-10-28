@@ -3,7 +3,7 @@ import useTheme from 'hooks/useTheme';
 import { Spacing } from 'theme/Variables';
 
 export const useStyles = () => {
-  const { Layout, Fonts, FontSize, Colors } = useTheme();
+  const { Layout, FontSize, Colors } = useTheme();
 
   return StyleSheet.create({
     templateCardContainer: {
@@ -17,7 +17,6 @@ export const useStyles = () => {
       ...Layout.row,
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
-      width: 80,
     },
     discardRightMargin: {
       marginRight: Spacing.zero,
@@ -27,15 +26,20 @@ export const useStyles = () => {
       height: 48,
     },
     templateCardContentContainer: {
-      ...Layout.colCenter,
       marginTop: Spacing.s,
     },
     templateCardTitle: {
-      ...Fonts.titleSmall,
+      fontSize: FontSize.small,
+      color: Colors.textBlack,
+      fontWeight: '400',
+    },
+    dateText: {
+      fontSize: FontSize.dwarf,
+      color: Colors.textBlack,
       fontWeight: '400',
     },
     templateCardContent: {
-      fontSize: FontSize.tiny,
+      fontSize: FontSize.dwarf,
       color: Colors.textBlack500,
     },
   });

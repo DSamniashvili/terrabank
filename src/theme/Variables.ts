@@ -54,6 +54,7 @@ export const NavigationColors: Partial<ThemeNavigationColors> = {
  * FontSize
  */
 export const FontSize = {
+  dwarf: 10,
   tiny: 12,
   small: 14,
   regular: 16,

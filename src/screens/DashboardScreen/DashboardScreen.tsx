@@ -6,6 +6,7 @@ import { openModal } from 'utils/modal';
 import { storage } from 'storage/index';
 import { useStyleTheme } from './DashboardScreen.style';
 import { DashboardOperations } from 'components/DashboardOperations/DashboardOperations';
+import { DashboardUpcomingOps } from 'components/DashboardUpcomingOps/DashboardUpcomingOps';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -41,6 +42,7 @@ export const DashboardScreen = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <LanguageSwitcher />
       <DashboardTemplates />
+      <DashboardUpcomingOps />
       <DashboardOperations />
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Reset App!" />

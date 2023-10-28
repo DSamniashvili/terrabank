@@ -79,6 +79,7 @@
     "templates": "შაბლონები",
     "template": "შაბლონი",
     "all": "ყველა",
-    "transactions": "ბოლო ტრანზაქციები"
+    "transactions": "ბოლო ტრანზაქციები",
+    "upcomingTransactions": "მოახლოებული გადახდები"
   }
 }

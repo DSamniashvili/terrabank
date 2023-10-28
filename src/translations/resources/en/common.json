@@ -70,6 +70,7 @@
     "templates": "Templates",
     "template": "Template",
     "all": "All",
-    "transactions": "last transactions"
+    "transactions": "last transactions",
+    "upcomingTransactions": "upcoming transactions"
   }
 }

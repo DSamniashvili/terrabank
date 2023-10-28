@@ -55,7 +55,7 @@ export const OperationsCard = (props: any) => {
         {formattedDate && (
           <Text
             children={formattedDate}
-            style={styles.templateCardTitle}
+            style={styles.dateText}
             numberOfLines={1}
             ellipsizeMode="tail"
           />
