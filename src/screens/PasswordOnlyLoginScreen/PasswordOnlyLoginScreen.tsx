@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Pressable, View } from 'react-native';
-import { Button, Text, ControlledInput } from 'components';
+import { Button, Text, ControlledInput, Account } from 'components';
 import { withLoginScreen } from 'components/HOC';
-import { PasswordLoginBaseProps } from './PasswordLoginScreen.types';
-import useStyles from './PasswordLoginScreen.styles';
+import { PasswordOnlyLoginBaseProps } from './PasswordOnlyLoginScreen.types';
+import useStyles from './PasswordOnlyLoginScreen.styles';
 import { removeValue } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
 import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
@@ -12,21 +12,23 @@ import { useLoginUserMutation } from 'services/apis';
 import { openToast } from 'utils/toast';
 import { closeModal, openModal } from 'utils/modal';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { saveLoginName, setCredentials } from 'store/slices/userInfo';
+import { setCredentials } from 'store/slices/userInfo';
 import { OTPModalTemp } from 'components/modals/OTPModal/OTPModalTemp';
+import { useAppSelector } from 'store/hooks/useAppSelector';
 
-const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
+const PasswordOnlyLoginScreenBase: FC<PasswordOnlyLoginBaseProps> = () => {
   const { control, getValues, reset } = useForm();
   const styles = useStyles();
   const [loginUser] = useLoginUserMutation();
   const dispatch = useAppDispatch();
+  const { loginName: userName } = useAppSelector(state => state.userInfo);
 
   const getFormValues = () => {
-    const { loginName, password, save } = getValues();
+    const { password } = getValues();
     return {
-      loginName,
+      // we assign already existing loginName to the request body loginName
+      loginName: userName,
       password,
-      save,
     };
   };
 
@@ -82,22 +84,10 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
       });
   };
 
-  const handleSaveUserToggle = () => {
-    const { loginName, save } = getFormValues();
-    dispatch(saveLoginName(save ? loginName : ''));
-  };
-
   return (
     <View style={styles.wrapper}>
-      <Text children="common:passAuth.auth" headline />
-      <Text children="common:passAuth.personalData" secondary marginTop={4} />
-      <ControlledInput
-        control={control}
-        name="loginName"
-        label="common:passAuth.username"
-        marginTop={48}
-        required
-      />
+      <Account user={userName} />
+      <Button.Secondary text="მომხმარებლის შეცვლა" size="medium" />
       <ControlledInput
         control={control}
         name="password"
@@ -106,23 +96,10 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
         secureTextEntry
       />
       <View style={styles.chechboxContainer}>
-        <ControlledInput
-          control={control}
-          type="checkbox"
-          name="save"
-          label="common:passAuth.save"
-          handleChange={handleSaveUserToggle}
-        />
         <Text children="common:passAuth.forgot" label special />
       </View>
       <View style={styles.buttonCont}>
         <Button.Primary text="common:passAuth.signin" onPress={handleSignIn} fullWidth />
-        <View style={styles.dividerContainer}>
-          <View style={styles.divider} />
-          <Text children="common:passAuth.or" label special style={styles.text} />
-          <View style={styles.divider} />
-        </View>
-        <Button.Secondary text="common:passAuth.signup" onPress={() => {}} fullWidth />
       </View>
       <Pressable onPress={() => removeValue(APP_LAUNCHED)}>
         <Text children="Start with onboarding" marginTop={20} />
@@ -131,7 +108,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
   );
 };
 
-export const PasswordLoginScreen = withLoginScreen<
-  PasswordLoginBaseProps,
+export const PasswordOnlyLoginScreen = withLoginScreen<
+  PasswordOnlyLoginBaseProps,
   typeof PASSCODE_LOGIN_SCREEN
->(PasswordLoginScreenBase, PASSCODE_LOGIN_SCREEN);
+>(PasswordOnlyLoginScreenBase, PASSCODE_LOGIN_SCREEN);

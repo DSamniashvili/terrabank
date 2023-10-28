@@ -5,4 +5,5 @@ export const URLS = {
   addTrustedDevice: '/api/Auth/AddTrustedDevice',
   getTrustedDevices: '/api/Auth/GetTrustedDevices',
   getTemplates: 'api/Templates/GetTemplates',
+  getUserProfile: 'api/Customers/GetUserProfile',
 };

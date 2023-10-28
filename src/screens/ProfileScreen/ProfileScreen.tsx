@@ -5,18 +5,20 @@ import useTheme from 'hooks/useTheme';
 import { useNavigation } from '@react-navigation/native';
 import { ProfileStackScreenProps } from 'navigation/types';
 import { SETTINGS_SCREEN } from 'navigation/ScreenNames';
-import { useLogoutUserMutation } from 'services/apis';
+import { useLazyGetUserProfileInfoQuery, useLogoutUserMutation } from 'services/apis';
 
 export const ProfileScreen = () => {
   const { Fonts } = useTheme();
   const { navigate, setOptions } = useNavigation<ProfileStackScreenProps<'ProfileScreen'>>();
   const [logoutUser] = useLogoutUserMutation();
+  const [GetUserProfileInfo] = useLazyGetUserProfileInfoQuery();
 
   useEffect(() => {
+    GetUserProfileInfo();
     setOptions({
       title: 'navigation.more',
     });
-  }, [setOptions]);
+  }, [GetUserProfileInfo, setOptions]);
 
   const handleLogout = () => {
     const logoutReqBody = {};

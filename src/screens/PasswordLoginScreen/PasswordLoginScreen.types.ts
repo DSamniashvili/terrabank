@@ -1,7 +1,4 @@
-export interface PasswordLoginBaseProps {
-  //   handleLogin?: () => Promise<void>;
-  //   handleNavigation?: () => Promise<void>;
-}
+export type PasswordLoginBaseProps = {};
 
 export type FormValues = {
   username: string;

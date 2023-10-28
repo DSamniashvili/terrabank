@@ -6,6 +6,7 @@ import {
   ONBOARDING_SCREEN,
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_LOGIN_SCREEN,
+  PASSWORD_ONLY_LOGIN_SCREEN,
   PAYMENTS_STACK,
   PRODUCTS_STACK,
   PRODUCTS_SCREEN,
@@ -56,6 +57,7 @@ export type ProfileStackParamsList = {
 export type GuestStackParamList = {
   [ONBOARDING_SCREEN]: undefined;
   [PASSWORD_LOGIN_SCREEN]: undefined;
+  [PASSWORD_ONLY_LOGIN_SCREEN]: undefined;
   [PASSCODE_LOGIN_SCREEN]: undefined;
 };
 

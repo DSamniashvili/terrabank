@@ -12,6 +12,7 @@ import { EasyLoginModal } from 'components/modals';
 import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
 import { useLazyGetTrustedDevicesQuery } from 'services/apis';
+import { clearLoginName } from 'store/slices/userInfo';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -43,6 +44,11 @@ export const DashboardScreen = () => {
     storage.clearAll();
   };
 
+  //   TODO - temp!!
+  const handleClearLoginName = () => {
+    dispatch(clearLoginName());
+  };
+
   return (
     <View style={styles.container}>
       <LanguageSwitcher />
@@ -54,6 +60,9 @@ export const DashboardScreen = () => {
       </Pressable>
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Reset App!" />
+      </Pressable>
+      <Pressable onPress={handleClearLoginName}>
+        <Text style={[Fonts.semiLarge]} children="clear user's loginName" />
       </Pressable>
     </View>
   );

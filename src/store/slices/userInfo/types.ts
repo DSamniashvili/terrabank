@@ -1,3 +1,6 @@
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { GetUserInfoAPIRequestType } from 'services/apis/authAPI/authAPI.types';
+
 export type UserInfoStateProps = {
   accessToken: string;
   refreshToken: string;
@@ -5,6 +8,13 @@ export type UserInfoStateProps = {
   ignoreEasyLogin: boolean;
   postponeEasyLogin: boolean;
   isDeviceTrusted: boolean;
+  userProfileInfo: {
+    loading?: any;
+    error?: FetchBaseQueryError;
+    profileInfo: GetUserInfoAPIRequestType | {};
+  };
+  loginName: string;
+  isLoggingOut: boolean;
 };
 
 export type AuthorizationMethodsPayload = {
@@ -13,7 +23,6 @@ export type AuthorizationMethodsPayload = {
 };
 
 export type SupportedAuthMethodsType = {
-  sms?: boolean;
   passcode?: boolean;
   faceId?: boolean;
   fingerPrint?: boolean;

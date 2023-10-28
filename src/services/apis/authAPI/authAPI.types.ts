@@ -28,3 +28,31 @@ export type AddTrustedDeviceAPIRequestType = {};
 // logout
 export type LogoutAPIResponseType = {};
 export type LogoutAPIRequestType = {};
+
+export type GetUserInfoAPIRequestType = {
+  loginName: string | null;
+  customerId: number;
+  personalId: string | null;
+  firstName: string;
+  firstNameEng: string;
+  lastName: string;
+  lastNameEng: string;
+  mobile: string | null;
+  email: string | null;
+  address: string;
+  addressEng: string;
+  addressJuridical: string;
+  addressJuridicalEng: string;
+  imageId: string;
+  authType: number;
+  packageType: number;
+  showZeroAccounts: boolean;
+  hasDigipass: boolean;
+  isPensionGranted: boolean;
+  isAdult: boolean;
+  showPension: boolean;
+  mustChangePassword: boolean;
+  passwordExpired: boolean;
+  createdAutomatically: boolean;
+  secretWord: string;
+};

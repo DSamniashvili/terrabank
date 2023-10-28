@@ -15,6 +15,7 @@ export const userInfoPersistConfig = {
     'authorizationMethods',
     'ignoreEasyLogin',
     'postponeEasyLogin',
+    'loginName',
   ],
 };
 export const dashboardPersistConfig = {

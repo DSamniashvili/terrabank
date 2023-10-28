@@ -18,3 +18,4 @@ export { TemplateCard } from './TemplateCard/TemplateCard';
 export { DashboardTemplates } from './DashboardTemplates/DashboardTemplates';
 export { IconComponent } from './IconComponent/IconComponent';
 export { SwitchComponent } from './Switch/Switch';
+export { UserInfoBlock } from './UserInfoBlock/UserInfoBlock';
