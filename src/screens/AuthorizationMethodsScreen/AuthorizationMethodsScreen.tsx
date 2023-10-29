@@ -1,19 +1,35 @@
 import React from 'react';
 import { View } from 'react-native';
-import { AuthorizationMethodsScreenOptions } from './AuthorizationMethodsScreen.config';
 import { useStyleTheme } from './AuthorizationMethodsScreen.styles';
-import { AuthorizationMethodType } from './AuthorizationMethodsScreen.types';
-import { AuthorizationMethod } from 'components/index';
+import { AuthorizationMethodPasscode } from 'components/AuthorizationMethod/AuthorizationMethodPasscode/AuthorizationMethodPasscode';
+import { useNavigation } from '@react-navigation/native';
+import { CREATE_PASSCODE_SCREEN } from 'navigation/ScreenNames';
+import { MainNavigationProps } from 'navigation/types';
+import { useTranslation } from 'react-i18next';
+import { TrustDeviceModal } from 'components/modals';
+import { openModal } from 'utils/modal';
 
 export const AuthorizationMethodsScreen = () => {
   const styles = useStyleTheme();
+  const { navigate } = useNavigation<MainNavigationProps<'DashboardScreen'>>();
+  const { t } = useTranslation();
+
+  const handleNewPasscodeSet = () => {
+    openModal({
+      title: t('trustDevice.heading'),
+      element: (
+        <TrustDeviceModal
+          methodName={'passcode'}
+          handleNavigation={() => navigate(CREATE_PASSCODE_SCREEN)}
+        />
+      ),
+    });
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {AuthorizationMethodsScreenOptions?.map((method: AuthorizationMethodType) => (
-          <AuthorizationMethod key={method.methodName} {...method} />
-        ))}
+        <AuthorizationMethodPasscode handleSetNewPasscode={handleNewPasscodeSet} />
       </View>
     </View>
   );

@@ -15,12 +15,12 @@ import { closeModal } from 'utils/modal';
 export const useEasyLoginModal = () => {
   const navigation = useNavigation<MainNavigationProps<'DashboardStack'>>();
 
-  const { ignoreEasyLogin, authorizationMethods, postponeEasyLogin } = useAppSelector(
-    state => state.userInfo,
-  );
+  const { ignoreEasyLogin, postponeEasyLogin } = useAppSelector(state => state.userInfo);
   const { templates, loading } = useAppSelector(state => state.dashboard.templatesResponse);
-  const { faceId, fingerPrint, passcode } = authorizationMethods;
-  const easyLoginActivated = faceId || fingerPrint || passcode;
+
+  //   TODO - needs to be fixed - values should be coming from keychain
+  //   const easyLoginActivated = faceId || fingerPrint || passcode;
+  const easyLoginActivated = false;
 
   const showEasyLoginPrompt = useMemo(() => {
     return (

@@ -1,5 +1,5 @@
 export const URLS = {
-  authRefresh: 'auth/refresh',
+  refreshToken: '/api/Auth/RefreshToken',
   login: 'api/Auth/Login',
   logout: '/api/Auth/Logout',
   addTrustedDevice: '/api/Auth/AddTrustedDevice',

@@ -87,7 +87,7 @@ export const baseQueryWithInterceptor: BaseQueryFn<
         const refreshResult = await baseQuery(
           {
             method: 'POST',
-            url: URLS.authRefresh,
+            url: URLS.refreshToken,
             body: { refreshToken },
           },
           api,

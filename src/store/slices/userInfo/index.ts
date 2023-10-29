@@ -1,15 +1,10 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthorizationMethodsPayload, UserInfoStateProps } from './types';
+import { createSlice } from '@reduxjs/toolkit';
+import { UserInfoStateProps } from './types';
 import { authAPI } from 'services/apis';
 
 const initialState: UserInfoStateProps = {
   accessToken: '',
   refreshToken: '',
-  authorizationMethods: {
-    passcode: false,
-    faceId: false,
-    fingerPrint: false,
-  },
   ignoreEasyLogin: false,
   postponeEasyLogin: false,
   isDeviceTrusted: false,
@@ -29,11 +24,6 @@ const userInfoSlice = createSlice({
     setCredentials: (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
-    },
-    setAuthorizationMethod: (state, action: PayloadAction<AuthorizationMethodsPayload>) => {
-      if (action.payload.key in state.authorizationMethods) {
-        state.authorizationMethods[action.payload.key] = action.payload.value;
-      }
     },
     setIgnoreEasyLogin: (state, action) => {
       state.ignoreEasyLogin = action.payload;
@@ -80,7 +70,6 @@ const userInfoSlice = createSlice({
 
 export const {
   setCredentials,
-  setAuthorizationMethod,
   setIgnoreEasyLogin,
   setPostponeEasyLogin,
   saveLoginName,

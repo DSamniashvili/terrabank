@@ -52,6 +52,7 @@ export type ProfileStackParamsList = {
   [SETTINGS_SCREEN]: undefined;
   [AUTHORIZATION_METHODS_SCREEN]: undefined;
   [CREATE_PASSCODE_SCREEN]: undefined;
+  [PASSCODE_LOGIN_SCREEN]: undefined;
 };
 
 export type GuestStackParamList = {

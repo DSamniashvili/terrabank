@@ -13,6 +13,7 @@ import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAP
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
 import { useLazyGetTrustedDevicesQuery } from 'services/apis';
 import { clearLoginName } from 'store/slices/userInfo';
+import { clearCredentials } from 'utils/keychain';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -28,6 +29,7 @@ export const DashboardScreen = () => {
 
   useEffect(() => {
     getDashboardTemplates();
+    // clearCredentials();
     // TODO - needs to be added
     getTrustedDevices();
   }, [getDashboardTemplates, getTrustedDevices]);
@@ -48,6 +50,9 @@ export const DashboardScreen = () => {
   const handleClearLoginName = () => {
     dispatch(clearLoginName());
   };
+  const handleClearCredentials = () => {
+    clearCredentials();
+  };
 
   return (
     <View style={styles.container}>
@@ -63,6 +68,9 @@ export const DashboardScreen = () => {
       </Pressable>
       <Pressable onPress={handleClearLoginName}>
         <Text style={[Fonts.semiLarge]} children="clear user's loginName" />
+      </Pressable>
+      <Pressable onPress={handleClearCredentials}>
+        <Text style={[Fonts.semiLarge]} children="clear credentials" />
       </Pressable>
     </View>
   );
