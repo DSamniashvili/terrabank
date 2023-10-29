@@ -10,7 +10,6 @@ export const useStyleTheme = () => {
       paddingVertical: Spacing.lg,
     },
     loginScreenWrapperStyle: {
-      // ...Layout.alignItemsCenter,
       ...Layout.fullSize,
     },
     languageSwitcherContainer: {

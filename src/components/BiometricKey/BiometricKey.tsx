@@ -9,7 +9,7 @@ export const BiometricKey: FC<BiometricKeyProps> = ({ onPress }) => {
   const styles = useStyleTheme();
   const icon = Platform.OS === 'android' ? <FingerPrintIcon /> : <FaceIdSvg />;
   return (
-    <TouchableOpacity style={[styles.pinItem, styles.firstPinItem]} onPress={() => onPress(10)}>
+    <TouchableOpacity style={styles.pinItem} onPress={() => onPress(10)}>
       {icon}
     </TouchableOpacity>
   );

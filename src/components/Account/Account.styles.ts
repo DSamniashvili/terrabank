@@ -2,10 +2,10 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { FontSize, Spacing } = useTheme();
+  const { FontSize, Spacing, Layout } = useTheme();
   return StyleSheet.create({
     container: {
-      alignItems: 'center',
+      ...Layout.alignItemsCenter,
       marginHorizontal: Spacing.ml,
       paddingHorizontal: Spacing.xs,
       paddingVertical: Spacing.ml,

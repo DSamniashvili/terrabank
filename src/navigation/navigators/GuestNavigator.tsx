@@ -25,6 +25,7 @@ export const GuestNavigator = () => {
   const [loading, setLoading] = useState(true);
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
   const { loginName: userName } = useAppSelector(state => state.userInfo);
+  //   const { isPasscodeSet } = usePasscode();
 
   useEffect(() => {
     if (!storageKeys().includes(APP_LAUNCHED)) {

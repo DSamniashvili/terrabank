@@ -15,7 +15,7 @@ const PinKeyboard: FC<PinKeyboardProps> = ({ onPress, withoutFingerprint }) => {
   ];
 
   return (
-    <View>
+    <>
       {numericKeyRows.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.pinRow}>
           {row.map((number, index) => (
@@ -32,7 +32,7 @@ const PinKeyboard: FC<PinKeyboardProps> = ({ onPress, withoutFingerprint }) => {
         <NumericKey onPress={onPress} pinNumber={0} />
         <DeleteKey onPress={onPress} />
       </View>
-    </View>
+    </>
   );
 };
 
