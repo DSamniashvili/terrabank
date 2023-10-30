@@ -80,6 +80,7 @@
     "template": "შაბლონი",
     "all": "ყველა",
     "transactions": "ბოლო ტრანზაქციები",
-    "upcomingTransactions": "მოახლოებული გადახდები"
+    "upcomingTransactions": "მოახლოებული გადახდები",
+    "assets": "აქტივები და ვალდებულებები"
   }
 }

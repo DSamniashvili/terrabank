@@ -4,6 +4,7 @@ import {
   GetTemplatesResponseType,
   GetCustomerOperationsResponseTypes,
   GetCustomerOperationsRequestTypes,
+  GetLiabilityResponseType,
 } from './dashboardAPI.types';
 import { URLS } from 'services/constants/urls';
 import { METHOD_NAMES } from 'services/constants';
@@ -18,7 +19,6 @@ export const dashboardAPI = createApi({
         url: URLS.getTemplates,
         method: METHOD_NAMES.GET,
         headers: {
-          // TODO - temp!!!
           'X-Bank-UserIp': '1',
           'X-Bank-DeviceToken': '1',
         },
@@ -34,8 +34,59 @@ export const dashboardAPI = createApi({
         body: operations,
       }),
     }),
+    getCreditCards: builder.query<any, void>({
+      query: () => ({
+        url: URLS.getCreditCard,
+        method: METHOD_NAMES.GET,
+        headers: {
+          'X-Bank-UserIp': '1',
+          'X-Bank-DeviceToken': '1',
+        },
+      }),
+    }),
+    getOverDraft: builder.query<GetLiabilityResponseType, void>({
+      query: () => ({
+        url: URLS.getOverdraft,
+        method: METHOD_NAMES.GET,
+        headers: {
+          'X-Bank-UserIp': '1',
+          'X-Bank-DeviceToken': '1',
+        },
+      }),
+    }),
+    getLoanCustomerId: builder.query<any, void>({
+      query: () => ({
+        url: URLS.getLoanCustomerId,
+        method: METHOD_NAMES.GET,
+        headers: {
+          'X-Bank-UserIp': '1',
+          'X-Bank-DeviceToken': '1',
+        },
+      }),
+    }),
+    getAssets: builder.query<any, void>({
+      query: () => ({
+        url: URLS.getAssets,
+        method: METHOD_NAMES.GET,
+        headers: {
+          'X-Bank-UserIp': '1',
+          'X-Bank-DeviceToken': '1',
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetTemplatesQuery, useLazyGetTemplatesQuery, useGetCustomerOperationsMutation } =
-  dashboardAPI;
+export const {
+  useGetTemplatesQuery,
+  useLazyGetTemplatesQuery,
+  useGetCustomerOperationsMutation,
+  useGetCreditCardsQuery,
+  useLazyGetCreditCardsQuery,
+  useGetOverDraftQuery,
+  useLazyGetOverDraftQuery,
+  useGetLoanCustomerIdQuery,
+  useLazyGetLoanCustomerIdQuery,
+  useGetAssetsQuery,
+  useLazyGetAssetsQuery,
+} = dashboardAPI;

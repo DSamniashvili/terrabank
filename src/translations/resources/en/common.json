@@ -71,6 +71,7 @@
     "template": "Template",
     "all": "All",
     "transactions": "last transactions",
-    "upcomingTransactions": "upcoming transactions"
+    "upcomingTransactions": "upcoming transactions",
+    "assets": "assets and liabilities"
   }
 }

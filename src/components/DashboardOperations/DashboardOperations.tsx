@@ -3,7 +3,6 @@ import { FlatList, View } from 'react-native';
 import { Button, Text } from 'components';
 import { useStyles } from './DashboardOperations.styles';
 import { useAppSelector } from 'store/hooks/useAppSelector';
-// import { getDashboardTemplates } from './utils/DashboardTemplatesMapper.utils';
 import useTheme from 'hooks/useTheme';
 
 import { OperationsCard } from 'components/OperationsCard/OperationsCard';
@@ -11,7 +10,6 @@ export const DashboardOperations = () => {
   const styles = useStyles();
   const { transactions } = useAppSelector(state => state.dashboard.templatesResponse);
 
-  //   const dashboardTemplates = getDashboardTemplates(templates);
   const { Colors } = useTheme();
 
   return (

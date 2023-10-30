@@ -5,7 +5,28 @@ export type GetTemplatesResponseType = {
 export type GetCustomerOperationsResponseTypes = {
   ops: Transactions[];
 };
+export type GetLiabilityResponseType = {
+  liabilities: Liability[];
+};
 
+export type Liability = {
+  id: number;
+  accountId: number;
+  productName: string;
+  agreementNumber: string;
+  interestRate: number;
+  startDate: string | null;
+  endDate: string | null;
+  overdraftLimit: number;
+  currency: string;
+  totalDebt: number;
+  totalInterest: number;
+  usedPrincipalAmount: number;
+  creditPeriodInMonths: number;
+  restCreditPeriodInMonths: number;
+  nextPaymentDate: string | null;
+  nextPaymentAmount: number;
+};
 export type GetCustomerOperationsRequestTypes = {
   count: number;
   culture: string;

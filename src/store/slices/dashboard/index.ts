@@ -8,6 +8,10 @@ const initialState: DashboardStateProps = {
     error: undefined,
     templates: [],
     transactions: [],
+    assets: [],
+    liabilities: [],
+    creditCardLoans: [],
+    loanCustomerId: [],
   },
 };
 // TODO - add extraReducers, so that setting templates does not happen in useBootstrapApp()
@@ -19,31 +23,31 @@ const dashboardSlice = createSlice({
     builder
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchPending, state => {
         state.templatesResponse.loading = true;
-        // handle the action when the request is pending if needed
       })
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchFulfilled, (state, action) => {
-        // When the request is successful, update the state with the returned data
         state.templatesResponse.templates = action.payload.templates;
         state.templatesResponse.loading = false;
       })
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchRejected, (state, action) => {
         state.templatesResponse.error = action.payload;
         state.templatesResponse.loading = false;
-        // handle the action when the request is rejected if needed
-        // You might want to handle errors or reset the state here
       })
-      // .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchPending, state => {
-      //   // Handle the action when the request for getCustomerOperations is pending if needed
-      // })
+
       .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchFulfilled, (state, action) => {
         state.templatesResponse.transactions = action.payload.ops;
-        // Handle the action when the request for getCustomerOperations is successful
-        // You can update the state with the returned data here
+      })
+      .addMatcher(dashboardAPI.endpoints.getOverDraft.matchFulfilled, (state, action) => {
+        state.templatesResponse.liabilities = action.payload;
+      })
+      .addMatcher(dashboardAPI.endpoints.getCreditCards.matchFulfilled, (state, action) => {
+        state.templatesResponse.creditCardLoans = action.payload;
+      })
+      .addMatcher(dashboardAPI.endpoints.getLoanCustomerId.matchFulfilled, (state, action) => {
+        state.templatesResponse.loanCustomerId = action.payload;
+      })
+      .addMatcher(dashboardAPI.endpoints.getAssets.matchFulfilled, (state, action) => {
+        state.templatesResponse.assets = action.payload;
       });
-    // .addMatcher(dashboardAPI.endpoints.getCustomerOperations.matchRejected, (state, action) => {
-    //   // Handle the action when the request for getCustomerOperations is rejected if needed
-    //   // You might want to handle errors or reset the state here
-    // });
   },
 });
 

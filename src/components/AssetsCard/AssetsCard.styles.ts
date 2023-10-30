@@ -7,11 +7,10 @@ export const useStyles = () => {
 
   return StyleSheet.create({
     templateCardContainer: {
-      ...Layout.row,
+      ...Layout.col,
       ...Layout.justifyContentBetween,
-      ...Layout.alignItemsCenter,
 
-      marginRight: Spacing.s,
+      marginTop: Spacing.m,
     },
     wrapper: {
       ...Layout.row,
@@ -26,16 +25,16 @@ export const useStyles = () => {
       height: 48,
     },
     templateCardContentContainer: {
-      marginTop: Spacing.s,
+      marginTop: Spacing.xs,
+      marginLeft: Spacing.s,
     },
     templateCardTitle: {
-      width: 150,
       fontSize: FontSize.small,
-      color: Colors.textBlack,
+      color: Colors.textBlack500,
       fontWeight: '400',
     },
-    templateAmount: {
-      fontSize: FontSize.small,
+    templateCardAmount: {
+      fontSize: FontSize.regular,
       color: Colors.textBlack,
       fontWeight: '400',
     },
@@ -46,8 +45,16 @@ export const useStyles = () => {
     },
     templateCardContent: {
       fontSize: FontSize.dwarf,
-      width: 150,
       color: Colors.textBlack500,
     },
+    underline: {
+      width: '85%',
+      margin: Spacing.xxs,
+      borderBottomWidth: 1,
+      borderColor: Colors.inputBlack50,
+      ...Layout.alignSelfEnd,
+      flexShrink: 0,
+    },
+    iconView: { ...Layout.row },
   });
 };

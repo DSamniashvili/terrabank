@@ -47,7 +47,7 @@ export const OperationsCard = (props: any) => {
         {amount && (
           <Text
             children={amount}
-            style={styles.templateCardTitle}
+            style={styles.templateAmount}
             numberOfLines={1}
             ellipsizeMode="tail"
           />

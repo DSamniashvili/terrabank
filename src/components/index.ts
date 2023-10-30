@@ -17,3 +17,7 @@ export { OTPModal } from './modals/index';
 export { TemplateCard } from './TemplateCard/TemplateCard';
 export { DashboardTemplates } from './DashboardTemplates/DashboardTemplates';
 export { IconComponent } from './IconComponent/IconComponent';
+export { DashboardOperations } from './DashboardOperations/DashboardOperations';
+export { DashboardUpcomingOps } from './DashboardUpcomingOps/DashboardUpcomingOps';
+export { DashboardAssets } from './DashboardAssets/DashboardAssets';
+export { AssetsCard } from './AssetsCard/AssetsCard';

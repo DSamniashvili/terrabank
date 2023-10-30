@@ -7,5 +7,9 @@ export type DashboardStateProps = {
     transactions: Transactions[];
     loading?: any;
     error?: FetchBaseQueryError;
+    liabilities: any;
+    creditCardLoans: any;
+    loanCustomerId: any;
+    assets: any;
   };
 };
