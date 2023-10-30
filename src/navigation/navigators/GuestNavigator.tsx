@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   OnboardingScreen,
@@ -14,36 +14,33 @@ import {
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_ONLY_LOGIN_SCREEN,
 } from '../ScreenNames';
-import { setValue, storageKeys } from 'storage/index';
-import { APP_LAUNCHED } from 'storage/constants';
-import { useAppSelector } from 'store/hooks/useAppSelector';
+import { useBootstrapApp } from 'hooks/useBootstrapApp';
+import { logAllKeychainValues } from 'utils/logKeychainValues';
 
 const Stack = createStackNavigator<GuestStackParamList>();
 
 export const GuestNavigator = () => {
   const { Navigator, Screen } = Stack;
-  const [loading, setLoading] = useState(true);
-  const [isFirstLaunch, setIsFirstLaunch] = useState(false);
-  const { loginName: userName } = useAppSelector(state => state.userInfo);
-  //   const { isPasscodeSet } = usePasscode();
-
-  useEffect(() => {
-    if (!storageKeys().includes(APP_LAUNCHED)) {
-      setValue(APP_LAUNCHED, true);
-      setIsFirstLaunch(true);
-    }
-    setLoading(false);
-  }, []);
+  const { loading, savedPasscode, isFirstLaunch, userName } = useBootstrapApp();
 
   if (loading) {
     return null;
   }
 
-  const initialRoute = !isFirstLaunch
-    ? userName
-      ? PASSWORD_ONLY_LOGIN_SCREEN
-      : PASSWORD_LOGIN_SCREEN
-    : ONBOARDING_SCREEN;
+  let initialRoute: keyof GuestStackParamList = PASSWORD_LOGIN_SCREEN;
+  // eslint-disable-next-lineno-console
+  console.warn({ isFirstLaunch, savedPasscode, userName });
+
+  if (isFirstLaunch) {
+    initialRoute = ONBOARDING_SCREEN;
+  } else if (savedPasscode) {
+    initialRoute = PASSCODE_LOGIN_SCREEN;
+  } else if (userName) {
+    initialRoute = PASSWORD_ONLY_LOGIN_SCREEN;
+  }
+
+  //   TODO TEMp!
+  logAllKeychainValues();
 
   return (
     <Navigator initialRouteName={initialRoute} screenOptions={guestNavOptions}>

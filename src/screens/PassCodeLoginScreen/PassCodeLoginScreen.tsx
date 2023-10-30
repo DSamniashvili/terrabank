@@ -3,7 +3,7 @@ import { Button } from 'components/Button/Button';
 import { View } from 'react-native';
 import PinKeyboard from 'components/PinKeyboard/PinKeyboard';
 import { PinLine } from 'components/PinLine/PinLine';
-import { useStyleTheme } from './PasscodeLoginScreen.styles';
+import { useStyleTheme } from './PassCodeLoginScreen.styles';
 import { Account } from 'components/index';
 import passcodeEvents, { PASSCODE_EVENTS_PASSCODE_VERIFIED } from 'utils/eventBus';
 import { usePasscode } from 'hooks/usePasscode';
@@ -13,9 +13,8 @@ import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 interface PasscodeLoginBaseProps {}
 
 const PasscodeLoginScreenBase: FC<PasscodeLoginBaseProps> = () => {
-  const { watchKeyboard, passcodeLength } = usePasscode();
-
   const styles = useStyleTheme();
+  const { watchKeyboard, passcodeLength } = usePasscode();
 
   useEffect(() => {
     return () => {
