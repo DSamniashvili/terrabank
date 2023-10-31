@@ -32,7 +32,7 @@ const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) =
 
   headers.set('X-Bank-ChannelId', '1000006');
   headers.set('X-Bank-Ostype', '1');
-  headers.set('X-Bank-Devicedescription', '1');
+  headers.set('X-Bank-Devicedescription', 'Mobile-bank-terra');
   headers.set('X-Bank-DeviceId', '1');
   headers.set('User-Agent', 'terabank');
   headers.set('X-Bank-UserAgent', '1');
