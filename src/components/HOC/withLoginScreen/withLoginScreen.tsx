@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStyleTheme } from './withLoginScreen.styles';
 import { useNavigation } from '@react-navigation/native';
 import { GuestStackScreenProps, GuestStackParamList } from 'navigation/types';
-import { useAppSelector } from 'store/hooks/useAppSelector';
+import { useKeyChain } from 'hooks/useKeychain';
 
 interface WithLoginScreenProps {
   handleNavigation?: () => void;
@@ -26,12 +26,12 @@ export const withLoginScreen = <P extends object, T extends keyof GuestStackPara
   resolverFn?: (dependency: string) => T,
 ) => {
   return (props: WithLoginScreenProps) => {
-    const { loginName } = useAppSelector(state => state.userInfo);
+    const { savedUserName } = useKeyChain();
 
     const screenName =
       screenNameString && typeof screenNameString === 'string'
         ? screenNameString
-        : resolverFn?.(loginName);
+        : resolverFn?.(savedUserName || '');
 
     const styles = useStyleTheme();
     const { navigate } = useNavigation<GuestStackScreenProps<T>>();

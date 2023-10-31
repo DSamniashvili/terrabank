@@ -12,8 +12,7 @@ import { EasyLoginModal } from 'components/modals';
 import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
 import { useLazyGetTrustedDevicesQuery } from 'services/apis';
-import { clearLoginName } from 'store/slices/userInfo';
-import { clearCredentials } from 'utils/keychain';
+import { clearCredentials, setCredentials } from 'utils/keychain';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -48,7 +47,7 @@ export const DashboardScreen = () => {
 
   //   TODO - temp!!
   const handleClearLoginName = () => {
-    dispatch(clearLoginName());
+    setCredentials({ username: '' });
   };
   const handleClearCredentials = () => {
     clearCredentials();

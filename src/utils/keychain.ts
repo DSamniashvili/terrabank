@@ -4,8 +4,8 @@ const PASSCODE_SERVICE = 'passcodeService';
 const PASSWORD_SERVICE = 'passwordService';
 
 type Credentials = {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
 };
 
 // user + pass
@@ -20,8 +20,8 @@ export const getCredentials = async (): Promise<KeyChain.UserCredentials | boole
 
 // user + pass
 export const setCredentials = async ({
-  username,
-  password,
+  username = '',
+  password = '',
 }: Credentials): Promise<boolean | Result> => {
   try {
     return await KeyChain.setGenericPassword(username, password);
@@ -34,7 +34,10 @@ export const setCredentials = async ({
 // user + pass
 export const clearCredentials = async (): Promise<boolean> => {
   try {
-    return await KeyChain.resetGenericPassword();
+    await KeyChain.resetGenericPassword();
+    await KeyChain.resetGenericPassword({ service: PASSCODE_SERVICE });
+    await KeyChain.resetGenericPassword({ service: PASSWORD_SERVICE });
+    return true;
   } catch (error) {
     console.error('Error clearing credentials:', error);
     return false;
@@ -53,6 +56,19 @@ export const setPasswordWhenUsername = async (password: string): Promise<void> =
     }
   } catch (error) {
     console.error('Error updating password:', error);
+  }
+};
+
+export const getUserName = async (): Promise<string | null> => {
+  try {
+    const credentials = await KeyChain.getGenericPassword();
+    if (credentials && credentials.username) {
+      return credentials.username;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching username from Keychain:', error);
+    return null;
   }
 };
 

@@ -12,7 +12,6 @@ export type UserInfoStateProps = {
     error?: FetchBaseQueryError;
     profileInfo: GetUserInfoAPIRequestType | {};
   };
-  loginName: string;
   isLoggingOut: boolean;
 };
 

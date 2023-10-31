@@ -1,4 +1,4 @@
-import { getCredentials, getPasscode, getPassword } from './keychain';
+import { getCredentials, getPasscode, getPassword, clearCredentials } from './keychain';
 
 // TODO - should be removed - testing purposes only!!
 export const logAllKeychainValues = async () => {
@@ -16,6 +16,15 @@ export const logAllKeychainValues = async () => {
     console.warn('Passcode:', passcode);
 
     // Any other keychain values you've stored can be added similarly...
+  } catch (error) {
+    console.error('Error logging keychain values:', error);
+  }
+};
+
+// TODO - should be removed - testing purposes only!!
+export const clearAllKeyChainValues = async () => {
+  try {
+    clearCredentials();
   } catch (error) {
     console.error('Error logging keychain values:', error);
   }

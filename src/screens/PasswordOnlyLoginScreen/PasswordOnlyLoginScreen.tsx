@@ -12,22 +12,22 @@ import { useLoginUserMutation } from 'services/apis';
 import { openToast } from 'utils/toast';
 import { closeModal, openModal } from 'utils/modal';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { setCredentials } from 'store/slices/userInfo';
+import { setUserCredentials } from 'store/slices/userInfo';
 import { OTPModalTemp } from 'components/modals/OTPModal/OTPModalTemp';
-import { useAppSelector } from 'store/hooks/useAppSelector';
+import { useKeyChain } from 'hooks/useKeychain';
 
 const PasswordOnlyLoginScreenBase: FC<PasswordOnlyLoginBaseProps> = () => {
   const { control, getValues, reset } = useForm();
   const styles = useStyles();
   const [loginUser] = useLoginUserMutation();
   const dispatch = useAppDispatch();
-  const { loginName: userName } = useAppSelector(state => state.userInfo);
+  const { savedUserName } = useKeyChain();
 
   const getFormValues = () => {
     const { password } = getValues();
     return {
-      // we assign already existing loginName to the request body loginName
-      loginName: userName,
+      // we assign already existing userName, stored in keychain to the request body loginName
+      loginName: savedUserName || '',
       password,
     };
   };
@@ -45,7 +45,7 @@ const PasswordOnlyLoginScreenBase: FC<PasswordOnlyLoginBaseProps> = () => {
       .then(res => {
         if (res.accessToken) {
           dispatch(
-            setCredentials({
+            setUserCredentials({
               accessToken: res.accessToken,
               refreshToken: res.refreshToken,
             }),
@@ -86,7 +86,7 @@ const PasswordOnlyLoginScreenBase: FC<PasswordOnlyLoginBaseProps> = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Account user={userName} />
+      {savedUserName && <Account user={savedUserName} />}
       <Button.Secondary text="მომხმარებლის შეცვლა" size="medium" />
       <ControlledInput
         control={control}

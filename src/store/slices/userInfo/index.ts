@@ -13,7 +13,6 @@ const initialState: UserInfoStateProps = {
     error: undefined,
     profileInfo: {},
   },
-  loginName: '',
   isLoggingOut: false,
 };
 
@@ -21,7 +20,7 @@ const userInfoSlice = createSlice({
   name: 'userInfo',
   initialState,
   reducers: {
-    setCredentials: (state, action) => {
+    setUserCredentials: (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
     },
@@ -30,12 +29,6 @@ const userInfoSlice = createSlice({
     },
     setPostponeEasyLogin: (state, action) => {
       state.postponeEasyLogin = action.payload;
-    },
-    saveLoginName: (state, action) => {
-      state.loginName = action.payload;
-    },
-    clearLoginName: state => {
-      state.loginName = '';
     },
   },
   extraReducers: builder => {
@@ -68,11 +61,6 @@ const userInfoSlice = createSlice({
   },
 });
 
-export const {
-  setCredentials,
-  setIgnoreEasyLogin,
-  setPostponeEasyLogin,
-  saveLoginName,
-  clearLoginName,
-} = userInfoSlice.actions;
+export const { setUserCredentials, setIgnoreEasyLogin, setPostponeEasyLogin } =
+  userInfoSlice.actions;
 export const userInfoReducer = userInfoSlice.reducer;

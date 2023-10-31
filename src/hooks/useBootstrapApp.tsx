@@ -3,15 +3,14 @@
 import { useState, useEffect } from 'react';
 import { setValue, storageKeys } from 'storage/index';
 import { APP_LAUNCHED } from 'storage/constants';
-import { getPasscode } from 'utils/keychain';
 import { useAppSelector } from 'store/hooks/useAppSelector';
+import { useNavigationContainerRef } from '@react-navigation/native';
 
 export const useBootstrapApp = () => {
+  const navigationRef = useNavigationContainerRef();
   const [loading, setLoading] = useState(true);
-  const [savedPasscode, setSavedPasscode] = useState<string | null | undefined>();
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
-
-  const { accessToken, loginName: userName } = useAppSelector(state => state.userInfo);
+  const { accessToken } = useAppSelector(state => state.userInfo);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -22,9 +21,6 @@ export const useBootstrapApp = () => {
         setIsFirstLaunch(true);
       }
 
-      const passcode = await getPasscode();
-      setSavedPasscode(passcode);
-
       setLoading(false);
     };
 
@@ -33,9 +29,8 @@ export const useBootstrapApp = () => {
 
   return {
     loading,
-    savedPasscode,
     isFirstLaunch,
     isAuth: !!accessToken,
-    userName,
+    navigationRef,
   };
 };

@@ -95,8 +95,10 @@ export const baseQueryWithInterceptor: BaseQueryFn<
         );
 
         if (refreshResult.data) {
-          // save access and refresh tokens here
-
+          // save access and refresh tokens here - TODO
+          //   const state = api.getState() as RootState;
+          //   state.userInfo.accessToken = refreshResult.data.accessToken;
+          //   state.userInfo.refreshToken = refreshResult.data.refreshToken;
           result = await baseQuery(args, api, extraOptions);
         } else {
           // log out here

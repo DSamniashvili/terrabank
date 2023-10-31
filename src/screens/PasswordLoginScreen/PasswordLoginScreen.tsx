@@ -12,8 +12,9 @@ import { useLoginUserMutation } from 'services/apis';
 import { openToast } from 'utils/toast';
 import { closeModal, openModal } from 'utils/modal';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { saveLoginName, setCredentials } from 'store/slices/userInfo';
+import { setUserCredentials } from 'store/slices/userInfo';
 import { OTPModalTemp } from 'components/modals/OTPModal/OTPModalTemp';
+import { setCredentials } from 'utils/keychain';
 
 const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
   const { control, getValues, reset } = useForm();
@@ -43,7 +44,7 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
       .then(res => {
         if (res.accessToken) {
           dispatch(
-            setCredentials({
+            setUserCredentials({
               accessToken: res.accessToken,
               refreshToken: res.refreshToken,
             }),
@@ -84,7 +85,9 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
 
   const handleSaveUserToggle = () => {
     const { loginName, save } = getFormValues();
-    dispatch(saveLoginName(save ? loginName : ''));
+    if (save) {
+      setCredentials({ username: loginName });
+    }
   };
 
   return (

@@ -16,12 +16,14 @@ import {
 } from '../ScreenNames';
 import { useBootstrapApp } from 'hooks/useBootstrapApp';
 import { logAllKeychainValues } from 'utils/logKeychainValues';
+import { useKeyChain } from 'hooks/useKeychain';
 
 const Stack = createStackNavigator<GuestStackParamList>();
 
 export const GuestNavigator = () => {
   const { Navigator, Screen } = Stack;
-  const { loading, savedPasscode, isFirstLaunch, userName } = useBootstrapApp();
+  const { loading, isFirstLaunch } = useBootstrapApp();
+  const { savedPasscode, savedUserName } = useKeyChain();
 
   if (loading) {
     return null;
@@ -29,17 +31,19 @@ export const GuestNavigator = () => {
 
   let initialRoute: keyof GuestStackParamList = PASSWORD_LOGIN_SCREEN;
   // eslint-disable-next-lineno-console
-  console.warn({ isFirstLaunch, savedPasscode, userName });
+  //   console.log({ isFirstLaunch, savedPasscode, userName });
 
   if (isFirstLaunch) {
     initialRoute = ONBOARDING_SCREEN;
   } else if (savedPasscode) {
     initialRoute = PASSCODE_LOGIN_SCREEN;
-  } else if (userName) {
+  } else if (savedUserName) {
     initialRoute = PASSWORD_ONLY_LOGIN_SCREEN;
   }
 
   //   TODO TEMp!
+  //   logAllKeychainValues();
+  //   clearrAllKeyChainValues();
   logAllKeychainValues();
 
   return (
