@@ -12,6 +12,7 @@ const initialState: DashboardStateProps = {
     liabilities: [],
     creditCardLoans: [],
     loanCustomerId: [],
+    banker: null,
   },
 };
 // TODO - add extraReducers, so that setting templates does not happen in useBootstrapApp()
@@ -47,6 +48,9 @@ const dashboardSlice = createSlice({
       })
       .addMatcher(dashboardAPI.endpoints.getAssets.matchFulfilled, (state, action) => {
         state.templatesResponse.assets = action.payload;
+      })
+      .addMatcher(dashboardAPI.endpoints.getBanker.matchFulfilled, (state, action) => {
+        state.templatesResponse.banker = action.payload;
       });
   },
 });

@@ -20,5 +20,10 @@ export default function () {
     AssetsIcon: require('assets/images/assets.png'),
     LiabilitiesIcon: require('assets/images/liabilities.png'),
     ChevronRight: require('assets/images/ChevronRight.png'),
+    PensionIcon: require('assets/images/pensionImage.png'),
+    OpenEye: require('assets/images/OpenEye.png'),
+    CloseEye: require('assets/images/CloseEye.png'),
+    Email: require('assets/images/Email.png'),
+    Phone: require('assets/images/Phone.png'),
   };
 }

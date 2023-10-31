@@ -13,54 +13,56 @@ export const OperationsCard = (props: any) => {
   const styles = useStyles();
 
   return (
-    <View style={styles.templateCardContainer}>
-      <View style={styles.wrapper}>
-        <IconComponent
-          native
-          pngLocalIcon={Images().PizzaIcon}
-          customIconComponentStyles={styles.customIconComponentStyles}
-        />
-        <View style={styles.templateCardContentContainer}>
-          {description ? (
+    <View>
+      <View style={styles.templateCardContainer}>
+        <View style={styles.wrapper}>
+          <IconComponent
+            pngLocalIcon={Images().PizzaIcon}
+            customIconComponentStyles={styles.customIconComponentStyles}
+          />
+          <View style={styles.templateCardContentContainer}>
+            {description ? (
+              <Text
+                children={description}
+                style={styles.templateCardTitle}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              />
+            ) : (
+              <></>
+            )}
+            {description ? (
+              <Text
+                children={description}
+                style={styles.templateCardContent}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              />
+            ) : (
+              <></>
+            )}
+          </View>
+        </View>
+        <View style={{ alignItems: 'flex-end' }}>
+          {amount && (
             <Text
-              children={description}
-              style={styles.templateCardTitle}
+              children={amount}
+              style={styles.templateAmount}
               numberOfLines={1}
               ellipsizeMode="tail"
             />
-          ) : (
-            <></>
           )}
-          {description ? (
+          {formattedDate && (
             <Text
-              children={description}
-              style={styles.templateCardContent}
+              children={formattedDate}
+              style={styles.dateText}
               numberOfLines={1}
               ellipsizeMode="tail"
             />
-          ) : (
-            <></>
           )}
         </View>
       </View>
-      <View style={{ alignItems: 'flex-end' }}>
-        {amount && (
-          <Text
-            children={amount}
-            style={styles.templateAmount}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          />
-        )}
-        {formattedDate && (
-          <Text
-            children={formattedDate}
-            style={styles.dateText}
-            numberOfLines={1}
-            ellipsizeMode="tail"
-          />
-        )}
-      </View>
+      <View style={styles.underline} />
     </View>
   );
 };

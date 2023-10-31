@@ -8,10 +8,12 @@ import {
   DashboardUpcomingOps,
   LanguageSwitcher,
   Text,
+  Banker,
 } from 'components';
 
 import { storage } from 'storage/index';
 import { useStyleTheme } from './DashboardScreen.style';
+import { DashboardPensionFund } from 'components/DashboardPensionFund/DashboardPensionFund';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -33,9 +35,17 @@ export const DashboardScreen = () => {
       <View style={styles.cardContainer}>
         <DashboardAssets />
       </View>
+
+      <View style={styles.cardContainer}>
+        <DashboardPensionFund />
+      </View>
+      <View style={styles.cardContainer}>
+        <Banker />
+      </View>
       <View style={styles.cardContainer}>
         <DashboardOperations />
       </View>
+
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Reset App!" />
       </Pressable>

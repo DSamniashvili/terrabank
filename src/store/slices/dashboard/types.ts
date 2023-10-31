@@ -11,5 +11,14 @@ export type DashboardStateProps = {
     creditCardLoans: any;
     loanCustomerId: any;
     assets: any;
+    banker: null | {
+      firstName: string;
+      lastName: string;
+      branchName: string;
+      phone: string;
+      branchPhone: string;
+      email: string;
+      imageId: string;
+    };
   };
 };

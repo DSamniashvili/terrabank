@@ -31,15 +31,7 @@ export const DashboardOperations = () => {
           keyExtractor={index => String(index)}
         />
       </View>
-      <Button.Text
-        customWrapperStyle={{
-          paddingVertical: 0,
-          paddingHorizontal: 0,
-        }}
-        children={
-          <Text children={'dashboard.all'} style={styles.titleContainer} color={Colors.primary} />
-        }
-      />
+      <Button.Outline fullWidth text="dashboard.all" />
     </View>
   );
 };

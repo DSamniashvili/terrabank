@@ -15,7 +15,7 @@ export const useStyleTheme = () => {
       paddingVertical: Spacing.m,
       width: '100%',
       paddingHorizontal: Spacing.xl,
-      paddingTop: Spacing.xxl - Spacing.xxs,
+      // paddingTop: Spacing.xxl - Spacing.xxs,
       backgroundColor: Colors.white,
       marginBottom: Spacing.xxs,
     },

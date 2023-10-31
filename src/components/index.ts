@@ -21,3 +21,5 @@ export { DashboardOperations } from './DashboardOperations/DashboardOperations';
 export { DashboardUpcomingOps } from './DashboardUpcomingOps/DashboardUpcomingOps';
 export { DashboardAssets } from './DashboardAssets/DashboardAssets';
 export { AssetsCard } from './AssetsCard/AssetsCard';
+export { CardItem } from './CardItem/CardItem';
+export { Banker } from './Banker/Banker';

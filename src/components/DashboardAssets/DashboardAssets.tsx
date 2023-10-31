@@ -18,6 +18,7 @@ const filterAssetsAndCalculateSum = (assets: any[], currencyToExclude: string) =
 
 export const DashboardAssets = () => {
   const styles = useStyles();
+
   const { liabilities, creditCardLoans, loanCustomerId, assets } = useAppSelector(
     state => state.dashboard.templatesResponse,
   );

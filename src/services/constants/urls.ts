@@ -7,4 +7,6 @@ export const URLS = {
   getLoanCustomerId: 'api/Loan/GetLoanByCustomerId',
   getCustomperOps: 'api/Transaction/GetCustomerOps',
   getAssets: 'api/Deposit/GetDepositByClientId',
+  getPensions: 'api/Pensions/GetTotalSaving',
+  getBankerInfo: 'api/Customers/GetBankerInfo',
 };

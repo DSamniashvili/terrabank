@@ -1,6 +1,6 @@
 import { PressableProps, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
-export type ButtonType = 'Primary' | 'Secondary' | 'Text' | 'Destructive';
+export type ButtonType = 'Primary' | 'Secondary' | 'Text' | 'Destructive' | 'Outline';
 
 export type ButtonProps = PressableProps & {
   text?: string;

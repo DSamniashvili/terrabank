@@ -6,6 +6,7 @@ import {
   useLazyGetLoanCustomerIdQuery,
   useLazyGetCreditCardsQuery,
   useLazyGetAssetsQuery,
+  useLazyGetBankerQuery,
 } from 'services/apis/dashboardAPI/dashboardAPI';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { useAppSelector } from 'store/hooks/useAppSelector';
@@ -19,6 +20,7 @@ export const useBootstrapApp = () => {
   const [getOverDraft] = useLazyGetOverDraftQuery();
   const [getLoanCustomerId] = useLazyGetLoanCustomerIdQuery();
   const [getAssets] = useLazyGetAssetsQuery();
+  const [getBanker] = useLazyGetBankerQuery();
 
   useEffect(() => {
     if (accessToken) {
@@ -36,6 +38,7 @@ export const useBootstrapApp = () => {
       getOverDraft();
       getLoanCustomerId();
       getAssets();
+      getBanker();
     }
   }, [
     accessToken,
@@ -46,6 +49,7 @@ export const useBootstrapApp = () => {
     getLoanCustomerId,
     getAssets,
     getCreditCards,
+    getBanker,
   ]);
 
   return {

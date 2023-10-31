@@ -74,6 +74,16 @@ export const dashboardAPI = createApi({
         },
       }),
     }),
+    getBanker: builder.query<any, void>({
+      query: () => ({
+        url: URLS.getBankerInfo,
+        method: METHOD_NAMES.GET,
+        headers: {
+          'X-Bank-UserIp': '1',
+          'X-Bank-DeviceToken': '1',
+        },
+      }),
+    }),
   }),
 });
 
@@ -89,4 +99,6 @@ export const {
   useLazyGetLoanCustomerIdQuery,
   useGetAssetsQuery,
   useLazyGetAssetsQuery,
+  useGetBankerQuery,
+  useLazyGetBankerQuery,
 } = dashboardAPI;

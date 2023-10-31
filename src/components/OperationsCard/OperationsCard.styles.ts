@@ -10,7 +10,6 @@ export const useStyles = () => {
       ...Layout.row,
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
-
       marginRight: Spacing.s,
     },
     wrapper: {
@@ -27,6 +26,7 @@ export const useStyles = () => {
     },
     templateCardContentContainer: {
       marginTop: Spacing.s,
+      marginLeft: Spacing.s,
     },
     templateCardTitle: {
       width: 150,
@@ -43,6 +43,14 @@ export const useStyles = () => {
       fontSize: FontSize.dwarf,
       color: Colors.textBlack,
       fontWeight: '400',
+    },
+    underline: {
+      width: '85%',
+      margin: Spacing.xxs,
+      borderBottomWidth: 1,
+      borderColor: Colors.inputBlack50,
+      ...Layout.alignSelfEnd,
+      flexShrink: 0,
     },
     templateCardContent: {
       fontSize: FontSize.dwarf,
