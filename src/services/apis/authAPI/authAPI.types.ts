@@ -22,14 +22,27 @@ export type LoginAPIRequestType = {
   headers?: Record<string, any>;
 };
 
-export type AddTrustedDeviceAPIResponseType = {};
-export type AddTrustedDeviceAPIRequestType = {};
+export type AddTrustedDeviceAPIResponseType = {
+  accessToken: string | null;
+  refreshToken: string | null;
+  deviceToken: string;
+  success: boolean;
+  error: any;
+  pending: boolean;
+  channelData: any;
+};
+
+export type AddTrustedDeviceAPIRequestType = {
+  otp?: string;
+  Passcode?: string;
+  headers?: Record<string, any>;
+};
 
 // logout
 export type LogoutAPIResponseType = {};
 export type LogoutAPIRequestType = {};
 
-export type GetUserInfoAPIRequestType = {
+export type GetUserInfoAPIResponseType = {
   loginName: string | null;
   customerId: number;
   personalId: string | null;

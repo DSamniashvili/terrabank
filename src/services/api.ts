@@ -11,7 +11,9 @@ import { Mutex } from 'async-mutex';
 import { URLS } from './constants/urls';
 import { RootState } from 'store/index';
 
+// http://10.213.0.136:4040/swagger/index.html
 // https://middleware-tst.terabank.ge/swagger/index.html
+// const BASE_URL = 'http://10.213.0.136:4040/';
 const BASE_URL = 'https://middleware-tst.terabank.ge/';
 
 const mutex = new Mutex();
@@ -33,7 +35,6 @@ const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) =
   headers.set('X-Bank-Devicedescription', '1');
   headers.set('X-Bank-DeviceId', '1');
   headers.set('User-Agent', 'terabank');
-  headers.set('X-Bank-Isstrongauthrequest', '1');
   headers.set('X-Bank-UserAgent', '1');
 
   return headers;
@@ -57,14 +58,20 @@ export const baseQueryWithInterceptor: BaseQueryFn<
 
   // We can pass custom headers, depending on a specific API request, just like this: {headerKey: "headerValue"}
   if (typeof args !== 'string') {
-    // Check if headers exist directly in the args
-    if (args.headers) {
-      customHeaders = args.headers as Record<string, string>;
-    }
-    // If not, check if headers exist within the body of args
-    else if (args.body && args.body.headers) {
-      customHeaders = args.body.headers as Record<string, string>;
+    // console.log('addTrustedDevice', args);
+    if (args.headers && args.body && args.body.headers) {
+      customHeaders = {
+        ...(args.body.headers as Record<string, string>),
+        ...(args.headers as Record<string, string>),
+      };
       delete args.body.headers;
+    } else if (!args.headers && args.body && args.body.headers) {
+      customHeaders = {
+        ...(args.body.headers as Record<string, string>),
+      };
+      delete args.body.headers;
+    } else if (args.headers) {
+      customHeaders = args.headers as Record<string, string>;
     }
   }
 

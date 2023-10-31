@@ -16,7 +16,6 @@ export const dashboardAPI = createApi({
         headers: {
           // TODO - temp!!!
           'X-Bank-UserIp': '1',
-          'X-Bank-DeviceToken': '1',
         },
       }),
     }),

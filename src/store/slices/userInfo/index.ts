@@ -5,6 +5,7 @@ import { authAPI } from 'services/apis';
 const initialState: UserInfoStateProps = {
   accessToken: '',
   refreshToken: '',
+  deviceToken: '',
   ignoreEasyLogin: false,
   postponeEasyLogin: false,
   isDeviceTrusted: false,

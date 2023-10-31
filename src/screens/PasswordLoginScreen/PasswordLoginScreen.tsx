@@ -62,7 +62,10 @@ const PasswordLoginScreenBase: FC<PasswordLoginBaseProps> = () => {
 
   const handleSignIn = () => {
     const { loginName, password } = getFormValues();
-    loginUser({ loginName, password })
+    loginUser({
+      loginName,
+      password,
+    })
       .unwrap()
       .then(res => {
         if (res.success && res.accessToken === null) {

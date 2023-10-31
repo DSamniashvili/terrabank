@@ -17,6 +17,7 @@ import {
 import { useBootstrapApp } from 'hooks/useBootstrapApp';
 import { logAllKeychainValues } from 'utils/logKeychainValues';
 import { useKeyChain } from 'hooks/useKeychain';
+import { Alert } from 'react-native';
 
 const Stack = createStackNavigator<GuestStackParamList>();
 
@@ -36,6 +37,7 @@ export const GuestNavigator = () => {
   if (isFirstLaunch) {
     initialRoute = ONBOARDING_SCREEN;
   } else if (savedPasscode) {
+    Alert.alert(savedPasscode);
     initialRoute = PASSCODE_LOGIN_SCREEN;
   } else if (savedUserName) {
     initialRoute = PASSWORD_ONLY_LOGIN_SCREEN;

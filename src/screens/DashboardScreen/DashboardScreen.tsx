@@ -63,7 +63,7 @@ export const DashboardScreen = () => {
         <Text style={[Fonts.textSmall]} children="Change theme" />
       </Pressable>
       <Pressable onPress={handleClearAllFromStorage}>
-        <Text style={[Fonts.semiLarge]} children="Reset App!" />
+        <Text style={[Fonts.semiLarge]} children="Clear all from storage" />
       </Pressable>
       <Pressable onPress={handleClearLoginName}>
         <Text style={[Fonts.semiLarge]} children="clear user's loginName" />
