@@ -31,7 +31,6 @@ export const AuthorizationMethodPasscode: FC<AuthorizationMethodPasscodeProps> =
   }, [isPasscodeSet, setValue]);
 
   const handleSwitchToggle = (newValue: boolean) => {
-    // setValue('passcode', newValue);
     if (newValue === false) {
       verifyPasscode(() => {
         clearPasscode();

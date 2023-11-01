@@ -14,33 +14,17 @@ import {
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_ONLY_LOGIN_SCREEN,
 } from '../ScreenNames';
-import { useBootstrapApp } from 'hooks/useBootstrapApp';
 import { logAllKeychainValues } from 'utils/logKeychainValues';
-import { useKeyChain } from 'hooks/useKeychain';
-import { Alert } from 'react-native';
+import { useGuestNavigator } from 'hooks/useGuestNavigator';
 
 const Stack = createStackNavigator<GuestStackParamList>();
 
 export const GuestNavigator = () => {
   const { Navigator, Screen } = Stack;
-  const { loading, isFirstLaunch } = useBootstrapApp();
-  const { savedPasscode, savedUserName } = useKeyChain();
+  const { loading, initialRoute } = useGuestNavigator();
 
   if (loading) {
     return null;
-  }
-
-  let initialRoute: keyof GuestStackParamList = PASSWORD_LOGIN_SCREEN;
-  // eslint-disable-next-lineno-console
-  //   console.log({ isFirstLaunch, savedPasscode, userName });
-
-  if (isFirstLaunch) {
-    initialRoute = ONBOARDING_SCREEN;
-  } else if (savedPasscode) {
-    Alert.alert(savedPasscode);
-    initialRoute = PASSCODE_LOGIN_SCREEN;
-  } else if (savedUserName) {
-    initialRoute = PASSWORD_ONLY_LOGIN_SCREEN;
   }
 
   //   TODO TEMp!
