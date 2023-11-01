@@ -28,6 +28,7 @@ export const useLogin = (savedUsername?: string | null | undefined) => {
       loginName,
       password,
       headers: {
+        'X-Bank-Isstrongauthrequest': '1',
         'X-Bank-Otp': OTPCode,
       },
     })
@@ -52,7 +53,13 @@ export const useLogin = (savedUsername?: string | null | undefined) => {
 
   const handleSignIn = () => {
     const { loginName, password } = getFormValues();
-    loginUser({ loginName, password })
+    loginUser({
+      loginName,
+      password,
+      headers: {
+        'X-Bank-Isstrongauthrequest': '1',
+      },
+    })
       .unwrap()
       .then(res => {
         if (res.success && !res.accessToken) {

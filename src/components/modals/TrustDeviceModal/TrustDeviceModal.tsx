@@ -12,17 +12,19 @@ import { useAddTrustedDeviceMutation } from 'services/apis';
 import { OTPModalTemp } from '../OTPModal/OTPModalTemp';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { setUserCredentials } from 'store/slices/userInfo';
+import { useAppSelector } from 'store/hooks/useAppSelector';
 
 export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName, handleNavigation }) => {
   const { t } = useTranslation();
   const [addTrustedDevice] = useAddTrustedDeviceMutation();
   const dispatch = useAppDispatch();
+  const { userIp } = useAppSelector(state => state.deviceInfo);
 
   const handleOTPVerification = (deviceToken?: string) => (OTPCode: string) => {
     addTrustedDevice({
       headers: {
         'X-Bank-Otp': OTPCode,
-        'X-Bank-userip': '1',
+        'X-Bank-userip': userIp,
         'X-Bank-Getauthmethod': 'false',
         'X-Bank-Sendotp': 'false',
         'X-Bank-Isstrongauthrequest': 'false',
@@ -49,7 +51,7 @@ export const TrustDeviceModal: FC<TrustDeviceModalProps> = ({ methodName, handle
   const handleTrustDevice = () => {
     addTrustedDevice({
       headers: {
-        'X-Bank-userip': '1',
+        'X-Bank-userip': userIp,
         'X-Bank-Getauthmethod': 'true',
         'X-Bank-Sendotp': 'true',
         'X-Bank-Isstrongauthrequest': 'true',

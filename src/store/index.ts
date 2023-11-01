@@ -14,17 +14,25 @@ import { themeReducer } from './slices/theme';
 import { authAPI } from '../services/apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 import { userInfoReducer } from './slices/userInfo';
-import { dashboardPersistConfig, themePersistConfig, userInfoPersistConfig } from './config';
+import {
+  dashboardPersistConfig,
+  deviceInfoPersistConfig,
+  themePersistConfig,
+  userInfoPersistConfig,
+} from './config';
 import { dashboardAPI } from 'services/apis/dashboardAPI/dashboardAPI';
 import { dashboardReducer } from './slices/dashboard';
+import { deviceInfoReducer } from './slices/deviceInfo';
 
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 const persistedUserInfo = persistReducer(userInfoPersistConfig, userInfoReducer);
+const persistedDeviceInfo = persistReducer(deviceInfoPersistConfig, deviceInfoReducer);
 const persistedDashboard = persistReducer(dashboardPersistConfig, dashboardReducer);
 
 const reducers = combineReducers({
   theme: persistedTheme,
   userInfo: persistedUserInfo,
+  deviceInfo: persistedDeviceInfo,
   dashboard: persistedDashboard,
   [authAPI.reducerPath]: authAPI.reducer,
   [dashboardAPI.reducerPath]: dashboardAPI.reducer,

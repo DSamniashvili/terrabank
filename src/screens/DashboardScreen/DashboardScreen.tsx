@@ -13,6 +13,7 @@ import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAP
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
 import { useLazyGetTrustedDevicesQuery } from 'services/apis';
 import { clearCredentials, setCredentials } from 'utils/keychain';
+import { useAppSelector } from 'store/hooks/useAppSelector';
 
 export const DashboardScreen = () => {
   const styles = useStyleTheme();
@@ -21,17 +22,27 @@ export const DashboardScreen = () => {
   const { showEasyLoginPrompt, handleNavigateToAuthorizationMethodsScreeen } = useEasyLoginModal();
   const [getDashboardTemplates] = useLazyGetTemplatesQuery();
   const [getTrustedDevices] = useLazyGetTrustedDevicesQuery();
+  const { userIp, deviceToken } = useAppSelector(state => state.deviceInfo);
 
   const onChangeTheme = () => {
     dispatch(changeTheme({ darkMode: !isDark }));
   };
 
   useEffect(() => {
-    getDashboardTemplates();
+    getDashboardTemplates({
+      headers: {
+        'X-Bank-UserIp': userIp,
+      },
+    });
     // clearCredentials();
     // TODO - needs to be added
-    getTrustedDevices();
-  }, [getDashboardTemplates, getTrustedDevices]);
+    getTrustedDevices({
+      headers: {
+        'X-Bank-UserIp': userIp,
+        'X-Bank-DeviceToken': deviceToken,
+      },
+    });
+  }, [deviceToken, getDashboardTemplates, getTrustedDevices, userIp]);
 
   useEffect(() => {
     showEasyLoginPrompt &&

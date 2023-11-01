@@ -2,6 +2,11 @@ export type GetTemplatesResponseType = {
   templates: Template[];
 };
 
+export type GetTemplatesRequestType = {
+  //   headers?: Record<string, any>; TODO - update!!
+  headers?: any;
+};
+
 export type Template = {
   id: number;
   name: string;

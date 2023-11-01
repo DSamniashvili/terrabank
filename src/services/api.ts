@@ -31,11 +31,11 @@ const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) =
   }
 
   headers.set('X-Bank-ChannelId', '1000006');
-  headers.set('X-Bank-Ostype', '1');
+  headers.set('X-Bank-Ostype', state.deviceInfo.osType || '1');
   headers.set('X-Bank-Devicedescription', 'Mobile-bank-terra');
-  headers.set('X-Bank-DeviceId', '1');
+  headers.set('X-Bank-DeviceId', state.deviceInfo.deviceId || '1');
   headers.set('User-Agent', 'terabank');
-  headers.set('X-Bank-UserAgent', '1');
+  headers.set('X-Bank-UserAgent', state.deviceInfo.userAgent || '1');
 
   return headers;
 };

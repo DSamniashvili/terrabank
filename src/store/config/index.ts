@@ -23,3 +23,9 @@ export const dashboardPersistConfig = {
   storage: reduxStorage,
   whitelist: ['templates'],
 };
+
+export const deviceInfoPersistConfig = {
+  key: 'deviceInfo',
+  storage: reduxStorage,
+  whitelist: ['deviceId', 'userAgent', 'osType', 'userIp', 'deviceToken'],
+};

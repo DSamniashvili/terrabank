@@ -3,6 +3,8 @@ import { baseQueryWithInterceptor } from 'services/api';
 import {
   AddTrustedDeviceAPIRequestType,
   AddTrustedDeviceAPIResponseType,
+  GetTrustedDevicesAPIRequestType,
+  GetTrustedDevicesAPIResponseType,
   GetUserInfoAPIResponseType,
   LoginAPIRequestType,
   LoginAPIResponseType,
@@ -22,31 +24,24 @@ export const authAPI = createApi({
         url: URLS.login,
         method: METHOD_NAMES.POST,
         body: credentials,
-        headers: {
-          'X-Bank-Isstrongauthrequest': '1',
-        },
       }),
     }),
     logoutUser: builder.mutation<LogoutAPIResponseType, LogoutAPIRequestType>({
       query: body => ({
         url: URLS.logout,
         method: METHOD_NAMES.POST,
-        headers: {
-          // TODO - temp!!!
-          'X-Bank-UserIp': '1',
-          'X-Bank-DeviceToken': '1',
-        },
         body: body,
       }),
     }),
-    getTrustedDevices: builder.query<any, void>({
-      query: () => ({
+    // TODO - make a mutation, not query
+    getTrustedDevices: builder.query<
+      GetTrustedDevicesAPIResponseType,
+      GetTrustedDevicesAPIRequestType
+    >({
+      query: body => ({
         url: URLS.getTrustedDevices,
         method: METHOD_NAMES.POST,
-        headers: {
-          'X-Bank-UserIp': '1',
-          'X-Bank-DeviceToken': '1',
-        },
+        body: body,
       }),
     }),
     addTrustedDevice: builder.mutation<
@@ -57,9 +52,6 @@ export const authAPI = createApi({
         url: URLS.addTrustedDevice,
         method: METHOD_NAMES.POST,
         body: body,
-        headers: {
-          'X-Bank-UserIp': '1',
-        },
       }),
     }),
     getUserProfileInfo: builder.query<GetUserInfoAPIResponseType, void>({

@@ -42,6 +42,13 @@ export type AddTrustedDeviceAPIRequestType = {
 export type LogoutAPIResponseType = {};
 export type LogoutAPIRequestType = {};
 
+// getTrustedDevices
+export type GetTrustedDevicesAPIResponseType = {};
+
+export type GetTrustedDevicesAPIRequestType = {
+  headers?: Record<string, any>;
+};
+
 export type GetUserInfoAPIResponseType = {
   loginName: string | null;
   customerId: number;

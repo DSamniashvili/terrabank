@@ -32,9 +32,9 @@ export const useGuestNavigator = () => {
         setInitialRoute(ONBOARDING_SCREEN);
       } else if (savedPasscode) {
         // setInitialRoute(PASSCODE_LOGIN_SCREEN);
-        verifyPasscode(() => {
-          handleSignIn();
-        });
+        // verifyPasscode(() => {
+        //   handleSignIn();
+        // });
       } else if (!savedPasscode && savedUserName) {
         setInitialRoute(PASSWORD_ONLY_LOGIN_SCREEN);
       }
