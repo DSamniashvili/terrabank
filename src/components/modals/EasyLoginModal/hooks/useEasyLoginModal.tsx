@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { useKeyChain } from 'hooks/useKeychain';
 import { AUTHORIZATION_METHODS_SCREEN, PROFILE_STACK } from 'navigation/ScreenNames';
 import { MainNavigationProps } from 'navigation/types';
 import { useEffect, useMemo } from 'react';
@@ -17,28 +18,20 @@ export const useEasyLoginModal = () => {
 
   const { ignoreEasyLogin, postponeEasyLogin } = useAppSelector(state => state.userInfo);
   const { templates, loading } = useAppSelector(state => state.dashboard.templatesResponse);
-
   //   TODO - needs to be fixed - values should be coming from keychain
   //   const easyLoginActivated = faceId || fingerPrint || passcode;
-  const easyLoginActivated = false;
+  const { savedPasscode } = useKeyChain();
 
   const showEasyLoginPrompt = useMemo(() => {
     return (
       navigation.isFocused() &&
       !ignoreEasyLogin &&
-      !easyLoginActivated &&
+      !savedPasscode &&
       !postponeEasyLogin &&
       !loading &&
       templates.length
     );
-  }, [
-    navigation,
-    ignoreEasyLogin,
-    easyLoginActivated,
-    postponeEasyLogin,
-    loading,
-    templates.length,
-  ]);
+  }, [navigation, ignoreEasyLogin, savedPasscode, postponeEasyLogin, loading, templates.length]);
 
   /**
    * handles navigation to "AuthorizationMethodsScreen", when "activate" is pressed on the EasyLoginModal

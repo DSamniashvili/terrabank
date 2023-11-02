@@ -43,7 +43,23 @@ export type LogoutAPIResponseType = {};
 export type LogoutAPIRequestType = {};
 
 // getTrustedDevices
-export type GetTrustedDevicesAPIResponseType = {};
+
+export type DeviceObjectType = {
+  description: string;
+  id: string;
+  isCurrentDevice: boolean;
+  lastConnectionIp: string | null;
+  lastConnectionTimeUtc: string;
+  osType: 'Android' | 'Other'; // assuming these are the only two possible values
+  trustTimeUtc: string;
+};
+export type GetTrustedDevicesAPIResponseType = {
+  channelData: null;
+  devices: DeviceObjectType[];
+  error: null;
+  pending: boolean;
+  success: boolean;
+};
 
 export type GetTrustedDevicesAPIRequestType = {
   headers?: Record<string, any>;

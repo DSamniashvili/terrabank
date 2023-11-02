@@ -8,22 +8,28 @@ import { MainNavigationProps } from 'navigation/types';
 import { useTranslation } from 'react-i18next';
 import { TrustDeviceModal } from 'components/modals';
 import { openModal } from 'utils/modal';
+import { useAppSelector } from 'store/hooks/useAppSelector';
 
 export const AuthorizationMethodsScreen = () => {
   const styles = useStyleTheme();
   const { navigate } = useNavigation<MainNavigationProps<'DashboardScreen'>>();
   const { t } = useTranslation();
+  const { isTrusted } = useAppSelector(state => state.deviceInfo.isDeviceTrusted);
 
   const handleNewPasscodeSet = () => {
-    openModal({
-      title: t('trustDevice.heading'),
-      element: (
-        <TrustDeviceModal
-          methodName={'passcode'}
-          handleNavigation={() => navigate(CREATE_PASSCODE_SCREEN)}
-        />
-      ),
-    });
+    if (isTrusted) {
+      navigate(CREATE_PASSCODE_SCREEN);
+    } else {
+      openModal({
+        title: t('trustDevice.heading'),
+        element: (
+          <TrustDeviceModal
+            methodName={'passcode'}
+            handleNavigation={() => navigate(CREATE_PASSCODE_SCREEN)}
+          />
+        ),
+      });
+    }
   };
 
   return (

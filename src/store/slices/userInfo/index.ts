@@ -8,7 +8,6 @@ const initialState: UserInfoStateProps = {
   deviceToken: '',
   ignoreEasyLogin: false,
   postponeEasyLogin: false,
-  isDeviceTrusted: false,
   userProfileInfo: {
     loading: false,
     error: undefined,

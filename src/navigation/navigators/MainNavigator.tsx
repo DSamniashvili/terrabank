@@ -22,6 +22,7 @@ import {
 import { hideHeader, presentationModal, tabOptions } from 'navigation/config';
 import { MainStackParamsList, TabParamList } from 'navigation/types';
 import { ModalNavigator } from 'navigation/stacks/ModalStack';
+import { useMainNavigator } from 'hooks/useMainNavigator';
 
 const transactionsIcon = () => (
   <View
@@ -78,6 +79,7 @@ const TabNavigator = () => {
 
 export const MainNavigator = () => {
   const { Navigator, Screen, Group } = RootStack;
+  useMainNavigator();
 
   return (
     <Navigator initialRouteName={INITIAL_STACK} screenOptions={hideHeader}>

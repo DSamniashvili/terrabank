@@ -7,7 +7,6 @@ export type UserInfoStateProps = {
   deviceToken: string;
   ignoreEasyLogin: boolean;
   postponeEasyLogin: boolean;
-  isDeviceTrusted: boolean;
   userProfileInfo: {
     loading?: any;
     error?: FetchBaseQueryError;

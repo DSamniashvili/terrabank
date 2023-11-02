@@ -7,6 +7,11 @@ const initialState: DeviceInfoStateProps = {
   osType: null,
   userIp: null,
   deviceToken: null,
+  isDeviceTrusted: {
+    isTrusted: null,
+    isLoading: null,
+    error: null,
+  },
 };
 
 const deviceInfoSlice = createSlice({
@@ -20,8 +25,11 @@ const deviceInfoSlice = createSlice({
       state.userIp = action.payload.userIp;
       state.deviceToken = action.payload.deviceToken;
     },
+    setIsDeviceTrusted: (state, action) => {
+      state.isDeviceTrusted = action.payload;
+    },
   },
 });
 
-export const { setDeviceInfo } = deviceInfoSlice.actions;
+export const { setDeviceInfo, setIsDeviceTrusted } = deviceInfoSlice.actions;
 export const deviceInfoReducer = deviceInfoSlice.reducer;
