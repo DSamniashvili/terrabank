@@ -38,9 +38,6 @@ const ProfileStackHeaderMap = {
       <CustomHeader
         title={'settings.choose_authorization_method'}
         backElement={{ position: 'left' }}
-        customHeaderContainerStyle={{
-          backgroundColor: '#fff',
-        }}
         bottomBorder
         {...props}
       />
@@ -56,7 +53,6 @@ const ProfileStackHeaderMap = {
       <CustomHeader title={'passcode.headerTitle'} backElement={{ position: 'left' }} {...props} />
     );
   },
-
   [SETTINGS_SCREEN]: (props: CustomHeaderOptions) => {
     return (
       <CustomHeader title={'navigation.settings'} backElement={{ position: 'left' }} {...props} />

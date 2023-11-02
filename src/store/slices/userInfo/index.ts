@@ -11,7 +11,7 @@ const initialState: UserInfoStateProps = {
   userProfileInfo: {
     loading: false,
     error: undefined,
-    profileInfo: {},
+    profileInfo: null,
   },
   isLoggingOut: false,
 };

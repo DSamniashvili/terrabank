@@ -10,7 +10,7 @@ export type UserInfoStateProps = {
   userProfileInfo: {
     loading?: any;
     error?: FetchBaseQueryError;
-    profileInfo: GetUserInfoAPIResponseType | {};
+    profileInfo: GetUserInfoAPIResponseType | null;
   };
   isLoggingOut: boolean;
 };

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { View } from 'react-native';
 import { useStyleTheme } from './EasyLoginModal.styles';
 import { Button, SwitchComponent, Text } from 'components';
@@ -21,15 +21,12 @@ export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) =>
 
   const handleIgnoreEasyLoginToggle = (newValue: boolean) => {
     setIgnoreEasyLoginValue(newValue);
+    debouncedDispatch(newValue);
   };
 
   const handlePostponeEasyLogin = () => {
     dispatch(setPostponeEasyLogin(true));
   };
-
-  useEffect(() => {
-    debouncedDispatch(ignoreEasyLoginValue);
-  }, [debouncedDispatch, ignoreEasyLoginValue]);
 
   return (
     <View style={styles.container}>

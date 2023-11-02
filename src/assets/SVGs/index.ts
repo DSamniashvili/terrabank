@@ -31,3 +31,4 @@ export { VerifiedPhoneIcon } from './VerifiedPhone';
 export { ResendIcon } from './Resend';
 export { TerraLogoIcon } from './TerraLogoIcon';
 export { FaceIdColoredSvg } from './FaceIdColored';
+export { LogoutIcon } from './Logout';

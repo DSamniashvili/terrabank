@@ -91,5 +91,9 @@
     "templates": "შაბლონები",
     "template": "შაბლონი",
     "all": "ყველა"
+  },
+  "profile": {
+	"edit_settings": "პარამეტრების ცვლილება",
+	"logout": "გასვლა"
   }
 }
