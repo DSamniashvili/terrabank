@@ -22,9 +22,9 @@ export const useBootstrapApp = () => {
       const userAgent = await DeviceInfo.getUserAgent();
       const osType = await DeviceInfo.getBaseOs();
       const userIp = await DeviceInfo.getIpAddress();
-      const deviceToken = await DeviceInfo.getDeviceToken();
+      //   const deviceToken = await DeviceInfo.getDeviceToken();
 
-      dispatch(setDeviceInfo({ deviceId, userAgent, osType, userIp, deviceToken }));
+      dispatch(setDeviceInfo({ deviceId, userAgent, osType, userIp }));
     };
 
     fetchDeviceInfo();

@@ -6,4 +6,5 @@ export const URLS = {
   getTrustedDevices: '/api/Auth/GetTrustedDevices',
   getTemplates: 'api/Templates/GetTemplates',
   getUserProfile: 'api/Customers/GetUserProfile',
+  loginByRefreshToken: '/api/Auth/LoginByRefreshToken',
 };

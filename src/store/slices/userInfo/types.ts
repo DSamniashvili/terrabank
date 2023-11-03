@@ -13,6 +13,7 @@ export type UserInfoStateProps = {
     profileInfo: GetUserInfoAPIResponseType | null;
   };
   isLoggingOut: boolean;
+  otpCode?: string;
 };
 
 export type SupportedAuthMethodsType = {

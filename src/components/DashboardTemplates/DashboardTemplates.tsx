@@ -14,7 +14,7 @@ export const DashboardTemplates = () => {
   const { Colors } = useTheme();
   const { navigate } = useNavigation<DashboardStackScreenProps<'DashboardScreen'>>();
   const { templates } = useAppSelector(state => state.dashboard.templatesResponse);
-  const mappedDashboardTemplates = mapDashboardTemplates(templates);
+  const mappedDashboardTemplates = mapDashboardTemplates(templates || []);
 
   const handleNavigation = () => {
     navigate(ALL_TEMPLATES_SCREEN);

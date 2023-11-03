@@ -54,6 +54,7 @@ export const useCreatePasscode = (successCallBack: () => void) => {
         setView('SetPasscode');
       } else {
         savePasscode(passcode);
+        // savePasscode('11111');
         setView('SetPasscode');
         setPasscode('');
         setRepeatPasscode('');

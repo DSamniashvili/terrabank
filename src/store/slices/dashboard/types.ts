@@ -3,7 +3,7 @@ import { Template } from 'services/apis/dashboardAPI/dashboardAPI.types';
 
 export type DashboardStateProps = {
   templatesResponse: {
-    templates: Template[];
+    templates?: Template[];
     loading?: any;
     error?: FetchBaseQueryError;
   };

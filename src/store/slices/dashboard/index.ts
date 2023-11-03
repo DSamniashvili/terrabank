@@ -21,7 +21,7 @@ const dashboardSlice = createSlice({
       })
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchFulfilled, (state, action) => {
         // When the request is successful, update the state with the returned data
-        state.templatesResponse.templates = action.payload.templates;
+        state.templatesResponse.templates = action?.payload?.templates || [];
         state.templatesResponse.loading = false;
       })
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchRejected, (state, action) => {

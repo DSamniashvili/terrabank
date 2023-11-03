@@ -9,7 +9,6 @@ import {
   PASSWORD_ONLY_LOGIN_SCREEN,
 } from 'navigation/ScreenNames';
 import { usePasscode } from './usePasscode';
-import { useLoginUserMutation } from 'services/apis';
 import { useLogin } from './useLogin';
 
 export const useGuestNavigator = () => {
@@ -19,8 +18,7 @@ export const useGuestNavigator = () => {
   const [initialRoute, setInitialRoute] =
     useState<keyof GuestStackParamList>(PASSWORD_LOGIN_SCREEN);
   const { verifyPasscode } = usePasscode();
-  const [loginUser] = useLoginUserMutation();
-  const { handleSignIn } = useLogin(savedUserName);
+  const { handlePasscodeSignIn } = useLogin();
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -31,10 +29,9 @@ export const useGuestNavigator = () => {
         setIsFirstLaunch(true);
         setInitialRoute(ONBOARDING_SCREEN);
       } else if (savedPasscode) {
-        // setInitialRoute(PASSCODE_LOGIN_SCREEN);
-        // verifyPasscode(() => {
-        //   handleSignIn();
-        // });
+        verifyPasscode(() => {
+          handlePasscodeSignIn();
+        });
       } else if (!savedPasscode && savedUserName) {
         setInitialRoute(PASSWORD_ONLY_LOGIN_SCREEN);
       }
@@ -45,7 +42,7 @@ export const useGuestNavigator = () => {
     };
 
     fetchInitialData();
-  }, [handleSignIn, keyChainLoading, loginUser, savedPasscode, savedUserName, verifyPasscode]);
+  }, [handlePasscodeSignIn, keyChainLoading, savedPasscode, savedUserName, verifyPasscode]);
 
   return {
     loading,

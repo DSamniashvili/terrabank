@@ -8,6 +8,8 @@ import {
   GetUserInfoAPIResponseType,
   LoginAPIRequestType,
   LoginAPIResponseType,
+  LoginByRefreshTokenAPIRequestType,
+  LoginByRefreshTokenAPIResponseType,
   LogoutAPIRequestType,
   LogoutAPIResponseType,
 } from './authAPI.types';
@@ -60,6 +62,16 @@ export const authAPI = createApi({
         method: METHOD_NAMES.GET,
       }),
     }),
+    loginByRefreshToken: builder.mutation<
+      LoginByRefreshTokenAPIResponseType,
+      LoginByRefreshTokenAPIRequestType
+    >({
+      query: credentials => ({
+        url: URLS.loginByRefreshToken,
+        method: METHOD_NAMES.POST,
+        body: credentials,
+      }),
+    }),
   }),
 });
 
@@ -71,4 +83,5 @@ export const {
   useLogoutUserMutation,
   useGetUserProfileInfoQuery,
   useLazyGetUserProfileInfoQuery,
+  useLoginByRefreshTokenMutation,
 } = authAPI;

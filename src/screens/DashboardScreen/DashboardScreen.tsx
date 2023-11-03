@@ -47,9 +47,14 @@ export const DashboardScreen = () => {
   useEffect(() => {
     showEasyLoginPrompt &&
       openModal({
-        element: <EasyLoginModal handleNavigation={handleNavigateToAuthorizationMethodsScreeen} />,
+        element: (
+          <EasyLoginModal
+            openAuthorizationMethodsScreen={handleNavigateToAuthorizationMethodsScreeen}
+          />
+        ),
       });
-  }, [handleNavigateToAuthorizationMethodsScreeen, showEasyLoginPrompt]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showEasyLoginPrompt]);
 
   //   TODO - temp!!
   const handleClearAllFromStorage = () => {

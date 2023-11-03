@@ -6,6 +6,7 @@ const initialState: UserInfoStateProps = {
   accessToken: '',
   refreshToken: '',
   deviceToken: '',
+  otpCode: '',
   ignoreEasyLogin: false,
   postponeEasyLogin: false,
   userProfileInfo: {
@@ -30,6 +31,9 @@ const userInfoSlice = createSlice({
     setPostponeEasyLogin: (state, action) => {
       state.postponeEasyLogin = action.payload;
     },
+    setOTPCode: (state, action) => {
+      state.otpCode = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -52,7 +56,6 @@ const userInfoSlice = createSlice({
         state.postponeEasyLogin = initialState.postponeEasyLogin;
         state.isLoggingOut = false;
         state.accessToken = initialState.accessToken;
-        state.refreshToken = initialState.refreshToken;
         state.userProfileInfo = initialState.userProfileInfo;
       })
       .addMatcher(authAPI.endpoints.logoutUser.matchRejected, state => {
@@ -61,6 +64,6 @@ const userInfoSlice = createSlice({
   },
 });
 
-export const { setUserCredentials, setIgnoreEasyLogin, setPostponeEasyLogin } =
+export const { setUserCredentials, setIgnoreEasyLogin, setPostponeEasyLogin, setOTPCode } =
   userInfoSlice.actions;
 export const userInfoReducer = userInfoSlice.reducer;

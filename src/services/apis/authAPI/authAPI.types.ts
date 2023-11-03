@@ -21,6 +21,15 @@ export type LoginAPIRequestType = {
   password: string;
   headers?: Record<string, any>;
 };
+export type LoginByRefreshTokenAPIResponseType = {
+  [key: string]: any;
+};
+
+export type LoginByRefreshTokenAPIRequestType = {
+  refreshToken: string;
+  Passcode: string;
+  headers?: Record<string, any>;
+};
 
 export type AddTrustedDeviceAPIResponseType = {
   accessToken: string | null;

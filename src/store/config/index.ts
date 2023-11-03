@@ -12,7 +12,6 @@ export const userInfoPersistConfig = {
   whitelist: [
     'accessToken',
     'refreshToken',
-    'deviceToken',
     'authorizationMethods',
     'ignoreEasyLogin',
     'postponeEasyLogin',

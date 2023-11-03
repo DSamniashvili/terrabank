@@ -9,7 +9,7 @@ import { debounce } from 'utils/debounce';
 import { setPostponeEasyLogin, setIgnoreEasyLogin } from 'store/slices/userInfo';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 
-export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) => {
+export const EasyLoginModal: FC<EasyLoginModalProps> = ({ openAuthorizationMethodsScreen }) => {
   const [ignoreEasyLoginValue, setIgnoreEasyLoginValue] = useState<boolean>(false);
   const { t } = useTranslation();
   const styles = useStyleTheme();
@@ -44,7 +44,11 @@ export const EasyLoginModal: FC<EasyLoginModalProps> = ({ handleNavigation }) =>
       </View>
       <View style={styles.buttonsContainer}>
         <Button.Text text="easyLogin.next_time" size="large" onPress={handlePostponeEasyLogin} />
-        <Button.Primary text="easyLogin.activate" size="large" onPress={handleNavigation} />
+        <Button.Primary
+          text="easyLogin.activate"
+          size="large"
+          onPress={openAuthorizationMethodsScreen}
+        />
       </View>
     </View>
   );

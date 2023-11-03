@@ -29,9 +29,9 @@ export const useEasyLoginModal = () => {
       !savedPasscode &&
       !postponeEasyLogin &&
       !loading &&
-      templates.length
+      templates?.length
     );
-  }, [navigation, ignoreEasyLogin, savedPasscode, postponeEasyLogin, loading, templates.length]);
+  }, [navigation, ignoreEasyLogin, savedPasscode, postponeEasyLogin, loading, templates?.length]);
 
   /**
    * handles navigation to "AuthorizationMethodsScreen", when "activate" is pressed on the EasyLoginModal

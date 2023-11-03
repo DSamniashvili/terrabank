@@ -7,12 +7,15 @@ import { openToast } from 'utils/toast';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { ProfileStackScreenProps } from 'navigation/types';
+import { useTrustDeviceModal } from 'components/modals/TrustDeviceModal/hooks/useTrustDeviceModal';
 
 export const CreatePasscodeScreen = () => {
   const { t } = useTranslation();
   const { goBack } = useNavigation<ProfileStackScreenProps<'CreatePasscodeScreen'>>();
+  const { handleOTPVerification } = useTrustDeviceModal();
 
   const successCallBack = () => {
+    handleOTPVerification();
     goBack();
     openToast(t('passcode.device_is_trusted'), 'success');
   };
