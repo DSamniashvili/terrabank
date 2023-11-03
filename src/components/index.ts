@@ -12,3 +12,6 @@ export { CustomHeader } from './CustomHeader';
 export { NumericKey } from './NumericKey/NumericKey';
 export { AuthorizationMethod } from './AuthorizationMethod/AuthorizationMethod';
 export { Account } from './Account/Account';
+export { DashboardTabBar } from './DashboardTabBar/DashboardTabBar';
+export { HomeHeader } from './HomeHeader/HomeHeader';
+export { CardsAndBalance } from './CardsAndBalance/CardsAndBalance';

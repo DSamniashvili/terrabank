@@ -29,3 +29,4 @@ export { Swap } from './Swap';
 export { CreditCard } from './CreditCard';
 export { Smartphone } from './Smartphone';
 export { ArrowRight } from './ArrowRight';
+export { TeraLogo } from './TeraLogo';

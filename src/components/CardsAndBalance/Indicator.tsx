@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
 import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import { DotProps, IndicatorProps } from './types';
-import useStyles from './styles';
+import { DotProps, IndicatorProps } from './CardsAndBalance.types';
+import useStyles from './CardsAndBalance.styles';
+import { config } from 'utils/config';
 
-const CARD_WIDTH = 320;
+const CARD_WIDTH = config.mobileWidth - 48;
 
 const Dot = ({ index, translateX }: DotProps) => {
   const styles = useStyles();
@@ -12,15 +13,15 @@ const Dot = ({ index, translateX }: DotProps) => {
   const reanimatedStyle = useAnimatedStyle(() => {
     const opacity = interpolate(
       translateX.value,
-      [(index - 1) * (CARD_WIDTH + 20), index * (CARD_WIDTH + 20), (index + 1) * (CARD_WIDTH + 20)],
+      [(index - 1) * CARD_WIDTH, index * CARD_WIDTH, (index + 1) * CARD_WIDTH],
       [0.6, 1, 0.6],
       Extrapolate.CLAMP,
     );
 
     const scale = interpolate(
       translateX.value,
-      [(index - 1) * (CARD_WIDTH + 20), index * (CARD_WIDTH + 20), (index + 1) * (CARD_WIDTH + 20)],
-      [0.9, 1.2, 0.9],
+      [(index - 1) * CARD_WIDTH, index * CARD_WIDTH, (index + 1) * CARD_WIDTH],
+      [1, 2, 1],
       Extrapolate.CLAMP,
     );
 
@@ -37,9 +38,9 @@ const Indicator: FC<IndicatorProps> = ({ data, translateX }) => {
   return (
     <View style={styles.dotContainer}>
       {data.map((_, i) => {
-        // if (i === 0) {
-        //   return;
-        // }
+        if (i === 0) {
+          return;
+        }
         return <Dot key={i} index={i} translateX={translateX} />;
       })}
     </View>

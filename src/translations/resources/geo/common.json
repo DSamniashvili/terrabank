@@ -53,5 +53,15 @@
     "face_id_desc": "გაიარე ავტორიზაცია Face ID-ით",
     "biometric_title": "ბიომეტრიული მონაცემები",
     "biometric_desc": "სისტემაში პაროლის და ერთჯერადი კოდის გამოყენებით"
+  },
+  "dashboard": {
+    "tera": "ტერაბანკი",
+    "otherBanks": "სხვა ბანკები",
+    "account": "ჩემი ანგარიში",
+    "availableBalance": "ხელმისაწვდომი ნაშთი",
+    "terabytes": "{{value}} ტერაბაიტი",
+    "transfer": "გადარიცხვა",
+    "pay": "გადახდა",
+    "fill": "შევსება"
   }
 }

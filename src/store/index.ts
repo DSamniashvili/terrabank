@@ -16,6 +16,7 @@ import { reduxStorage } from './reduxStorage';
 import { exampleApi } from './apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
+import { dashboardReducer } from './slices/Dashboard';
 
 const counterPersistConfig = {
   key: 'counter',
@@ -46,6 +47,7 @@ const reducers = combineReducers({
   counter: persistedCounter,
   authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
+  dashboard: dashboardReducer,
   [exampleApi.reducerPath]: exampleApi.reducer,
 });
 

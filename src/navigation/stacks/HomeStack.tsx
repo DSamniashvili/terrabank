@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DashboardTabs } from 'screens';
-import { useTranslation } from 'react-i18next';
+import { Home } from 'screens';
 import { HOME_SCREEN } from 'navigation/ScreenNames';
 
 export type HomeStackParamList = {
@@ -12,17 +11,10 @@ const Stack = createStackNavigator<HomeStackParamList>();
 
 export const HomeStack = () => {
   const { Navigator, Screen } = Stack;
-  const { t } = useTranslation();
+
   return (
     <Navigator initialRouteName={HOME_SCREEN}>
-      <Screen
-        name={HOME_SCREEN}
-        component={DashboardTabs}
-        options={{
-          title: t('common:navigation.hello'),
-          headerTitleAlign: 'left',
-        }}
-      />
+      <Screen name={HOME_SCREEN} component={Home} options={{ headerShown: false }} />
     </Navigator>
   );
 };

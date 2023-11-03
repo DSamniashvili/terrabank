@@ -75,6 +75,9 @@ export default function ({}: ThemeVariables) {
     justifyContentStart: {
       justifyContent: 'flex-start',
     },
+    justifyContentEvenly: {
+      justifyContent: 'space-evenly',
+    },
     scrollSpaceAround: {
       flexGrow: 1,
       justifyContent: 'space-around',
@@ -140,6 +143,9 @@ export default function ({}: ThemeVariables) {
     },
     right0: {
       right: 0,
+    },
+    overflowHidden: {
+      overflow: 'hidden',
     },
   });
 }
