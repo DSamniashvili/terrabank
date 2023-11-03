@@ -5,8 +5,7 @@ export const useStyleTheme = () => {
   const { Spacing, Layout, Colors } = useTheme();
   return StyleSheet.create({
     container: {
-      backgroundColor: Colors.gray,
-      ...Layout.justifyContentStart,
+      ...Layout.center,
       borderTopLeftRadius: Spacing.xl,
       borderTopRightRadius: Spacing.xl,
     },
@@ -15,6 +14,14 @@ export const useStyleTheme = () => {
       paddingVertical: Spacing.m,
       width: '100%',
       paddingHorizontal: Spacing.xl,
+      // paddingTop: Spacing.xxl - Spacing.xxs,
+      backgroundColor: Colors.white,
+      marginBottom: Spacing.xxs,
+    },
+    cardContainerFull: {
+      paddingVertical: Spacing.m,
+      width: '100%',
+      paddingLeft: Spacing.xl,
       // paddingTop: Spacing.xxl - Spacing.xxs,
       backgroundColor: Colors.white,
       marginBottom: Spacing.xxs,

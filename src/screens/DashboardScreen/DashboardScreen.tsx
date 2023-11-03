@@ -26,10 +26,10 @@ export const DashboardScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container} style={styles.containerFlex}>
       <LanguageSwitcher />
-      <View style={styles.cardContainer}>
+      <View style={styles.cardContainerFull}>
         <DashboardTemplates />
       </View>
-      <View style={styles.cardContainer}>
+      <View style={styles.cardContainerFull}>
         <DashboardUpcomingOps />
       </View>
       <View style={styles.cardContainer}>

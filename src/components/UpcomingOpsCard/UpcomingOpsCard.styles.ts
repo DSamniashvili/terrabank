@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
 import { Spacing } from 'theme/Variables';
-import { verticalScale, horizontalScale } from 'utils/config';
+import { horizontalScale } from 'utils/config';
 export const useStyles = () => {
   const { Layout, Fonts, FontSize, Colors } = useTheme();
 
@@ -11,7 +11,7 @@ export const useStyles = () => {
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsStart,
       width: horizontalScale(158),
-      height: verticalScale(188),
+      height: 188,
       backgroundColor: Colors.gray,
       borderRadius: 12,
       marginRight: Spacing.s,
