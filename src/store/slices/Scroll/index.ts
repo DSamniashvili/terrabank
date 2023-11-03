@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { DashboardState } from './types';
+import { ScrollState } from './types';
 
-const initialState: DashboardState = {
+const initialState: ScrollState = {
   shouldCloseCards: false,
   scrollToTop: false,
 };
 
-const dashboardSlice = createSlice({
-  name: 'counter',
+const scrollSlice = createSlice({
+  name: 'scroll',
   initialState,
   reducers: {
     setShouldCloseCards: (state, { payload }) => {
@@ -19,5 +19,5 @@ const dashboardSlice = createSlice({
   },
 });
 
-export const { setShouldCloseCards, setScrollToTop } = dashboardSlice.actions;
-export const dashboardReducer = dashboardSlice.reducer;
+export const { setShouldCloseCards, setScrollToTop } = scrollSlice.actions;
+export const scrollReducer = scrollSlice.reducer;

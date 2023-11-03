@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Animated, { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import { Text } from '../index';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { setScrollToTop } from 'store/slices/Dashboard';
+import { setScrollToTop } from 'store/slices/Scroll';
 import { IHomeHeaderProps } from './HomeHeader.types';
 import { useStyles } from './HomeHeader.styles';
 import useTheme from 'hooks/useTheme';

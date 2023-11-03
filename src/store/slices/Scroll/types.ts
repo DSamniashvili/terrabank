@@ -1,4 +1,4 @@
-export type DashboardState = {
+export type ScrollState = {
   shouldCloseCards: boolean;
   scrollToTop: boolean;
 };

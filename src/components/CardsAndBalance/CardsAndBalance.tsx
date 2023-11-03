@@ -16,7 +16,7 @@ import { config } from 'utils/config';
 import useTheme from 'hooks/useTheme';
 
 import AvailableBalance from './AvailableBalance';
-import { setShouldCloseCards } from 'store/slices/Dashboard';
+import { setShouldCloseCards } from 'store/slices/Scroll';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { ICardsAndBalanceProps } from './CardsAndBalance.types';
 import useStyles from './CardsAndBalance.styles';
@@ -55,7 +55,7 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
   const ref = useRef<Animated.ScrollView>(null);
   const progress = useSharedValue(0);
   const translateX = useSharedValue(0);
-  const { shouldCloseCards } = useAppSelector(state => state.dashboard);
+  const { shouldCloseCards } = useAppSelector(state => state.scroll);
 
   useEffect(() => {
     if (shouldCloseCards) {

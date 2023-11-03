@@ -14,7 +14,7 @@ import { HOME, INITIAL, PAYMENTS, PRODUCTS, PROFILE, TRANSACTIONS } from 'naviga
 import { hideHeader, tabOptions } from 'navigation/config';
 import { MainStackParamsList, TabParamList } from 'navigation/types';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { setShouldCloseCards } from 'store/slices/Dashboard';
+import { setShouldCloseCards } from 'store/slices/Scroll';
 
 const transactionsIcon = () => (
   <View

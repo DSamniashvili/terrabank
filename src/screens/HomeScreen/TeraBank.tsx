@@ -12,7 +12,7 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { setScrollToTop, setShouldCloseCards } from 'store/slices/Dashboard';
+import { setScrollToTop, setShouldCloseCards } from 'store/slices/Scroll';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { useTheme } from 'hooks';
 import { CardsAndBalance } from 'components';
@@ -292,7 +292,7 @@ const MainBank: FC<ITeraBankProps> = ({ translateY, zIndex }) => {
   const dispatch = useAppDispatch();
   const anim = useSharedValue(0);
   const ref: RefObject<SectionList<any, any>> = useRef(null);
-  const { scrollToTop } = useAppSelector(state => state.dashboard);
+  const { scrollToTop } = useAppSelector(state => state.scroll);
 
   useScrollToTop(ref);
 
