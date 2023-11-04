@@ -7,4 +7,6 @@ export type DashboardStateProps = {
     loading?: any;
     error?: FetchBaseQueryError;
   };
+  shouldCloseCards: boolean;
+  scrollToTop: boolean;
 };

@@ -69,6 +69,14 @@
   "dashboard": {
     "templates": "Templates",
     "template": "Template",
-    "all": "All"
+    "all": "All",
+    "tera": "Tera Bank",
+    "otherBanks": "Other Banks",
+    "account": "My Account",
+    "availableBalance": "Available balance",
+    "terabytes": "{{value}} terabyte",
+    "transfer": "Transfer",
+    "pay": "Payment",
+    "fill": "Top up"
   }
 }

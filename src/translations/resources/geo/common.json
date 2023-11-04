@@ -78,6 +78,14 @@
   "dashboard": {
     "templates": "შაბლონები",
     "template": "შაბლონი",
-    "all": "ყველა"
+    "all": "ყველა",
+    "tera": "ტერაბანკი",
+    "otherBanks": "სხვა ბანკები",
+    "account": "ჩემი ანგარიში",
+    "availableBalance": "ხელმისაწვდომი ნაშთი",
+    "terabytes": "{{value}} ტერაბაიტი",
+    "transfer": "გადარიცხვა",
+    "pay": "გადახდა",
+    "fill": "შევსება"
   }
 }
