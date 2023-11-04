@@ -5,7 +5,6 @@ export const useStyleTheme = () => {
   const { Spacing, Colors, FontSize, Layout } = useTheme();
   return StyleSheet.create({
     container: {
-      flex: 1,
       ...Layout.center,
       paddingBottom: Spacing.xxl,
     },

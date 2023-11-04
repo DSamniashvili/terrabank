@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { useTheme } from 'hooks';
 import { config } from 'utils/config';
+import { OPEN_CARD_WIDTH } from 'constants/Dashboard';
 
 const { mobileWidth } = config;
-const CARD_WIDTH = mobileWidth - 48 - 24;
 
 const useStyles = () => {
   const { Colors, Layout, MetricsSizes, Spacing, Fonts } = useTheme();
@@ -15,7 +15,8 @@ const useStyles = () => {
       width: mobileWidth,
     },
     scrollViewWrapper: {
-      height: 250,
+      height: 200,
+      marginTop: MetricsSizes.regular,
     },
     content: {
       gap: 10,
@@ -30,7 +31,6 @@ const useStyles = () => {
     card: {
       borderRadius: Spacing.m,
       padding: Spacing.xl,
-      top: MetricsSizes.regular,
     },
     cardHeader: {
       ...Layout.row,
@@ -63,7 +63,7 @@ const useStyles = () => {
       left: Spacing.xl,
       height: 120,
       zIndex: 999,
-      width: CARD_WIDTH - 50,
+      width: OPEN_CARD_WIDTH - 50,
     },
     availableBalance: {
       ...Layout.row,
@@ -75,6 +75,7 @@ const useStyles = () => {
       ...Layout.row,
       ...Layout.center,
       gap: Spacing.lg,
+      marginTop: MetricsSizes.regular,
     },
     actionButton: {
       ...Layout.alignItemsCenter,

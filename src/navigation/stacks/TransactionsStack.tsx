@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from 'screens';
+import { DashboardScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { TRANSACTIONS_SCREEN } from 'navigation/ScreenNames';
 
@@ -17,7 +17,7 @@ export const TransactionsStack = () => {
     <Navigator initialRouteName={TRANSACTIONS_SCREEN}>
       <Screen
         name={TRANSACTIONS_SCREEN}
-        component={HomeScreen}
+        component={DashboardScreen}
         options={{
           title: t('common:navigation.transactions'),
           headerTitleAlign: 'left',

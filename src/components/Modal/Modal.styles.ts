@@ -2,9 +2,10 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyles = () => {
-  const { Spacing, Layout, Colors } = useTheme();
+  const { Spacing, Layout, Colors, FontSize } = useTheme();
   return StyleSheet.create({
     container: {
+      ...Layout.justifyContentCenter,
       padding: Spacing.xl,
       paddingBottom: Spacing.xxl,
     },
@@ -19,7 +20,17 @@ export const useStyles = () => {
     },
     closeButton: {
       ...Layout.alignSelfEnd,
-      marginBottom: Spacing.s,
+      marginBottom: Spacing.m,
+    },
+    titleContainer: {
+      flexDirection: 'row',
+      height: 40,
+      ...Layout.alignItemsCenter,
+      ...Layout.justifyContentBetween,
+    },
+    title: {
+      fontSize: FontSize.regularPlus,
+      color: Colors.textBlack,
     },
   });
 };

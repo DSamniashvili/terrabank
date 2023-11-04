@@ -11,44 +11,34 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { themeReducer } from './slices/theme';
-import { counterReducer } from './slices/counter';
-import { reduxStorage } from './reduxStorage';
-import { exampleApi } from './apis';
+import { authAPI } from '../services/apis';
 import { RESET_STATE_ACTION_TYPE } from './actions/reset';
 import { authorizationMethodsReducer } from './slices/AuthorizationMethods';
-import { scrollReducer } from './slices/Scroll';
+import { userInfoReducer } from './slices/userInfo';
+import {
+  authorizationMethodsPersistConfig,
+  dashboardPersistConfig,
+  themePersistConfig,
+  userInfoPersistConfig,
+} from './config';
+import { dashboardAPI } from 'services/apis/dashboardAPI/dashboardAPI';
+import { dashboardReducer } from './slices/dashboard';
 
-const counterPersistConfig = {
-  key: 'counter',
-  storage: reduxStorage,
-  whitelist: ['currentNumber'],
-};
-
-const authorizationMethodsPersistConfig = {
-  key: 'authorizationMethods',
-  storage: reduxStorage,
-  whitelist: ['sms', 'passcode', 'faceId', 'biometric'],
-};
-
-const themePersistConfig = {
-  key: 'theme',
-  storage: reduxStorage,
-  whitelist: ['theme', 'darkMode'],
-};
-
-const persistedCounter = persistReducer(counterPersistConfig, counterReducer);
 const persistedAuthorizationMethods = persistReducer(
   authorizationMethodsPersistConfig,
   authorizationMethodsReducer,
 );
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
+const persistedUserInfo = persistReducer(userInfoPersistConfig, userInfoReducer);
+const persistedDashboard = persistReducer(dashboardPersistConfig, dashboardReducer);
 
 const reducers = combineReducers({
-  counter: persistedCounter,
   authorizationMethods: persistedAuthorizationMethods,
   theme: persistedTheme,
-  scroll: scrollReducer,
-  [exampleApi.reducerPath]: exampleApi.reducer,
+  userInfo: persistedUserInfo,
+  dashboard: persistedDashboard,
+  [authAPI.reducerPath]: authAPI.reducer,
+  [dashboardAPI.reducerPath]: dashboardAPI.reducer,
 });
 
 const rootReducer: Reducer<RootState> = (state, action) => {
@@ -58,7 +48,7 @@ const rootReducer: Reducer<RootState> = (state, action) => {
   return reducers(state, action);
 };
 
-const middlewares = [exampleApi.middleware];
+const middlewares = [authAPI.middleware, dashboardAPI.middleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;

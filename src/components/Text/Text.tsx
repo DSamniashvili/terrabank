@@ -22,6 +22,7 @@ export const Text = forwardRef<RNText, TextProps>(
       translate = true,
       marginTop,
       style,
+      ...props
     },
     ref,
   ) => {
@@ -46,6 +47,7 @@ export const Text = forwardRef<RNText, TextProps>(
           style,
         ]}
         children={translate && typeof children === 'string' ? t(children, translateProp) : children}
+        {...props}
       />
     );
   },

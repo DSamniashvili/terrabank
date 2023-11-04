@@ -8,11 +8,13 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Text } from 'components';
 import { useTheme } from 'hooks';
+import { formatMoney } from 'utils/formatMoney';
 import { Dots, Eye, EyeSlash, Tera } from 'assets/SVGs';
 import { AvailableBalanceProps } from './CardsAndBalance.types';
 import useStyles from './CardsAndBalance.styles';
 
-const BALANCE = 1024850;
+const Balance = 1024850;
+const Terabytes = 24;
 
 const AvailableBalance: FC<AvailableBalanceProps> = ({ progress }) => {
   const styles = useStyles();
@@ -65,11 +67,7 @@ const AvailableBalance: FC<AvailableBalanceProps> = ({ progress }) => {
       </View>
       <Animated.View style={[styles.balance, balanceStyle]}>
         <Text size={28} lineHeight={36}>
-          ₾
-          {BALANCE.toLocaleString('en-US', {
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 2,
-          })}
+          ₾{formatMoney(Balance)}
         </Text>
       </Animated.View>
       <Animated.View style={[styles.dots, dotsStyle]}>
@@ -78,7 +76,7 @@ const AvailableBalance: FC<AvailableBalanceProps> = ({ progress }) => {
       <Pressable onPress={() => {}}>
         <View style={styles.terabytes}>
           <Tera />
-          <Text children="dashboard.terabytes" translateProp={{ value: 24 }} label special />
+          <Text children="dashboard.terabytes" translateProp={{ value: Terabytes }} label special />
         </View>
       </Pressable>
     </Animated.View>

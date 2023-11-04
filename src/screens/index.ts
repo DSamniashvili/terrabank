@@ -1,11 +1,9 @@
-export { HomeScreen } from './HomeScreen/HomeScreen';
+export { DashboardScreen } from './DashboardScreen/DashboardScreen';
 export { ProductsScreen } from './ProductsScreen/ProductsScreen';
 export { PaymentsScreen } from './PaymentsScreen/PaymentsScreen';
-export { OnboardingScreen } from './Onboarding/Onboarding';
-export { PasswordLogin } from './PasswordLogin/PasswordLogin';
-export { PassCodeLogin } from './PassCodeLogin/PassCodeLogin';
+export { OnboardingScreen } from './OnboardingScreen/OnboardingScreen';
+export { PasswordLoginScreen } from './PasswordLoginScreen/PasswordLoginScreen';
+export { PassCodeLoginScreen } from './PassCodeLoginScreen/PassCodeLoginScreen';
 export { SettingsScreen } from './SettingsScreen/SettingsScreen';
 export { ProfileScreen } from './ProfileScreen/ProfileScreen';
-export { CreatePasscodeScreen } from './CreatePasscode/CreatePasscodeScreen';
-// export { DashboardTabs } from './HomeScreen/DashboardTabs';
-export { Home } from './HomeScreen/Home';
+export { CreatePasscodeScreen } from './CreatePasscodeScreen/CreatePasscodeScreen';

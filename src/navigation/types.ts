@@ -1,38 +1,50 @@
 import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import {
-  HOME,
-  INITIAL,
+  AUTHORIZATION_METHODS_SCREEN,
+  CREATE_PASSCODE_SCREEN,
+  DASHBOARD_SCREEN,
   ONBOARDING_SCREEN,
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_LOGIN_SCREEN,
-  PAYMENTS,
-  PRODUCTS,
-  PROFILE,
-  TRANSACTIONS,
+  PAYMENTS_STACK,
+  PRODUCTS_STACK,
+  PRODUCTS_SCREEN,
+  PROFILE_SCREEN,
+  PROFILE_STACK,
+  SETTINGS_SCREEN,
+  SETTINGS_STACK,
+  TRANSACTIONS_SCREEN,
+  TRANSACTIONS_STACK,
+  HOME_STACK,
+  INITIAL_STACK,
+  ALL_TEMPLATES_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type HomeStackParamsList = {
-  HomeScreen: undefined;
+export type DashboardStackParamsList = {
+  [DASHBOARD_SCREEN]: undefined;
+  [ALL_TEMPLATES_SCREEN]: undefined;
 };
 
-type ProductsStackParamsList = {
-  ProductsScreen: undefined;
+export type ProductsStackParamsList = {
+  [PRODUCTS_SCREEN]: undefined;
 };
 
-type TransactionsStackParamsList = {
-  TransactionsScreen: undefined;
+export type TransactionsStackParamsList = {
+  [TRANSACTIONS_SCREEN]: undefined;
 };
 
-type PaymentsStackParamsList = {
-  TransactionsScreen: undefined;
+export type PaymentsStackParamsList = {};
+
+export type SettingsStackParamsList = {
+  [SETTINGS_SCREEN]: undefined;
+  [AUTHORIZATION_METHODS_SCREEN]: undefined;
 };
 
 export type ProfileStackParamsList = {
-  ProfileScreen: undefined;
-  SettingsScreen: undefined;
-  CreatePasscodeScreen: undefined;
-  AuthorizationMethodsScreen: undefined;
+  [PROFILE_SCREEN]: undefined;
+  [SETTINGS_STACK]: NavigatorScreenParams<SettingsStackParamsList>;
+  [CREATE_PASSCODE_SCREEN]: undefined;
 };
 
 export type GuestStackParamList = {
@@ -42,25 +54,23 @@ export type GuestStackParamList = {
 };
 
 export type MainStackParamsList = {
-  [INITIAL]: undefined;
+  [INITIAL_STACK]: undefined;
 };
 
 export type TabParamList = {
-  [HOME]: NavigatorScreenParams<HomeStackParamsList>;
-  [PRODUCTS]: NavigatorScreenParams<ProductsStackParamsList>;
-  [TRANSACTIONS]: NavigatorScreenParams<TransactionsStackParamsList>;
-  [PAYMENTS]: NavigatorScreenParams<PaymentsStackParamsList>;
-  [PROFILE]: NavigatorScreenParams<ProfileStackParamsList>;
+  [HOME_STACK]: NavigatorScreenParams<DashboardStackParamsList>;
+  [PRODUCTS_STACK]: NavigatorScreenParams<ProductsStackParamsList>;
+  [TRANSACTIONS_STACK]: NavigatorScreenParams<TransactionsStackParamsList>;
+  [PAYMENTS_STACK]: NavigatorScreenParams<PaymentsStackParamsList>;
+  [PROFILE_STACK]: NavigatorScreenParams<ProfileStackParamsList>;
 };
 
 // Home stack intellisense
-export type HomeStackScreenProps<T extends keyof HomeStackParamsList> = StackNavigationProp<
-  HomeStackParamsList,
-  T
->;
+export type DashboardStackScreenProps<T extends keyof DashboardStackParamsList> =
+  StackNavigationProp<DashboardStackParamsList, T>;
 
-export type HomeStackRouteProps<T extends keyof HomeStackParamsList> = RouteProp<
-  HomeStackParamsList,
+export type DashboardStackRouteProps<T extends keyof DashboardStackParamsList> = RouteProp<
+  DashboardStackParamsList,
   T
 >;
 
@@ -107,7 +117,6 @@ export type ProfileStackRouteProps<T extends keyof ProfileStackParamsList> = Rou
 >;
 
 // Guest stack intellisense
-
 export type GuestStackScreenProps<T extends keyof GuestStackParamList> = StackNavigationProp<
   GuestStackParamList,
   T
@@ -115,5 +124,16 @@ export type GuestStackScreenProps<T extends keyof GuestStackParamList> = StackNa
 
 export type GuestStackRouteProps<T extends keyof GuestStackParamList> = RouteProp<
   GuestStackParamList,
+  T
+>;
+
+// Settings stack intellisense
+export type SettingsStackScreenProps<T extends keyof SettingsStackParamsList> = StackNavigationProp<
+  SettingsStackParamsList,
+  T
+>;
+
+export type SettingsStackRouteProps<T extends keyof SettingsStackParamsList> = RouteProp<
+  SettingsStackParamsList,
   T
 >;

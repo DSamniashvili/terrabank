@@ -17,7 +17,7 @@ export const useStyleTheme = () => {
     },
 
     pinItemText: {
-      fontSize: FontSize.RegularPlus,
+      fontSize: FontSize.regularPlus,
       color: Colors.pinColor,
     },
   });

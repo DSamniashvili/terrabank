@@ -7,4 +7,5 @@ export interface ModalHandler {
 
 export interface ConfigureModal {
   element: ReactNode;
+  title?: string;
 }

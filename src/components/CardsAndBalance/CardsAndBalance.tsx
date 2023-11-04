@@ -12,17 +12,16 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Card } from './Card';
 import Indicator from './Indicator';
-import { config } from 'utils/config';
 import useTheme from 'hooks/useTheme';
-
+import { ActionButtons } from './ActionButtons';
 import AvailableBalance from './AvailableBalance';
-import { setShouldCloseCards } from 'store/slices/Scroll';
+import { setShouldCloseCards } from 'store/slices/dashboard';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { ICardsAndBalanceProps } from './CardsAndBalance.types';
 import useStyles from './CardsAndBalance.styles';
-import { ActionButtons } from './ActionButtons';
+import { OPEN_CARD_WIDTH } from 'constants/Dashboard';
 
-const CARD_WIDTH = config.mobileWidth - 48;
+const CARD_WIDTH_WITHOUT_PADDING = OPEN_CARD_WIDTH + 24;
 
 const data = [
   {
@@ -55,7 +54,7 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
   const ref = useRef<Animated.ScrollView>(null);
   const progress = useSharedValue(0);
   const translateX = useSharedValue(0);
-  const { shouldCloseCards } = useAppSelector(state => state.scroll);
+  const { shouldCloseCards } = useAppSelector(state => state.dashboard);
 
   useEffect(() => {
     if (shouldCloseCards) {
@@ -74,7 +73,7 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
       return;
     }
     ref.current?.scrollTo({
-      x: index * (CARD_WIDTH - 15) + index,
+      x: index * (CARD_WIDTH_WITHOUT_PADDING - 15) + index,
       y: 0,
       animated: true,
     });
@@ -133,11 +132,14 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
             decelerationRate="fast"
             onScroll={scrollHandler}
             scrollEventThrottle={16}
-            snapToInterval={CARD_WIDTH - 24 + 10}
+            snapToInterval={OPEN_CARD_WIDTH + 10}
             style={[scrollViewWrapper]}
             disableIntervalMomentum={true}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={[styles.content, { width: data.length * CARD_WIDTH }]}
+            contentContainerStyle={[
+              styles.content,
+              { width: data.length * CARD_WIDTH_WITHOUT_PADDING },
+            ]}
           >
             {data.map((card, index) => (
               <Card

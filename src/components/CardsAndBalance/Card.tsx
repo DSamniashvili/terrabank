@@ -2,12 +2,18 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import { config } from 'utils/config';
+import {
+  CLOSE_CARD_HEIGHT,
+  CLOSE_CARD_WIDTH,
+  OPEN_CARD_HEIGHT,
+  OPEN_CARD_WIDTH,
+} from 'constants/Dashboard';
 import { TeraLogo } from 'assets/SVGs';
+import { formatMoney } from 'utils/formatMoney';
 import { CardProps } from './CardsAndBalance.types';
 import useStyles from './CardsAndBalance.styles';
 
-const CARD_WIDTH = config.mobileWidth - 48 - 24;
+// temp
 const BALANCE = 48292.48;
 
 export const Card = ({ item, index, onCardPress, progress }: CardProps) => {
@@ -15,8 +21,18 @@ export const Card = ({ item, index, onCardPress, progress }: CardProps) => {
   const { t } = useTranslation();
 
   const animScale = useAnimatedStyle(() => {
-    const height = interpolate(progress.value, [0, 1], [120, 200], Extrapolation.CLAMP);
-    const width = interpolate(progress.value, [0, 1], [200, CARD_WIDTH], Extrapolation.CLAMP);
+    const height = interpolate(
+      progress.value,
+      [0, 1],
+      [CLOSE_CARD_HEIGHT, OPEN_CARD_HEIGHT],
+      Extrapolation.CLAMP,
+    );
+    const width = interpolate(
+      progress.value,
+      [0, 1],
+      [CLOSE_CARD_WIDTH, OPEN_CARD_WIDTH],
+      Extrapolation.CLAMP,
+    );
     const padding = interpolate(progress.value, [0, 1], [20, 24], Extrapolation.CLAMP);
 
     return {
@@ -113,13 +129,7 @@ export const Card = ({ item, index, onCardPress, progress }: CardProps) => {
             <TeraLogo />
           </Animated.View>
         </View>
-        <Animated.Text style={[styles.amount, balance]}>
-          {BALANCE.toLocaleString('en-US', {
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 2,
-          })}
-          ₾
-        </Animated.Text>
+        <Animated.Text style={[styles.amount, balance]}>{formatMoney(BALANCE)}₾</Animated.Text>
         <View style={styles.currencyWrapper}>
           <Animated.View style={[styles.currencyContainer, currencyContainer]}>
             <Animated.Text style={[styles.currency, currency]}>$</Animated.Text>

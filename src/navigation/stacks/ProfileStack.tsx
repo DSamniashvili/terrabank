@@ -1,19 +1,20 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileScreen, SettingsScreen, CreatePasscodeScreen } from 'screens';
+import { ProfileScreen, CreatePasscodeScreen } from 'screens';
 import {
-  CREATE_PASSCODE,
   PROFILE_SCREEN,
-  SETTINGS_SCREEN,
   AUTHORIZATION_METHODS_SCREEN,
+  SETTINGS_STACK,
+  CREATE_PASSCODE_SCREEN,
 } from 'navigation/ScreenNames';
 
 import { ProfileStackParamsList } from 'navigation/types';
 import { CustomHeader } from 'components/index';
 import { CustomHeaderOptions } from 'components/CustomHeader/CustomHeader.types';
-import { AuthorizationMethodsScreen } from 'screens/AuthorizationMethodsScreen/AuthorizationMethodsScreen';
+import { SettingsStackNavigator } from './SettingsStack';
+import { hideHeader } from 'navigation/config';
 
-const Stack = createStackNavigator<ProfileStackParamsList>();
+const ProfileStack = createStackNavigator<ProfileStackParamsList>();
 
 const ProfileStackHeaderMap = {
   [PROFILE_SCREEN]: ({ options: { title } }: CustomHeaderOptions) => {
@@ -25,11 +26,6 @@ const ProfileStackHeaderMap = {
         searchElement={{ position: 'right' }}
         notificationsElement={{ position: 'right' }}
       />
-    );
-  },
-  [SETTINGS_SCREEN]: (props: CustomHeaderOptions) => {
-    return (
-      <CustomHeader title={'navigation.settings'} backElement={{ position: 'left' }} {...props} />
     );
   },
   [AUTHORIZATION_METHODS_SCREEN]: (props: CustomHeaderOptions) => {
@@ -45,13 +41,13 @@ const ProfileStackHeaderMap = {
       />
     );
   },
-  [CREATE_PASSCODE]: (props: CustomHeaderOptions) => {
-    return <CustomHeader title={'Passcode'} backElement={{ position: 'left' }} {...props} />;
+  [CREATE_PASSCODE_SCREEN]: (props: CustomHeaderOptions) => {
+    return <CustomHeader title={'passcode.name'} backElement={{ position: 'left' }} {...props} />;
   },
 };
 
-export const ProfileStack = () => {
-  const { Navigator, Screen } = Stack;
+export const ProfileNavigator = () => {
+  const { Navigator, Screen } = ProfileStack;
   return (
     <Navigator initialRouteName={PROFILE_SCREEN}>
       <Screen
@@ -59,20 +55,11 @@ export const ProfileStack = () => {
         component={ProfileScreen}
         options={{ header: ProfileStackHeaderMap[PROFILE_SCREEN] }}
       />
+      <Screen name={SETTINGS_STACK} component={SettingsStackNavigator} options={hideHeader} />
       <Screen
-        name={SETTINGS_SCREEN}
-        component={SettingsScreen}
-        options={{ header: ProfileStackHeaderMap[SETTINGS_SCREEN] }}
-      />
-      <Screen
-        name={CREATE_PASSCODE}
+        name={CREATE_PASSCODE_SCREEN}
         component={CreatePasscodeScreen}
-        options={{ header: ProfileStackHeaderMap[CREATE_PASSCODE] }}
-      />
-      <Screen
-        name={AUTHORIZATION_METHODS_SCREEN}
-        component={AuthorizationMethodsScreen}
-        options={{ header: ProfileStackHeaderMap[AUTHORIZATION_METHODS_SCREEN] }}
+        options={{ header: ProfileStackHeaderMap[CREATE_PASSCODE_SCREEN] }}
       />
     </Navigator>
   );

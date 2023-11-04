@@ -16,5 +16,8 @@ export const useStyleTheme = () => {
     languageSwitcherContainer: {
       ...Layout.alignSelfEnd,
     },
+    wrappedComponentWrapperStyle: {
+      paddingTop: Spacing.m,
+    },
   });
 };

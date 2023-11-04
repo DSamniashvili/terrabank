@@ -12,7 +12,8 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     },
     textSmall: {
       fontSize: FontSize.small,
-      color: Colors.textGray400,
+      fontWeight: '400',
+      color: Colors.textGray700,
     },
     textRegular: {
       fontSize: FontSize.regular,
@@ -29,19 +30,29 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
       textTransform: 'uppercase',
     },
     titleSmall: {
-      fontSize: FontSize.small * 1.5,
+      fontSize: FontSize.small,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
     },
     titleRegular: {
-      fontSize: FontSize.regular * 2,
+      fontSize: FontSize.regular,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
+    },
+    titleregularPlus: {
+      fontSize: FontSize.regularPlus,
+      fontWeight: '400',
+      color: Colors.textGray700,
+    },
+    semiLarge: {
+      fontSize: FontSize.semiLarge,
+      fontWeight: '500',
+      color: Colors.textGray700,
     },
     titleLarge: {
       fontSize: FontSize.large * 2,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.textBlack,
     },
     textCenter: {
       textAlign: 'center',
