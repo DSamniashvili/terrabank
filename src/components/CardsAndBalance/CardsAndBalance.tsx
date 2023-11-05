@@ -20,8 +20,10 @@ import { useAppSelector } from 'store/hooks/useAppSelector';
 import { ICardsAndBalanceProps } from './CardsAndBalance.types';
 import useStyles from './CardsAndBalance.styles';
 import { OPEN_CARD_WIDTH } from 'constants/Dashboard';
+import { config } from 'utils/config';
 
 const CARD_WIDTH_WITHOUT_PADDING = OPEN_CARD_WIDTH + 24;
+const EMPTY_SPACE = (config.mobileWidth - OPEN_CARD_WIDTH) / 2;
 
 const data = [
   {
@@ -120,6 +122,15 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
     ),
   }));
 
+  const additionalPadding =
+    data.length === 2
+      ? EMPTY_SPACE - 5
+      : data.length === 3
+      ? EMPTY_SPACE - 15
+      : data.length === 4
+      ? EMPTY_SPACE - 20
+      : 0;
+
   return (
     <>
       <Animated.View style={[styles.container, zIndexCards]}>
@@ -138,7 +149,9 @@ export const CardsAndBalance: FC<ICardsAndBalanceProps> = ({ anim, zIndex, trans
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={[
               styles.content,
-              { width: data.length * CARD_WIDTH_WITHOUT_PADDING },
+              {
+                width: data.length * CARD_WIDTH_WITHOUT_PADDING + additionalPadding,
+              },
             ]}
           >
             {data.map((card, index) => (
