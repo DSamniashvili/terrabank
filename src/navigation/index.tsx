@@ -12,7 +12,7 @@ export const Navigation = () => {
 
   return (
     <NavigationContainer ref={navigationRef} theme={NavigationTheme}>
-      {!isAuth ? <MainNavigator /> : <GuestNavigator />}
+      {isAuth ? <MainNavigator /> : <GuestNavigator />}
     </NavigationContainer>
   );
 };
