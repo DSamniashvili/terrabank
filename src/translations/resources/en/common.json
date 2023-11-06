@@ -74,6 +74,14 @@
     "upcomingTransactions": "upcoming transactions",
     "assets": "assets and liabilities",
     "pension": "Pension fund",
-    "banker": "My banker"
+    "banker": "My banker",
+    "tera": "Tera Bank",
+    "otherBanks": "Other Banks",
+    "account": "My Account",
+    "availableBalance": "Available balance",
+    "terabytes": "{{value}} terabyte",
+    "transfer": "Transfer",
+    "pay": "Payment",
+    "fill": "Top up"
   }
 }

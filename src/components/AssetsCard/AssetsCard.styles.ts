@@ -48,8 +48,9 @@ export const useStyles = () => {
       color: Colors.textBlack500,
     },
     underline: {
-      width: '85%',
+      width: '80%',
       margin: Spacing.xxs,
+      marginRight: Spacing.lg,
       borderBottomWidth: 1,
       borderColor: Colors.inputBlack50,
       ...Layout.alignSelfEnd,

@@ -6,7 +6,7 @@ import Images from 'theme/Images';
 import dayjs from 'dayjs';
 
 export const OperationsCard = (props: any) => {
-  const { amount, docDate, description } = props;
+  const { amount, docDate, description, index, data } = props;
   const inputDate = dayjs(docDate);
   const formattedDate = inputDate.format('D MMM, YYYY, HH:mm');
 
@@ -20,7 +20,7 @@ export const OperationsCard = (props: any) => {
             pngLocalIcon={Images().PizzaIcon}
             customIconComponentStyles={styles.customIconComponentStyles}
           />
-          <View style={styles.templateCardContentContainer}>
+          <View style={[styles.templateCardContentContainer]}>
             {description ? (
               <Text
                 children={description}
@@ -43,7 +43,7 @@ export const OperationsCard = (props: any) => {
             )}
           </View>
         </View>
-        <View style={{ alignItems: 'flex-end' }}>
+        <View style={{ alignItems: 'flex-end', marginLeft: 10 }}>
           {amount && (
             <Text
               children={amount}
@@ -62,7 +62,7 @@ export const OperationsCard = (props: any) => {
           )}
         </View>
       </View>
-      <View style={styles.underline} />
+      {index < data.length - 1 && <View style={[styles.underline]} />}
     </View>
   );
 };

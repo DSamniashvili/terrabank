@@ -41,6 +41,11 @@ export const Colors = {
   textWhite400: 'rgba(253, 253, 253, 0.4)',
   dotGray: '#7D8D99',
   errorToastColor: '#FAE8E7',
+  dashboardBackground: '#F6F6F7',
+  overlay: '#000000B3',
+  currencyBackground: 'rgba(255, 255, 255, 0.1)',
+  currency: '#AAAAAA',
+  black200: 'rgba(29, 29, 29, 0.20)',
   headerBackground: 'rgba(246, 246, 246, 1)',
 };
 
@@ -70,6 +75,7 @@ export const Spacing = {
   xxs: 4,
   xs: 6,
   s: 8,
+  md: 10,
   m: 12,
   ml: 16,
   l: 18,

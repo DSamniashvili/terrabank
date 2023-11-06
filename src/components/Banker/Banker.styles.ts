@@ -14,6 +14,11 @@ export const useStyles = () => {
       fontSize: FontSize.regularPlus,
       fontWeight: '400',
     },
+    cardwrapper: {
+      paddingLeft: Spacing.xl,
+      paddingVertical: Spacing.xlg,
+      backgroundColor: Colors.white,
+    },
     wrapper: {
       marginVertical: Spacing.m,
       ...Layout.row,
@@ -56,5 +61,6 @@ export const useStyles = () => {
       ...Layout.center,
     },
     iconView: { ...Layout.row },
+    iconWrap: { ...Layout.row, paddingRight: Spacing.md },
   });
 };

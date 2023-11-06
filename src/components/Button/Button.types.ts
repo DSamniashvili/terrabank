@@ -12,6 +12,7 @@ export type ButtonProps = PressableProps & {
   customLeftIconStyle?: StyleProp<ViewStyle>;
   customRightIconStyle?: StyleProp<ViewStyle>;
   fullWidth?: boolean;
+  fixedWidth?: boolean;
   size?: 'medium' | 'large';
   hasBorder?: boolean;
   disabled?: boolean;

@@ -20,6 +20,8 @@ import {
 } from 'navigation/ScreenNames';
 import { hideHeader, tabOptions } from 'navigation/config';
 import { MainStackParamsList, TabParamList } from 'navigation/types';
+import { useAppDispatch } from 'store/hooks/useAppDispatch';
+import { setShouldCloseCards } from 'store/slices/dashboard';
 
 const transactionsIcon = () => (
   <View
@@ -39,6 +41,7 @@ const Stack = createStackNavigator<MainStackParamsList>();
 const TabNavigator = () => {
   const { Navigator, Screen } = Tab;
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   return (
     <Navigator screenOptions={tabOptions}>
@@ -46,6 +49,22 @@ const TabNavigator = () => {
         name={HOME_STACK}
         component={DashboardStack}
         options={{ title: t('common:navigation.home') }}
+        listeners={({ navigation }) => ({
+          tabPress: () => {
+            const { isFocused, state, goBack } = navigation;
+            if (isFocused()) {
+              if (navigation.canGoBack()) {
+                for (let i = 0; i < state.routes.length - 1; i += 1) {
+                  goBack();
+                }
+              } else {
+                dispatch(setShouldCloseCards(true));
+              }
+            } else {
+              navigation.navigate(HOME_STACK);
+            }
+          },
+        })}
       />
       <Screen
         name={PRODUCTS_STACK}

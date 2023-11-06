@@ -32,6 +32,9 @@ const getTemplateIcon = (template: Template) => {
 };
 
 export const getDashboardTemplates = (templates: Template[]) => {
+  if (!templates) {
+    return;
+  }
   return templates.map((template: Template, index: number) => {
     const isInternal = template.bankInternal;
     const templateIcon = getTemplateIcon(template);

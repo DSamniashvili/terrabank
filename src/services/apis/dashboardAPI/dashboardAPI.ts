@@ -89,16 +89,10 @@ export const dashboardAPI = createApi({
 
 export const {
   useGetTemplatesQuery,
-  useLazyGetTemplatesQuery,
   useGetCustomerOperationsMutation,
   useGetCreditCardsQuery,
-  useLazyGetCreditCardsQuery,
   useGetOverDraftQuery,
-  useLazyGetOverDraftQuery,
   useGetLoanCustomerIdQuery,
-  useLazyGetLoanCustomerIdQuery,
   useGetAssetsQuery,
-  useLazyGetAssetsQuery,
   useGetBankerQuery,
-  useLazyGetBankerQuery,
 } = dashboardAPI;

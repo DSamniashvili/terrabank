@@ -21,4 +21,6 @@ export type DashboardStateProps = {
       imageId: string;
     };
   };
+  shouldCloseCards: boolean;
+  scrollToTop: boolean;
 };

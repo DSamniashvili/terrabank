@@ -8,9 +8,9 @@ export const useStyles = () => {
   return StyleSheet.create({
     templateCardContainer: {
       ...Layout.row,
+      width: '90%',
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
-      marginRight: Spacing.s,
     },
     wrapper: {
       ...Layout.row,
@@ -46,7 +46,7 @@ export const useStyles = () => {
     },
     underline: {
       width: '85%',
-      margin: Spacing.xxs,
+      margin: Spacing.xs,
       borderBottomWidth: 1,
       borderColor: Colors.inputBlack50,
       ...Layout.alignSelfEnd,

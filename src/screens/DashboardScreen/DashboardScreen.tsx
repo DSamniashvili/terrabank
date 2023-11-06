@@ -1,54 +1,66 @@
-import React from 'react';
-import { Pressable, View, ScrollView } from 'react-native';
+import React, { useRef } from 'react';
+import { FlatList, ListRenderItem, Text } from 'react-native';
+import { useSharedValue, withTiming } from 'react-native-reanimated';
+import { DashboardTabBar, HomeHeader } from 'components';
+import TeraBank from './TeraBank';
+import OtherBanks from './OtherBanks';
+import { config } from 'utils/config';
+import { Pressable } from 'react-native';
 import useTheme from 'hooks/useTheme';
-import {
-  DashboardAssets,
-  DashboardTemplates,
-  DashboardOperations,
-  DashboardUpcomingOps,
-  LanguageSwitcher,
-  Text,
-  Banker,
-} from 'components';
-
 import { storage } from 'storage/index';
-import { useStyleTheme } from './DashboardScreen.style';
-import { DashboardPensionFund } from 'components/DashboardPensionFund/DashboardPensionFund';
 
 export const DashboardScreen = () => {
-  const styles = useStyleTheme();
-  const { Fonts } = useTheme();
-
   const handleClearAllFromStorage = () => {
     storage.clearAll();
   };
 
+  const { Fonts } = useTheme();
+  const flatlistRef = useRef<FlatList>(null);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const zIndex = useSharedValue(1);
+
+  const renderItem: ListRenderItem<string> = ({ item }) => {
+    switch (item) {
+      case 'terabank':
+        return <TeraBank translateY={translateY} zIndex={zIndex} />;
+      case 'otherbanks':
+        return <OtherBanks />;
+      default:
+        return null;
+    }
+  };
+
+  const onTabPress = (index: number) => {
+    translateX.value = withTiming(index * config.mobileWidth);
+    flatlistRef.current?.scrollToOffset({
+      animated: true,
+      offset: index * config.mobileWidth,
+    });
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.container} style={styles.containerFlex}>
-      <LanguageSwitcher />
-      <View style={styles.cardContainerFull}>
-        <DashboardTemplates />
-      </View>
-      <View style={styles.cardContainerFull}>
-        <DashboardUpcomingOps />
-      </View>
-      <View style={styles.cardContainer}>
-        <DashboardAssets />
-      </View>
-
-      <View style={styles.cardContainer}>
-        <DashboardPensionFund />
-      </View>
-      <View style={styles.cardContainer}>
-        <Banker />
-      </View>
-      <View style={styles.cardContainer}>
-        <DashboardOperations />
-      </View>
-
+    <>
+      <HomeHeader translateY={translateY} zIndex={zIndex} />
+      <DashboardTabBar
+        onTabPress={onTabPress}
+        translateX={translateX}
+        translateY={translateY}
+        zIndex={zIndex}
+      />
+      <FlatList
+        horizontal
+        pagingEnabled
+        ref={flatlistRef}
+        scrollEnabled={false}
+        scrollEventThrottle={16}
+        renderItem={renderItem}
+        data={['terabank', 'otherbanks']}
+        showsHorizontalScrollIndicator={false}
+      />
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Reset App!" />
       </Pressable>
-    </ScrollView>
+    </>
   );
 };

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
 
 export const useStyles = () => {
-  const { Layout, Fonts, Spacing, FontSize } = useTheme();
+  const { Layout, Fonts, Spacing, FontSize, Colors } = useTheme();
 
   return StyleSheet.create({
     headerContainer: {
@@ -10,6 +10,12 @@ export const useStyles = () => {
       ...Layout.justifyContentBetween,
       ...Layout.alignItemsCenter,
     },
+    wrapper: {
+      paddingVertical: Spacing.xlg,
+      backgroundColor: Colors.white,
+    },
+    dashboardView: { paddingLeft: Spacing.xl },
+
     titleContainer: {
       ...Fonts.textBold,
       fontSize: FontSize.regularPlus,

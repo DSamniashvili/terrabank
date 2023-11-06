@@ -1,64 +1,81 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useStyles } from './Banker.styles';
-import { IconComponent, Text } from 'components';
+import { Divider, IconComponent, Text } from 'components';
 import Images from 'theme/Images';
 import useTheme from 'hooks/useTheme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useAppSelector } from 'store/hooks/useAppSelector';
 
-export const Banker = () => {
+export const Banker = ({ data }: any) => {
   const styles = useStyles();
   const { Colors } = useTheme();
 
-  const banker = useAppSelector(state => state.dashboard.templatesResponse.banker);
-
-  if (!banker) {
+  if (!data) {
     return (
-      <View style={styles.dashboardTemplatesContainer}>
-        <Text
-          children="Banker information not available"
-          style={styles.titleContainer}
-          color={Colors.textBlack}
-        />
-      </View>
+      <>
+        <View style={styles.cardwrapper}>
+          <View style={styles.dashboardTemplatesContainer}>
+            <Text
+              children="Banker information not available"
+              style={styles.titleContainer}
+              color={Colors.textBlack}
+            />
+          </View>
+        </View>
+        <Divider />
+      </>
     );
   }
 
-  const { firstName, lastName, branchName, imageId } = banker;
+  const { firstName, lastName, branchName, imageId } = data;
   const fullName = `${firstName} ${lastName}`;
 
   return (
-    <View style={styles.dashboardTemplatesContainer}>
-      <Text children={`dashboard.banker`} style={styles.titleContainer} color={Colors.textBlack} />
-      <TouchableOpacity style={styles.wrapper}>
-        <View style={styles.iconView}>
-          <IconComponent
-            imageId={imageId}
-            customIconComponentStyles={styles.customIconComponentStyles}
+    <>
+      <View style={styles.cardwrapper}>
+        <View style={styles.dashboardTemplatesContainer}>
+          <Text
+            children={`dashboard.banker`}
+            style={styles.titleContainer}
+            color={Colors.textBlack}
           />
-          <View style={styles.templateCardContentContainer}>
-            <Text
-              children={fullName}
-              style={styles.templateCardTitle}
-              numberOfLines={1}
-              ellipsizeMode="tail"
-            />
-            <View style={styles.maskedView}>
-              <Text
-                children={branchName}
-                style={styles.templateCardAmount}
-                numberOfLines={1}
-                ellipsizeMode="tail"
+          <TouchableOpacity style={styles.wrapper}>
+            <View style={styles.iconView}>
+              <IconComponent
+                imageId={imageId}
+                customIconComponentStyles={styles.customIconComponentStyles}
+              />
+              <View style={styles.templateCardContentContainer}>
+                <Text
+                  children={fullName}
+                  style={styles.templateCardTitle}
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                />
+                <View style={styles.maskedView}>
+                  <Text
+                    children={branchName}
+                    style={styles.templateCardAmount}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                  />
+                </View>
+              </View>
+            </View>
+            <View style={styles.iconWrap}>
+              <IconComponent
+                pngLocalIcon={Images().Phone}
+                customIconComponentStyles={styles.eyeIcon}
+              />
+              <IconComponent
+                pngLocalIcon={Images().Email}
+                customIconComponentStyles={styles.eyeIcon}
               />
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'row' }}>
-          <IconComponent pngLocalIcon={Images().Phone} customIconComponentStyles={styles.eyeIcon} />
-          <IconComponent pngLocalIcon={Images().Email} customIconComponentStyles={styles.eyeIcon} />
-        </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+      <Divider />
+    </>
   );
 };

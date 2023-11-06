@@ -3,11 +3,16 @@ import useTheme from 'hooks/useTheme';
 import { Spacing } from 'theme/Variables';
 
 export const useStyles = () => {
-  const { Layout, Fonts, FontSize } = useTheme();
+  const { Layout, Fonts, FontSize, Colors } = useTheme();
 
   return StyleSheet.create({
     dashboardTemplatesContainer: {
       ...Layout.col,
+    },
+    pensionView: {
+      paddingLeft: Spacing.xl,
+      paddingVertical: Spacing.xlg,
+      backgroundColor: Colors.white,
     },
     titleContainer: {
       ...Fonts.textBold,

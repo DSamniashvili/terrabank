@@ -14,12 +14,21 @@ const initialState: DashboardStateProps = {
     loanCustomerId: [],
     banker: null,
   },
+  shouldCloseCards: false,
+  scrollToTop: false,
 };
 // TODO - add extraReducers, so that setting templates does not happen in useBootstrapApp()
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState,
-  reducers: {},
+  reducers: {
+    setShouldCloseCards: (state, { payload }) => {
+      state.shouldCloseCards = payload;
+    },
+    setScrollToTop: (state, { payload }) => {
+      state.scrollToTop = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addMatcher(dashboardAPI.endpoints.getTemplates.matchPending, state => {
@@ -55,4 +64,5 @@ const dashboardSlice = createSlice({
   },
 });
 
+export const { setShouldCloseCards, setScrollToTop } = dashboardSlice.actions;
 export const dashboardReducer = dashboardSlice.reducer;

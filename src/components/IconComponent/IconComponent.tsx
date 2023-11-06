@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageSourcePropType, ImageStyle, Pressable, StyleProp, ViewStyle } from 'react-native';
+import { ImageStyle, Pressable, StyleProp, ViewStyle } from 'react-native';
 import { useStyleTheme } from './IconComponent.styles';
 import { SvgProps } from 'react-native-svg';
 import { Image } from 'react-native';
@@ -8,7 +8,7 @@ export type IconComponentProps = {
   handler?: () => void;
   IconJSX?: (props: SvgProps) => React.JSX.Element;
   native?: boolean;
-  pngLocalIcon?: ImageSourcePropType;
+  pngLocalIcon?: any;
   pngLocalIconCustomStyle?: StyleProp<ImageStyle>;
   customIconComponentStyles?: StyleProp<ViewStyle>;
   imageId?: string; // New prop for the image source URL
