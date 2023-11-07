@@ -8,6 +8,7 @@ export const Button: {
   Secondary: withButton('Secondary'),
   Destructive: withButton('Destructive'),
   Text: withButton('Text'),
+  Outline: withButton('Outline'),
 };
 
 // -- usage --

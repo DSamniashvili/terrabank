@@ -2,11 +2,54 @@ import React from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { useStyleTheme } from './DashboardScreen.style';
 import { Divider } from 'components';
+import Images from 'theme/Images';
 
 const templates = ['ჯეოსელი', 'გადარიცხვა', 'კომუნალურები', 'ინტერნეტი', 'ანაბარი'];
-const payments = ['სესხის გადასახადი', 'კომუნალურები', 'სწავლის გადასახადი', 'ჯეოსელი'];
+const payments = [
+  {
+    id: 1,
+    icon: Images().BasisBankLogoIcon,
+    title: 'სესხის გადასახადი',
+    amount: '130.00ლ',
+    date: 'დღეს',
+  },
+  {
+    id: 2,
+    icon: Images().BasisBankLogoIcon,
+    title: 'ჯეოსელი',
+    amount: '130.00ლ',
+    date: 'დღეს',
+  },
+  {
+    id: 3,
+    icon: Images().BasisBankLogoIcon,
+    title: 'მაგთი',
+    amount: '130.00ლ',
+    date: 'დღეს',
+  },
+  {
+    id: 4,
+    icon: Images().BasisBankLogoIcon,
+    title: 'კაზინო',
+    amount: '130.00ლ',
+    date: 'დღეს',
+  },
+  {
+    id: 5,
+    icon: Images().BasisBankLogoIcon,
+    title: 'შავი დღისთვინა',
+    amount: '130.00ლ',
+    date: 'დღეს',
+  },
+];
 const assets = ['ანაბრები', 'სესხები'];
-const offers = ['შეთავაზება 1', 'შეთავაზება 2'];
+const offers = [
+  'აიღე 18 000 ლარამდე დამტკიცებული სესხი',
+  'აიღე 18 000 ლარამდე დამტკიცებული სესხი',
+  'აიღე 18 000 ლარამდე დამტკიცებული სესხი',
+  'აიღე 18 000 ლარამდე დამტკიცებული სესხი',
+];
+
 const transactions = [
   'ტრანზაქცია 1',
   'ტრანზაქცია 2',
@@ -14,6 +57,7 @@ const transactions = [
   'ტრანზაქცია 4',
   'ტრანზაქცია 5',
 ];
+const pensions = 6023.23;
 
 export const tempData = {
   templates,
@@ -21,6 +65,7 @@ export const tempData = {
   assets,
   offers,
   transactions,
+  pensions,
 };
 
 export const Templates = ({ data }: { data: string[] }) => {
@@ -145,19 +190,28 @@ export const Assets = ({ data }: { data: string[] }) => {
 
 export const Offers = ({ data }: { data: string[] }) => {
   const styles = useStyleTheme();
+  const itemColors = [
+    'rgba(67, 182, 75, 0.1)',
+    'rgba(160, 34, 109, 0.1)',
+    'rgba(67, 182, 75, 0.1)',
+    '#FF33FF',
+    '#33FFFF',
+  ];
 
-  const renderItem = ({ item }: { item: string }) => {
+  const renderItem = ({ item, index }: { item: string; index: number }) => {
+    const backgroundColor = itemColors[index % itemColors.length];
     return (
       <View
         style={[
           styles.item,
           {
-            height: 130,
+            height: 180,
+            backgroundColor: backgroundColor,
             borderWidth: 1,
             borderRadius: 10,
             justifyContent: 'center',
             paddingHorizontal: 16,
-            width: 200,
+            width: 300,
           },
         ]}
       >

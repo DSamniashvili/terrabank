@@ -14,19 +14,20 @@ import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { setScrollToTop, setShouldCloseCards } from 'store/slices/dashboard';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 import { useTheme } from 'hooks';
-import { CardsAndBalance } from 'components';
+import {
+  CardsAndBalance,
+  DashboardAssets,
+  DashboardOperations,
+  DashboardSkeleton,
+  DashboardTemplates,
+  DashboardUpcomingOps,
+} from 'components';
 import { ITeraBankProps } from './DashboardScreen.types';
 import { useStyleTheme } from './DashboardScreen.style';
-import {
-  Assets,
-  Banker,
-  Offers,
-  Payments,
-  Pension,
-  Templates,
-  Transactions,
-  tempData,
-} from './Sections';
+import { useDashboardScreen } from './container';
+import { Banker } from 'components';
+import { Offers, tempData } from './Sections';
+import { DashboardPensionFund } from 'components/DashboardPensionFund/DashboardPensionFund';
 
 const sections = [
   { title: 'templates', data: [{}] },
@@ -48,6 +49,21 @@ const MainBank: FC<ITeraBankProps> = ({ translateY, zIndex }) => {
   const ref: RefObject<SectionList<any, any>> = useRef(null);
   const { scrollToTop } = useAppSelector(state => state.dashboard);
 
+  const {
+    templates,
+    customOperations,
+    creditCards,
+    overDraft,
+    getLoanCustomerId,
+    assets,
+    banker,
+    customerOperationsLoading,
+    customerIdLoading,
+    assetsLoading,
+    bankerLoading,
+    overDraftLoading,
+    creditCardsLoading,
+  } = useDashboardScreen();
   useScrollToTop(ref);
 
   const closing = () => {
@@ -104,23 +120,51 @@ const MainBank: FC<ITeraBankProps> = ({ translateY, zIndex }) => {
   const renderItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'templates':
-        return <Templates data={tempData.templates} />;
+        return (
+          <View>
+            <DashboardTemplates data={templates} />
+          </View>
+        );
       case 'payments':
-        return <Payments data={tempData.payments} />;
+        return <DashboardUpcomingOps data={tempData.payments} />;
       case 'assets':
-        return <Assets data={tempData.assets} />;
+        return (
+          <DashboardAssets
+            creditCards={creditCards}
+            overDraft={overDraft}
+            getLoanCustomerId={getLoanCustomerId}
+            assets={assets}
+          />
+        );
       case 'offers':
         return <Offers data={tempData.offers} />;
       case 'pension':
-        return <Pension />;
+        return <DashboardPensionFund data={tempData.pensions} />;
       case 'banker':
-        return <Banker />;
+        return <Banker data={banker} />;
       case 'transactions':
-        return <Transactions data={tempData.transactions} />;
+        return <DashboardOperations data={customOperations?.ops} />;
       default:
         return null;
     }
   };
+
+  if (
+    customerOperationsLoading ||
+    customerIdLoading ||
+    assetsLoading ||
+    bankerLoading ||
+    overDraftLoading ||
+    creditCardsLoading
+  ) {
+    return (
+      <View style={styles.LoaderContenr}>
+        <View style={styles.loader}>
+          <DashboardSkeleton />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.wrapper}>

@@ -109,6 +109,7 @@ export default function ({}: ThemeVariables) {
     fullWidth: {
       width: '100%',
     },
+    fixWidth: { width: '90%' },
     halfWidth: {
       width: '50%',
     },
