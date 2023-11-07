@@ -5,21 +5,19 @@ import {
   useGetCreditCardsQuery,
   useGetOverDraftQuery,
   useGetLoanCustomerIdQuery,
-  //   useLazyGetCreditCardsQuery,
   useGetAssetsQuery,
   useGetBankerQuery,
 } from 'services/apis/dashboardAPI/dashboardAPI';
-// import { useAppDispatch } from 'store/hooks/useAppDispatch';
 
 export const useDashboardScreen = () => {
-  const { data: templates, isLoading } = useGetTemplatesQuery();
-  const [getCustomerOperations, { data: customOperations }] = useGetCustomerOperationsMutation();
-  //   const { data: templates, isLoading } = useGetTemplatesQuery(undefined, {skip: !templates});
-  const { data: creditCards } = useGetCreditCardsQuery();
-  const { data: overDraft } = useGetOverDraftQuery();
-  const { data: getLoanCustomerId } = useGetLoanCustomerIdQuery();
-  const { data: assets } = useGetAssetsQuery();
-  const { data: banker } = useGetBankerQuery();
+  const { data: templates, isLoading: temlpatesLoading } = useGetTemplatesQuery();
+  const [getCustomerOperations, { data: customOperations, isLoading: customerOperationsLoading }] =
+    useGetCustomerOperationsMutation();
+  const { data: creditCards, isLoading: creditCardsLoading } = useGetCreditCardsQuery();
+  const { data: overDraft, isLoading: overDraftLoading } = useGetOverDraftQuery();
+  const { data: getLoanCustomerId, isLoading: customerIdLoading } = useGetLoanCustomerIdQuery();
+  const { data: assets, isLoading: assetsLoading } = useGetAssetsQuery();
+  const { data: banker, isLoading: bankerLoading } = useGetBankerQuery();
 
   useEffect(() => {
     getCustomerOperations({
@@ -34,8 +32,15 @@ export const useDashboardScreen = () => {
 
   return {
     templates,
-    isLoading,
+    temlpatesLoading,
+    customerOperationsLoading,
+    customerIdLoading,
+    assetsLoading,
+    bankerLoading,
+    overDraftLoading,
+    creditCardsLoading,
     customOperations,
+
     creditCards,
     overDraft,
     getLoanCustomerId,

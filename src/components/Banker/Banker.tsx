@@ -10,23 +10,6 @@ export const Banker = ({ data }: any) => {
   const styles = useStyles();
   const { Colors } = useTheme();
 
-  if (!data) {
-    return (
-      <>
-        <View style={styles.cardwrapper}>
-          <View style={styles.dashboardTemplatesContainer}>
-            <Text
-              children="Banker information not available"
-              style={styles.titleContainer}
-              color={Colors.textBlack}
-            />
-          </View>
-        </View>
-        <Divider />
-      </>
-    );
-  }
-
   const { firstName, lastName, branchName, imageId } = data;
   const fullName = `${firstName} ${lastName}`;
 

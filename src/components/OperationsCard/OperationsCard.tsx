@@ -43,7 +43,7 @@ export const OperationsCard = (props: any) => {
             )}
           </View>
         </View>
-        <View style={{ alignItems: 'flex-end', marginLeft: 10 }}>
+        <View style={styles.ops}>
           {amount && (
             <Text
               children={amount}

@@ -48,6 +48,12 @@ export const useStyleTheme = () => {
       borderTopLeftRadius: Spacing.ml,
       borderTopRightRadius: Spacing.ml,
     },
+    LoaderContenr: {
+      width: config.mobileWidth,
+      borderTopLeftRadius: Spacing.ml,
+      borderTopRightRadius: Spacing.ml,
+    },
+    loader: { marginTop: 30, backgroundColor: Colors.skeleton, width: '100%' },
     item: {
       padding: Spacing.lg,
       marginVertical: Spacing.s,

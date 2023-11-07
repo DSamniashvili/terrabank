@@ -27,3 +27,4 @@ export { AssetsCard } from './AssetsCard/AssetsCard';
 export { CardItem } from './CardItem/CardItem';
 export { Banker } from './Banker/Banker';
 export { Divider } from './Divider/Divider';
+export { DashboardSkeleton } from './Skeleton/DashboardSkeleton';

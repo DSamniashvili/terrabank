@@ -18,6 +18,7 @@ import {
   CardsAndBalance,
   DashboardAssets,
   DashboardOperations,
+  DashboardSkeleton,
   DashboardTemplates,
   DashboardUpcomingOps,
 } from 'components';
@@ -48,8 +49,21 @@ const MainBank: FC<ITeraBankProps> = ({ translateY, zIndex }) => {
   const ref: RefObject<SectionList<any, any>> = useRef(null);
   const { scrollToTop } = useAppSelector(state => state.dashboard);
 
-  const { templates, customOperations, creditCards, overDraft, getLoanCustomerId, assets, banker } =
-    useDashboardScreen();
+  const {
+    templates,
+    customOperations,
+    creditCards,
+    overDraft,
+    getLoanCustomerId,
+    assets,
+    banker,
+    customerOperationsLoading,
+    customerIdLoading,
+    assetsLoading,
+    bankerLoading,
+    overDraftLoading,
+    creditCardsLoading,
+  } = useDashboardScreen();
   useScrollToTop(ref);
 
   const closing = () => {
@@ -134,6 +148,23 @@ const MainBank: FC<ITeraBankProps> = ({ translateY, zIndex }) => {
         return null;
     }
   };
+
+  if (
+    customerOperationsLoading ||
+    customerIdLoading ||
+    assetsLoading ||
+    bankerLoading ||
+    overDraftLoading ||
+    creditCardsLoading
+  ) {
+    return (
+      <View style={styles.LoaderContenr}>
+        <View style={styles.loader}>
+          <DashboardSkeleton />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.wrapper}>

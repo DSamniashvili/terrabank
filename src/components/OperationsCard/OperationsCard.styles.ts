@@ -39,6 +39,7 @@ export const useStyles = () => {
       color: Colors.textBlack,
       fontWeight: '400',
     },
+    ops: { ...Layout.alignItemsEnd, marginLeft: Spacing.md, width: 120 },
     dateText: {
       fontSize: FontSize.dwarf,
       color: Colors.textBlack,

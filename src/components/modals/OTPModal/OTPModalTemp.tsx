@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { TextInput, View } from 'react-native';
 import { Text } from 'components';
 import { ResendIcon } from 'assets/SVGs';
@@ -18,6 +18,7 @@ interface OTPFormInputs {
 export const OTPModalTemp = ({ onFinished }: { onFinished?: (code: string) => void }) => {
   const styles = useStyleTheme();
   const { control, getValues } = useForm<OTPFormInputs>();
+  const inputRefs = useRef<(TextInput | null)[]>([null, null, null, null, null, null]);
 
   const checkAndSubmit = () => {
     const values = getValues();
@@ -25,6 +26,15 @@ export const OTPModalTemp = ({ onFinished }: { onFinished?: (code: string) => vo
 
     if (otpCode.length === 6) {
       onFinished?.(otpCode);
+    }
+  };
+
+  const focusNextInput = (index: number) => {
+    if (inputRefs.current[index + 1]) {
+      const nextInput = inputRefs.current[index + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
     }
   };
 
@@ -41,13 +51,16 @@ export const OTPModalTemp = ({ onFinished }: { onFinished?: (code: string) => vo
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
-                style={{ width: 40, height: 50, margin: 5, textAlign: 'center', borderWidth: 1 }} // Adjust styles as needed
+                ref={input => (inputRefs.current[num - 1] = input)}
+                style={{ width: 40, height: 50, margin: 5, textAlign: 'center', borderWidth: 1 }}
                 maxLength={1}
                 onBlur={onBlur}
                 onChangeText={text => {
                   onChange(text);
                   if (text && num === 6) {
                     checkAndSubmit();
+                  } else {
+                    focusNextInput(num - 1);
                   }
                 }}
                 value={value}
