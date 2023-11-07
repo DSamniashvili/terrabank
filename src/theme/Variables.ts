@@ -48,6 +48,7 @@ export const Colors = {
   black200: 'rgba(29, 29, 29, 0.20)',
   headerBackground: 'rgba(246, 246, 246, 1)',
   pink: '#9F1D6B0F',
+  skeleton: 'rgba(254, 254, 254, 1)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
@@ -60,6 +61,7 @@ export const NavigationColors: Partial<ThemeNavigationColors> = {
  * FontSize
  */
 export const FontSize = {
+  dwarf: 10,
   tiny: 12,
   small: 14,
   regular: 16,
@@ -75,6 +77,7 @@ export const Spacing = {
   xxs: 4,
   xs: 6,
   s: 8,
+  md: 10,
   m: 12,
   ml: 16,
   l: 18,

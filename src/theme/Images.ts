@@ -16,5 +16,14 @@ export default function () {
     ProcreditBankLogoIcon: require('assets/images/ProcreditBankLogoIcon.png'),
     SilkBankLogoIcon: require('assets/images/SilkBankLogoIcon.png'),
     ZiraatBankLogoIcon: require('assets/images/ZiraatBankLogoIcon.png'),
+    PizzaIcon: require('assets/images/pizza.png'),
+    AssetsIcon: require('assets/images/assets.png'),
+    LiabilitiesIcon: require('assets/images/liabilities.png'),
+    ChevronRight: require('assets/images/ChevronRight.png'),
+    PensionIcon: require('assets/images/pensionImage.png'),
+    OpenEye: require('assets/images/OpenEye.png'),
+    CloseEye: require('assets/images/CloseEye.png'),
+    Email: require('assets/images/Email.png'),
+    Phone: require('assets/images/Phone.png'),
   };
 }

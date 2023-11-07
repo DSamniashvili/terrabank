@@ -28,7 +28,7 @@ const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) =
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
 
-  headers.set('X-Bank-ChannelId', '1000006');
+  headers.set('X-Bank-ChannelId', '1000011');
   headers.set('X-Bank-Ostype', '1');
   headers.set('X-Bank-Devicedescription', '1');
   headers.set('X-Bank-DeviceId', '1');
