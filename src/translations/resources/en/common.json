@@ -83,5 +83,18 @@
     "transfer": "Transfer",
     "pay": "Payment",
     "fill": "Top up"
+  },
+  "transfers": {
+    "toOwnAccount": "Transfer to Own Account",
+    "tera": "Transfer to Tera",
+    "otherBanks": "Transfer to Another Bank",
+    "budget": "Budgetary Transfer",
+    "automatic": "Automatic Transfer",
+    "chooseService": "Choose Service",
+    "templates": "Templates",
+    "add": "Add",
+    "all": "See all",
+    "lastTransactions": "Last Transactions",
+    "search": "Search Account"
   }
 }

@@ -18,6 +18,7 @@ import {
   HOME_STACK,
   INITIAL_STACK,
   ALL_TEMPLATES_SCREEN,
+  MY_ACCOUNTS_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -32,6 +33,7 @@ export type ProductsStackParamsList = {
 
 export type TransactionsStackParamsList = {
   [TRANSACTIONS_SCREEN]: undefined;
+  [MY_ACCOUNTS_SCREEN]: undefined;
 };
 
 export type PaymentsStackParamsList = {};
