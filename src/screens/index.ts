@@ -7,3 +7,5 @@ export { PassCodeLoginScreen } from './PassCodeLoginScreen/PassCodeLoginScreen';
 export { SettingsScreen } from './SettingsScreen/SettingsScreen';
 export { ProfileScreen } from './ProfileScreen/ProfileScreen';
 export { CreatePasscodeScreen } from './CreatePasscodeScreen/CreatePasscodeScreen';
+export { TransactionsScreen } from './TransactionsScreen/TransactionsScreen';
+export { MyAccounts } from './MyAccounts/MyAccounts';

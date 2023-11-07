@@ -47,6 +47,7 @@ export const Colors = {
   currency: '#AAAAAA',
   black200: 'rgba(29, 29, 29, 0.20)',
   headerBackground: 'rgba(246, 246, 246, 1)',
+  pink: '#9F1D6B0F',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

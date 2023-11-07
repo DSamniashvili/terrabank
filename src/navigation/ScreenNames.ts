@@ -23,3 +23,6 @@ export const PASSCODE_LOGIN_SCREEN = 'PassCodeLoginScreen';
 // dashboard
 export const DASHBOARD_SCREEN = 'DashboardScreen';
 export const ALL_TEMPLATES_SCREEN = 'AllTemplatesScreen';
+
+//transactions
+export const MY_ACCOUNTS_SCREEN = 'MyAccountsScreen';

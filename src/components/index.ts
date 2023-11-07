@@ -21,3 +21,6 @@ export { TemplateCard } from './TemplateCard/TemplateCard';
 export { DashboardTemplates } from './DashboardTemplates/DashboardTemplates';
 export { IconComponent } from './IconComponent/IconComponent';
 export { Divider } from './Divider/Divider';
+export { ChooseService } from './ChooseService/ChooseService';
+export { TransferTemplates } from './TransferTemplates/TransferTemplates';
+export { LastTransactions } from './LastTransactions/LastTransactions';
