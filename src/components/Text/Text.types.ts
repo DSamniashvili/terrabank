@@ -15,4 +15,5 @@ export type TextProps = {
   translate?: boolean;
   marginTop?: number;
   translateProp?: TOptions;
+  bold?: boolean;
 } & RNTextProps;

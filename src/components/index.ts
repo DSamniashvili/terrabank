@@ -31,3 +31,7 @@ export { ChooseService } from './ChooseService/ChooseService';
 export { TransferTemplates } from './TransferTemplates/TransferTemplates';
 export { LastTransactions } from './LastTransactions/LastTransactions';
 export { DashboardSkeleton } from './Skeleton/DashboardSkeleton';
+export { TabBarLabel } from './TabBarLabel/TabBarLabel';
+export { ProductsTabBar } from './ProductsTabBar/ProductsTabBar';
+export { CardsAndAccounts } from './CardsAndAccounts/CardsAndAccounts';
+export { DepositsAndLoans } from './DepositsAndLoans/DepositsAndLoans';
