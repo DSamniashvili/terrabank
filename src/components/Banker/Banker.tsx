@@ -9,13 +9,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export const Banker = ({ data }: any) => {
   const styles = useStyles();
   const { Colors } = useTheme();
-  
+
   if (!data) {
     return null;
   }
 
   const { firstName, lastName, branchName, imageId } = data;
-
 
   const fullName = `${firstName} ${lastName}`;
 

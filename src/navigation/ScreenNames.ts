@@ -25,10 +25,8 @@ export const PASSCODE_LOGIN_SCREEN = 'PasscodeLoginScreen';
 export const DASHBOARD_SCREEN = 'DashboardScreen';
 export const ALL_TEMPLATES_SCREEN = 'AllTemplatesScreen';
 
-
 // modal screens
 export const MODAL_SCREEN_ONE = 'ModalScreenOne';
 
 //transactions
 export const MY_ACCOUNTS_SCREEN = 'MyAccountsScreen';
-
