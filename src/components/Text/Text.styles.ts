@@ -2,10 +2,11 @@ import useTheme from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
 export const useStyleTheme = () => {
-  const { Colors, FontSize, Fonts } = useTheme();
+  const { Colors, FontSize, Fonts, FontFamily } = useTheme();
   return StyleSheet.create({
     default: {
       fontSize: FontSize.regular,
+      fontFamily: FontFamily.medium,
       lineHeight: FontSize.large,
       color: Colors.textBlack,
     },

@@ -10,6 +10,7 @@ export type ThemeVariables = {
   BorderRadius: typeof Variables.BorderRadius;
   Opacity: typeof Variables.Opacity;
   MetricsSizes: typeof Variables.MetricsSizes;
+  FontFamily: typeof Variables.FontFamily;
 };
 
 export type Theme<F, G, I, L, C> = ThemeVariables & {
