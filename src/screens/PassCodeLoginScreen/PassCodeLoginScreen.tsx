@@ -1,37 +1,46 @@
-import React, { FC } from 'react';
-import { withLoginScreen } from 'components/HOC';
+import React, { FC, useEffect } from 'react';
 import { Button } from 'components/Button/Button';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
 import PinKeyboard from 'components/PinKeyboard/PinKeyboard';
 import { PinLine } from 'components/PinLine/PinLine';
 import { useStyleTheme } from './PassCodeLoginScreen.styles';
 import { Account } from 'components/index';
-import { usePasscodeLogin } from './usePasscodeLogin';
+import passcodeEvents, { PASSCODE_EVENTS_PASSCODE_VERIFIED } from 'utils/eventBus';
+import { usePasscode } from 'hooks/usePasscode';
+import { withLoginScreen } from 'components/HOC';
+import { PASSCODE_LOGIN_SCREEN } from 'navigation/ScreenNames';
+import { storage } from 'storage/index';
 
-interface PassCodeLoginBaseProps {
-  handleNavigation?: () => Promise<void>;
-}
+interface PasscodeLoginBaseProps {}
 
-const PassCodeLoginScreenBase: FC<PassCodeLoginBaseProps> = () => {
-  const { watchKeyboard, passcodeLength } = usePasscodeLogin();
-
+const PasscodeLoginScreenBase: FC<PasscodeLoginBaseProps> = () => {
   const styles = useStyleTheme();
+  const { watchKeyboard, passcodeLength } = usePasscode();
+
+  useEffect(() => {
+    return () => {
+      passcodeEvents.off(PASSCODE_EVENTS_PASSCODE_VERIFIED);
+    };
+  }, []);
+
+  //   TODO - temp
+  const clearAll = () => {
+    storage.clearAll();
+  };
 
   return (
-    <SafeAreaView style={styles.loginScreenContainerStyle}>
-      <View style={styles.wrapper}>
+    <View style={styles.wrapper}>
+      <>
         <Account user="Slick Studio" />
-        <Button.Secondary text="მომხმარებლის შეცვლა" size="medium" />
+        <Button.Secondary text="მომხმარებლის შეცვლა" size="medium" onPress={clearAll} />
         <PinLine fillNumber={passcodeLength} style={styles.pinLine} />
-      </View>
+      </>
       <PinKeyboard onPress={watchKeyboard} />
-    </SafeAreaView>
+    </View>
   );
 };
 
-export const PassCodeLoginScreen = withLoginScreen<
-  PassCodeLoginBaseProps,
+export const PasscodeLoginScreen = withLoginScreen<
+  PasscodeLoginBaseProps,
   typeof PASSCODE_LOGIN_SCREEN
->(PassCodeLoginScreenBase, PASSCODE_LOGIN_SCREEN);
+>(PasscodeLoginScreenBase, PASSCODE_LOGIN_SCREEN);

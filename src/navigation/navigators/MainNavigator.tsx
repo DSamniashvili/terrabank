@@ -13,13 +13,16 @@ import {
 import {
   HOME_STACK,
   INITIAL_STACK,
+  MODAL_STACK,
   PAYMENTS_STACK,
   PRODUCTS_STACK,
   PROFILE_STACK,
   TRANSACTIONS_STACK,
 } from 'navigation/ScreenNames';
-import { hideHeader, tabOptions } from 'navigation/config';
+import { hideHeader, presentationModal, tabOptions } from 'navigation/config';
 import { MainStackParamsList, TabParamList } from 'navigation/types';
+import { ModalNavigator } from 'navigation/stacks/ModalStack';
+import { useMainNavigator } from 'hooks/useMainNavigator';
 import { useAppDispatch } from 'store/hooks/useAppDispatch';
 import { setShouldCloseCards } from 'store/slices/dashboard';
 
@@ -36,7 +39,7 @@ const transactionsIcon = () => (
 );
 
 const Tab = createBottomTabNavigator<TabParamList>();
-const Stack = createStackNavigator<MainStackParamsList>();
+const RootStack = createStackNavigator<MainStackParamsList>();
 
 const TabNavigator = () => {
   const { Navigator, Screen } = Tab;
@@ -94,11 +97,17 @@ const TabNavigator = () => {
 };
 
 export const MainNavigator = () => {
-  const { Navigator, Screen } = Stack;
+  const { Navigator, Screen, Group } = RootStack;
+  useMainNavigator();
 
   return (
     <Navigator initialRouteName={INITIAL_STACK} screenOptions={hideHeader}>
-      <Screen name={INITIAL_STACK} component={TabNavigator} options={hideHeader} />
+      <Group>
+        <Screen name={INITIAL_STACK} component={TabNavigator} options={hideHeader} />
+      </Group>
+      <Group screenOptions={presentationModal}>
+        <Screen name={MODAL_STACK} component={ModalNavigator} />
+      </Group>
     </Navigator>
   );
 };

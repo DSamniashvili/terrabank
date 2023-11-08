@@ -38,9 +38,12 @@
     "blocked": "The entered data is incorrect. Your account is blocked. Contact us to unlock at the number: 2 55 00 00 or contact the nearest Terabank branch"
   },
   "passcode": {
-    "createPasscode": "Set 4-digit passcode",
-    "repeatPasscode": "Repeat  passcode",
-    "enterPasscodeCode": "Enter your passcode"
+    "headerTitle": "Set passcode",
+    "setPasscodeTitle": "Set 4-digit passcode",
+    "setPasscodeDescription": "Enter your passcode",
+    "repeatPasscodeTitle": "Repeat  passcode",
+    "passcodesDoNotMatch": "Passcodes do not match. please try again",
+    "device_is_trusted": "Device has been trusted!"
   },
   "settings": {
     "choose_authorization_method": "Choose authorization method",
@@ -63,8 +66,21 @@
     "additional_settings": "Additional settings",
     "manage_notifications": "Manage notifications"
   },
-  "verify": {
-    "verifiedPhone": "verify your phone"
+  "trustDevice": {
+    "heading": "Device verification",
+    "title": "To install {{name}}, it is necessary to make the device trustworthy",
+    "description": "After verifying the device, you can log into mobile banking without an SMS and digital pass code",
+    "CTAText": "Verify the device",
+    "passcode_s": "Passcode",
+    "faceId_s": "Face ID",
+    "fingerprint_s": "Fingerprint"
+  },
+  "easyLogin": {
+    "title": "Easy login",
+    "description": "For easy access, use fingerprint or password login.",
+    "activate": "Activate",
+    "next_time": "Other time",
+    "do_not_ask_again": "Do not ask again"
   },
   "dashboard": {
     "templates": "Templates",
@@ -84,6 +100,11 @@
     "pay": "Payment",
     "fill": "Top up"
   },
+
+  "profile": {
+    "edit_settings": "Edit settings",
+    "logout": "Log out"
+
   "transfers": {
     "toOwnAccount": "Transfer to Own Account",
     "tera": "Transfer to Tera",

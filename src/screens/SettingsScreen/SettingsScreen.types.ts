@@ -1,8 +1,8 @@
-import { SettingsStackParamsList } from 'navigation/types';
+import { ProfileStackParamsList } from 'navigation/types';
 import { SvgProps } from 'react-native-svg';
 
 export type SubContentProps = {
-  navigateTo: keyof SettingsStackParamsList;
+  navigateTo: keyof ProfileStackParamsList;
   title: string;
   icon: (props: SvgProps) => React.JSX.Element;
 };

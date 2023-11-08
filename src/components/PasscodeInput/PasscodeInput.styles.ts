@@ -12,7 +12,7 @@ export const useStyleTheme = () => {
       marginTop: 40,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      ...Layout.alignItemsCenter,
     },
     title: {
       fontSize: FontSize.large,
@@ -26,7 +26,7 @@ export const useStyleTheme = () => {
     },
 
     pinWrapper: {
-      alignItems: 'center',
+      ...Layout.alignItemsCenter,
       width: '80%',
       justifyContent: 'flex-end',
       marginTop: 70,

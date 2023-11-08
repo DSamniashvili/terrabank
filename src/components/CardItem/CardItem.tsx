@@ -61,6 +61,7 @@ export const CardItem: React.FC<CardItemProps> = ({
       <View>
         <IconComponent
           native
+          hasBorder={false}
           pngLocalIcon={Images().ChevronRight}
           customIconComponentStyles={styles.customIconComponentStyles}
         />

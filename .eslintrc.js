@@ -11,7 +11,7 @@ module.exports = {
   extends: '@react-native',
   plugins: ['@typescript-eslint', 'prettier', 'unused-imports'],
   rules: {
-	'no-console': ['error', { 'allow': ['error'] }],
+	'no-console': ['error', { 'allow': ['error', 'warn'] }],
     'prettier/prettier': ['error', prettierOptions],
     'unused-imports/no-unused-imports': 'error',
     'react-hooks/exhaustive-deps': 'error',

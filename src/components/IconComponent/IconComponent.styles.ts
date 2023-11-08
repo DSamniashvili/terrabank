@@ -11,11 +11,13 @@ export const useStyleTheme = () => {
     },
     iconRoundedStyles: {
       borderRadius: BorderRadius.full,
-      borderColor: Colors.gray200,
       backgroundColor: Colors.white,
-      borderWidth: 1,
       padding: Spacing.xs,
       margin: Spacing.xs,
+    },
+    iconBorderedStyles: {
+      borderColor: Colors.gray200,
+      borderWidth: 1,
     },
   });
 };

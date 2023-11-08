@@ -11,6 +11,8 @@ export type IconComponentProps = {
   pngLocalIcon?: any;
   pngLocalIconCustomStyle?: StyleProp<ImageStyle>;
   customIconComponentStyles?: StyleProp<ViewStyle>;
+  hasBorder?: boolean;
+  customIconSize?: number;
   imageId?: string; // New prop for the image source URL
 };
 
@@ -21,6 +23,8 @@ export const IconComponent = ({
   pngLocalIcon,
   pngLocalIconCustomStyle,
   customIconComponentStyles,
+  hasBorder = true,
+  customIconSize,
   imageId, // New prop for the image source URL
 }: IconComponentProps) => {
   const styles = useStyleTheme();
@@ -32,10 +36,11 @@ export const IconComponent = ({
       style={[
         styles.iconCommonStyles,
         !native && styles.iconRoundedStyles,
+        hasBorder && styles.iconBorderedStyles,
         customIconComponentStyles,
       ]}
     >
-      {IconJSX && <IconJSX width={16} height={16} />}
+      {IconJSX && <IconJSX width={customIconSize || 16} height={customIconSize || 16} />}
       {pngLocalIcon && (
         <Image source={pngLocalIcon} style={[{ width: 20, height: 20 }, pngLocalIconCustomStyle]} />
       )}

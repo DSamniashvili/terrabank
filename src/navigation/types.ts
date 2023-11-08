@@ -6,21 +6,34 @@ import {
   ONBOARDING_SCREEN,
   PASSCODE_LOGIN_SCREEN,
   PASSWORD_LOGIN_SCREEN,
+  PASSWORD_ONLY_LOGIN_SCREEN,
   PAYMENTS_STACK,
   PRODUCTS_STACK,
   PRODUCTS_SCREEN,
   PROFILE_SCREEN,
   PROFILE_STACK,
   SETTINGS_SCREEN,
-  SETTINGS_STACK,
   TRANSACTIONS_SCREEN,
   TRANSACTIONS_STACK,
   HOME_STACK,
   INITIAL_STACK,
   ALL_TEMPLATES_SCREEN,
+
+  MODAL_STACK,
+  MODAL_SCREEN_ONE,
+
   MY_ACCOUNTS_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
+
+export type MainStackParamsList = {
+  [INITIAL_STACK]: undefined;
+  [MODAL_STACK]: NavigatorScreenParams<ModalStackParamsList>;
+};
+
+export type ModalStackParamsList = {
+  [MODAL_SCREEN_ONE]: undefined;
+};
 
 export type DashboardStackParamsList = {
   [DASHBOARD_SCREEN]: undefined;
@@ -38,25 +51,19 @@ export type TransactionsStackParamsList = {
 
 export type PaymentsStackParamsList = {};
 
-export type SettingsStackParamsList = {
-  [SETTINGS_SCREEN]: undefined;
-  [AUTHORIZATION_METHODS_SCREEN]: undefined;
-};
-
 export type ProfileStackParamsList = {
   [PROFILE_SCREEN]: undefined;
-  [SETTINGS_STACK]: NavigatorScreenParams<SettingsStackParamsList>;
+  [SETTINGS_SCREEN]: undefined;
+  [AUTHORIZATION_METHODS_SCREEN]: undefined;
   [CREATE_PASSCODE_SCREEN]: undefined;
+  [PASSCODE_LOGIN_SCREEN]: undefined;
 };
 
 export type GuestStackParamList = {
   [ONBOARDING_SCREEN]: undefined;
   [PASSWORD_LOGIN_SCREEN]: undefined;
+  [PASSWORD_ONLY_LOGIN_SCREEN]: undefined;
   [PASSCODE_LOGIN_SCREEN]: undefined;
-};
-
-export type MainStackParamsList = {
-  [INITIAL_STACK]: undefined;
 };
 
 export type TabParamList = {
@@ -66,6 +73,15 @@ export type TabParamList = {
   [PAYMENTS_STACK]: NavigatorScreenParams<PaymentsStackParamsList>;
   [PROFILE_STACK]: NavigatorScreenParams<ProfileStackParamsList>;
 };
+
+export type MainNavigatorParams = MainStackParamsList &
+  ModalStackParamsList &
+  DashboardStackParamsList &
+  ProductsStackParamsList &
+  TransactionsStackParamsList &
+  PaymentsStackParamsList &
+  ProfileStackParamsList &
+  TabParamList;
 
 // Home stack intellisense
 export type DashboardStackScreenProps<T extends keyof DashboardStackParamsList> =
@@ -129,13 +145,21 @@ export type GuestStackRouteProps<T extends keyof GuestStackParamList> = RoutePro
   T
 >;
 
-// Settings stack intellisense
-export type SettingsStackScreenProps<T extends keyof SettingsStackParamsList> = StackNavigationProp<
-  SettingsStackParamsList,
+// Modal stack intellisense
+export type ModalStackScreenProps<T extends keyof ModalStackParamsList> = StackNavigationProp<
+  ModalStackParamsList,
   T
 >;
 
-export type SettingsStackRouteProps<T extends keyof SettingsStackParamsList> = RouteProp<
-  SettingsStackParamsList,
+export type ModalStackRouteProps<T extends keyof ModalStackParamsList> = RouteProp<
+  ModalStackParamsList,
   T
 >;
+
+// Main stack intellisense - for all authorized user stacks
+export type MainNavigationProps<T extends keyof MainNavigatorParams> = StackNavigationProp<
+  MainNavigatorParams,
+  T
+>;
+
+export type MainRouteProps<T extends keyof MainNavigatorParams> = RouteProp<MainNavigatorParams, T>;

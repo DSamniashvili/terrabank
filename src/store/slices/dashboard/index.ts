@@ -5,13 +5,6 @@ const initialState: DashboardStateProps = {
   templatesResponse: {
     loading: false,
     error: undefined,
-    templates: [],
-    transactions: [],
-    assets: [],
-    liabilities: [],
-    creditCardLoans: [],
-    loanCustomerId: [],
-    banker: null,
   },
   shouldCloseCards: false,
   scrollToTop: false,

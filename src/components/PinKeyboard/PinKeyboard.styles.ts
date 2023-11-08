@@ -5,13 +5,10 @@ export const useStyleTheme = () => {
   const { Spacing } = useTheme();
   return StyleSheet.create({
     pinRow: {
-      marginLeft: 25,
       flexDirection: 'row',
       marginTop: Spacing.s,
-      height: 50,
       width: '100%',
       justifyContent: 'space-between',
-      alignItems: 'flex-end',
     },
     lastRow: {
       marginTop: Spacing.s,
@@ -20,7 +17,7 @@ export const useStyleTheme = () => {
       justifyContent: 'space-between',
     },
     withoutFingerPrint: {
-      width: 80,
+      width: 70,
     },
   });
 };

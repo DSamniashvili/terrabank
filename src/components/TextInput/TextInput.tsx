@@ -51,6 +51,12 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
       }
     };
 
+    const handleLayout = () => {
+      if (value) {
+        position.value = withTiming(1, { easing: Easing.inOut(Easing.ease) });
+      }
+    };
+
     const handleBlur = () => {
       if (!value) {
         position.value = withTiming(0, { easing: Easing.inOut(Easing.ease) });
@@ -75,6 +81,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputProps>(
             editable={editable}
             onBlur={handleBlur}
             onFocus={handleFocus}
+            onLayout={handleLayout}
             maxLength={maxLength}
             autoCorrect={autoCorrect}
             keyboardType={keyboardType}
@@ -100,18 +107,32 @@ export const ControlledInput = <T extends FieldValues>({
   rules,
   required,
   type = 'text',
+  handleChange,
+  defaultValue,
   ...props
-}: ControlledInputProps<T>) => {
+}: ControlledInputProps<T> & {
+  handleChange?: () => void;
+}) => {
   return (
     <Controller
       name={name}
       control={control}
+      defaultValue={defaultValue}
       rules={{ required, ...rules }}
       render={({ field: { onChange, value } }) => {
         if (type === 'checkbox') {
-          return <Checkbox isChecked={value} onChange={onChange} label={label} />;
+          return (
+            <Checkbox
+              isChecked={value}
+              onChange={e => {
+                onChange(e);
+                handleChange?.();
+              }}
+              label={label}
+            />
+          );
         }
-        return <TextInput {...props} value={value} onChangeText={onChange} label={label} />;
+        return <TextInput value={value} onChangeText={onChange} label={label} {...props} />;
       }}
     />
   );

@@ -40,7 +40,6 @@ export const useDashboardScreen = () => {
     overDraftLoading,
     creditCardsLoading,
     customOperations,
-
     creditCards,
     overDraft,
     getLoanCustomerId,

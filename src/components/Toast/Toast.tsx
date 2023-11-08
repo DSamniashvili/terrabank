@@ -155,7 +155,7 @@ export const Toast = forwardRef<ToastRef, ToastProps>((props, ref) => {
 
   return (
     <PanGestureHandler onGestureEvent={panGestureHandler} onHandlerStateChange={panGestureHandler}>
-      <Animated.View style={[toastStyle, s.container, { height }]}>
+      <Animated.View style={[toastStyle, s.container, { height, zIndex: 1000 }]}>
         <Text>{backgroundStyle.icon}</Text>
         <Text label children={toast} style={[s.toastText, { color: backgroundStyle.textColor }]} />
       </Animated.View>

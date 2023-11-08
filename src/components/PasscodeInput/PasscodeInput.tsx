@@ -23,7 +23,7 @@ export const PasscodeInput: FC<PasscodeInputProps> = ({
         <PinLine fillNumber={valueLength} />
       </View>
       <View style={styles.pinWrapper}>
-        <PinKeyboard onPress={onPasscodeChange} withoutFingerprint />
+        <PinKeyboard onPress={onPasscodeChange} />
       </View>
     </View>
   );

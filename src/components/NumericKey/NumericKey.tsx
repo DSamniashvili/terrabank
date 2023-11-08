@@ -3,13 +3,10 @@ import { TouchableOpacity, Text } from 'react-native';
 import { useStyleTheme } from './NumericKey.styles';
 import { NUmericKeyProps } from './NumericKey.types';
 
-export const NumericKey: FC<NUmericKeyProps> = ({ onPress, pinNumber, first }) => {
+export const NumericKey: FC<NUmericKeyProps> = ({ onPress, pinNumber }) => {
   const styles = useStyleTheme();
   return (
-    <TouchableOpacity
-      style={[styles.pinItem, first && styles.firstPinItem]}
-      onPress={() => onPress(pinNumber)}
-    >
+    <TouchableOpacity style={styles.pinItem} onPress={() => onPress(pinNumber)}>
       <Text style={styles.pinItemText}>{pinNumber.toString()}</Text>
     </TouchableOpacity>
   );
