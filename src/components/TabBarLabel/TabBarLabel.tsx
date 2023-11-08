@@ -3,7 +3,7 @@ import { Pressable } from 'react-native';
 import Animated, { interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import { config } from 'utils/config';
 import { Colors } from 'theme/Variables';
-import { ITabBarLabelProps } from './DashboardTabBar.types';
+import { ITabBarLabelProps } from './TabBarLabel.types';
 
 export const TabBarLabel: FC<ITabBarLabelProps> = ({
   onTabPress,

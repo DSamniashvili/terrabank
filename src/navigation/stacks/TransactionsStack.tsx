@@ -1,11 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { DashboardScreen } from 'screens';
+import { MyAccounts, TransactionsScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
-import { TRANSACTIONS_SCREEN } from 'navigation/ScreenNames';
+import { MY_ACCOUNTS_SCREEN, TRANSACTIONS_SCREEN } from 'navigation/ScreenNames';
 
 export type TransactionsStackParamList = {
-  TransactionsScreen: undefined;
+  [TRANSACTIONS_SCREEN]: undefined;
+  [MY_ACCOUNTS_SCREEN]: undefined;
 };
 
 const Stack = createStackNavigator<TransactionsStackParamList>();
@@ -17,10 +18,18 @@ export const TransactionsStack = () => {
     <Navigator initialRouteName={TRANSACTIONS_SCREEN}>
       <Screen
         name={TRANSACTIONS_SCREEN}
-        component={DashboardScreen}
+        component={TransactionsScreen}
         options={{
           title: t('common:navigation.transactions'),
           headerTitleAlign: 'left',
+        }}
+      />
+      <Screen
+        name={MY_ACCOUNTS_SCREEN}
+        component={MyAccounts}
+        options={{
+          title: t('საიდან'),
+          headerBackTitle: ' ',
         }}
       />
     </Navigator>

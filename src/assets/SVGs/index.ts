@@ -39,5 +39,16 @@ export { SmartPhoneChecked } from './SmartPhoneChecked';
 export { VerifiedPhoneIcon } from './VerifiedPhone';
 export { ResendIcon } from './Resend';
 export { TerraLogoIcon } from './TerraLogoIcon';
+
 export { FaceIdColoredSvg } from './FaceIdColored';
 export { LogoutIcon } from './Logout';
+
+export { Refreshing } from './Refreshing';
+export { Users } from './Users';
+export { UserArrowRight } from './UserArrowRight';
+export { Budget } from './Budget';
+export { Calendar } from './Calendar';
+export { Plus } from './Plus';
+export { CheckCircle } from './CheckCircle';
+export { Alert } from './Alert';
+

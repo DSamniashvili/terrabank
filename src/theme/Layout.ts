@@ -148,5 +148,8 @@ export default function ({}: ThemeVariables) {
     overflowHidden: {
       overflow: 'hidden',
     },
+    flexWrap: {
+      flexWrap: 'wrap',
+    },
   });
 }

@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ProductsScreen } from 'screens';
 import { useTranslation } from 'react-i18next';
 import { PRODUCTS_SCREEN } from 'navigation/ScreenNames';
+import { Colors } from 'theme/Variables';
 
 export type ProductsStackParamList = {
   ProductsScreen: undefined;
@@ -21,6 +22,10 @@ export const ProductsStack = () => {
         options={{
           title: t('common:navigation.products'),
           headerTitleAlign: 'left',
+          headerStyle: {
+            backgroundColor: Colors.headerBackground,
+            shadowColor: 'transparent',
+          },
         }}
       />
     </Navigator>

@@ -100,8 +100,31 @@
     "pay": "Payment",
     "fill": "Top up"
   },
+
   "profile": {
     "edit_settings": "Edit settings",
     "logout": "Log out"
+
+  "transfers": {
+    "toOwnAccount": "Transfer to Own Account",
+    "tera": "Transfer to Tera",
+    "otherBanks": "Transfer to Another Bank",
+    "budget": "Budgetary Transfer",
+    "automatic": "Automatic Transfer",
+    "chooseService": "Choose Service",
+    "templates": "Templates",
+    "add": "Add",
+    "all": "See all",
+    "lastTransactions": "Last Transactions",
+    "search": "Search Account"
+  },
+  "products": {
+    "accountsAndCards": "Accounts and Cards ({{value}})",
+    "deposits": "Deposits ({{value}})",
+    "loans": "Loans ({{value}})",
+    "interest": "Interest",
+    "fee": "Fee",
+    "new": "New Product",
+    "history": "განცხადებების ისტორია"
   }
 }
