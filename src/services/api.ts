@@ -14,7 +14,7 @@ import { Platform } from 'react-native';
 
 // http://10.213.0.136:4040/swagger/index.html
 // https://middleware-tst.terabank.ge/swagger/index.html
-const BASE_URL = 'http://10.213.0.136:4040/';
+const BASE_URL = 'https://middleware-tst.terabank.ge/';
 // const BASE_URL = 'https://middleware-tst.terabank.ge/';
 
 const mutex = new Mutex();
@@ -31,7 +31,7 @@ const defaultHeaders = (headers: Headers, api: Pick<BaseQueryApi, 'getState'>) =
     headers.set('Authorization', `Bearer ${accessToken}`);
   }
 
-  headers.set('X-Bank-ChannelId', '1000006');
+  headers.set('X-Bank-ChannelId', '1000011');
   headers.set('X-Bank-Ostype', Platform.OS);
   headers.set('X-Bank-Devicedescription', 'Mobile-bank-terra');
   headers.set('X-Bank-DeviceId', state.deviceInfo.deviceId || '1');

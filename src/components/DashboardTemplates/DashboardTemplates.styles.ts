@@ -2,9 +2,16 @@ import { StyleSheet } from 'react-native';
 import useTheme from 'hooks/useTheme';
 
 export const useStyles = () => {
-  const { Layout, Fonts, Spacing, FontSize } = useTheme();
+  const { Layout, Fonts, Spacing, FontSize, Colors } = useTheme();
 
   return StyleSheet.create({
+    wrapper: {
+      borderTopLeftRadius: Spacing.ml,
+      borderTopRightRadius: Spacing.ml,
+      paddingLeft: Spacing.xl,
+      paddingVertical: Spacing.xlg,
+      backgroundColor: Colors.white,
+    },
     headerContainer: {
       ...Layout.row,
       ...Layout.justifyContentBetween,

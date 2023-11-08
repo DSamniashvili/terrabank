@@ -17,21 +17,16 @@ export const useEasyLoginModal = () => {
   const navigation = useNavigation<MainNavigationProps<'DashboardStack'>>();
 
   const { ignoreEasyLogin, postponeEasyLogin } = useAppSelector(state => state.userInfo);
-  const { templates, loading } = useAppSelector(state => state.dashboard.templatesResponse);
+  const { loading } = useAppSelector(state => state.dashboard.templatesResponse);
   //   TODO - needs to be fixed - values should be coming from keychain
   //   const easyLoginActivated = faceId || fingerPrint || passcode;
   const { savedPasscode } = useKeyChain();
 
   const showEasyLoginPrompt = useMemo(() => {
     return (
-      navigation.isFocused() &&
-      !ignoreEasyLogin &&
-      !savedPasscode &&
-      !postponeEasyLogin &&
-      !loading &&
-      templates?.length
+      navigation.isFocused() && !ignoreEasyLogin && !savedPasscode && !postponeEasyLogin && !loading
     );
-  }, [navigation, ignoreEasyLogin, savedPasscode, postponeEasyLogin, loading, templates?.length]);
+  }, [navigation, ignoreEasyLogin, savedPasscode, postponeEasyLogin, loading]);
 
   /**
    * handles navigation to "AuthorizationMethodsScreen", when "activate" is pressed on the EasyLoginModal

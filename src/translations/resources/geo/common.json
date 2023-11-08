@@ -90,10 +90,23 @@
   "dashboard": {
     "templates": "შაბლონები",
     "template": "შაბლონი",
-    "all": "ყველა"
+    "all": "ყველა",
+    "transactions": "ბოლო ტრანზაქციები",
+    "upcomingTransactions": "მოახლოებული გადახდები",
+    "assets": "აქტივები და ვალდებულებები",
+    "pension": "საპენსიო დანაზოგი",
+    "banker": "ჩემი ბანკირი",
+    "tera": "ტერაბანკი",
+    "otherBanks": "სხვა ბანკები",
+    "account": "ჩემი ანგარიში",
+    "availableBalance": "ხელმისაწვდომი ნაშთი",
+    "terabytes": "{{value}} ტერაბაიტი",
+    "transfer": "გადარიცხვა",
+    "pay": "გადახდა",
+    "fill": "შევსება"
   },
   "profile": {
-	"edit_settings": "პარამეტრების ცვლილება",
-	"logout": "გასვლა"
+    "edit_settings": "პარამეტრების ცვლილება",
+    "logout": "გასვლა"
   }
 }

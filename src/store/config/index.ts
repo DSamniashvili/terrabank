@@ -20,7 +20,7 @@ export const userInfoPersistConfig = {
 export const dashboardPersistConfig = {
   key: 'dashboard',
   storage: reduxStorage,
-  whitelist: ['templates'],
+  whitelist: ['templates', 'transactions', 'liabilities'],
 };
 
 export const deviceInfoPersistConfig = {

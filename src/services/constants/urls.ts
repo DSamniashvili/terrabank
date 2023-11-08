@@ -7,4 +7,11 @@ export const URLS = {
   getTemplates: 'api/Templates/GetTemplates',
   getUserProfile: 'api/Customers/GetUserProfile',
   loginByRefreshToken: '/api/Auth/LoginByRefreshToken',
+  getCreditCard: 'api/Loan/GetCreditCard',
+  getOverdraft: 'api/Loan/GetOverDraft',
+  getLoanCustomerId: 'api/Loan/GetLoanByCustomerId',
+  getCustomperOps: 'api/Transaction/GetCustomerOps',
+  getAssets: 'api/Deposit/GetDepositByClientId',
+  getPensions: 'api/Pensions/GetTotalSaving',
+  getBankerInfo: 'api/Customers/GetBankerInfo',
 };

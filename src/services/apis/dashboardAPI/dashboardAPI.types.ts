@@ -7,6 +7,39 @@ export type GetTemplatesRequestType = {
   headers?: any;
 };
 
+export type GetCustomerOperationsResponseTypes = {
+  ops: Transactions[];
+};
+export type GetLiabilityResponseType = {
+  liabilities: Liability[];
+};
+
+export type Liability = {
+  id: number;
+  accountId: number;
+  productName: string;
+  agreementNumber: string;
+  interestRate: number;
+  startDate: string | null;
+  endDate: string | null;
+  overdraftLimit: number;
+  currency: string;
+  totalDebt: number;
+  totalInterest: number;
+  usedPrincipalAmount: number;
+  creditPeriodInMonths: number;
+  restCreditPeriodInMonths: number;
+  nextPaymentDate: string | null;
+  nextPaymentAmount: number;
+};
+export type GetCustomerOperationsRequestTypes = {
+  count: number;
+  culture: string;
+  currency: string;
+  endDate: string;
+  startDate: string;
+  accountNumber?: number | null;
+};
 export type Template = {
   id: number;
   name: string;
@@ -19,6 +52,15 @@ export type Template = {
   bankExternal: BankExternalTransaction | null;
   mobilePayment: unknown | null;
   p2pTransfer: unknown | null;
+};
+
+export type Transactions = {
+  amount: number;
+  balance: number;
+  balanceStart: number;
+  description: string;
+  docDate: any;
+  isIncome: boolean;
 };
 
 type InternalTransaction = {

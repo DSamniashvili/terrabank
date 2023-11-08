@@ -1,39 +1,34 @@
-import React, { useEffect } from 'react';
-import { Pressable, View } from 'react-native';
-import { useAppDispatch } from 'store/hooks/useAppDispatch';
-import { changeTheme } from 'store/slices/theme';
+import React, { useRef, useEffect } from 'react';
+import { FlatList, ListRenderItem, Text } from 'react-native';
+import { useSharedValue, withTiming } from 'react-native-reanimated';
+import { DashboardTabBar, HomeHeader } from 'components';
+import TeraBank from './TeraBank';
+import OtherBanks from './OtherBanks';
+import { config } from 'utils/config';
+import { Pressable } from 'react-native';
 import useTheme from 'hooks/useTheme';
-import { DashboardTemplates, LanguageSwitcher, Text } from 'components';
-import { openModal } from 'utils/modal';
 import { storage } from 'storage/index';
-import { useStyleTheme } from './DashboardScreen.style';
 import { EasyLoginModal } from 'components/modals';
-
-import { useLazyGetTemplatesQuery } from 'services/apis/dashboardAPI/dashboardAPI';
 import { useEasyLoginModal } from 'components/modals/EasyLoginModal/hooks/useEasyLoginModal';
 import { useLazyGetTrustedDevicesQuery } from 'services/apis';
-import { clearCredentials, setCredentials } from 'utils/keychain';
 import { useAppSelector } from 'store/hooks/useAppSelector';
+import { openModal } from 'utils/modal';
 
 export const DashboardScreen = () => {
-  const styles = useStyleTheme();
-  const dispatch = useAppDispatch();
-  const { Fonts, darkMode: isDark } = useTheme();
+  const handleClearAllFromStorage = () => {
+    storage.clearAll();
+  };
+
+  const { Fonts } = useTheme();
   const { showEasyLoginPrompt, handleNavigateToAuthorizationMethodsScreeen } = useEasyLoginModal();
-  const [getDashboardTemplates] = useLazyGetTemplatesQuery();
   const [getTrustedDevices] = useLazyGetTrustedDevicesQuery();
   const { userIp, deviceToken } = useAppSelector(state => state.deviceInfo);
 
-  const onChangeTheme = () => {
-    dispatch(changeTheme({ darkMode: !isDark }));
-  };
+  // const onChangeTheme = () => {
+  //   dispatch(changeTheme({ darkMode: !isDark }));
+  // };
 
   useEffect(() => {
-    getDashboardTemplates({
-      headers: {
-        'X-Bank-UserIp': userIp,
-      },
-    });
     // clearCredentials();
     // TODO - needs to be added
     getTrustedDevices({
@@ -42,7 +37,7 @@ export const DashboardScreen = () => {
         'X-Bank-DeviceToken': deviceToken,
       },
     });
-  }, [deviceToken, getDashboardTemplates, getTrustedDevices, userIp]);
+  }, [deviceToken, getTrustedDevices, userIp]);
 
   useEffect(() => {
     showEasyLoginPrompt &&
@@ -57,36 +52,66 @@ export const DashboardScreen = () => {
   }, [showEasyLoginPrompt]);
 
   //   TODO - temp!!
-  const handleClearAllFromStorage = () => {
-    storage.clearAll();
+
+  // const handleClearLoginName = () => {
+  //   setCredentials({ username: '' });
+  // };
+  // const handleClearCredentials = () => {
+  //   clearCredentials();
+  // };
+
+  const flatlistRef = useRef<FlatList>(null);
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const zIndex = useSharedValue(1);
+
+  const renderItem: ListRenderItem<string> = ({ item }) => {
+    switch (item) {
+      case 'terabank':
+        return <TeraBank translateY={translateY} zIndex={zIndex} />;
+      case 'otherbanks':
+        return <OtherBanks />;
+      default:
+        return null;
+    }
   };
 
-  //   TODO - temp!!
-  const handleClearLoginName = () => {
-    setCredentials({ username: '' });
-  };
-  const handleClearCredentials = () => {
-    clearCredentials();
+  const onTabPress = (index: number) => {
+    translateX.value = withTiming(index * config.mobileWidth);
+    flatlistRef.current?.scrollToOffset({
+      animated: true,
+      offset: index * config.mobileWidth,
+    });
   };
 
   return (
-    <View style={styles.container}>
-      <LanguageSwitcher />
-
-      <DashboardTemplates />
-      <Text style={[Fonts.textSmall]} children="Home main Screen" />
-      <Pressable onPress={onChangeTheme}>
-        <Text style={[Fonts.textSmall]} children="Change theme" />
-      </Pressable>
+    <>
+      <HomeHeader translateY={translateY} zIndex={zIndex} />
+      <DashboardTabBar
+        onTabPress={onTabPress}
+        translateX={translateX}
+        translateY={translateY}
+        zIndex={zIndex}
+      />
+      <FlatList
+        horizontal
+        pagingEnabled
+        ref={flatlistRef}
+        scrollEnabled={false}
+        scrollEventThrottle={16}
+        renderItem={renderItem}
+        data={['terabank', 'otherbanks']}
+        showsHorizontalScrollIndicator={false}
+      />
       <Pressable onPress={handleClearAllFromStorage}>
         <Text style={[Fonts.semiLarge]} children="Clear all from storage" />
       </Pressable>
-      <Pressable onPress={handleClearLoginName}>
+      {/* <Pressable onPress={handleClearLoginName}>
         <Text style={[Fonts.semiLarge]} children="clear user's loginName" />
       </Pressable>
       <Pressable onPress={handleClearCredentials}>
         <Text style={[Fonts.semiLarge]} children="clear credentials" />
-      </Pressable>
-    </View>
+      </Pressable> */}
+    </>
   );
 };
