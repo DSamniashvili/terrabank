@@ -33,5 +33,8 @@ export const useStyleTheme = () => {
     special: {
       color: Colors.textPrimary,
     },
+    bold: {
+      fontWeight: '700',
+    },
   });
 };

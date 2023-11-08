@@ -96,5 +96,14 @@
     "all": "See all",
     "lastTransactions": "Last Transactions",
     "search": "Search Account"
+  },
+  "products": {
+    "accountsAndCards": "Accounts and Cards ({{value}})",
+    "deposits": "Deposits ({{value}})",
+    "loans": "Loans ({{value}})",
+    "interest": "Interest",
+    "fee": "Fee",
+    "new": "New Product",
+    "history": "განცხადებების ისტორია"
   }
 }

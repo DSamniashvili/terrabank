@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Animated, { interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import { ITabBarProps } from './DashboardTabBar.types';
 import { config } from 'utils/config';
-import { TabBarLabel } from './TabBarLabel';
+import { TabBarLabel } from '../index';
 import { useStyles } from './DashboardTabBar.styles';
 import { Colors } from 'theme/Variables';
 
