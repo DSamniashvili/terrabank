@@ -51,4 +51,3 @@ export { Calendar } from './Calendar';
 export { Plus } from './Plus';
 export { CheckCircle } from './CheckCircle';
 export { Alert } from './Alert';
-
