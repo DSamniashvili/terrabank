@@ -104,7 +104,7 @@
   "profile": {
     "edit_settings": "Edit settings",
     "logout": "Log out"
-
+  },
   "transfers": {
     "toOwnAccount": "Transfer to Own Account",
     "tera": "Transfer to Tera",
