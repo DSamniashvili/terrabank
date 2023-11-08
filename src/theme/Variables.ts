@@ -121,6 +121,15 @@ export const MetricsSizes = {
   large,
 };
 
+export const FontFamily = {
+  medium: 'TB-Public-2022Sans-Medium',
+  Black: 'TB-Public-2022Sans-Black',
+  DemiBold: 'TB-Public-2022Sans-DemiBold',
+  Light: 'TB-Public-2022Sans-Light',
+  LightItalic: 'TB-Public-2022Sans-LightItalic',
+  Regular: 'TB-Public-2022Sans-Regular',
+};
+
 export default {
   Colors,
   NavigationColors,
@@ -129,4 +138,5 @@ export default {
   BorderRadius,
   Opacity,
   MetricsSizes,
+  FontFamily,
 };

@@ -51,6 +51,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TB-Public-2022Sans-Black.otf</string>
+		<string>TB-Public-2022Sans-Bold.otf</string>
+		<string>TB-Public-2022Sans-DemiBold.otf</string>
+		<string>TB-Public-2022Sans-Light.otf</string>
+		<string>TB-Public-2022Sans-LightItalic.otf</string>
+		<string>TB-Public-2022Sans-Medium.otf</string>
+		<string>TB-Public-2022Sans-Regular.otf</string>
+	
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
