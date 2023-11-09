@@ -39,6 +39,7 @@ export const Colors = {
   circleButtonColor: '#44427D',
   inputBlack50: 'rgba(29, 29, 29, 0.05)',
   textWhite400: 'rgba(253, 253, 253, 0.4)',
+  textWhite500: 'rgba(253, 253, 253, 0.64)',
   dotGray: '#7D8D99',
   errorToastColor: '#FAE8E7',
   dashboardBackground: '#F6F6F7',

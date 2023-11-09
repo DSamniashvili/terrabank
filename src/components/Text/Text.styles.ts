@@ -5,8 +5,8 @@ export const useStyleTheme = () => {
   const { Colors, FontSize, Fonts, FontFamily } = useTheme();
   return StyleSheet.create({
     default: {
-      fontSize: FontSize.regular,
-      fontFamily: FontFamily.medium,
+      fontSize: FontSize.small,
+      fontFamily: FontFamily.Regular,
       lineHeight: FontSize.large,
       color: Colors.textBlack,
     },

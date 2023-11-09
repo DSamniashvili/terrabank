@@ -1,7 +1,7 @@
 import React from 'react';
-import { SectionList, SectionListRenderItem, StyleSheet, View } from 'react-native';
+import { SectionList, SectionListRenderItem, View } from 'react-native';
 import { TransferTemplates, ChooseService, LastTransactions } from 'components';
-import { useTheme } from 'hooks';
+import { useStyles } from './TransactionsScreen.styles';
 
 const sections = [
   { title: 'services', data: [{}] },
@@ -38,22 +38,4 @@ export const TransactionsScreen = () => {
       />
     </View>
   );
-};
-
-const useStyles = () => {
-  const { Colors, Layout, Spacing } = useTheme();
-
-  return StyleSheet.create({
-    container: {
-      ...Layout.fill,
-      backgroundColor: Colors.headerBackground,
-    },
-    sectionListContent: {
-      ...Layout.overflowHidden,
-      paddingBottom: 70,
-      borderTopLeftRadius: Spacing.ml,
-      borderTopRightRadius: Spacing.ml,
-      backgroundColor: '#fff',
-    },
-  });
 };

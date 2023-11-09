@@ -33,3 +33,4 @@ export const MY_ACCOUNTS_SCREEN = 'MyAccountsScreen';
 
 // products
 export const ALL_ACCOUNTS_AND_CARDS_SCREEN = 'AllAccountsAndCardsScreen';
+export const ACCOUNT_DETAILS_SCREEN = 'AccountDetailsScreen';

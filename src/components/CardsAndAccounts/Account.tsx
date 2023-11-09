@@ -7,11 +7,12 @@ import { useStyles } from './CardsAndAccounts.styles';
 import { AccountProps } from './CardsAndAccounts.types';
 import { useTheme } from 'hooks';
 
-export const Account: FC<AccountProps> = ({ item, isLast }) => {
+export const Account: FC<AccountProps> = ({ item, isLast, handlePress }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
+
   return (
-    <View style={styles.account}>
+    <Pressable onPress={handlePress} style={styles.account}>
       <View style={styles.cardContainer}>
         <View style={styles.card} />
       </View>
@@ -38,6 +39,6 @@ export const Account: FC<AccountProps> = ({ item, isLast }) => {
         </View>
         {!isLast && <Divider height={1} marginTop={18} width="100%" />}
       </View>
-    </View>
+    </Pressable>
   );
 };

@@ -23,6 +23,7 @@ export const useStyles = () => {
       borderTopLeftRadius: Spacing.xl,
       borderTopRightRadius: Spacing.xl,
       borderColor: Colors.white,
+      backgroundColor: Colors.white,
     },
     sectionListContent: {
       flexGrow: 1,

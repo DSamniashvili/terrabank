@@ -15,3 +15,4 @@ export { AuthorizationMethodsScreen } from './AuthorizationMethodsScreen/Authori
 export { TransactionsScreen } from './TransactionsScreen/TransactionsScreen';
 export { MyAccounts } from './MyAccounts/MyAccounts';
 export { AllAcountsAndCardsScreen } from './AllAccountsAndCardsScreen/AllAcountsAndCardsScreen';
+export { AccountDetailsScreen } from './AccountDetailsScreen/AccountDetailsScreen';

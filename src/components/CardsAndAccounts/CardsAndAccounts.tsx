@@ -57,9 +57,22 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
   showDivider = true,
 }) => {
   const styles = useStyles();
+  const { navigate } = useNavigation<ProductsStackScreenProps<'AccountDetailsScreen'>>();
+
+  const handlePress = (accountId: number) => {
+    navigate('AccountDetailsScreen', {
+      accountId,
+    });
+  };
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
-    return <Account item={item} isLast={index === accounts.length - 1} />;
+    return (
+      <Account
+        item={item}
+        isLast={index === accounts.length - 1}
+        handlePress={() => handlePress(item.id)}
+      />
+    );
   };
 
   return (

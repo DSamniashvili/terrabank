@@ -8,6 +8,7 @@ export interface CardsAndAccountsProps {
 export interface AccountProps {
   item: any;
   isLast: boolean;
+  handlePress?: () => void;
 }
 
 export interface HeaderProps {

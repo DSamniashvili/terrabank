@@ -12,16 +12,19 @@ const sections = [
 
 const accounts = [
   {
+    id: 1,
     name: 'ჩემი ანგარიში',
     balance: 1492,
     isBlocked: true,
   },
   {
+    id: 2,
     name: 'ჩემი ანგარიში',
     balance: 208.05,
     isBlocked: false,
   },
   {
+    id: 3,
     name: 'ჩემი ანგარიში',
     balance: 2710.16,
     isBlocked: false,

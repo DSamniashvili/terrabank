@@ -1,38 +1,45 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FlatList, ListRenderItem, Pressable, View } from 'react-native';
 import { Text } from '../index';
 import { useStyles } from './LastTransactions.styles';
 import LastTransactionItem from './LastTransactionItem';
-import { ILastTransaction } from './LastTransaction.types';
+import { ILastTransaction, LastTransactionsProps } from './LastTransaction.types';
 
-const data = [
+const dummyData = [
   {
-    name: 'გივი დაუთაშვილი',
-    iban: 'GE07BS*****3232 GEL',
+    title: 'გივი დაუთაშვილი',
+    value: 'GE07BS*****3232 GEL',
     amount: 320.5,
     date: '20 სექ, 2021, 12:20',
   },
   {
-    name: 'თემო გაბეჩავა',
-    iban: 'GE07BS*****3232 GEL',
+    title: 'თემო გაბეჩავა',
+    value: 'GE07BS*****3232 GEL',
     amount: 410,
     date: '20 სექ, 2021, 12:20',
   },
   {
-    name: 'ზურა ჭავჭანიძე',
-    iban: '01019052736',
+    title: 'ზურა ჭავჭანიძე',
+    value: '01019052736',
     amount: 250,
     date: '20 სექ, 2021, 12:20',
   },
   {
-    name: 'გივი დაუთაშვილი',
-    iban: '01019052736',
+    title: 'გივი დაუთაშვილი',
+    value: '01019052736',
     amount: 25.7,
     date: '20 სექ, 2021, 12:20',
   },
 ];
 
-export const LastTransactions = () => {
+export const LastTransactions: FC<LastTransactionsProps> = ({
+  data = dummyData,
+  sectionTitle = 'transfers.lastTransactions',
+  headerContaienrStyle,
+  headerLabelStyle,
+  showFooter = true,
+  style,
+}) => {
   const styles = useStyles();
 
   const renderItem: ListRenderItem<ILastTransaction> = ({ item, index }) => {
@@ -49,15 +56,15 @@ export const LastTransactions = () => {
 
   return (
     <>
-      <View style={styles.header}>
-        <Text children="transfers.lastTransactions" />
+      <View style={[styles.header, headerContaienrStyle]}>
+        <Text children={sectionTitle} style={headerLabelStyle} />
       </View>
       <FlatList
         data={data}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
-        ListFooterComponent={footer}
-        style={styles.list}
+        ListFooterComponent={showFooter ? footer : null}
+        style={[styles.list, style]}
       />
     </>
   );
