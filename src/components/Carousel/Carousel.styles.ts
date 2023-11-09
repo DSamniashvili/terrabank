@@ -24,8 +24,8 @@ const useStyles = () => {
       gap: Spacing.s,
     },
     dot: {
-      width: Spacing.xs,
-      height: Spacing.xs,
+      width: Spacing.xxs,
+      height: Spacing.xxs,
       borderRadius: Spacing.xxs,
     },
     buttonContainer: {

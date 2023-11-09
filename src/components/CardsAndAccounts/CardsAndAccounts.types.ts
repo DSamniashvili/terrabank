@@ -1,5 +1,8 @@
 export interface CardsAndAccountsProps {
   accounts: any[];
+  showTitle?: boolean;
+  showFooter?: boolean;
+  showDivider?: boolean;
 }
 
 export interface AccountProps {
@@ -9,4 +12,5 @@ export interface AccountProps {
 
 export interface HeaderProps {
   amount: number;
+  showTitle: boolean;
 }

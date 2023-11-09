@@ -17,11 +17,11 @@ export const Account: FC<AccountProps> = ({ item, isLast }) => {
       </View>
       <View style={styles.details}>
         <View style={styles.nameContainer}>
-          <Text children={item.name} size={14} color={Colors.textBlack500} />
+          <Text regular children={item.name} size={14} color={Colors.textBlack500} />
           {item.isBlocked && <Alert />}
         </View>
         <View style={styles.balanceContainer}>
-          <Text size={16} style={styles.bold}>
+          <Text size={16} demiBold>
             {formatMoney(item.balance)} ₾
           </Text>
           <View style={styles.currencyWrapper}>

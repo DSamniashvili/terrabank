@@ -22,6 +22,11 @@ export const Text = forwardRef<RNText, TextProps>(
       translate = true,
       marginTop,
       bold,
+      black,
+      demiBold,
+      light,
+      lightItalic,
+      regular,
       style,
       ...props
     },
@@ -46,6 +51,11 @@ export const Text = forwardRef<RNText, TextProps>(
           size ? { fontSize: size } : null,
           marginTop ? { marginTop } : null,
           bold && styles.bold,
+          black && styles.black,
+          demiBold && styles.demiBold,
+          light && styles.light,
+          lightItalic && styles.lightItalic,
+          regular && styles.regular,
           style,
         ]}
         children={translate && typeof children === 'string' ? t(children, translateProp) : children}

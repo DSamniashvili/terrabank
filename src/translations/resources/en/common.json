@@ -125,6 +125,10 @@
     "interest": "Interest",
     "fee": "Fee",
     "new": "New Product",
-    "history": "განცხადებების ისტორია"
+    "history": "განცხადებების ისტორია",
+    "allAccounts": "Accounts and Cards",
+    "Offers": "Offers",
+    "more": "Learn more",
+    "newAccount": "New Account/Card"
   }
 }

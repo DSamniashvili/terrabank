@@ -37,5 +37,20 @@ export const useStyleTheme = () => {
     bold: {
       fontWeight: '700',
     },
+    black: {
+      fontFamily: FontFamily.Black,
+    },
+    demiBold: {
+      fontFamily: FontFamily.DemiBold,
+    },
+    light: {
+      fontFamily: FontFamily.Light,
+    },
+    lightItalic: {
+      fontFamily: FontFamily.LightItalic,
+    },
+    regular: {
+      fontFamily: FontFamily.Regular,
+    },
   });
 };

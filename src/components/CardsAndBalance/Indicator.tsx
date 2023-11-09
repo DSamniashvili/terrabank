@@ -33,12 +33,12 @@ const Dot = ({ index, translateX }: DotProps) => {
   return <Animated.View key={index} style={[styles.dot, reanimatedStyle]} />;
 };
 
-const Indicator: FC<IndicatorProps> = ({ data, translateX }) => {
+const Indicator: FC<IndicatorProps> = ({ data, translateX, hideFirst = true }) => {
   const styles = useStyles();
   return (
     <View style={styles.dotContainer}>
       {data.map((_, i) => {
-        if (i === 0) {
+        if (i === 0 && hideFirst) {
           return;
         }
         return <Dot key={i} index={i} translateX={translateX} />;

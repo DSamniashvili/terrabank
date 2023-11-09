@@ -44,6 +44,7 @@ export interface CardProps {
 export interface IndicatorProps {
   data: Item[];
   translateX: SharedValue<number>;
+  hideFirst?: boolean;
 }
 
 export interface DotProps {

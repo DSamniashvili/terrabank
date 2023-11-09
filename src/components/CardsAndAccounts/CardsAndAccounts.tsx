@@ -7,24 +7,28 @@ import { Settings } from 'assets/SVGs';
 import { formatMoney } from 'utils/formatMoney';
 import { CardsAndAccountsProps, HeaderProps } from './CardsAndAccounts.types';
 import { useStyles } from './CardsAndAccounts.styles';
+import { useNavigation } from '@react-navigation/native';
+import { ProductsStackScreenProps } from 'navigation/types';
 
-const ListHeader: FC<HeaderProps> = ({ amount }) => {
+const ListHeader: FC<HeaderProps> = ({ amount, showTitle }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
   return (
     <View style={styles.headerWrapper}>
-      <View style={styles.headerContainer}>
-        <Text
-          title
-          color={Colors.textBlack500}
-          translateProp={{ value: amount }}
-          children="products.accountsAndCards"
-        />
-        <View style={styles.iconContainer}>
-          <Settings />
+      {showTitle && (
+        <View style={styles.headerContainer}>
+          <Text
+            title
+            color={Colors.textBlack500}
+            translateProp={{ value: amount }}
+            children="products.accountsAndCards"
+          />
+          <View style={styles.iconContainer}>
+            <Settings />
+          </View>
         </View>
-      </View>
-      <Text size={30} lineHeight={36} bold>
+      )}
+      <Text regular size={30} lineHeight={36} marginTop={!showTitle ? 24 : 0}>
         {formatMoney(8215)} ₾
       </Text>
     </View>
@@ -33,14 +37,25 @@ const ListHeader: FC<HeaderProps> = ({ amount }) => {
 
 const ListFooter = () => {
   const styles = useStyles();
+  const { navigate } = useNavigation<ProductsStackScreenProps<'AllAccountsAndCardsScreen'>>();
+
+  const onPress = () => {
+    navigate('AllAccountsAndCardsScreen');
+  };
+
   return (
-    <Pressable style={styles.seeAll}>
+    <Pressable onPress={onPress} style={styles.seeAll}>
       <Text children="transfers.all" special size={14} lineHeight={20} />
     </Pressable>
   );
 };
 
-export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({ accounts }) => {
+export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
+  accounts,
+  showTitle = true,
+  showFooter = true,
+  showDivider = true,
+}) => {
   const styles = useStyles();
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
@@ -52,11 +67,11 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({ accounts }) => {
       <FlatList
         data={accounts}
         renderItem={renderItem}
-        ListHeaderComponent={<ListHeader amount={accounts.length} />}
-        ListFooterComponent={ListFooter}
+        ListHeaderComponent={<ListHeader amount={accounts.length} showTitle={showTitle} />}
+        ListFooterComponent={showFooter ? ListFooter : null}
         style={styles.flatlist}
       />
-      <Divider marginTop={24} marginBottom={12} />
+      {showDivider && <Divider marginTop={24} marginBottom={12} />}
     </View>
   );
 };
