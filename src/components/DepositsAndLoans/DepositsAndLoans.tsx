@@ -5,9 +5,9 @@ import { ListItem } from './ListItem';
 import { Divider, Text } from '../index';
 import { formatMoney } from 'utils/formatMoney';
 import { useStyles } from './DepositsAndLoans.styles';
-import { DepositsProps, HeaderProps } from './DepositsAndLoans.types';
+import { DepositsAndLoansProps, HeaderProps } from './DepositsAndLoans.types';
 
-const ListHeader: FC<HeaderProps> = ({ variant, amount }) => {
+const ListHeader: FC<HeaderProps> = ({ variant, quantity, totalAmount }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
   return (
@@ -16,11 +16,11 @@ const ListHeader: FC<HeaderProps> = ({ variant, amount }) => {
         size={14}
         lineHeight={20}
         color={Colors.textBlack500}
-        translateProp={{ value: amount }}
+        translateProp={{ value: quantity }}
         children={variant === 'deposit' ? 'products.deposits' : 'products.loans'}
       />
       <Text size={30} regular lineHeight={36} marginTop={8}>
-        {formatMoney(22871)} ₾
+        {formatMoney(totalAmount || 0)} ₾
       </Text>
     </View>
   );
@@ -35,20 +35,31 @@ const ListFooter = () => {
   );
 };
 
-export const DepositsAndLoans: FC<DepositsProps> = ({ data, variant }) => {
+export const DepositsAndLoans: FC<DepositsAndLoansProps> = ({
+  data,
+  totalAmount,
+  variant,
+  seeAll,
+}) => {
   const styles = useStyles();
 
+  if (!data) {
+    return null;
+  }
+
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
-    return <ListItem item={item} isLast={index === data.length - 1} />;
+    return <ListItem item={item} variant={variant} isLast={index === data.length - 1} />;
   };
 
   return (
     <View style={styles.listContainer}>
       <FlatList
-        data={data}
+        data={seeAll ? data : data.slice(0, variant === 'deposit' ? 2 : 4)}
         renderItem={renderItem}
         ListFooterComponent={ListFooter}
-        ListHeaderComponent={<ListHeader variant={variant} amount={data.length} />}
+        ListHeaderComponent={
+          <ListHeader totalAmount={totalAmount} variant={variant} quantity={data.length} />
+        }
         style={styles.list}
       />
       {variant === 'deposit' && <Divider marginTop={24} marginBottom={12} />}

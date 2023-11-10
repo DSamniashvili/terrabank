@@ -1,59 +1,10 @@
 import React from 'react';
 import { SectionList, SectionListRenderItem, View } from 'react-native';
 import { useTheme } from 'hooks';
+import { useTeraProducts } from './teraProductsContainer';
 import { Button, CardsAndAccounts, DepositsAndLoans, Divider } from 'components';
 import { useStyles } from './ProductsScreen.styles';
 import { Plus } from 'assets/SVGs';
-import { useTeraProducts } from './teraProductsContainer';
-
-// const accountsData = [
-//   {
-//     name: 'ჩემი ანგარიში',
-//     balance: 1492,
-//     isBlocked: true,
-//   },
-//   {
-//     name: 'ჩემი ანგარიში',
-//     balance: 208.05,
-//     isBlocked: false,
-//   },
-//   {
-//     name: 'ჩემი ანგარიში',
-//     balance: 2710.16,
-//     isBlocked: false,
-//   },
-// ];
-
-const deposits = [
-  {
-    name: 'სახლისთვის',
-    balance: 1492,
-    interests: 220.08,
-  },
-  {
-    name: 'მანქანისთვის',
-    balance: 2692.03,
-    interests: 220.08,
-  },
-];
-
-const loans = [
-  {
-    name: 'იპოთეკური სესხი',
-    balance: 1492,
-    fee: 0,
-  },
-  {
-    name: 'სამომხმარებლო სესხი',
-    balance: 1492,
-    fee: 0,
-  },
-  {
-    name: 'ოვერდრაფტი',
-    balance: 1492,
-    fee: 105.3,
-  },
-];
 
 const sections = [
   { title: 'accounts', data: [{}] },
@@ -83,7 +34,7 @@ const SectionListFooter = () => {
 const TeraBankProducts = () => {
   const styles = useStyles();
   const { Colors } = useTheme();
-  const { accounts, totalAvailableBalance } = useTeraProducts();
+  const { accounts, totalAvailableBalance, deposits, totalDeposits } = useTeraProducts();
 
   const renderSectionListItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
@@ -92,9 +43,11 @@ const TeraBankProducts = () => {
           <CardsAndAccounts accounts={accounts} totalAvailableBalance={totalAvailableBalance} />
         );
       case 'deposits':
-        return <DepositsAndLoans data={deposits} variant="deposit" />;
-      case 'loans':
-        return <DepositsAndLoans data={loans} variant="loan" />;
+        return (
+          <DepositsAndLoans data={deposits} totalAmount={totalDeposits || 0} variant="deposit" />
+        );
+      // case 'loans':
+      //   return <DepositsAndLoans data={loans} variant="loan" />;
       default:
         return null;
     }

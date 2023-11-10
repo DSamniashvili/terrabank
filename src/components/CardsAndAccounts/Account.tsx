@@ -7,6 +7,7 @@ import { useStyles } from './CardsAndAccounts.styles';
 import { AccountProps, CurrencyMap } from './CardsAndAccounts.types';
 import { useTheme } from 'hooks';
 import { Currency } from 'services/apis/productsAPI/productsAPI.types';
+import { CurrencySignMap } from 'utils/CurrencySignMap';
 
 const currencies: CurrencyMap[] = [
   {
@@ -21,12 +22,16 @@ const currencies: CurrencyMap[] = [
     cur: 'EUR',
     sign: '€',
   },
+  {
+    cur: 'GBP',
+    sign: '£',
+  },
 ];
 
 export const Account: FC<AccountProps> = ({ item, isLast, handlePress }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>('GEL');
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(item.ccy);
 
   const handleCurrencyPress = (currency: Currency) => {
     setSelectedCurrency(currency);
@@ -44,7 +49,7 @@ export const Account: FC<AccountProps> = ({ item, isLast, handlePress }) => {
         </View>
         <View style={styles.balanceContainer}>
           <Text size={16} demiBold>
-            {formatMoney(item.availableBalance || 0)} ₾
+            {formatMoney(item.availableBalance || 0)} {CurrencySignMap[item.ccy]}
           </Text>
           <View style={styles.currencyWrapper}>
             {currencies.map(ccy => (

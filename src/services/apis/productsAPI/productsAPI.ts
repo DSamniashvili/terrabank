@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithInterceptor } from 'services/api';
 import { URLS } from 'services/constants/urls';
 import { METHOD_NAMES } from 'services/constants';
-import { Account, OfferType, OffersAPIResponseType } from './productsAPI.types';
+import { Account, DepositType, OfferType, OffersAPIResponseType } from './productsAPI.types';
 
 export const productsAPI = createApi({
   reducerPath: 'productsAPI',
@@ -10,25 +10,48 @@ export const productsAPI = createApi({
   tagTypes: ['Auth'],
   endpoints: builder => ({
     getAccountsByCustomerId: builder.query<Account[], number>({
-      query: UserId => ({
+      query: CustomerId => ({
         url: URLS.getAccountsByCustomerId,
         method: METHOD_NAMES.GET,
         params: {
-          UserId,
+          CustomerId,
         },
       }),
     }),
     getOffers: builder.query<OfferType[], number>({
-      query: UserId => ({
+      query: CustomerId => ({
         url: URLS.getOffers,
         method: METHOD_NAMES.GET,
         params: {
-          UserId,
+          CustomerId,
         },
       }),
       transformResponse: (response: OffersAPIResponseType) => response.offers,
     }),
+    getDeposits: builder.query<DepositType[], number>({
+      query: CustomerId => ({
+        url: URLS.getDepositsByClientId,
+        method: METHOD_NAMES.GET,
+        params: {
+          CustomerId,
+        },
+      }),
+    }),
+    getLoansByCustomerId: builder.query<any, number>({
+      query: CustomerId => ({
+        url: URLS.getLoansByCustomerId,
+        method: METHOD_NAMES.GET,
+        params: {
+          CustomerId,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetAccountsByCustomerIdQuery, useGetOffersQuery } = productsAPI;
+export const {
+  useGetAccountsByCustomerIdQuery,
+  useGetOffersQuery,
+  useGetDepositsQuery,
+  useGetLoansByCustomerIdQuery,
+} = productsAPI;
