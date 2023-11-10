@@ -16,10 +16,8 @@ export const ListItem: FC<ListItemProps> = ({ item, isLast }) => {
       <View style={styles.detailsWrapper}>
         <View style={styles.details}>
           <View>
-            <Text children={item.name} size={14} color={Colors.textBlack500} />
-            <Text size={16} style={styles.bold}>
-              {formatMoney(item.balance)} ₾
-            </Text>
+            <Text regular children={item.name} size={14} color={Colors.textBlack500} />
+            <Text size={16}>{formatMoney(item.balance)} ₾</Text>
           </View>
           {Object.keys(item).includes('interests') && (
             <View style={styles.interest}>

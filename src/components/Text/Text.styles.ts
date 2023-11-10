@@ -5,8 +5,8 @@ export const useStyleTheme = () => {
   const { Colors, FontSize, Fonts, FontFamily } = useTheme();
   return StyleSheet.create({
     default: {
-      fontSize: FontSize.regular,
-      fontFamily: FontFamily.medium,
+      fontSize: FontSize.small,
+      fontFamily: FontFamily.Regular,
       lineHeight: FontSize.large,
       color: Colors.textBlack,
     },
@@ -36,6 +36,21 @@ export const useStyleTheme = () => {
     },
     bold: {
       fontWeight: '700',
+    },
+    black: {
+      fontFamily: FontFamily.Black,
+    },
+    demiBold: {
+      fontFamily: FontFamily.DemiBold,
+    },
+    light: {
+      fontFamily: FontFamily.Light,
+    },
+    lightItalic: {
+      fontFamily: FontFamily.LightItalic,
+    },
+    regular: {
+      fontFamily: FontFamily.Regular,
     },
   });
 };

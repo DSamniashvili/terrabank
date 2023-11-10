@@ -14,11 +14,11 @@ const LastTransactionItem: FC<LastTransactionProps> = ({ item, index }) => {
       <View style={styles.imageContainer} />
       <View style={styles.detailsWrapper}>
         <View style={styles.details}>
-          <Text size={14}>{item.name}</Text>
+          <Text size={14}>{item.title}</Text>
           <Text size={14}>-${item.amount}</Text>
         </View>
         <View style={styles.details}>
-          <Text children={item.iban} size={12} color={Colors.textBlack400} />
+          <Text children={item.value} size={12} color={Colors.textBlack400} />
           <Text children={item.date} size={12} color={Colors.textBlack400} />
         </View>
         {index < 3 && <Divider height={1} marginTop={18} marginBottom={18} width="100%" />}

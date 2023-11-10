@@ -3,6 +3,8 @@ import { SectionList, SectionListRenderItem, View } from 'react-native';
 import { useTheme } from 'hooks';
 import { Button, CardsAndAccounts, DepositsAndLoans, Divider } from 'components';
 import { useStyles } from './ProductsScreen.styles';
+import { Plus } from 'assets/SVGs';
+import { Colors } from 'theme/Variables';
 
 const accounts = [
   {
@@ -59,11 +61,13 @@ const sections = [
   { title: 'loans', data: [{}] },
 ];
 
+const LeftIcon = () => <Plus color={Colors.white} />;
+
 const SectionListFooter = () => {
   const styles = useStyles();
   return (
     <View style={styles.footer}>
-      <Button.Primary text="products.new" fullWidth />
+      <Button.Primary text="products.new" fullWidth leftIcon={LeftIcon} />
       <Button.Secondary
         fullWidth
         text="products.history"

@@ -21,6 +21,8 @@ import {
   MODAL_STACK,
   MODAL_SCREEN_ONE,
   MY_ACCOUNTS_SCREEN,
+  ALL_ACCOUNTS_AND_CARDS_SCREEN,
+  ACCOUNT_DETAILS_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -40,6 +42,10 @@ export type DashboardStackParamsList = {
 
 export type ProductsStackParamsList = {
   [PRODUCTS_SCREEN]: undefined;
+  [ALL_ACCOUNTS_AND_CARDS_SCREEN]: undefined;
+  [ACCOUNT_DETAILS_SCREEN]: {
+    accountId: number;
+  };
 };
 
 export type TransactionsStackParamsList = {

@@ -4,6 +4,7 @@ import Animated, { interpolate, interpolateColor, useAnimatedStyle } from 'react
 import { config } from 'utils/config';
 import { Colors } from 'theme/Variables';
 import { ITabBarLabelProps } from './TabBarLabel.types';
+import { useStyles } from './TabBarLabel.styles';
 
 export const TabBarLabel: FC<ITabBarLabelProps> = ({
   onTabPress,
@@ -12,6 +13,8 @@ export const TabBarLabel: FC<ITabBarLabelProps> = ({
   tab,
   translateX,
 }) => {
+  const styles = useStyles();
+
   const opacity = useAnimatedStyle(() => ({
     opacity: interpolate(
       translateX.value,
@@ -27,7 +30,11 @@ export const TabBarLabel: FC<ITabBarLabelProps> = ({
 
   return (
     <Pressable onPress={() => onTabPress(index)} key={index}>
-      <Animated.Text onLayout={e => onLayout(e, index)} children={tab} style={[opacity]} />
+      <Animated.Text
+        onLayout={e => onLayout(e, index)}
+        children={tab}
+        style={[styles.sectionList, opacity]}
+      />
     </Pressable>
   );
 };

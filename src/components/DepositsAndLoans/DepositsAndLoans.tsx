@@ -19,7 +19,7 @@ const ListHeader: FC<HeaderProps> = ({ variant, amount }) => {
         translateProp={{ value: amount }}
         children={variant === 'deposit' ? 'products.deposits' : 'products.loans'}
       />
-      <Text size={30} lineHeight={36} bold marginTop={8}>
+      <Text size={30} regular lineHeight={36} marginTop={8}>
         {formatMoney(22871)} ₾
       </Text>
     </View>
