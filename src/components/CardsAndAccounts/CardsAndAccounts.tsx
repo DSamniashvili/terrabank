@@ -10,7 +10,7 @@ import { useStyles } from './CardsAndAccounts.styles';
 import { useNavigation } from '@react-navigation/native';
 import { ProductsStackScreenProps } from 'navigation/types';
 
-const ListHeader: FC<HeaderProps> = ({ amount, showTitle }) => {
+const ListHeader: FC<HeaderProps> = ({ amount, showTitle, totalAvailableBalance }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
   return (
@@ -29,7 +29,7 @@ const ListHeader: FC<HeaderProps> = ({ amount, showTitle }) => {
         </View>
       )}
       <Text regular size={30} lineHeight={36} marginTop={!showTitle ? 24 : 0}>
-        {formatMoney(8215)} ₾
+        {formatMoney(totalAvailableBalance)} ₾
       </Text>
     </View>
   );
@@ -55,6 +55,8 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
   showTitle = true,
   showFooter = true,
   showDivider = true,
+  totalAvailableBalance = 0,
+  seeAllAccounts,
 }) => {
   const styles = useStyles();
   const { navigate } = useNavigation<ProductsStackScreenProps<'AccountDetailsScreen'>>();
@@ -64,6 +66,10 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
       accountId,
     });
   };
+
+  if (!accounts) {
+    return null;
+  }
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return (
@@ -78,9 +84,15 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
   return (
     <View style={styles.listContainer}>
       <FlatList
-        data={accounts}
+        data={seeAllAccounts ? accounts : accounts.slice(0, 3)}
         renderItem={renderItem}
-        ListHeaderComponent={<ListHeader amount={accounts.length} showTitle={showTitle} />}
+        ListHeaderComponent={
+          <ListHeader
+            amount={accounts.length}
+            showTitle={showTitle}
+            totalAvailableBalance={totalAvailableBalance}
+          />
+        }
         ListFooterComponent={showFooter ? ListFooter : null}
         style={styles.flatlist}
       />

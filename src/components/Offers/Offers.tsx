@@ -39,7 +39,7 @@ export const Offers: FC<OffersProps> = ({ data }) => {
 
   return (
     <>
-      <Text children="products.offers" style={styles.title} />
+      <Text children="products.offers" demiBold style={styles.title} />
       <Animated.FlatList
         horizontal
         pagingEnabled

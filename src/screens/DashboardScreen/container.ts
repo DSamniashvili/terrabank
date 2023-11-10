@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useGetUserProfileInfoQuery } from 'services/apis';
 import {
   useGetTemplatesQuery,
   useGetCustomerOperationsMutation,
@@ -8,8 +9,11 @@ import {
   useGetAssetsQuery,
   useGetBankerQuery,
 } from 'services/apis/dashboardAPI/dashboardAPI';
+import { useAppDispatch } from 'store/hooks/useAppDispatch';
+import { setCustomerId } from 'store/slices/profile';
 
 export const useDashboardScreen = () => {
+  const dispatch = useAppDispatch();
   const { data: templates, isLoading: temlpatesLoading } = useGetTemplatesQuery();
   const [getCustomerOperations, { data: customOperations, isLoading: customerOperationsLoading }] =
     useGetCustomerOperationsMutation();
@@ -18,6 +22,7 @@ export const useDashboardScreen = () => {
   const { data: getLoanCustomerId, isLoading: customerIdLoading } = useGetLoanCustomerIdQuery();
   const { data: assets, isLoading: assetsLoading } = useGetAssetsQuery();
   const { data: banker, isLoading: bankerLoading } = useGetBankerQuery();
+  const { data: profile } = useGetUserProfileInfoQuery();
 
   useEffect(() => {
     getCustomerOperations({
@@ -29,6 +34,12 @@ export const useDashboardScreen = () => {
       accountNumber: null,
     });
   }, [getCustomerOperations]);
+
+  useEffect(() => {
+    if (profile) {
+      dispatch(setCustomerId(profile.customerId));
+    }
+  }, [dispatch, profile]);
 
   return {
     templates,
