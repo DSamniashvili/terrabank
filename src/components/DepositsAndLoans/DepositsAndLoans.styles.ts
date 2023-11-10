@@ -33,6 +33,7 @@ export const useStyles = () => {
       borderColor: Colors.inputBlack50,
     },
     interest: {
+      ...Layout.alignItemsCenter,
       backgroundColor: Colors.inputBlack50,
       borderRadius: 48,
       paddingHorizontal: 20,
