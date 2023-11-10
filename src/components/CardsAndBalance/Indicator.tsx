@@ -35,6 +35,7 @@ const Dot = ({ index, translateX }: DotProps) => {
 
 const Indicator: FC<IndicatorProps> = ({ data, translateX, hideFirst = true }) => {
   const styles = useStyles();
+
   return (
     <View style={styles.dotContainer}>
       {data.map((_, i) => {

@@ -4,50 +4,11 @@ import { Button, CardsAndAccounts, Offers } from 'components';
 import { useStyles } from './AllAcountsAndCardsScreen.styles';
 import { Plus } from 'assets/SVGs';
 import { Colors } from 'theme/Variables';
+import { useAllAcounts } from './container';
 
 const sections = [
   { title: 'accounts', data: [{}] },
   { title: 'offers', data: [{}] },
-];
-
-const accounts = [
-  {
-    id: 1,
-    name: 'ჩემი ანგარიში',
-    balance: 1492,
-    isBlocked: true,
-  },
-  {
-    id: 2,
-    name: 'ჩემი ანგარიში',
-    balance: 208.05,
-    isBlocked: false,
-  },
-  {
-    id: 3,
-    name: 'ჩემი ანგარიში',
-    balance: 2710.16,
-    isBlocked: false,
-  },
-];
-
-const offers = [
-  {
-    title: 'ბარათის დაზღვევა',
-    desc: 'დააზღვიეთ სადებეტო ბარათი ბანკში მისვლის გარეშე',
-  },
-  {
-    title: 'ბარათის დაზღვევა',
-    desc: 'დააზღვიეთ სადებეტო ბარათი ბანკში მისვლის გარეშე',
-  },
-  {
-    title: 'ბარათის დაზღვევა',
-    desc: 'დააზღვიეთ სადებეტო ბარათი ბანკში მისვლის გარეშე',
-  },
-  {
-    title: 'ბარათის დაზღვევა',
-    desc: 'დააზღვიეთ სადებეტო ბარათი ბანკში მისვლის გარეშე',
-  },
 ];
 
 const LeftIcon = () => <Plus color={Colors.white} />;
@@ -66,6 +27,11 @@ const ListFooter = () => {
 
 export const AllAcountsAndCardsScreen = () => {
   const styles = useStyles();
+  const { accounts, totalAvailableBalance, offers } = useAllAcounts();
+
+  if (!offers) {
+    return null;
+  }
 
   const renderItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
@@ -76,6 +42,8 @@ export const AllAcountsAndCardsScreen = () => {
             showTitle={false}
             showFooter={false}
             showDivider={offers.length > 0}
+            totalAvailableBalance={totalAvailableBalance}
+            seeAllAccounts
           />
         );
       case 'offers':

@@ -17,25 +17,31 @@ import { userInfoReducer } from './slices/userInfo';
 import {
   dashboardPersistConfig,
   deviceInfoPersistConfig,
+  profilePersistConfig,
   themePersistConfig,
   userInfoPersistConfig,
 } from './config';
 import { dashboardAPI } from 'services/apis/dashboardAPI/dashboardAPI';
 import { dashboardReducer } from './slices/dashboard';
 import { deviceInfoReducer } from './slices/deviceInfo';
+import { profileReducer } from './slices/profile';
+import { productsAPI } from 'services/apis/productsAPI/productsAPI';
 
 const persistedTheme = persistReducer(themePersistConfig, themeReducer);
 const persistedUserInfo = persistReducer(userInfoPersistConfig, userInfoReducer);
 const persistedDeviceInfo = persistReducer(deviceInfoPersistConfig, deviceInfoReducer);
 const persistedDashboard = persistReducer(dashboardPersistConfig, dashboardReducer);
+const persistedProfile = persistReducer(profilePersistConfig, profileReducer);
 
 const reducers = combineReducers({
   theme: persistedTheme,
   userInfo: persistedUserInfo,
   deviceInfo: persistedDeviceInfo,
   dashboard: persistedDashboard,
+  profile: persistedProfile,
   [authAPI.reducerPath]: authAPI.reducer,
   [dashboardAPI.reducerPath]: dashboardAPI.reducer,
+  [productsAPI.reducerPath]: productsAPI.reducer,
 });
 
 const rootReducer: Reducer<RootState> = (state, action) => {
@@ -45,7 +51,7 @@ const rootReducer: Reducer<RootState> = (state, action) => {
   return reducers(state, action);
 };
 
-const middlewares = [authAPI.middleware, dashboardAPI.middleware];
+const middlewares = [authAPI.middleware, dashboardAPI.middleware, productsAPI.middleware];
 
 if (__DEV__) {
   const createDebugger = require('redux-flipper').default;

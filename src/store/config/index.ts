@@ -28,3 +28,9 @@ export const deviceInfoPersistConfig = {
   storage: reduxStorage,
   whitelist: ['deviceId', 'userAgent', 'osType', 'userIp', 'deviceToken'],
 };
+
+export const profilePersistConfig = {
+  key: 'profile',
+  storage: reduxStorage,
+  whitelist: ['customerId'],
+};

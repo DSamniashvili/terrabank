@@ -4,25 +4,25 @@ import { useTheme } from 'hooks';
 import { Button, CardsAndAccounts, DepositsAndLoans, Divider } from 'components';
 import { useStyles } from './ProductsScreen.styles';
 import { Plus } from 'assets/SVGs';
-import { Colors } from 'theme/Variables';
+import { useTeraProducts } from './teraProductsContainer';
 
-const accounts = [
-  {
-    name: 'ჩემი ანგარიში',
-    balance: 1492,
-    isBlocked: true,
-  },
-  {
-    name: 'ჩემი ანგარიში',
-    balance: 208.05,
-    isBlocked: false,
-  },
-  {
-    name: 'ჩემი ანგარიში',
-    balance: 2710.16,
-    isBlocked: false,
-  },
-];
+// const accountsData = [
+//   {
+//     name: 'ჩემი ანგარიში',
+//     balance: 1492,
+//     isBlocked: true,
+//   },
+//   {
+//     name: 'ჩემი ანგარიში',
+//     balance: 208.05,
+//     isBlocked: false,
+//   },
+//   {
+//     name: 'ჩემი ანგარიში',
+//     balance: 2710.16,
+//     isBlocked: false,
+//   },
+// ];
 
 const deposits = [
   {
@@ -61,7 +61,10 @@ const sections = [
   { title: 'loans', data: [{}] },
 ];
 
-const LeftIcon = () => <Plus color={Colors.white} />;
+const LeftIcon = () => {
+  const { Colors } = useTheme();
+  return <Plus color={Colors.white} />;
+};
 
 const SectionListFooter = () => {
   const styles = useStyles();
@@ -80,11 +83,14 @@ const SectionListFooter = () => {
 const TeraBankProducts = () => {
   const styles = useStyles();
   const { Colors } = useTheme();
+  const { accounts, totalAvailableBalance } = useTeraProducts();
 
   const renderSectionListItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'accounts':
-        return <CardsAndAccounts accounts={accounts} />;
+        return (
+          <CardsAndAccounts accounts={accounts} totalAvailableBalance={totalAvailableBalance} />
+        );
       case 'deposits':
         return <DepositsAndLoans data={deposits} variant="deposit" />;
       case 'loans':
