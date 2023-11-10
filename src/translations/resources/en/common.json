@@ -146,6 +146,8 @@
     "details": "Details",
     "accountBlocked": "Account is blocked",
     "emptyCards": "You do not have a card linked to your account",
-    "loanArrears": "Loan Arrears"
+    "loanArrears": "Loan Arrears",
+    "overdraft": "Active overdraft",
+    "availableAmount": "Available Amount"
   }
 }

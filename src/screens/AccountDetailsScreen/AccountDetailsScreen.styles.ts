@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { useTheme } from 'hooks';
-import { horizontalScale } from 'utils/config';
+import { config, horizontalScale } from 'utils/config';
+
+const PROGRESS_WIDTH = config.mobileWidth - 48 - 12 - 48;
 
 export const useStyles = () => {
   const { Layout, Colors, Spacing, FontSize, FontFamily, BorderRadius } = useTheme();
@@ -184,6 +186,39 @@ export const useStyles = () => {
     transactionsContainer: {
       backgroundColor: Colors.white,
       paddingBottom: Spacing.xl,
+    },
+    overdraftWrapper: {
+      borderTopLeftRadius: Spacing.xl,
+      backgroundColor: Colors.white,
+      borderTopRightRadius: Spacing.xl,
+    },
+    overdraftContainer: {
+      paddingHorizontal: Spacing.xl,
+    },
+    overdraftDetailsWrapper: {
+      ...Layout.row,
+      gap: Spacing.m,
+      marginTop: Spacing.xl,
+    },
+    overdraftDetails: {
+      ...Layout.fill,
+      ...Layout.rowHCenter,
+      ...Layout.justifyContentBetween,
+    },
+    overdraftAmount: {
+      ...Layout.rowHCenter,
+    },
+    progress: {
+      width: PROGRESS_WIDTH,
+      height: Spacing.xxs,
+      backgroundColor: Colors.inputBlack50,
+      borderRadius: 20,
+      marginTop: Spacing.l,
+    },
+    indicator: {
+      height: Spacing.xxs,
+      backgroundColor: Colors.success,
+      borderRadius: 20,
     },
   });
 };
