@@ -34,20 +34,30 @@ const SectionListFooter = () => {
 const TeraBankProducts = () => {
   const styles = useStyles();
   const { Colors } = useTheme();
-  const { accounts, totalAvailableBalance, deposits, totalDeposits } = useTeraProducts();
+  const { accounts, totalAvailableBalance, deposits, totalDeposits, loans, totalLoans } =
+    useTeraProducts();
 
   const renderSectionListItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'accounts':
         return (
-          <CardsAndAccounts accounts={accounts} totalAvailableBalance={totalAvailableBalance} />
+          <CardsAndAccounts
+            accounts={accounts}
+            totalAvailableBalance={totalAvailableBalance}
+            showDivider={!!deposits?.length || !!loans?.length}
+          />
         );
       case 'deposits':
         return (
-          <DepositsAndLoans data={deposits} totalAmount={totalDeposits || 0} variant="deposit" />
+          <DepositsAndLoans
+            data={deposits}
+            variant="deposit"
+            totalAmount={totalDeposits}
+            displayDivider={!!loans?.length}
+          />
         );
-      // case 'loans':
-      //   return <DepositsAndLoans data={loans} variant="loan" />;
+      case 'loans':
+        return <DepositsAndLoans data={loans} variant="loan" totalAmount={totalLoans} />;
       default:
         return null;
     }

@@ -54,7 +54,7 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
   accounts,
   showTitle = true,
   showFooter = true,
-  showDivider = true,
+  showDivider = false,
   totalAvailableBalance = 0,
   seeAllAccounts,
 }) => {

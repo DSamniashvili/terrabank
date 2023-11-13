@@ -33,7 +33,7 @@ const Dot = ({ index, translateX }: DotProps) => {
   return <Animated.View key={index} style={[styles.dot, reanimatedStyle]} />;
 };
 
-const Indicator: FC<IndicatorProps> = ({ data, translateX, hideFirst = true }) => {
+const Indicator: FC<IndicatorProps> = ({ data = [], translateX, hideFirst = true }) => {
   const styles = useStyles();
 
   return (

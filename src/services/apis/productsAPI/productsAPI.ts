@@ -2,7 +2,13 @@ import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithInterceptor } from 'services/api';
 import { URLS } from 'services/constants/urls';
 import { METHOD_NAMES } from 'services/constants';
-import { Account, DepositType, OfferType, OffersAPIResponseType } from './productsAPI.types';
+import {
+  Account,
+  DepositType,
+  LoanType,
+  OfferType,
+  OffersAPIResponseType,
+} from './productsAPI.types';
 
 export const productsAPI = createApi({
   reducerPath: 'productsAPI',
@@ -37,7 +43,7 @@ export const productsAPI = createApi({
         },
       }),
     }),
-    getLoansByCustomerId: builder.query<any, number>({
+    getLoansByCustomerId: builder.query<LoanType[], number>({
       query: CustomerId => ({
         url: URLS.getLoansByCustomerId,
         method: METHOD_NAMES.GET,

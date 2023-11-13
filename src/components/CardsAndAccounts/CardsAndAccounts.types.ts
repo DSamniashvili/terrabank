@@ -7,6 +7,7 @@ export interface CardsAndAccountsProps {
   showDivider?: boolean;
   totalAvailableBalance?: number;
   seeAllAccounts?: boolean;
+  displayDivider?: boolean;
 }
 
 export interface AccountProps {

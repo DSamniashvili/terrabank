@@ -29,10 +29,6 @@ export const AllAcountsAndCardsScreen = () => {
   const styles = useStyles();
   const { accounts, totalAvailableBalance, offers } = useAllAcounts();
 
-  if (!offers) {
-    return null;
-  }
-
   const renderItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'accounts':
@@ -41,7 +37,7 @@ export const AllAcountsAndCardsScreen = () => {
             accounts={accounts}
             showTitle={false}
             showFooter={false}
-            showDivider={offers.length > 0}
+            showDivider={!!offers?.length}
             totalAvailableBalance={totalAvailableBalance}
             seeAllAccounts
           />
