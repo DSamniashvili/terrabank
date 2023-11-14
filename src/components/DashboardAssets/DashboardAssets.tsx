@@ -3,10 +3,7 @@ import { View } from 'react-native';
 import { AssetsCard, Divider, Text } from 'components';
 import { useStyles } from './DashboardAssets.styles';
 import useTheme from 'hooks/useTheme';
-
-const calculateSum = (data: Array<{ [key: string]: number }>, property: string): number => {
-  return data?.reduce((total, item) => total + item[property], 0);
-};
+import { calculateSum } from 'utils/calculateSum';
 
 const filterAssetsAndCalculateSum = (assets: any[], currencyToExclude: string) => {
   const filteredAssets = assets.filter(
@@ -43,7 +40,7 @@ export const DashboardAssets = ({ creditCards, overDraft, getLoanCustomerId, ass
         <View style={styles.dashboardTemplatesContainer}>
           <View style={styles.headerContainer}>
             <Text
-              children={`dashboard.assets`}
+              children={'dashboard.assets'}
               style={styles.titleContainer}
               color={Colors.textBlack}
             />

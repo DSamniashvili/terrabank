@@ -27,22 +27,18 @@ const ListFooter = () => {
 
 export const AllAcountsAndCardsScreen = () => {
   const styles = useStyles();
-  const { accounts, totalAvailableBalance, offers } = useAllAcounts();
-
-  if (!offers) {
-    return null;
-  }
+  const { groupedAccountsByIban, totalAvailableBalanceGEL, offers } = useAllAcounts();
 
   const renderItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'accounts':
         return (
           <CardsAndAccounts
-            accounts={accounts}
+            accounts={groupedAccountsByIban}
             showTitle={false}
             showFooter={false}
-            showDivider={offers.length > 0}
-            totalAvailableBalance={totalAvailableBalance}
+            showDivider={!!offers?.length}
+            totalAvailableBalance={totalAvailableBalanceGEL}
             seeAllAccounts
           />
         );

@@ -1,19 +1,19 @@
-import { DepositType } from 'services/apis/productsAPI/productsAPI.types';
+import { DepositType, LoanType } from 'services/apis/productsAPI/productsAPI.types';
 
 type Variant = 'deposit' | 'loan';
 
 export interface DepositsAndLoansProps {
-  data?: DepositType[];
+  data?: DepositType[] | LoanType[];
   variant: Variant;
   totalAmount: number;
   seeAll?: boolean;
+  displayDivider?: boolean;
 }
 
-export interface ListItemProps {
-  item: DepositType;
+export type ListItemProps = {
+  item: DepositType | LoanType;
   isLast: boolean;
-  variant: Variant;
-}
+};
 
 export interface HeaderProps {
   variant: Variant;

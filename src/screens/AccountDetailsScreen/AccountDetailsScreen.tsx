@@ -4,7 +4,10 @@ import Cards from './Cards';
 import { Details } from './Details';
 import { CardsSlider } from './CardsSlider';
 import { LastTransactions } from 'components';
+import { useRoute } from '@react-navigation/native';
+import { ProductsStackRouteProps } from 'navigation/types';
 import { useStyles } from './AccountDetailsScreen.styles';
+import { useAccountDetails } from './container';
 
 const lastTransactions = [
   {
@@ -42,13 +45,15 @@ const sections = [
 
 export const AccountDetailsScreen = () => {
   const styles = useStyles();
+  const { params } = useRoute<ProductsStackRouteProps<'AccountDetailsScreen'>>();
+  const { groupedCardsByPan } = useAccountDetails(params.iban);
 
   const renderItem: SectionListRenderItem<any, any> = ({ section }) => {
     switch (section.title) {
       case 'main':
         return <CardsSlider />;
       case 'cards':
-        return <Cards />;
+        return <Cards cards={groupedCardsByPan} />;
       case 'details':
         return <Details />;
       case 'transactions':

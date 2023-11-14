@@ -1,20 +1,17 @@
 import { skipToken } from '@reduxjs/toolkit/dist/query';
-import {
-  useGetAccountsByCustomerIdQuery,
-  useGetOffersQuery,
-} from 'services/apis/productsAPI/productsAPI';
+import { useGetOffersQuery } from 'services/apis/productsAPI/productsAPI';
 import { useAppSelector } from 'store/hooks/useAppSelector';
 
 export const useAllAcounts = () => {
   const { customerId } = useAppSelector(state => state.profile);
-  const { data: accounts } = useGetAccountsByCustomerIdQuery(customerId ?? skipToken);
   const { data: offers } = useGetOffersQuery(customerId ?? skipToken);
-
-  const totalAvailableBalance = accounts?.reduce((acc, cur) => acc + cur.availableBalance, 0);
+  const { groupedAccountsByIban, totalAvailableBalanceGEL } = useAppSelector(
+    state => state.products,
+  );
 
   return {
-    accounts,
-    totalAvailableBalance,
+    groupedAccountsByIban,
+    totalAvailableBalanceGEL,
     offers,
   };
 };

@@ -6,6 +6,7 @@ import { Divider, Text } from '../index';
 import { formatMoney } from 'utils/formatMoney';
 import { useStyles } from './DepositsAndLoans.styles';
 import { DepositsAndLoansProps, HeaderProps } from './DepositsAndLoans.types';
+import { DepositType, LoanType } from 'services/apis/productsAPI/productsAPI.types';
 
 const ListHeader: FC<HeaderProps> = ({ variant, quantity, totalAmount }) => {
   const styles = useStyles();
@@ -40,6 +41,7 @@ export const DepositsAndLoans: FC<DepositsAndLoansProps> = ({
   totalAmount,
   variant,
   seeAll,
+  displayDivider,
 }) => {
   const styles = useStyles();
 
@@ -47,8 +49,8 @@ export const DepositsAndLoans: FC<DepositsAndLoansProps> = ({
     return null;
   }
 
-  const renderItem: ListRenderItem<any> = ({ item, index }) => {
-    return <ListItem item={item} variant={variant} isLast={index === data.length - 1} />;
+  const renderItem: ListRenderItem<DepositType | LoanType> = ({ item, index }) => {
+    return <ListItem item={item} isLast={index === data.length - 1} />;
   };
 
   return (
@@ -62,7 +64,7 @@ export const DepositsAndLoans: FC<DepositsAndLoansProps> = ({
         }
         style={styles.list}
       />
-      {variant === 'deposit' && <Divider marginTop={24} marginBottom={12} />}
+      {displayDivider && <Divider marginTop={24} marginBottom={12} />}
     </View>
   );
 };

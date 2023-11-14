@@ -33,7 +33,7 @@ export const Offers: FC<OffersProps> = ({ data }) => {
     );
   };
 
-  if (data.length === 0) {
+  if (!data) {
     return null;
   }
 

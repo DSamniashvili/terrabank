@@ -21,19 +21,19 @@ export const CardItem: FC<CardItemProps> = ({ item, isLast, onPress }) => {
           <View style={styles.cardDetailsContainer}>
             <View>
               <View style={styles.nameContainer}>
-                <Text children={item.name} color={Colors.textBlack500} />
-                {item.isFavourite && <CheckShieldSmall />}
+                <Text children={item.cardProductName} color={Colors.textBlack500} />
+                {item.isInsured && <CheckShieldSmall />}
               </View>
-              <Text children={item.cardNumber} />
+              <Text children={`**** ${item.pan.slice(-4)}`} />
             </View>
             <View style={styles.cardIconContainer}>
-              {item.type === 'Visa' ? <Visa /> : <MasterCard />}
+              {item.cardProductName.toLowerCase().includes('visa') ? <Visa /> : <MasterCard />}
               <ChevronRight />
             </View>
           </View>
           <View style={styles.badgeContainer}>
-            {item.isBlocked && <Badge icon={<Lock />} label="products.blocked" />}
-            {item.isExpired && <Badge icon={<Alert />} label="products.expired" />}
+            {item.status === 9 && <Badge icon={<Lock />} label="products.blocked" />}
+            {item.status === 6 && <Badge icon={<Alert />} label="products.expired" />}
           </View>
           {!isLast && <Divider height={1} marginTop={16} marginBottom={16} width="100%" />}
         </View>

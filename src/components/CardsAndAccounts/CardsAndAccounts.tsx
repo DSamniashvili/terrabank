@@ -5,7 +5,11 @@ import { Account } from './Account';
 import { Divider, Text } from '../index';
 import { Settings } from 'assets/SVGs';
 import { formatMoney } from 'utils/formatMoney';
-import { CardsAndAccountsProps, HeaderProps } from './CardsAndAccounts.types';
+import {
+  CardsAndAccountsProps,
+  HeaderProps,
+  IGroupedAccountsByIban,
+} from './CardsAndAccounts.types';
 import { useStyles } from './CardsAndAccounts.styles';
 import { useNavigation } from '@react-navigation/native';
 import { ProductsStackScreenProps } from 'navigation/types';
@@ -54,16 +58,16 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
   accounts,
   showTitle = true,
   showFooter = true,
-  showDivider = true,
+  showDivider = false,
   totalAvailableBalance = 0,
   seeAllAccounts,
 }) => {
   const styles = useStyles();
   const { navigate } = useNavigation<ProductsStackScreenProps<'AccountDetailsScreen'>>();
 
-  const handlePress = (accountId: number) => {
+  const handlePress = (iban: string) => {
     navigate('AccountDetailsScreen', {
-      accountId,
+      iban,
     });
   };
 
@@ -71,12 +75,12 @@ export const CardsAndAccounts: FC<CardsAndAccountsProps> = ({
     return null;
   }
 
-  const renderItem: ListRenderItem<any> = ({ item, index }) => {
+  const renderItem: ListRenderItem<IGroupedAccountsByIban> = ({ item, index }) => {
     return (
       <Account
         item={item}
         isLast={index === accounts.length - 1}
-        handlePress={() => handlePress(item.id)}
+        handlePress={() => handlePress(item.iban)}
       />
     );
   };
