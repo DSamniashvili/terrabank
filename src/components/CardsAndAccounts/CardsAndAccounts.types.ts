@@ -1,7 +1,13 @@
 import { Account, Currency } from 'services/apis/productsAPI/productsAPI.types';
 
+export interface IGroupedAccountsByIban {
+  accountName: string;
+  accounts: Account[];
+  iban: string;
+}
+
 export interface CardsAndAccountsProps {
-  accounts?: Account[];
+  accounts?: IGroupedAccountsByIban[];
   showTitle?: boolean;
   showFooter?: boolean;
   showDivider?: boolean;
@@ -11,7 +17,7 @@ export interface CardsAndAccountsProps {
 }
 
 export interface AccountProps {
-  item: Account;
+  item: IGroupedAccountsByIban;
   isLast: boolean;
   handlePress?: () => void;
 }

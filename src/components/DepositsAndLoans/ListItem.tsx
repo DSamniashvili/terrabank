@@ -18,7 +18,7 @@ export const ListItem: FC<ListItemProps> = ({ item, isLast }) => {
       <View style={styles.cardContainer} />
       <View style={styles.detailsWrapper}>
         <View style={styles.details}>
-          <View>
+          <View style={{ flex: 1 }}>
             <Text
               regular
               children={isDeposit ? item.depositName : item.productName}
@@ -30,21 +30,23 @@ export const ListItem: FC<ListItemProps> = ({ item, isLast }) => {
               {CurrencySignMap[item.currency]}
             </Text>
           </View>
-          {isDeposit ? (
+          {isDeposit && (
             <View style={styles.interest}>
               <Text children="products.interest" label color={Colors.textBlack500} />
               <Text label color={Colors.success}>
                 +{formatMoney(item.totalInterest || 0)} {CurrencySignMap[item.currency]}
               </Text>
             </View>
-          ) : (
+          )}
+
+          {!isDeposit && item.nextPaymentAmount ? (
             <View style={styles.fee}>
               <Text children="products.fee" label color={Colors.textBlack500} />
               <Text label color={Colors.error}>
                 {formatMoney(item.nextPaymentAmount || 0)} {CurrencySignMap[item.currency]}
               </Text>
             </View>
-          )}
+          ) : null}
         </View>
         {!isLast && <Divider height={1} marginTop={18} marginBottom={18} width="100%" />}
       </View>

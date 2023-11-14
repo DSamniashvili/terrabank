@@ -52,5 +52,8 @@ export const useStyleTheme = () => {
     regular: {
       fontFamily: FontFamily.Regular,
     },
+    medium: {
+      fontFamily: FontFamily.medium,
+    },
   });
 };

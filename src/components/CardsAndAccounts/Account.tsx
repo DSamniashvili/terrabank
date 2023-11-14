@@ -31,11 +31,17 @@ const currencies: CurrencyMap[] = [
 export const Account: FC<AccountProps> = ({ item, isLast, handlePress }) => {
   const styles = useStyles();
   const { Colors } = useTheme();
-  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(item.ccy);
+  const [selectedCurrency, setSelectedCurrency] = useState<Currency>(item.accounts[0].ccy);
 
-  const handleCurrencyPress = (currency: Currency) => {
-    setSelectedCurrency(currency);
+  const currency = item.accounts?.find(account => account.ccy === selectedCurrency);
+
+  const handleCurrencyPress = (selectedCur: Currency) => {
+    setSelectedCurrency(selectedCur);
   };
+
+  if (!currency) {
+    return null;
+  }
 
   return (
     <Pressable onPress={handlePress} style={styles.account}>
@@ -49,22 +55,28 @@ export const Account: FC<AccountProps> = ({ item, isLast, handlePress }) => {
         </View>
         <View style={styles.balanceContainer}>
           <Text size={16} demiBold>
-            {formatMoney(item.availableBalance || 0)} {CurrencySignMap[item.ccy]}
+            {formatMoney(currency?.balance || 0)} {CurrencySignMap[currency.ccy]}
           </Text>
           <View style={styles.currencyWrapper}>
-            {currencies.map(ccy => (
-              <Pressable
-                style={styles.currencySignContainer}
-                onPress={() => handleCurrencyPress(ccy.cur)}
-              >
-                <Text
-                  label
-                  color={selectedCurrency === ccy.cur ? Colors.textBlack : Colors.textBlack400}
+            {currencies.map(({ cur, sign }) => {
+              const x = item?.accounts?.findIndex(acc => acc.ccy === cur);
+              if (x === -1) {
+                return null;
+              }
+              return (
+                <Pressable
+                  style={styles.currencySignContainer}
+                  onPress={() => handleCurrencyPress(cur)}
                 >
-                  {ccy.sign}
-                </Text>
-              </Pressable>
-            ))}
+                  <Text
+                    label
+                    color={selectedCurrency === cur ? Colors.textBlack : Colors.textBlack400}
+                  >
+                    {sign}
+                  </Text>
+                </Pressable>
+              );
+            })}
           </View>
         </View>
         {!isLast && <Divider height={1} marginTop={18} width="100%" />}

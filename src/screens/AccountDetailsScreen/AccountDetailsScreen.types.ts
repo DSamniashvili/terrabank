@@ -1,5 +1,7 @@
+import { CardType } from 'services/apis/productsAPI/productsAPI.types';
+
 export interface CardItemProps {
-  item: any;
+  item: CardType;
   isLast: boolean;
   onPress?: () => void;
 }
@@ -18,4 +20,8 @@ export interface DetailsItemProps {
 
 export interface CardSliderItemProps {
   item: any;
+}
+
+export interface CardsProps {
+  cards: CardType[];
 }

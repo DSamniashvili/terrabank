@@ -44,7 +44,7 @@ export type ProductsStackParamsList = {
   [PRODUCTS_SCREEN]: undefined;
   [ALL_ACCOUNTS_AND_CARDS_SCREEN]: undefined;
   [ACCOUNT_DETAILS_SCREEN]: {
-    accountId: number;
+    iban: string;
   };
 };
 

@@ -1,28 +1,29 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { Button, Divider, Text } from 'components';
 import { CardItem } from './CardItem';
 import { useStyles } from './AccountDetailsScreen.styles';
 import { EmptyCards, Plus } from 'assets/SVGs';
+import { CardsProps } from './AccountDetailsScreen.types';
 
-const cards = [
-  {
-    name: 'ჩემი ბარათი',
-    isFavourite: true,
-    cardNumber: '**** 0453',
-    isBlocked: true,
-    isExpired: true,
-    type: 'MasterCard',
-  },
-  {
-    name: 'ჩემი ბარათი',
-    isFavourite: false,
-    cardNumber: '**** 0453',
-    isBlocked: false,
-    isExpired: false,
-    type: 'Visa',
-  },
-];
+// const dummyCards = [
+//   {
+//     name: 'ჩემი ბარათი',
+//     isFavourite: true,
+//     cardNumber: '**** 0453',
+//     isBlocked: true,
+//     isExpired: true,
+//     type: 'MasterCard',
+//   },
+//   {
+//     name: 'ჩემი ბარათი',
+//     isFavourite: false,
+//     cardNumber: '**** 0453',
+//     isBlocked: false,
+//     isExpired: false,
+//     type: 'Visa',
+//   },
+// ];
 
 const ListHeader = () => {
   const styles = useStyles();
@@ -52,7 +53,7 @@ const EmptyComponent = () => {
   );
 };
 
-const Cards = () => {
+const Cards: FC<CardsProps> = ({ cards }) => {
   const styles = useStyles();
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return <CardItem item={item} onPress={() => {}} isLast={index === cards.length - 1} />;
