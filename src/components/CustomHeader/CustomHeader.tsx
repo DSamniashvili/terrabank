@@ -16,6 +16,7 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
   messagesElement,
   backElement,
   title,
+  accountTitle,
   titlePosition = 'center',
   customHeaderContainerStyle,
   bottomBorder,
@@ -62,11 +63,14 @@ export const CustomHeader: FC<Partial<CustomHeaderOptions>> = ({
 
     return (
       <View style={styles[containerStyle] as ViewStyle}>
-        {position === titlePosition && (
-          <Text style={[styles.text, isInitialScreen && styles.isInitialScreenText]}>
-            {t(title)}
-          </Text>
-        )}
+        <View>
+          {position === titlePosition && (
+            <Text style={[styles.text, isInitialScreen && styles.isInitialScreenText]}>
+              {t(title)}
+            </Text>
+          )}
+          {position === titlePosition && <Text style={styles.accountText}>{accountTitle}</Text>}
+        </View>
         {components.length > 0 && (
           <View style={styles.componentsWrapper}>
             {components.map((comp, index) => (

@@ -6,12 +6,21 @@ import { formatMoney } from 'utils/formatMoney';
 import { ChevronUp, ChevronDown, Star, FullStar, Alert } from 'assets/SVGs';
 import { CardSliderItemProps } from './AccountDetailsScreen.types';
 import { useStyles } from './AccountDetailsScreen.styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { ProductsStackScreenProps } from 'navigation/types';
 
 export const CardSliderItem: FC<CardSliderItemProps> = ({ item }) => {
+  const { navigate } = useNavigation<ProductsStackScreenProps<'MyAccountScrollableScreen'>>();
   const styles = useStyles();
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => {
+        navigate('MyAccountScrollableScreen');
+      }}
+    >
       <View>
         <Text title children={item.name} regular color={Colors.inactiveTint} />
         <View style={styles.balance}>
@@ -78,6 +87,6 @@ export const CardSliderItem: FC<CardSliderItemProps> = ({ item }) => {
           {item.isFavourite ? <FullStar /> : <Star />}
         </Pressable>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };

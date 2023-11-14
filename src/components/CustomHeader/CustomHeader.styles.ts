@@ -42,6 +42,7 @@ export const useStyleTheme = () => {
       ...Fonts.textCenter,
       fontSize: FontSize.small,
     },
+    accountText: { color: Colors.accountText500, ...Fonts.textCenter, fontSize: FontSize.tiny },
     isInitialScreenText: {
       ...Fonts.textBold,
       fontSize: FontSize.regularPlus,

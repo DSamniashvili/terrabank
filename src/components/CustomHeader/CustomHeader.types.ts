@@ -21,6 +21,7 @@ export type CustomHeaderProps = {
   backElement?: IconComponentProps;
   title?: string;
   titlePosition?: Position;
+  accountTitle?: string;
   customHeaderContainerStyle?: ViewStyle;
   bottomBorder?: boolean;
 };

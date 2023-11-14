@@ -38,3 +38,4 @@ export { ProductsTabBar } from './ProductsTabBar/ProductsTabBar';
 export { CardsAndAccounts } from './CardsAndAccounts/CardsAndAccounts';
 export { DepositsAndLoans } from './DepositsAndLoans/DepositsAndLoans';
 export { Offers } from './Offers/Offers';
+export { FixedButton } from './FixedButton/FixedButton';
