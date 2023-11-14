@@ -23,6 +23,7 @@ import {
   MY_ACCOUNTS_SCREEN,
   ALL_ACCOUNTS_AND_CARDS_SCREEN,
   ACCOUNT_DETAILS_SCREEN,
+  MY_ACCOUNT_SCROLLABLE_SCREEN,
 } from './ScreenNames';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -46,6 +47,7 @@ export type ProductsStackParamsList = {
   [ACCOUNT_DETAILS_SCREEN]: {
     accountId: number;
   };
+  [MY_ACCOUNT_SCROLLABLE_SCREEN]: undefined;
 };
 
 export type TransactionsStackParamsList = {

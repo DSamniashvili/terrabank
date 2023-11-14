@@ -47,10 +47,14 @@ export const Colors = {
   currencyBackground: 'rgba(255, 255, 255, 0.1)',
   currency: '#AAAAAA',
   black200: 'rgba(29, 29, 29, 0.20)',
+  black700: '#0F0F0FFA',
   headerBackground: 'rgba(246, 246, 246, 1)',
   pink: '#9F1D6B0F',
   skeleton: 'rgba(254, 254, 254, 1)',
   lightRed: 'rgba(226, 45, 32, 0.08)',
+  accountText500: 'rgba(15, 15, 15, 0.64)',
+  lightGray: 'rgba(249, 249, 249, 1)',
+  borderColor: 'rgba(196, 196, 196, 0.3)',
 };
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {

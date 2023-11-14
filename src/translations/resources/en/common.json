@@ -148,6 +148,7 @@
     "emptyCards": "You do not have a card linked to your account",
     "loanArrears": "Loan Arrears",
     "overdraft": "Active overdraft",
-    "availableAmount": "Available Amount"
+    "availableAmount": "Available Amount",
+    "pay": "pay"
   }
 }
